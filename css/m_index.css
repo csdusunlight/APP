@@ -1,0 +1,371 @@
+header {
+		width: 100%;
+		height: 4rem;
+		background-color: #fff;
+		padding: 0 1.875% 0;
+		padding-bottom: 0.4rem;
+		background: #52c5ff;
+}
+header>img {
+	height: 2rem;
+	margin-top: 1rem;
+}
+header a {
+	display: block;
+	width: 1.6rem;
+	height: 1.6rem;
+	margin-top: 1.7rem;
+}
+header a img {
+	width: 100%;
+	margin: 0;
+}
+.mui-fullscreen {
+	top: 4rem;
+}
+
+/*提示消息部分*/
+.news {
+	width: 100%;
+	height: 2.4rem;
+	padding: 0 1.875% 0;
+	background-color: #fff;
+	box-shadow: 0 1px 3px #e4e4e4;
+}
+.news span {
+	display: block;
+	padding: 0;
+	margin: 0;
+	font-size: 1rem;
+	line-height: 2.4rem;
+}
+.news span b {
+	font-weight: bold;
+	color: #ff6767;
+}
+.news .iconfont {
+	margin-right: 4px;
+	font-size: 1.2rem;
+	line-height: 2.4rem;
+	color: #f08519;
+}
+/*图标导航部分*/
+.icon-nav {
+	margin-top: 0.6rem;
+	padding-bottom: 0.4rem;
+	text-align: center;
+	background: #fff;
+	box-shadow: 0 1px 3px #e4e4e4;
+}
+.nav-list li{
+	float: left;
+	width: 25%;
+}
+.nav-list .iconfont {
+	display: block;
+	margin: 0 auto;
+	padding-top: 0.9rem;
+	width: 4.2rem;
+	height: 4.2rem;
+	border-radius: 50%;
+	font-size: 2.4rem;
+	color: #fff;
+	font-weight: 200 !important;
+}
+.nav-list .ic-01 {
+	padding-top: 0.8rem;
+	font-size: 2.6rem;
+	background-color: #7aafff;
+}
+.nav-list .ic-02 {
+	font-size: 2.6rem;
+	padding-top: 0.7rem;
+	background-color: #00d6b3;
+}
+.nav-list .ic-03 {
+	padding-top: 0.8rem;
+	font-size: 3rem;
+	background-color: #ff6314;
+}
+.nav-list .ic-04 {
+	padding-top: 1rem;
+	background-color: #be5dff;
+}
+.nav-list .ic-05 {
+	padding-top: 0.5rem;
+	padding-right: 0.2rem;
+	font-size: 3.4rem;
+	background-color: #fb3456;
+}
+.nav-list .ic-06 {
+	background-color: #ffac00;
+}
+.nav-list .ic-07 {
+	padding-top: 1rem;
+	background-color: #14b1ff;
+}
+.nav-list .ic-08 {
+	padding-top: 1rem;
+	background-color: #51c332;
+}
+.nav-list li a {
+	display: block;
+	padding-top: 1rem;
+}
+.nav-list li span {
+	padding: 0.4rem 0 0.6rem;
+	display: block;
+	font-size: 1.2rem;
+	color: #333;
+}
+
+/*今日推荐部分*/
+.today {
+	width: 100%;
+	padding: 0 1.875% 0;
+	margin-top: 0.6rem;
+	background: #fff;
+	box-shadow: 0 1px 3px #e4e4e4;
+}
+.today .today-tittle h3 {
+	padding-top: 2px;
+	width: 22%;
+	font-size: 1.4rem;
+	color: #008fd7;
+	line-height: 2.6rem;
+	border-bottom: 2px solid #008fd7;
+	/*font-weight: 700;*/
+}
+.today .today-img {
+	padding-top: 0.8rem;
+	padding-bottom: 0.4rem;
+	position: relative;
+	border-top: 1px solid #e4e4e4;
+}
+.today-img a img{width: 100%;
+}
+.today-img .ti-left{
+	width: 56%;
+	max-width: 346px;
+	height: auto;
+}
+.today-img .ti-right{
+	width: 41%;
+	max-width: 254px;
+	display: inline;
+}
+.today-img .ti-03 {
+	position: absolute;
+	right: 0;
+	bottom: 0.4rem;
+}
+
+/*选项卡部分*/
+.recent .today-tittle {
+	border-bottom: none;
+}
+
+.mui-table-view-cell {
+	/*padding: 1rem 0 1rem 1.2rem;*/
+	padding: 0;
+	/*margin-top: 1px;*/
+}
+
+.mui-table-view-cell>a:not(.mui-btn) {
+	margin: 0.8rem 0;
+	overflow: visible;
+}
+.mui-table-view-cell img {
+	float: left;
+	/*margin-right: 6.5%;*/
+	width: 13rem !important;
+	max-height: 7.5rem;
+	border-radius: 4px;
+	border: 1px solid #e4e4e4;
+}
+.mui-table-view-cell .li-info {
+	width: 15rem;
+	float: right;
+	height: auto;
+}
+.li-info h6 {
+	display: inline-block;
+	max-width: 13rem;
+	margin-top: 0.4rem;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	font-size: 1.2rem;
+	color: #222;
+}
+h6 + .iconfont {
+	margin-left: 0.4rem;
+	font-size: 1.2rem;
+	color: #ff6767;
+}
+.li-info p {
+	line-height: 1.8rem;
+}
+.li-info p.first {
+	height: 1.8rem;
+}
+.li-info p.first span {
+	height: 1.2rem;
+	/*padding-left: 0;*/
+	display: inline-block;
+	padding: 0 4px;
+	color: #ff6767;
+	margin: 0.6rem 1rem 0 0;
+	font-size: 0.8rem;
+	line-height: 1.2rem;
+	text-align: center;
+	border: 1px solid #fb3456;
+	border-radius: 4px;
+}
+.li-info span {
+	font-size: 1rem;
+	display: inline-block;
+}
+
+.li-info .s2,
+.li-info .s3 {
+	margin-top: 0.2rem;
+	display: inline-block;
+}
+.li-info .s3 {
+	float: left;
+	width: 10.5rem;
+}
+.li-info .s2 {
+	float: left;
+}
+.li-info .s1 {
+	margin-top: 0.5rem;
+}
+.iconfont:before {
+ 	font-family: wafuli-iconfont;
+	margin-right: 0.2rem;
+	font-size: 1rem;
+	color: rgba(0,135,223,0.5);
+	-webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-renzhengshangjia:before {
+	content: "\e620";
+}
+.icon-time:before {
+	content: "\e628";
+}
+.icon-yanjing:before {
+	content: "\e601";
+}
+/*底部导航部分*/
+footer {
+	width: 100%;
+	position: fixed;
+	bottom: 0;
+	background: #fff;
+	z-index: 1000;
+	border-top: 1px solid #e4e4e4;
+}
+footer li {
+	width: 25%;
+	float: left;
+}
+footer .iconfont {
+	font-size: 2.4rem;
+	line-height: 1.2;
+	color: #8f8f8f;
+}
+.on .iconfont {
+	color: #f08519;
+}
+footer li span {
+	display: block;
+	font-size: 1rem;
+	color: #4d4d4d;
+	margin-bottom: 3px;
+	margin-top: 3px;
+}
+footer li.on span {
+	color: #f08519;
+}
+/*弹出层部分*/
+@-webkit-keyframes weixin {
+     0% {
+        -webkit-transform: scale(0);
+        -ms-transform: scale(0);
+        transform: scale(0);
+        opacity: 0;
+     }
+     100% {
+        -webkit-transform: scale(1);
+        -ms-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+     }
+}
+.er-wei-ma-bg {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	display: none;
+	background-color: rgba(0,0,0,0.5);
+	z-index: 1000;
+}
+.weixin-box-00 {
+	display: none;
+	position: fixed;
+	width: 90% !important;
+	/*height: 40rem;*/
+	padding: 10% 0;
+	top: 15%;
+	margin-left: 5%;
+	background: #fff;
+	overflow: hidden;
+	z-index: 1001;
+}
+.weixin-box-01 {
+	position: fixed;
+	width: 90% !important;
+	/*height: 40rem;*/
+	padding: 10% 0;
+	top: 15%;
+	margin-left: 5%;
+	background: #fff;
+	overflow: hidden;
+	z-index: 1001;
+	animation: weixin 1s linear;
+	-webkit-animation: weixin 1s linear;
+}
+.weixin-box-02 {
+	display: none;
+
+}
+.weixin-box p {
+	font-size: 1.6rem;
+	color: #333;
+	text-align: center;
+}
+.weixin-box img {
+	text-align: center;
+	width: 90%;
+	margin-left: 5%;
+}
+.weixin-box span {
+	position: absolute;
+	left: 0.4rem;
+	top: 0.4rem;
+	font-size: 3rem;
+}
+.weixin-box span:active {
+	color: #ff6767;
+}
+
+.mui-scroll-wrapper{
+	bottom:20px;
+	/*margin-top:40px;*/
+}

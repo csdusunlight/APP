@@ -1,0 +1,83 @@
+.mui-content {
+	margin-top: 44px;
+}
+/*列表样式部分*/
+.mui-table-view {
+	padding: 0 1.875%;
+}
+.mui-table-view-cell {
+	padding: 0;
+	margin-top: 1px;
+}
+
+.mui-table-view-cell>a:not(.mui-btn) {
+	margin: 0.8rem 0;
+	overflow: visible;
+}
+.mui-table-view-cell img {
+	float: left;
+	width: 13rem !important;
+	max-height: 7.5rem;
+	border-radius: 4px;
+	border: 1px solid #e4e4e4;
+}
+.mui-table-view-cell .li-info {
+	width: 15rem;
+	float: right;
+	height: auto;
+}
+.li-info h6 {
+	margin-top: 0.4rem;
+	font-size: 1.2rem;
+	color: #222;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.li-info p {
+	line-height: 1.8rem;
+}
+.li-info p.first {
+	height: 1.8rem;
+}
+.li-info p.first span {
+	height: 1.2rem;
+	display: inline-block;
+	padding: 0 4px;
+	color: #ff6767;
+	margin: 0.6rem 1rem 0 0;
+	font-size: 0.8rem;
+	line-height: 1rem;
+	text-align: center;
+	border: 1px solid #fb3456;
+	border-radius: 4px;
+}
+.li-info span {
+	font-size: 1rem;
+
+	padding-left: 1.6rem;
+	display: inline-block;
+}
+
+.li-info .s2,
+.li-info .s3 {
+	margin-top: 0.2rem;
+	display: inline-block;
+}
+.li-info .s3 {
+	float: left;
+	width: 10.5rem;
+}
+.li-info .s2 {
+	float: left;
+}
+.li-info .s1 {
+	margin-top: 0.5rem;
+	background:url(../images/s1.png) left center no-repeat; background-size:1.5rem auto;
+}
+.li-info .s2 {
+	background:url(../images/s2.png) left center no-repeat; background-size:1.5rem auto;
+}
+.li-info .s3 {
+	background:url(../images/s3.png) left center no-repeat; background-size:1.4rem auto;
+}

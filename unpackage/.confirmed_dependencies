@@ -1,0 +1,72 @@
+{
+	"index.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css"
+		]
+	},
+	"m_index.html": {
+		"resources": [
+			"m_welfare.html",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"m_welfare.html",
+			"m_task.html",
+			"m_finance.html"
+		]
+	},
+	"m_task.html": {
+		"resources": [
+			"%7B%static%20\u0027images/nav3.png\u0027%%7D",
+			"%7B%static%20\u0027js/mui.min.js\u0027%%7D",
+			"%7B%static%20\u0027images/nav4.png\u0027%%7D",
+			"%7B%static%20\u0027css/m_task.css\u0027%%7D",
+			"%7B%static%20\u0027images/nav2s.png\u0027%%7D",
+			"%7B%static%20\u0027js/mui.pullToRefresh.material.js\u0027%%7D",
+			"%7B%static%20\u0027css/mui.min.css\u0027%%7D",
+			"%7B%static%20\u0027js/mui.pullToRefresh.js\u0027%%7D",
+			"%7B%static%20\u0027images/nav1.png\u0027%%7D",
+			"%7B%static%20\u0027css/m_common.css\u0027%%7D"
+		]
+	},
+	"m_finance.html": {
+		"resources": [
+			"%7B%static%20\u0027images/nav3s.png\u0027%%7D",
+			"%7B%static%20\u0027images/diannao.png\u0027%%7D",
+			"%7B%static%20\u0027images/logo.png\u0027%%7D",
+			"%7B%static%20\u0027css/m_finance.css\u0027%%7D",
+			"%7B%static%20\u0027images/nav2.png\u0027%%7D",
+			"%7B%static%20\u0027js/mui.min.js\u0027%%7D",
+			"%7B%static%20\u0027images/nav4.png\u0027%%7D",
+			"%7B%static%20\u0027js/mui.pullToRefresh.material.js\u0027%%7D",
+			"%7B%static%20\u0027css/mui.min.css\u0027%%7D",
+			"%7B%static%20\u0027js/mui.pullToRefresh.js\u0027%%7D",
+			"%7B%static%20\u0027images/nav1.png\u0027%%7D",
+			"%7B%static%20\u0027css/m_common.css\u0027%%7D"
+		]
+	},
+	"m_welfare.html": {
+		"resources": [
+			"m_welfare_pullfresh.html",
+			"js/mui.min.js",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"m_welfare_pullfresh.html"
+		]
+	},
+	"m_welfare_pullfresh.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"images/s2.png",
+			"css/m_index.css",
+			"images/s1.png",
+			"images/s3.png",
+			"css/m_common.css"
+		]
+	}
+}

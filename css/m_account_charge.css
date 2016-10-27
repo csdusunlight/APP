@@ -1,0 +1,119 @@
+body {
+	background: #fff;
+}
+.mui-content {
+	background: #fff;
+}
+
+/*帐号部分*/
+.msg {
+	padding-top: 2rem;
+}
+.msg img {
+	float: left;
+	margin-left: 1rem;
+	margin-right: 2rem;
+	width: 20%;
+}
+.msg .text {
+	float: left;
+	margin-top: 1rem;
+}
+.text p {
+		font-size: 1.2rem;
+		color: #a5a5a5;
+}
+.text p strong {
+	font-size: 1.4rem;
+	color: #f08519;
+}
+
+.mui-row {
+	margin-top: 1rem;
+}
+
+.msg button {
+	margin-top: 1.8rem;
+	margin-right: 1.875%;
+	float: right;
+	width: 30%;
+}
+
+
+.mui-segmented-control {
+	margin-top: 3rem;
+}
+.mui-table-view {
+	margin-top: 0.2rem;
+}
+
+/*列表部分*/
+
+.mui-table-view .list {
+	border-bottom: 1px solid #e4e4e4;
+}
+.mui-table-view li span {
+	display:block;
+	float: left;
+	width: 25%;
+	text-align: center;
+	font-size: 1rem;
+	line-height: 4rem;
+	overflow: hidden;
+}
+.list-head {
+	background-color: #f3f3f3;
+	color: #333333;
+}
+.tab-head {
+	padding: 0 1.875% 0;
+}
+.list-head span {
+	display:block;
+	float: left;
+	line-height: 3rem;
+	width: 25%;
+	color: #f08519;
+	font-size: 1.1rem;
+	text-align: center;
+}
+#tab_head_01 .list-head span {
+	width: 33.3333%
+}
+.box-01 .mui-table-view li span {
+	width: 33.3333%;
+}
+/*修改部分*/
+.tab-head {
+	margin: 2rem 0 1rem;
+}
+.tab-head>h2 {
+	color: #333;
+	font-size: 2rem;
+	float: left;
+	/*line-height: 4rem;*/
+}
+.tab-head>a {
+	display: block;
+	padding-left: 2.4rem;
+	margin-top: 1rem;
+	font-size: 1rem;
+	/*line-height: 5rem;*/
+	float: right;
+	background: url(../images/qiehuan-icon.png) left center no-repeat;
+	background-size: 1.6rem auto;
+}
+.mui-bar-nav~.mui-content .mui-slider.mui-fullscreen {
+	top: 20rem;
+}
+.mui-fullscreen .mui-segmented-control~.mui-slider-group {
+	top:0px;
+}
+.mui-pull-bottom-wrapper {
+	padding: 1rem 0;
+	text-align: center;
+}
+
+.mui-table-view-cell {
+	padding: 0;
+}
