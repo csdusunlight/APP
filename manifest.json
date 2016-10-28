@@ -209,7 +209,8 @@
 				],
 				"refer": [
 					"m_task.html",
-					"m_finance.html"
+					"m_finance.html",
+					"m_account_index.html"
 				],
 				"priority": 0
 			},
@@ -265,6 +266,21 @@
 					"images/s1.png",
 					"images/s3.png",
 					"css/m_common.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"m_account_index.html": {
+				"resources": [
+					"%7B%%20static%20\u0027css/m_common.css\u0027%20%%7D",
+					"%7B%%20static%20\u0027js/mui.min.js\u0027%20%%7D",
+					"%7B%static%20\u0027js/cookie.js\u0027%%7D",
+					"%7B%%20static%20\u0027images/nav4s.png\u0027%20%%7D",
+					"%7B%%20static%20\u0027images/nav2.png\u0027%20%%7D",
+					"%7B%%20static%20\u0027images/nav1.png\u0027%20%%7D",
+					"%7B%%20static%20\u0027css/m_account_index.css\u0027%20%%7D",
+					"%7B%%20static%20\u0027images/nav3.png\u0027%20%%7D",
+					"%7B%%20static%20\u0027css/mui.min.css\u0027%20%%7D"
 				],
 				"refer": [],
 				"priority": 0

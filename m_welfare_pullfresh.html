@@ -17,6 +17,105 @@
 		<!--下拉刷新容器-->
 		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
 			<div class="mui-scroll">
+				<div id="slider" class="mui-slider" >
+					<div class="mui-slider-group mui-slider-loop">
+						<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
+						<div class="mui-slider-item mui-slider-item-duplicate">
+							<a href="{{last_adv.url}}">
+								<img src="{{last_adv.mpic.url}}">
+							</a>
+						</div>
+						{% for adv in adv_list %}
+						<div class="mui-slider-item">
+							<a href="{{adv.url}}">
+								<img src="{{adv.mpic.url}}">
+							</a>
+						</div>
+						{%endfor%}
+						<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
+						<div class="mui-slider-item mui-slider-item-duplicate">
+							<a href="{{first_adv.url}}">
+								<img src="{{first_adv.mpic.url}}">
+							</a>
+						</div>
+					</div>
+					<div class="mui-slider-indicator">
+						<div class="mui-indicator mui-active"></div>
+						{% for adv in adv_list|slice:":-1" %}
+						<div class="mui-indicator"></div>
+						{%endfor%}
+					</div>
+				</div>
+				<!--提示消息部分-->
+				<div class="news clearfix">
+					<span class="fl">今日上线福利 <b><number>{{new_wel_num}}</number></b> 个</span>
+					<span class="tr fr">累计上线福利 <b><number>{{all_wel_num}}</number></b>个</span>
+				</div>
+				<!--图标导航部分-->
+				<div id="nav" class="icon-nav">
+					<ul class="nav-list clearfix">
+						<li>
+							<a href="{% url 'signin' %}">
+								<img src="images/nav-pic1.png" />
+								<span>每日签到</span>
+							</a>
+						</li>
+						<li>
+							<a href="{% url 'activity_lottery' %}">
+								<img src="images/nav-pic2.png" />
+								<span>积分抽奖</span>
+							</a>
+						</li>
+						<li>
+							<a href="{% url 'activity' %}">
+								<img src="images/nav-pic3.png" />
+								<span>要赚现金</span>
+							</a>
+						</li>
+						<li>
+							<a href="{% url 'information' %}">
+								<img src="images/nav-pic4.png" />
+								<span>我有故事</span>
+							</a>
+						</li>
+						<li>
+							<a href="{% url 'welfare_list' type='hb' %}">
+								<img src="images/nav-pic5.png" />
+								<span>红包</span>
+							</a>
+						</li>
+						<li>
+							<a href="{% url 'welfare_list' type='yhq' %}">
+								<img src="images/nav-pic6.png" />
+								<span>优惠券</span>
+							</a>
+						</li>
+						<li>
+							<a href="{% url 'welfare_list' type='by' %}">
+								<img src="images/nav-pic7.png" />
+								<span><number>9.9</number>包邮</span>
+							</a>
+						</li>
+						<li id="weixin_btn">
+							<a href="#">
+								<img src="images/nav-pic8.png" />
+								<span>微信公众号</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				
+				<!--今日推荐部分-->
+				<div id="today" class="today">
+					<div class="today-tittle">
+						<h3>今日推荐</h3>
+					</div>
+					<div class="today-img clearfix">
+						<a href="{{adv_today1.url}}" class="ti-left fl"><img src="{{adv_today1.pic.url}}" /></a>
+						<a href="{{adv_today2.url}}" class="ti-right fr"><img src="{{adv_today2.pic.url}}" /></a>
+						<a href="{{adv_today3.url}}" class="ti-right ti-03 fr"><img src="{{adv_today3.pic.url}}" /></a>
+					</div>
+				</div>
 				<div id="hot" class="recent today">
 			    	<div class="today-tittle">
 			        	<h3>福利精选</h3>
@@ -42,7 +141,8 @@
 			 * 下拉刷新具体业务实现
 			 */
 			var count = 0;
-			var get_wel_url = "http://m.wafuli.cn/welfare_json"
+			var get_wel_url = "http://m.wafuli.cn/welfare_json";
+			var get_wel_url = "http://m.wafuli.cn/index_json";
 			function get_wel_list(n){
 				mui.ajax(get_wel_url,{
 					data:{
@@ -97,23 +197,55 @@
 //				}
 				get_wel_list(count++);
 			}
-			mui('.mui-content div').on('tap', 'a', function() {
-	            var id = this.getAttribute('href');
-	            mui.openWindow({
-	                url: this.href,
-	                styles: {
-	                    top: 0,
-	                    bottom: 0
-	                },
-	                show: {
-	                    aniShow: 'slide-in-right',
-	                },
-	                waiting: {
-	                    autoShow: false, //自动显示等待框
-	                    title: '正在加载...', //等待对话框上显示的提示内容
-	                }
-	            });
-	        });
+			
+			function get_index_info(){
+				mui.ajax(get_wel_url,{
+					data:{
+						count:n,
+					},
+					dataType:'json',//服务器返回json格式数据
+					type:'get',//HTTP请求类型
+					timeout:10000,//超时时间设置为10秒；
+	//				headers:{'Content-Type':'application/json'},
+					success:function(data){
+						if (!data.length){
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+						}
+						else {
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(false); //参数为true代表没有更多数据了。
+							var table = document.body.querySelector('.mui-table-view');
+	//						var cells = document.body.querySelectorAll('.mui-table-view-cell');
+							for (var i in data) {
+								var wel = data[i];
+								var li = document.createElement('li');
+								li.className = 'mui-table-view-cell';
+								str_block = '<a class="clearfix" href="' + wel.url + '"><img src="'+ 'http://m.wafuli.cn' +
+												wel.picurl + '" /><div class="li-info"><h6>' + wel.title + '</h6>';
+								if (wel.is_hot){
+									str_block += '<span class="after-hot">hot</span>';
+								}
+								// else{
+								// 	str_block += '<span class="after-new">new</span>';
+								// }
+								str_block += '<p class="first">';
+								marks = wel.marks;
+								for (var j in marks){
+									str_block += '<span>' + marks[j] + '</span>';
+								}
+								str_block += '</p><p><span class="s1">'+wel.provider+'</span></p>'+
+												'<p><span class="s3">'+wel.time_limit+'</span><span class="s2">'+
+												wel.view_count +'</span></p></div></a>';
+								li.innerHTML = str_block;
+								table.appendChild(li);
+							}
+						}
+	
+					},
+					error:function(xhr,type,errorThrown){
+						alert(type);
+					}
+				});
+			}
 		</script>
 	</body>
 
