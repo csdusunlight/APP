@@ -67,7 +67,23 @@
 			"css/m_index.css",
 			"images/s1.png",
 			"images/s3.png",
-			"css/m_common.css"
+			"css/m_common.css",
+			"images/nav-pic5.png",
+			"images/nav-pic1.png",
+			"images/nav-pic3.png",
+			"images/nav-pic6.png",
+			"images/nav-pic4.png",
+			"images/nav-pic2.png",
+			"images/nav-pic7.png",
+			"images/nav-pic8.png",
+			"%7B%%20url%20\u0027activity\u0027%20%%7D",
+			"%7B%%20url%20\u0027information\u0027%20%%7D",
+			"%7B%%20url%20\u0027activity_lottery\u0027%20%%7D"
+		],
+		"refer": [
+			"%7B%%20url%20\u0027activity\u0027%20%%7D",
+			"%7B%%20url%20\u0027information\u0027%20%%7D",
+			"%7B%%20url%20\u0027activity_lottery\u0027%20%%7D"
 		]
 	},
 	"m_account_index.html": {
