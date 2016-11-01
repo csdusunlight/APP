@@ -1,4 +1,4 @@
-(function($, kr, websql) {
+(function($, wa. websql) {
 
 	var DB_VERSION_NUMBER = '1.0';
 	var TIME_UPDATE = 'TIME_UPDATE';
@@ -20,47 +20,24 @@
 	var IMAGE_DOWNLOAD_WHEN_WIFI = "true";
 	var DIR_IMAGE = "_doc/image/news/";
 
-	var SLIDER_URL = 'http://demo.dcloud.net.cn/36kr/slider.json';
-	var FEED_URL = 'http://spider.dcloud.net.cn/api/news'; //'http://www.36kr.com/feed';
-	var SQL_TABLE = 'DROP TABLE IF EXISTS kr_news;CREATE TABLE kr_news (guid TEXT PRIMARY KEY, title TEXT,author TEXT,link TEXT,cover TEXT,image TEXT,pubDate INTEGER,description TEXT);';
-	var SQL_SELECT = 'SELECT guid,title,author,pubDate,cover,image FROM kr_news WHERE pubDate < ? ORDER BY pubDate DESC LIMIT ?;';
-	var SQL_INSERT = 'INSERT INTO kr_news(title,author,link,guid,cover,pubDate,description) VALUES(?,?,?,?,?,?,?);';
-	var SQL_SELECT_DETAIL = 'SELECT * FROM kr_news WHERE guid = ? LIMIT 1;';
-	var SQL_UPDATE = 'UPDATE kr_news SET image = ? WHERE guid = ?';
-	var SQL_DELETE = 'DELETE FROM kr_news';
+	var SLIDER_URL = 'http://m.wafuli.cn/36wa.slider.json';
+	var FEED_URL = 'http://m.wafuli.cn/app/news'; //'http://www.36wa.com/feed';
+	var SQL_TABLE = 'DROP TABLE IF EXISTS wa_news;CREATE TABLE wa_news (guid TEXT PRIMARY KEY, title TEXT,mark1 TEXT,mark2 TEXT,mark3 TEXT,image TEXT,pubDate INTEGER,source TEXT, time TEXT, views TEXT);';
+	var SQL_SELECT = 'SELECT guid,title,mark1,mark2,mark3,pubDate,image,source,time,view FROM wa.news WHERE pubDate < ? ORDER BY pubDate DESC LIMIT ?;';
+	var SQL_INSERT = 'INSERT INTO wa.news(title,mark1,mark2,mark3,pubDate,image,source,time,view) VALUES(?,?,?,?,?,?,?,?,?);';
+	var SQL_SELECT_DETAIL = 'SELECT * FROM wa.news WHERE guid = ? LIMIT 1;';
+	var SQL_UPDATE = 'UPDATE wa.news SET image = ? WHERE guid = ?';
+	var SQL_DELETE = 'DELETE FROM wa.news';
 
-	var UNITS = {
-		'年': 31557600000,
-		'月': 2629800000,
-		'天': 86400000,
-		'小时': 3600000,
-		'分钟': 60000,
-		'秒': 1000
-	};
-	kr.humanize = function(milliseconds) {
-		var humanize = '';
-		$.each(UNITS, function(unit, value) {
-			if (milliseconds >= value) {
-				humanize = Math.floor(milliseconds / value) + unit + '前';
-				return false;
-			}
-			return true;
-		});
-		return humanize || '刚刚';
-	};
-	kr.format = function(milliseconds) {
-		var diff = Date.now() - milliseconds;
-		if (diff < UNITS['天']) {
-			return kr.humanize(diff);
-		}
+	wa.format = function(milliseconds) {
 		var date = new Date(milliseconds);
 		var _format = function(number) {
 			return (number < 10 ? ('0' + number) : number);
 		};
 		return date.getFullYear() + '/' + _format(date.getMonth() + 1) + '/' + _format(date.getDay()) + '-' + _format(date.getHours()) + ':' + _format(date.getMinutes());
 	};
-	kr.dbReady = function(successCallback, errorCallback) {
-		html5sql.openDatabase("kr", "36Kr", 5 * 1024 * 1024);
+	wa.dbReady = function(successCallback, errorCallback) {
+		html5sql.openDatabase("wa", "wafuli", 5 * 1024 * 1024);
 		if (html5sql.database.version === '') {
 			html5sql.changeVersion('', DB_VERSION_NUMBER, SQL_TABLE, function() {
 				successCallback && successCallback(true);
@@ -71,17 +48,17 @@
 			successCallback && successCallback(false);
 		}
 	};
-	kr.toggleDownloadWhenWifi = function(whenWifi) {
+	wa.toggleDownloadWhenWifi = function(whenWifi) {
 		if (whenWifi) {
 			localStorage.setItem(IMAGE_DOWNLOAD, IMAGE_DOWNLOAD_WHEN_WIFI);
 		} else {
 			localStorage.removeItem(IMAGE_DOWNLOAD);
 		}
 	};
-	kr.isDownloadWhenWifi = function() {
+	wa.isDownloadWhenWifi = function() {
 		return !!localStorage.getItem(IMAGE_DOWNLOAD);
 	};
-	kr.isDownloadImage = function() {
+	wa.isDownloadImage = function() {
 		var currentType = plus.networkinfo.getCurrentType();
 		if (currentType === plus.networkinfo.CONNECTION_NONE) {
 			return false;
@@ -93,7 +70,7 @@
 		return true;
 	};
 
-	kr.isDownloadImageAsync = function(callback) {
+	wa.isDownloadImageAsync = function(callback) {
 		callback = callback || mui.noop;
 		mui.plusReady(function() {
 			var currentType = plus.networkinfo.getCurrentType();
@@ -108,9 +85,9 @@
 		});
 	};
 
-	kr.clearCache = function() {
+	wa.clearCache = function() {
 		plus.nativeUI.showWaiting('正在删除缓存...');
-		kr.deleteNews(function() {
+		wa.deleteNews(function() {
 			//清除图片缓存
 			plus.io.resolveLocalFileSystemURL(DIR_IMAGE, function(entry) {
 				entry.removeRecursively(function() {
@@ -131,7 +108,7 @@
 			plus.webview.getWebviewById("news").evalJS('getFeed("true")');
 		}, function() {});
 	};
-	kr.downloadImage = function(name, imgUrl, successCallback, errorCallback) {
+	wa.downloadImage = function(name, imgUrl, successCallback, errorCallback) {
 		var url = DIR_IMAGE + name + ".png";
 		return plus.downloader.createDownload(imgUrl, {
 			filename: url
@@ -142,7 +119,7 @@
 			successCallback(download.filename);
 		});
 	};
-	kr.getSlider = function(isLocal, successCallback) {
+	wa.getSlider = function(isLocal, successCallback) {
 		//若缓存本地，则直接显示
 		if (isLocal === true) {
 			successCallback(localStorage.getItem(SLIDER_GUID));
@@ -164,14 +141,14 @@
 			if (response) {
 				localStorage.setItem(SLIDER_GUID, response.guid);
 				localStorage.setItem(TIME_UPDATE_SLIDER, Date.parse(new Date()) + ''); //本地更新时间
-				kr.getNewsByGuid(response.guid, function(item) {
+				wa.getNewsByGuid(response.guid, function(item) {
 					if (!item) { //首页封面DB中未存储，insert
 						response.pubDate = Date.parse(response.pubDate);
 						if (response.cover) {
 							response.description = response.description.replace('<img src="' + response.cover + '" alt=""/>', '');
 						}
-						response.description = response.description.replace('<a href="http://www.36kr.com/p/201073.html?ref=kr_post_feed">36氪官方iOS应用正式上线，支持『一键下载36氪报道的移动App』和『离线阅读』</a> <a href="https://itunes.apple.com/cn/app/36ke/id593394038?l=en&mt=8" target="_blank">立即下载！</a>', '');
-						kr.addNews([
+						response.description = response.description.replace('<a href="http://www.36wa.com/p/201073.html?ref=wa.post_feed">36氪官方iOS应用正式上线，支持『一键下载36氪报道的移动App』和『离线阅读』</a> <a href="https://itunes.apple.com/cn/app/36ke/id593394038?l=en&mt=8" target="_blank">立即下载！</a>', '');
+						wa.addNews([
 							[response.title, response.author, response.link, response.guid, response.cover, response.pubDate, response.description]
 						], function() {
 							successCallback(response);
@@ -191,11 +168,11 @@
 		});
 	};
 	/**
-	 * 通过rss获取新闻数据
+	 * 通过网络获取福利（新闻）数据
 	 * @param {Function} successCallback
 	 * @param {Function} errorCallback
 	 */
-	kr.getFeed = function(successCallback, errorCallback) {
+	wa.getFeed = function(successCallback, errorCallback) {
 		//若没有网络，则显示之前缓存数据，并给与提示
 		if (plus.networkinfo.getCurrentType() === plus.networkinfo.CONNECTION_NONE) {
 			plus.nativeUI.toast('似乎已断开与互联网的连接', {
@@ -211,34 +188,23 @@
 		//			return;
 		//		}
 		var lastId = localStorage.getItem(LAST_ID) || '';
-		$.getFeed(FEED_URL + '?lastId=' + lastId, function(feed) {
-			if (feed.items) {
-				var news = [];
-				var pubDate = parseFloat(localStorage.getItem(TIME_PUBDATE));
-				$.each(feed.items, function(index, item) {
-					news.push([item.title, item.author, item.link, item.guid, item.cover, Date.parse(item.pubDate), item.description]);
-				});
+		$.getFeed(FEED_URL + '?lastId=' + lastId, function(items) {
+			if (items) {
+				var news = items;
 				news.reverse();
-				if (news.length > 0) {
-					kr.addNews(news, function() {
-						successCallback(news.length);
-					}, function() {
-						successCallback(false);
-					});
-				} else {
+				wa.addNews(news, function() {
+					localStorage.setItem(LAST_ID, news[0].guid);
+					successCallback(news.length);
+				}, function() {
 					successCallback(false);
-				}
-				if (feed.items[0]) {
-					localStorage.setItem(LAST_ID, feed.items[0].guid);
-				}
+				});
 			}
-			localStorage.setItem(TIME_PUBDATE, Date.parse(feed.pubDate) + ''); //订阅发布时间
 			localStorage.setItem(TIME_UPDATE, Date.parse(new Date()) + ''); //本地更新时间
 		}, function(xhr) {
 			errorCallback && errorCallback();
 		});
 	};
-	kr.getNewsByGuid = function(guid, successCallback, errorCallback) {
+	wa.getNewsByGuid = function(guid, successCallback, errorCallback) {
 		websql.process([{
 			"sql": SQL_SELECT_DETAIL,
 			"data": [guid]
@@ -248,7 +214,7 @@
 			errorCallback && errorCallback(error, failingQuery);
 		});
 	};
-	kr.getNews = function(latestId, pageSize, successCallback, errorCallback) {
+	wa.getNews = function(latestId, pageSize, successCallback, errorCallback) {
 		if (typeof latestId === 'function') {
 			successCallback = latestId;
 			latestId = MAX_INTEGER;
@@ -270,7 +236,7 @@
 			errorCallback && errorCallback(error, failingQuery);
 		});
 	};
-	kr.addNews = function(news, successCallback, errorCallback) {
+	wa.addNews = function(news, successCallback, errorCallback) {
 		var sqls = [];
 		$.each(news, function(index, item) {
 			sqls.push({
@@ -285,7 +251,7 @@
 		});
 
 	};
-	kr.updateNews = function(guid, image, successCallback, errorCallback) {
+	wa.updateNews = function(guid, image, successCallback, errorCallback) {
 		websql.process([{
 			"sql": SQL_UPDATE,
 			"data": [image, guid],
@@ -295,11 +261,11 @@
 			errorCallback && errorCallback(error, failingQuery);
 		});
 	};
-	kr.deleteNews = function(successCallback, errorCallback) {
+	wa.deleteNews = function(successCallback, errorCallback) {
 		websql.process(SQL_DELETE, function(tx, results) {
 			successCallback && successCallback();
 		}, function(error, failingQuery) {
 			errorCallback && errorCallback(error, failingQuery);
 		});
 	};
-})(mui, kr, html5sql);
+})(mui, wa. html5sql);

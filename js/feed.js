@@ -1,27 +1,21 @@
 (function($) {
 	var parseFeed = function(dstList) {
-		var feed = {
-			title: '',
-			link: '',
-			pubDate: '',
-			description: '',
-			language: '',
-			items: []
-		};
+		var items = [];
 		dstList.forEach(function(srcItem) {
-			feed.items.push({
-				post_id: srcItem.post_id,
+			items.push({
+				post_id: srcItem.id,
 				title: srcItem.title,
-				author: srcItem.author_name,
-				pubDate: srcItem.published_at,
-				link: "http://36kr.com/p/" + srcItem.post_id + ".html",
-				cover: srcItem.cover,
-				guid: srcItem.id.toString(),
-				description: srcItem.content
+				mark1: srcItem.mark1,
+				mark2: srcItem.mark2,
+				mark3: srcItem.mark3,
+				pubDate: srcItem.pubDate,
+				image: srcItem.image,
+				time: Date.parse(srcItem.time),
+				source: srcItem.source,
+				view: srcItem.view
 			});
 		});
-		//feed.items = items;
-		return feed;
+		return items;
 	};
 	$.getFeed = function(url, success, error) {
 		error = error || $.noop;
