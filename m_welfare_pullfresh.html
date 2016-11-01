@@ -19,37 +19,19 @@
 			<div class="mui-scroll">
 				<div id="slider" class="mui-slider" >
 					<div class="mui-slider-group mui-slider-loop">
-						<!-- 额外增加的一个节点(循环轮播：第一个节点是最后一张轮播) -->
-						<div class="mui-slider-item mui-slider-item-duplicate">
-							<a href="{{last_adv.url}}">
-								<img src="{{last_adv.mpic.url}}">
-							</a>
-						</div>
-						{% for adv in adv_list %}
-						<div class="mui-slider-item">
-							<a href="{{adv.url}}">
-								<img src="{{adv.mpic.url}}">
-							</a>
-						</div>
-						{%endfor%}
-						<!-- 额外增加的一个节点(循环轮播：最后一个节点是第一张轮播) -->
-						<div class="mui-slider-item mui-slider-item-duplicate">
-							<a href="{{first_adv.url}}">
-								<img src="{{first_adv.mpic.url}}">
-							</a>
-						</div>
 					</div>
 					<div class="mui-slider-indicator">
 						<div class="mui-indicator mui-active"></div>
-						{% for adv in adv_list|slice:":-1" %}
 						<div class="mui-indicator"></div>
-						{%endfor%}
+						<div class="mui-indicator"></div>
+						<div class="mui-indicator"></div>
+						<div class="mui-indicator"></div>
 					</div>
 				</div>
 				<!--提示消息部分-->
 				<div class="news clearfix">
-					<span class="fl">今日上线福利 <b><number>{{new_wel_num}}</number></b> 个</span>
-					<span class="tr fr">累计上线福利 <b><number>{{all_wel_num}}</number></b>个</span>
+					<span class="fl">今日上线福利 <b><number id="new_num"></number></b> 个</span>
+					<span class="tr fr">累计上线福利 <b><number id="all_num"></number></b>个</span>
 				</div>
 				<!--图标导航部分-->
 				<div id="nav" class="icon-nav">
@@ -110,11 +92,7 @@
 					<div class="today-tittle">
 						<h3>今日推荐</h3>
 					</div>
-					<div class="today-img clearfix">
-						<a href="{{adv_today1.url}}" class="ti-left fl"><img src="{{adv_today1.pic.url}}" /></a>
-						<a href="{{adv_today2.url}}" class="ti-right fr"><img src="{{adv_today2.pic.url}}" /></a>
-						<a href="{{adv_today3.url}}" class="ti-right ti-03 fr"><img src="{{adv_today3.pic.url}}" /></a>
-					</div>
+
 				</div>
 				<div id="hot" class="recent today">
 			    	<div class="today-tittle">
@@ -142,7 +120,7 @@
 			 */
 			var count = 0;
 			var get_wel_url = "http://m.wafuli.cn/welfare_json";
-			var get_wel_url = "http://m.wafuli.cn/index_json";
+			var get_index_info_url = "http://m.wafuli.cn/app";
 			function get_wel_list(n){
 				mui.ajax(get_wel_url,{
 					data:{
@@ -198,54 +176,48 @@
 				get_wel_list(count++);
 			}
 			
-			function get_index_info(){
-				mui.ajax(get_wel_url,{
-					data:{
-						count:n,
-					},
+			
+			mui.ready(function(){
+				mui.ajax(get_index_info_url,{
 					dataType:'json',//服务器返回json格式数据
 					type:'get',//HTTP请求类型
 					timeout:10000,//超时时间设置为10秒；
 	//				headers:{'Content-Type':'application/json'},
 					success:function(data){
-						if (!data.length){
-							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
-						}
-						else {
-							mui('#pullrefresh').pullRefresh().endPullupToRefresh(false); //参数为true代表没有更多数据了。
-							var table = document.body.querySelector('.mui-table-view');
-	//						var cells = document.body.querySelectorAll('.mui-table-view-cell');
-							for (var i in data) {
-								var wel = data[i];
-								var li = document.createElement('li');
-								li.className = 'mui-table-view-cell';
-								str_block = '<a class="clearfix" href="' + wel.url + '"><img src="'+ 'http://m.wafuli.cn' +
-												wel.picurl + '" /><div class="li-info"><h6>' + wel.title + '</h6>';
-								if (wel.is_hot){
-									str_block += '<span class="after-hot">hot</span>';
-								}
-								// else{
-								// 	str_block += '<span class="after-new">new</span>';
-								// }
-								str_block += '<p class="first">';
-								marks = wel.marks;
-								for (var j in marks){
-									str_block += '<span>' + marks[j] + '</span>';
-								}
-								str_block += '</p><p><span class="s1">'+wel.provider+'</span></p>'+
-												'<p><span class="s3">'+wel.time_limit+'</span><span class="s2">'+
-												wel.view_count +'</span></p></div></a>';
-								li.innerHTML = str_block;
-								table.appendChild(li);
+						var slide_group = document.body.querySelector('.mui-slider-group');
+						var adv_list = data.adv_info_list;
+						if (adv_list) {
+							var adv_first = adv_list[0];
+							var adv_last = adv_list[adv_list.length-1]
+							var adv_first_div = document.createElement('div');
+							adv_first_div.className = 'mui-slider-item mui-slider-item-duplicate';
+							adv_first_div.innerHTML= '<a href="' + adv_last.url + '"><img src="'+ adv_last.pic_url + '"></a>';
+							slide_group.appendChild(adv_first_div);
+							for (i in adv_list){
+								var pic_url = adv_list[i].pic_url;
+								var url = adv_list[i].url;
+								var adv_div = document.createElement('div');
+								adv_div.className = 'mui-slider-item';
+								adv_div.innerHTML= '<a href="' + url + '"><img src="'+ pic_url + '"></a>';
+								slide_group.appendChild(adv_div);
 							}
+							var adv_last_div = document.createElement('div');
+							adv_last_div.className = 'mui-slider-item mui-slider-item-duplicate';
+							adv_last_div.innerHTML= '<a href="' + adv_first.url + '"><img src="'+ adv_first.pic_url + '"></a>';
+							slide_group.appendChild(adv_last_div);
+							var gallery = mui('.mui-slider');
+							gallery.slider().gotoItem(0);
 						}
-	
+						document.getElementById('new_num').innerText = data.new_wel_num;
+						document.getElementById('all_num').innerText = data.all_wel_num;
+						
+//						var today_recom = document.getElementsByClassName()
 					},
 					error:function(xhr,type,errorThrown){
 						alert(type);
 					}
 				});
-			}
+			});
 		</script>
 	</body>
 
