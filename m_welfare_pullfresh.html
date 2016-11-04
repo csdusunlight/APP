@@ -111,9 +111,9 @@
 		<script type="text/javascript" charset="UTF-8" src="js/news.js"></script>
 		<script>
 			console.time("进入页面到呈现");
-			var divEl = document.createElement("li");
-			var newsEl = document.getElementById("wa.news");
-			var sliderEl = document.getElementById("slider");
+			var slide_group = document.body.querySelector('.mui-slider-group');
+			var news_group = document.body.querySelector('.mui-table-view');
+			var recom_group = document.body.querySelector('.today');
 			 //初始化下拉刷新模块  
 			mui.init({
 				pullRefresh: {
@@ -129,12 +129,11 @@
 			});
 
 			function throwGetNewsError() {
-				mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 				mui.toast("获取新闻时发生了异常");
 			};
 			 //点击新闻列表，打开新闻详情
 //			mui('#pullrefresh').on('tap', 'a', function() {
-//				open_new_detail(this.getAttribute('data-guid'));
+//				open_new_detail(this.getAttribute('data-id'));
 //			});
 //			var detailMainWebview = null; //详情页面父webview
 //			var detailWebview = null; //详情页面子webview
@@ -148,12 +147,14 @@
 //				}
 //				//触发子窗口变更新闻详情
 //				mui.fire(detailWebview, 'mui.view.beforeshow', {
-//					guid: id
+//					id: id
 //				});
 //				//显示新闻详情页面
 //				detailMainWebview.show('pop-in', 200);
 //			};
 			/** 新版首次进入执行代码开始 **/
+			var latestPubDate = Number.MAX_VALUE;
+			var hasMore = true;
 			wa.dbReady(function(isFirst) {
 				//document.body.style.backgroundColor = '#efeff4';
 				//第一次显示，从服务器中加载
@@ -166,7 +167,17 @@
 				} else {
 					//非第一次，直接从本地数据库中读取
 					//加载初始化数据
-					pullupRefresh(true, true);
+					wa.getNews(Number.MAX_VALUE, 10,function(news) {
+						add_doms_news(news, false);
+					}, throwGetNewsError);
+					wa.getSlider(function(sliders) {
+						add_doms_slider(sliders, false);
+					}, throwGetNewsError);
+					wa.getRecom(function(recoms) {
+						add_doms_recom(recoms, false);
+					}, throwGetNewsError);
+					
+					refresh();
 				}
 			});
 			mui.plusReady(function() {
@@ -179,54 +190,43 @@
 					pulldownRefresh();
 				}, 2000);
 			});
-			/** 新版首次进入执行代码结束 **/
-			var latestPubDate = Number.MAX_VALUE;
-			var hasMore = true;
-			/**
-			 * 获取顶部图片轮播区文章详情
-			 * @param {Boolean} isLocal :是否已缓存本地
-			 */
-			function getSlider(isLocal) {
-				//sliderEl.classList.remove('mui-hidden');
-				wa.getSlider(isLocal, function(news) { //等feed完成后再加载slider
-					//console.log("news 333:" + JSON.stringify(news));
-					if (news) {
-						if (typeof news === 'string') {
-							//console.log("news:" + news);
-							wa.getNewsByGuid(news, updateSlider);
-						} else {
-							updateSlider(news);
-						}
-					}
-				});
-			};
-
-			function getFeed(isClearCache) {
-				//console.log('getFeed=>' + isClearCache);
-				if (isClearCache === 'true') {
-					latestPubDate = Number.MAX_VALUE;
-					newsEl.innerHTML = ''; //清空所有
-					if (!hasMore) { //当清除缓存之前已上拉加载到底需要重置pullrefresh
-						mui('#pullrefresh').pullRefresh().refresh(true);
-						hasMore = true;
-					}
+			function refresh(){
+				latestPubDate = Number.MAX_VALUE;
+				newsEl.innerHTML = ''; //清空所有
+				if (!hasMore) { //当清除缓存之前已上拉加载到底需要重置pullrefresh
+					mui('#pullrefresh').pullRefresh().refresh(true);
+					hasMore = true;
 				}
-				//加载数据时，显示雪花进度条
-				mui('#pullrefresh').pullRefresh().pullupLoading(function() {
+				mui('#pullrefresh').pullRefresh().pulldownLoading(function() {
 					//获取新闻列表，存储数据库
 					wa.getFeed(function(hasNew) {
-						//加载slider
-						getSlider();
+						console.log('终于成功了');
 						//显示列表数据
-						wa.getNews(function(news) {
-							refresh(news);
+						wa.getNews(Number.MAX_VALUE, 10,function(news) {
+							news_group.innerHTML = '';
+							add_doms_news(news, true);
+							processNews(news, 'news_img_')
 						}, throwGetNewsError);
+						wa.getSlider(function(sliders) {
+							slide_group.innerHTML = '';
+							add_doms_slider(sliders, true);
+							processNews(sliders, 'slider_img_')
+						}, throwGetNewsError);
+						wa.getRecom(function(recoms) {
+							recom_group.innerHTML = '';
+							add_doms_recom(recoms, true);
+							processNews(recoms, 'recom_img_')
+						}, throwGetNewsError);
+						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 					}, function() {
-						getSlider(); //加载slider
-						mui('#pullrefresh').pullRefresh().endPullupToRefresh();
+						mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 					});
 				});
 			}
+			/** 新版首次进入执行代码结束 **/
+			
+	
+
 
 			function pulldownRefresh() {
 				//console.log('pulldown');
@@ -244,61 +244,9 @@
 					}
 				}, throwGetNewsError);
 			};
-			/**
-			 * 更新新闻列表
-			 * @param {Object} news  列表数据
-			 */
-			function refresh(news) {
-				if (news) {
-					if (latestPubDate === Number.MAX_VALUE && news && news.length > 0) {
-						latestPubDate = news.item(news.length - 1).pubDate;
-					}
-					for (var i = news.length - 1; i >= 0; i--) {
-						divEl.innerHTML = news_item(processNews(news.item(i)));
-						newsEl.insertBefore(divEl.firstElementChild, newsEl.firstElementChild);
-					}
-				}
-				mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
-			};
-			/**
-			 * 更新顶部图片轮播内容
-			 * @param {Object} 图片轮播区广告详情
-			 */
-			var sliderImageEl = document.getElementById("slider-image");
-			var sliderTitleEl = document.getElementById("slider-title");
-			 //			sliderImageEl.addEventListener('tap', function() {
-			 //				console.log("sliderImageEl tap");
-			 //				if (sliderImageEl.newsId) {
-			 //					open_new_detail(sliderImageEl.newsId);
-			 //				}
-			 //			});
-			function updateSlider(news) {
-				//alert('sliderImageEl');
-				//console.log("updateSlider news:" + JSON.stringify(news));
-				if (news.image) {
-					sliderImageEl.setAttribute('style', 'background-image: url("' + news.image + '");');
-				} else {
-					if (!news.image && news.cover) {
-						wa.isDownloadImageAsync(function(yes) {
-							if (!yes) return;
-							(function(news) {
-								news.id = news.guid; //.substring(news.guid.lastIndexOf('/') + 1, news.guid.length - 5);
-								var cover = news.cover.replace('!heading', '!slider');
-								addDownloadImage(news.id, cover, function(src) {
-									wa.updateNews(news.guid, src); //更新数据库
-									sliderImageEl.setAttribute('style', 'background-image: url("' + src + '");');
-									//console.log('slider downloaded image:::' + src);
-								});
-							})(news);
-						});
-					}
-				}
-				sliderImageEl.setAttribute('data-guid', news.guid);
-				sliderTitleEl.innerText = news.title;
-			};
-
+	
 			function clearNewsList() {
-				newsEl.innerHTML = '';
+				news_group.innerHTML = '';
 			};
 
 			function pullupRefresh(noHandlePullrefresh, clear) {
@@ -368,31 +316,93 @@
 				}
 			}
 
-			function processNews(news) {
+			function processNews(news, prefix) {
 				var news = mui.extend({}, news); //需要clone出来一个新对象，旧对象无法赋值修改
-				news.id = news.guid; //.substring(news.guid.lastIndexOf('/') + 1, news.guid.length - 5);
-				news.humanize = wa.humanize(Date.now() - news.pubDate);
-				if (!news.image && news.cover) {
-					wa.isDownloadImageAsync(function(yes) {
-						if (!yes) return;
-						(function(news) {
-							addDownloadImage(news.id, news.cover + '!slider', function(src) {
+//				news.id = news.id; //.substring(news.id.lastIndexOf('/') + 1, news.id.length - 5);
+//				news.humanize = wa.humanize(Date.now() - news.pubDate);
+				news.forEach(function(item){
+					if (item.image) {
+						wa.isDownloadImageAsync(function(yes) {
+							if (!yes) return;
+							addDownloadImage(item.id, item.image, function(src) {
 								if (src == null) return;
-								wa.updateNews(news.guid, src); //更新数据库
-								setTimeout(function() {
-									var img = document.querySelector("#news_" + news.id + ' img');
-									img.src = src;
-									img.setAttribute('data-loaded', 'true');
-								}, 100);
-								//								console.log('list downloaded image:::' + src);
+								wa.updateNews(item.id, src); //更新数据库
+								var img = document.querySelector("#" + prefix + item.id + ' img');
+								img.src = src;
+								img.setAttribute('data-loaded', 'true');
+								console.log('list downloaded image:::' + src);
 							});
-						})(news);
-					});
+						});
+					}
+					else {
+						item.image = 'img/blank.jpg';
+					}
+				});
+			}
+			function add_doms_news(news, delay){
+				var news = mui.extend({}, news); 
+				if (!news){
+					return;
 				}
-				if (!news.image) {
-					news.image = 'img/blank.jpg';
+				news.forEach(function(wel){
+					if(delay){
+						wel.image = 'img/blank.jpg';
+					}
+					var li = document.createElement('li');
+					li.className = 'mui-table-view-cell';
+					str_block = '<a class="clearfix" data_id="' + item.id + '"><img id="news_img_' + item.id + '" src="'+ 
+									wel.image + '" /><div class="li-info"><h6>' + wel.title + '</h6>';
+					if (item.view>1000){
+						str_block += '<span class="after-hot">hot</span>';
+					}
+					else if ( item.pubDate > Date.parse(new Date()) -24*60*60*1000 ){
+					 	str_block += '<span class="after-new">new</span>';
+					}
+					str_block += '<p class="first">';
+					marks = [wel.mark1, wel.mark2, wel.mark3];
+					for (var j in marks){
+						if(marks[j]){
+							str_block += '<span>' + wel.mark1 + '</span>'
+						}
+					}
+					str_block += '</p><p><span class="s1">'+wel.source+'</span></p>'+
+									'<p><span class="s3">'+wel.time+'</span><span class="s2">'+
+									wel.view +'</span></p></div></a>';
+					li.innerHTML = str_block;
+					news_group.appendChild(li);
+				});
+			}
+			function add_doms_slider(sliders, delay){
+				var sliders = mui.extend({}, sliders); 
+				if (!sliders){
+					return;
 				}
-				return news;
+				sliders.forEach(function(slider){
+					if(delay){
+						slider.image = 'img/blank.jpg';
+					}
+				}
+				var adv_first = sliders[0];
+				var adv_last = sliders[sliders.length-1]
+				var adv_first_div = document.createElement('div');
+				adv_first_div.className = 'mui-slider-item mui-slider-item-duplicate';
+				adv_first_div.innerHTML= '<a data_id="' + adv_last.id + '"><img id="slider_img_' + 
+					adv_last.id + '"src="'+ adv_last.image + '"></a>';
+				slide_group.appendChild(adv_first_div);
+				sliders.forEach(function(slider){
+					var adv_div = document.createElement('div');
+					adv_div.className = 'mui-slider-item';
+					adv_div.innerHTML= '<a data_id="' + slider.id + '"><img id="slider_img_' + 
+						slider.id + '"src="'+ slider.image + '"></a>';
+					slide_group.appendChild(adv_div);
+				}
+				var adv_last_div = document.createElement('div');
+				adv_last_div.className = 'mui-slider-item mui-slider-item-duplicate';
+				adv_last_div.innerHTML= '<a data_id="' + adv_first.id + '"><img id="slider_img_' + 
+					adv_first.id + '"src="'+ adv_first.image + '"></a>';
+				slide_group.appendChild(adv_last_div);
+				var gallery = mui('.mui-slider');
+				gallery.slider().gotoItem(0);
 			}
 		</script>
 		<script>

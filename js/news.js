@@ -1,4 +1,4 @@
-(function($, wa. websql) {
+(function($, wa, websql) {
 
 	var DB_VERSION_NUMBER = '1.0';
 	var TIME_UPDATE = 'TIME_UPDATE';
@@ -8,7 +8,7 @@
 	var TIME_INTERVAL = 1000 * 60 * 10; //更新间隔(默认十分钟)
 	var TIME_INTERVAL_SLIDER = 1000 * 60 * 60; //更新间隔(默认一小时)
 
-	var SLIDER_GUID = 'SLIDER_GUID';
+	var SLIDER_id = 'SLIDER_id';
 
 
 	var PAGE_SIZE = 10;
@@ -20,15 +20,32 @@
 	var IMAGE_DOWNLOAD_WHEN_WIFI = "true";
 	var DIR_IMAGE = "_doc/image/news/";
 
-	var SLIDER_URL = 'http://m.wafuli.cn/36wa.slider.json';
-	var FEED_URL = 'http://m.wafuli.cn/app/news'; //'http://www.36wa.com/feed';
-	var SQL_TABLE = 'DROP TABLE IF EXISTS wa_news;CREATE TABLE wa_news (guid TEXT PRIMARY KEY, title TEXT,mark1 TEXT,mark2 TEXT,mark3 TEXT,image TEXT,pubDate INTEGER,source TEXT, time TEXT, views TEXT);';
-	var SQL_SELECT = 'SELECT guid,title,mark1,mark2,mark3,pubDate,image,source,time,view FROM wa.news WHERE pubDate < ? ORDER BY pubDate DESC LIMIT ?;';
-	var SQL_INSERT = 'INSERT INTO wa.news(title,mark1,mark2,mark3,pubDate,image,source,time,view) VALUES(?,?,?,?,?,?,?,?,?);';
-	var SQL_SELECT_DETAIL = 'SELECT * FROM wa.news WHERE guid = ? LIMIT 1;';
-	var SQL_UPDATE = 'UPDATE wa.news SET image = ? WHERE guid = ?';
-	var SQL_DELETE = 'DELETE FROM wa.news';
-
+	var SLIDER_URL = 'http://m.wafuli.cn/app/slider';
+	var RECOM_URL = 'http://m.wafuli.cn/app/recom';
+	var NEWS_URL = 'http://m.wafuli.cn/app/news'; //'http://www.36wa.com/feed';
+	var SQL_TABLE = 'DROP TABLE IF EXISTS wa_news;DROP TABLE IF EXISTS wa_slider;DROP TABLE IF EXISTS wa_recom;' + 
+		'CREATE TABLE wa_news (id INTEGER PRIMARY KEY, title TEXT,mark1 TEXT,mark2 TEXT,mark3 TEXT,image TEXT,pubDate INTEGER,source TEXT, time TEXT, views TEXT);' + 
+		'CREATE TABLE wa_slider (id INTEGER PRIMARY KEY, image TEXT,priority INTEGER, pubDate INTEGER);' +
+		'CREATE TABLE wa_recom (id INTEGER PRIMARY KEY, image TEXT, location INTEGER UNIQUE);';
+	var SQL_SELECT_NEWS= 'SELECT id,title,mark1,mark2,mark3,pubDate,image,source,time,view FROM wa_news WHERE pubDate < ? ORDER BY pubDate DESC LIMIT ?;';
+	var SQL_INSERT_NEWS = 'INSERT INTO wa_news(id,title,mark1,mark2,mark3,pubDate,image,source,time,view) VALUES(?,?,?,?,?,?,?,?,?,?);';
+	var SQL_SELECT_NEWS_DETAIL = 'SELECT * FROM wa_news WHERE id = ? LIMIT 1;';
+	var SQL_UPDATE_NEWS = 'UPDATE wa_news SET image = ? WHERE id = ?';
+	var SQL_DELETE_NEWS = 'DELETE FROM wa_news';
+	
+	var SQL_SELECT_SLIDER= 'SELECT id,image,priority FROM wa_slider ORDER BY priority DESC, pubDate DESC LIMIT 5;';
+	var SQL_INSERT_SLIDER = 'INSERT INTO wa_slider(id,image,priority,pubDate) VALUES(?,?,?,?);';
+	var SQL_SELECT_SLIDER_DETAIL = 'SELECT * FROM wa_slider WHERE id = ? LIMIT 1;';
+	var SQL_UPDATE_SLIDER = 'UPDATE wa_slider SET image = ? WHERE id = ?';
+	var SQL_DELETE_SLIDER = 'DELETE FROM wa_slider';
+	
+	var SQL_SELECT_RECOM = 'SELECT id,image,location FROM wa_recom ORDER BY location LIMIT 3;';
+	var SQL_INSERT_RECOM = 'INSERT INTO wa_recom(id,image,location) VALUES(?,?,?);';
+	var SQL_SELECT_RECOM_DETAIL = 'SELECT * FROM wa_recom WHERE id = ? LIMIT 1;';
+	var SQL_UPDATE_RECOM = 'UPDATE wa_recom SET image = ? WHERE id = ?';
+	var SQL_DELETE_RECOM = 'DELETE FROM wa_recom';
+	
+	var wa = [];
 	wa.format = function(milliseconds) {
 		var date = new Date(milliseconds);
 		var _format = function(number) {
@@ -87,6 +104,8 @@
 
 	wa.clearCache = function() {
 		plus.nativeUI.showWaiting('正在删除缓存...');
+		wa.deleteSlider();
+		wa.deleteRecom();
 		wa.deleteNews(function() {
 			//清除图片缓存
 			plus.io.resolveLocalFileSystemURL(DIR_IMAGE, function(entry) {
@@ -103,7 +122,7 @@
 			localStorage.removeItem(TIME_UPDATE); //移除上次更新时间
 			localStorage.removeItem(TIME_PUBDATE); //移除最新的feed更新时间
 			localStorage.removeItem(TIME_UPDATE_SLIDER); //移除上次slider更新时间
-			localStorage.removeItem(SLIDER_GUID); //移除上次slider的guid
+			localStorage.removeItem(SLIDER_id); //移除上次slider的id
 			localStorage.removeItem(LAST_ID);
 			plus.webview.getWebviewById("news").evalJS('getFeed("true")');
 		}, function() {});
@@ -119,54 +138,7 @@
 			successCallback(download.filename);
 		});
 	};
-	wa.getSlider = function(isLocal, successCallback) {
-		//若缓存本地，则直接显示
-		if (isLocal === true) {
-			successCallback(localStorage.getItem(SLIDER_GUID));
-			return;
-		}
-		successCallback = successCallback || isLocal;
-		//当前没有网络，显示本地缓存
-		if (plus.networkinfo.getCurrentType() === plus.networkinfo.CONNECTION_NONE) {
-			successCallback(localStorage.getItem(SLIDER_GUID));
-			return;
-		}
-		var update = parseFloat(localStorage.getItem(TIME_UPDATE_SLIDER));
-		//屏蔽频繁刷新，若尚未过期，则直接显示本地缓存
-		if (update && (update + TIME_INTERVAL_SLIDER) > Date.parse(new Date())) {
-			successCallback(localStorage.getItem(SLIDER_GUID));
-			return;
-		}
-		$.getJSON(SLIDER_URL, function(response) {
-			if (response) {
-				localStorage.setItem(SLIDER_GUID, response.guid);
-				localStorage.setItem(TIME_UPDATE_SLIDER, Date.parse(new Date()) + ''); //本地更新时间
-				wa.getNewsByGuid(response.guid, function(item) {
-					if (!item) { //首页封面DB中未存储，insert
-						response.pubDate = Date.parse(response.pubDate);
-						if (response.cover) {
-							response.description = response.description.replace('<img src="' + response.cover + '" alt=""/>', '');
-						}
-						response.description = response.description.replace('<a href="http://www.36wa.com/p/201073.html?ref=wa.post_feed">36氪官方iOS应用正式上线，支持『一键下载36氪报道的移动App』和『离线阅读』</a> <a href="https://itunes.apple.com/cn/app/36ke/id593394038?l=en&mt=8" target="_blank">立即下载！</a>', '');
-						wa.addNews([
-							[response.title, response.author, response.link, response.guid, response.cover, response.pubDate, response.description]
-						], function() {
-							successCallback(response);
-						}, function() {
-							//TODO 存储失败的回调，有待商榷
-							successCallback(response);
-						});
-					} else {
-						//db中已存储，直接返回本地存储
-						successCallback(item);
-					}
-				});
-			} else {
-				//请求失败，直接显示本地缓存
-				successCallback(localStorage.getItem(SLIDER_GUID));
-			}
-		});
-	};
+	
 	/**
 	 * 通过网络获取福利（新闻）数据
 	 * @param {Function} successCallback
@@ -188,26 +160,107 @@
 		//			return;
 		//		}
 		var lastId = localStorage.getItem(LAST_ID) || '';
-		$.getFeed(FEED_URL + '?lastId=' + lastId, function(items) {
+		var comp1 = false, comp2 = false, comp3 = false, ret = true;
+		$.getNews(NEWS_URL + '?lastId=' + lastId, function(items) {
 			if (items) {
 				var news = items;
 				news.reverse();
 				wa.addNews(news, function() {
-					localStorage.setItem(LAST_ID, news[0].guid);
-					successCallback(news.length);
+					localStorage.setItem(LAST_ID, news[0].id);
+					comp1 = true;
+					console.log("获得初始信息完成1");
+					if ( comp1 && comp2 &&comp3){
+						if (ret){
+							localStorage.setItem(TIME_UPDATE, Date.parse(new Date()) + ''); //本地更新时间
+							successCallback(false);
+						}else{
+							errorCallback();
+						}
+					}
 				}, function() {
-					successCallback(false);
+					console.log("获得初始信息失败11");
+					ret = false;
+					comp1 = true;
+					if ( comp1 && comp2 &&comp3){
+						errorCallback();
+					}			
 				});
 			}
-			localStorage.setItem(TIME_UPDATE, Date.parse(new Date()) + ''); //本地更新时间
 		}, function(xhr) {
-			errorCallback && errorCallback();
+			ret = false;
+			comp1 = true;
+			console.log("获得初始信息失败12");
+			if ( comp1 && comp2 &&comp3){
+				errorCallback();
+			}
 		});
-	};
-	wa.getNewsByGuid = function(guid, successCallback, errorCallback) {
+		$.getSlider(SLIDER_URL, function(items) {
+			if (items) {
+				var news = items;
+				wa.addSlider(news, function() {
+					comp2 = true;
+					console.log("获得初始信息完成2");
+					if ( comp1 && comp2 &&comp3){
+						if (ret){
+							localStorage.setItem(TIME_UPDATE, Date.parse(new Date()) + ''); //本地更新时间
+							successCallback(false);
+						}else{
+							errorCallback();
+						}
+					}
+				}, function() {
+					console.log("获得初始信息失败21");
+					ret = false;
+					comp2 = true;
+					if ( comp1 && comp2 &&comp3){
+						errorCallback();
+					}			
+				});
+			}
+		}, function(xhr) {
+			ret = false;
+			comp2 = true;
+			console.log("获得初始信息失败22");
+			if ( comp1 && comp2 &&comp3){
+				errorCallback();
+			}
+		});
+		$.getRecom(RECOM_URL, function(items) {
+			if (items) {
+				var news = items;
+				wa.addRecom(news, function() {
+					comp3 = true;
+					console.log("获得初始信息完成3");
+					if ( comp1 && comp2 &&comp3){
+						if (ret){
+							localStorage.setItem(TIME_UPDATE, Date.parse(new Date()) + ''); //本地更新时间
+							successCallback(false);
+						}else{
+							errorCallback();
+						}
+					}
+				}, function() {
+					console.log("获得初始信息失败31");
+					ret = false;
+					comp3 = true;
+					if ( comp1 && comp2 &&comp3){
+						errorCallback();
+					}			
+				});
+			}
+		}, function(xhr) {
+			ret = false;
+			comp3 = true;
+			console.log("获得初始信息失败32");
+			if ( comp1 && comp2 &&comp3){
+				errorCallback();
+			}
+		});
+	}
+	wa.getNewsByid = function(id, successCallback, errorCallback) {
 		websql.process([{
-			"sql": SQL_SELECT_DETAIL,
-			"data": [guid]
+			"sql": SQL_SELECT_NEWS_DETAIL,
+			"data": [id]
 		}], function(tx, results) {
 			successCallback(results.rows.length > 0 && results.rows.item(0));
 		}, function(error, failingQuery) {
@@ -228,7 +281,7 @@
 			pageSize = pageSize || PAGE_SIZE;
 		}
 		websql.process([{
-			"sql": SQL_SELECT,
+			"sql": SQL_SELECT_NEWS,
 			"data": [latestId, pageSize]
 		}], function(tx, results) {
 			successCallback(results.rows);
@@ -240,7 +293,7 @@
 		var sqls = [];
 		$.each(news, function(index, item) {
 			sqls.push({
-				"sql": SQL_INSERT,
+				"sql": SQL_INSERT_NEWS,
 				"data": item
 			})
 		});
@@ -251,10 +304,10 @@
 		});
 
 	};
-	wa.updateNews = function(guid, image, successCallback, errorCallback) {
+	wa.updateNews = function(id, image, successCallback, errorCallback) {
 		websql.process([{
-			"sql": SQL_UPDATE,
-			"data": [image, guid],
+			"sql": SQL_UPDATE_NEWS,
+			"data": [image, id],
 		}], function(tx, results) {
 			successCallback && successCallback();
 		}, function(error, failingQuery) {
@@ -262,10 +315,108 @@
 		});
 	};
 	wa.deleteNews = function(successCallback, errorCallback) {
-		websql.process(SQL_DELETE, function(tx, results) {
+		websql.process(SQL_DELETE_NEWS, function(tx, results) {
 			successCallback && successCallback();
 		}, function(error, failingQuery) {
 			errorCallback && errorCallback(error, failingQuery);
 		});
 	};
-})(mui, wa. html5sql);
+	wa.getSliderByid = function(id, successCallback, errorCallback) {
+		websql.process([{
+			"sql": SQL_SELECT_SLIDER_DETAIL,
+			"data": [id]
+		}], function(tx, results) {
+			successCallback(results.rows.length > 0 && results.rows.item(0));
+		}, function(error, failingQuery) {
+			errorCallback && errorCallback(error, failingQuery);
+		});
+	};
+	wa.getSlider = function(successCallback, errorCallback) {
+		websql.process(SQL_SELECT_SLIDER, function(tx, results) {
+			successCallback(results.rows);
+		}, function(error, failingQuery) {
+			errorCallback && errorCallback(error, failingQuery);
+		});
+	};
+	wa.addSlider = function(news, successCallback, errorCallback) {
+		var sqls = [];
+		$.each(news, function(index, item) {
+			sqls.push({
+				"sql": SQL_INSERT_SLIDER,
+				"data": item
+			})
+		});
+		websql.process(sqls, function(tx, results) {
+			successCallback(true);
+		}, function(error, failingQuery) {
+			errorCallback && errorCallback(error, failingQuery);
+		});
+
+	};
+	wa.updateSlider = function(id, image, successCallback, errorCallback) {
+		websql.process([{
+			"sql": SQL_UPDATE_SLIDER,
+			"data": [image, id],
+		}], function(tx, results) {
+			successCallback && successCallback();
+		}, function(error, failingQuery) {
+			errorCallback && errorCallback(error, failingQuery);
+		});
+	};
+	wa.deleteSlider = function(){
+		websql.process(SQL_DELETE_SLIDER, function(tx, results) {
+			
+		}, function(error, failingQuery) {
+			
+		});
+	};
+	wa.getRecomByid = function(id, successCallback, errorCallback) {
+		websql.process([{
+			"sql": SQL_SELECT_RECOM_DETAIL,
+			"data": [id]
+		}], function(tx, results) {
+			successCallback(results.rows.length > 0 && results.rows.item(0));
+		}, function(error, failingQuery) {
+			errorCallback && errorCallback(error, failingQuery);
+		});
+	};
+	wa.getRecom = function(latestId, pageSize, successCallback, errorCallback) {
+		websql.process(SQL_SELECT_RECOM, function(tx, results) {
+			successCallback(results.rows);
+		}, function(error, failingQuery) {
+			errorCallback && errorCallback(error, failingQuery);
+		});
+	};
+	wa.addRecom = function(news, successCallback, errorCallback) {
+		var sqls = [];
+		$.each(news, function(index, item) {
+			sqls.push({
+				"sql": SQL_INSERT_RECOM,
+				"data": item
+			})
+		});
+		websql.process(sqls, function(tx, results) {
+			successCallback(true);
+		}, function(error, failingQuery) {
+			errorCallback && errorCallback(error, failingQuery);
+		});
+
+	};
+	wa.updateRecom = function(id, image, successCallback, errorCallback) {
+		websql.process([{
+			"sql": SQL_UPDATE_RECOM,
+			"data": [image, id],
+		}], function(tx, results) {
+			successCallback && successCallback();
+		}, function(error, failingQuery) {
+			errorCallback && errorCallback(error, failingQuery);
+		});
+	};
+	wa.deleteRecom = function(){
+		websql.process(SQL_DELETE_RECOM, function(tx, results) {
+			
+		}, function(error, failingQuery) {
+			
+		});
+	};
+})(mui, wa, html5sql);

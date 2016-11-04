@@ -1,5 +1,5 @@
 (function($) {
-	var parseFeed = function(dstList) {
+	var parseNews = function(dstList) {
 		var items = [];
 		dstList.forEach(function(srcItem) {
 			items.push({
@@ -8,16 +8,16 @@
 				mark1: srcItem.mark1,
 				mark2: srcItem.mark2,
 				mark3: srcItem.mark3,
-				pubDate: srcItem.pubDate,
+				pubDate: Date.parse(srcItem.pubDate),
 				image: srcItem.image,
-				time: Date.parse(srcItem.time),
+				time: srcItem.time,
 				source: srcItem.source,
 				view: srcItem.view
 			});
 		});
 		return items;
 	};
-	$.getFeed = function(url, success, error) {
+	$.getNews = function(url, success, error) {
 		error = error || $.noop;
 		$.ajax({
 			type: "get",
@@ -27,7 +27,60 @@
 				if (!response) {
 					return error();
 				}
-				success(parseFeed(response));
+				success(parseNews(response));
+			},
+			error: error
+		});
+	};
+	var parseSlider = function(dstList) {
+		var items = [];
+		dstList.forEach(function(srcItem) {
+			items.push({
+				id: srcItem.id,
+				image: srcItem.image,
+				priority: srcItem.priority,
+				pubDate: Date.parse(srcItem.pubDate)
+			});
+		});
+		return items;
+	};
+	$.getSlider= function(url, success, error) {
+		error = error || $.noop;
+		$.ajax({
+			type: "get",
+			url: url,
+			dataType: 'json',
+			success: function(response) {
+				if (!response) {
+					return error();
+				}
+				success(parseSlider(response));
+			},
+			error: error
+		});
+	};
+	var parseRecom = function(dstList) {
+		var items = [];
+		dstList.forEach(function(srcItem) {
+			items.push({
+				id: srcItem.id,
+				image: srcItem.image,
+				location: srcItem.location,
+			});
+		});
+		return items;
+	};
+	$.getRecom = function(url, success, error) {
+		error = error || $.noop;
+		$.ajax({
+			type: "get",
+			url: url,
+			dataType: 'json',
+			success: function(response) {
+				if (!response) {
+					return error();
+				}
+				success(parseRecom(response));
 			},
 			error: error
 		});
