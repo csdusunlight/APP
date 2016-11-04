@@ -1,10 +1,11 @@
+var wa = [];
 (function($, wa, websql) {
 
 	var DB_VERSION_NUMBER = '1.0';
 	var TIME_UPDATE = 'TIME_UPDATE';
 	var TIME_PUBDATE = 'TIME_PUBDATE';
 	var TIME_UPDATE_SLIDER = 'TIME_UPDATE_SLIDER';
-	var LAST_ID = "LAST_ID";
+	var LAST_PUBDATE = "LAST_PUBDATE";
 	var TIME_INTERVAL = 1000 * 60 * 10; //更新间隔(默认十分钟)
 	var TIME_INTERVAL_SLIDER = 1000 * 60 * 60; //更新间隔(默认一小时)
 
@@ -20,9 +21,9 @@
 	var IMAGE_DOWNLOAD_WHEN_WIFI = "true";
 	var DIR_IMAGE = "_doc/image/news/";
 
-	var SLIDER_URL = 'http://m.wafuli.cn/app/slider';
-	var RECOM_URL = 'http://m.wafuli.cn/app/recom';
-	var NEWS_URL = 'http://m.wafuli.cn/app/news'; //'http://www.36wa.com/feed';
+	var SLIDER_URL = 'http://m.wafuli.cn/app/slider/';
+	var RECOM_URL = 'http://m.wafuli.cn/app/recom/';
+	var NEWS_URL = 'http://m.wafuli.cn/app/news/'; //'http://www.36wa.com/feed';
 	var SQL_TABLE = 'DROP TABLE IF EXISTS wa_news;DROP TABLE IF EXISTS wa_slider;DROP TABLE IF EXISTS wa_recom;' + 
 		'CREATE TABLE wa_news (id INTEGER PRIMARY KEY, title TEXT,mark1 TEXT,mark2 TEXT,mark3 TEXT,image TEXT,pubDate INTEGER,source TEXT, time TEXT, views TEXT);' + 
 		'CREATE TABLE wa_slider (id INTEGER PRIMARY KEY, image TEXT,priority INTEGER, pubDate INTEGER);' +
@@ -45,7 +46,6 @@
 	var SQL_UPDATE_RECOM = 'UPDATE wa_recom SET image = ? WHERE id = ?';
 	var SQL_DELETE_RECOM = 'DELETE FROM wa_recom';
 	
-	var wa = [];
 	wa.format = function(milliseconds) {
 		var date = new Date(milliseconds);
 		var _format = function(number) {
@@ -123,7 +123,7 @@
 			localStorage.removeItem(TIME_PUBDATE); //移除最新的feed更新时间
 			localStorage.removeItem(TIME_UPDATE_SLIDER); //移除上次slider更新时间
 			localStorage.removeItem(SLIDER_id); //移除上次slider的id
-			localStorage.removeItem(LAST_ID);
+			localStorage.removeItem(LAST_PUBDATE);
 			plus.webview.getWebviewById("news").evalJS('getFeed("true")');
 		}, function() {});
 	};
@@ -159,14 +159,11 @@
 		//			successCallback(false);
 		//			return;
 		//		}
-		var lastId = localStorage.getItem(LAST_ID) || '';
 		var comp1 = false, comp2 = false, comp3 = false, ret = true;
-		$.getNews(NEWS_URL + '?lastId=' + lastId, function(items) {
+		$.getNews(NEWS_URL + '?lastDate=' + latestPubDate, function(items) {
 			if (items) {
 				var news = items;
-				news.reverse();
 				wa.addNews(news, function() {
-					localStorage.setItem(LAST_ID, news[0].id);
 					comp1 = true;
 					console.log("获得初始信息完成1");
 					if ( comp1 && comp2 &&comp3){

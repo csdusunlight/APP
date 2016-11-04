@@ -3,7 +3,7 @@
 		var items = [];
 		dstList.forEach(function(srcItem) {
 			items.push({
-				post_id: srcItem.id,
+				id: srcItem.id,
 				title: srcItem.title,
 				mark1: srcItem.mark1,
 				mark2: srcItem.mark2,

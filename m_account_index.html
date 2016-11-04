@@ -23,10 +23,10 @@
     <meta http-equiv="Cache-Control" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>个人中心</title>
-    <script src="{% static 'js/mui.min.js' %}"></script>
-    <link href="{% static 'css/mui.min.css' %}" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/m_common.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/m_account_index.css' %}"/>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/m_common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/m_account_index.css"/>
 </head>
 
 	<body>
@@ -34,9 +34,9 @@
 			<div class="top">
         <a id="switch_device" class="diannao">切换到电脑版</a>
         	<img src="/static/images/user-0{{user.id| modulo:'4'}}.png" alt="用户头像" />
-<!--         <img src="{% static 'images/user-02.png' %}" alt="用户头像" />
-        <img src="{% static 'images/user-03.png' %}" alt="用户头像" />
-        <img src="{% static 'images/user-04.png' %}" alt="用户头像" /> -->
+<!--         <img src="images/user-02.png" alt="用户头像" />
+        <img src="images/user-03.png" alt="用户头像" />
+        <img src="images/user-04.png" alt="用户头像" /> -->
 				<a href="{% url 'account_settings' %}"><number>{{user.mobile}}</number></a>
 			</div>
 
@@ -111,25 +111,25 @@
     	<ul class="clearfix tc">
         	<li>
             	<a href="{%url 'index'%}">
-                <img src="{% static 'images/nav1.png' %}"/>
+                <img src="images/nav1.png"/>
             	<span>免费福利</span>
                 </a>
             </li>
         	<li>
             	<a href="{%url 'task'%}">
-                <img src="{% static 'images/nav2.png' %}"/>
+                <img src="images/nav2.png"/>
             	<span>体验福利</span>
                 </a>
             </li>
         	<li>
             	<a href="{%url 'finance'%}">
-                <img src="{% static 'images/nav3.png' %}"/>
+                <img src="images/nav3.png"/>
             	<span>理财福利</span>
                 </a>
             </li>
         	<li class="on">
             	<a href="{%url 'account_index'%}">
-                <img src="{% static 'images/nav4s.png' %}"/>
+                <img src="images/nav4s.png"/>
             	<span>个人中心</span>
                 </a>
             </li>
@@ -138,7 +138,6 @@
     <script type="text/javascript" charset="utf-8">
       	mui.init();
     </script>
-    {%if back %}
 	<script>
 	mui.back = function(){
 		var history = window.history;
@@ -150,7 +149,6 @@
 		}
 	};
 	</script>
-	{%endif%}
 	<script>
 	document.getElementById("switch_device").addEventListener("tap",function(){
     	setCookie('mode', 'pc', 1, 'wafuli.cn');

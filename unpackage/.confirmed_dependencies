@@ -10,13 +10,16 @@
 			"m_welfare.html",
 			"js/mui.min.js",
 			"fonts/mui.ttf",
-			"css/mui.min.css"
+			"css/mui.min.css",
+			"js/app.js",
+			"m_welfare_main.html"
 		],
 		"refer": [
 			"m_welfare.html",
 			"m_task.html",
 			"m_finance.html",
-			"m_account_index.html"
+			"m_account_index.html",
+			"m_welfare_main.html"
 		]
 	},
 	"m_task.html": {
@@ -78,7 +81,11 @@
 			"images/nav-pic8.png",
 			"%7B%%20url%20\u0027activity\u0027%20%%7D",
 			"%7B%%20url%20\u0027information\u0027%20%%7D",
-			"%7B%%20url%20\u0027activity_lottery\u0027%20%%7D"
+			"%7B%%20url%20\u0027activity_lottery\u0027%20%%7D",
+			"js/news.js",
+			"js/html5sql.js",
+			"js/feed.js",
+			"js/app.js"
 		],
 		"refer": [
 			"%7B%%20url%20\u0027activity\u0027%20%%7D",
@@ -96,7 +103,32 @@
 			"%7B%%20static%20\u0027images/nav1.png\u0027%20%%7D",
 			"%7B%%20static%20\u0027css/m_account_index.css\u0027%20%%7D",
 			"%7B%%20static%20\u0027images/nav3.png\u0027%20%%7D",
-			"%7B%%20static%20\u0027css/mui.min.css\u0027%20%%7D"
+			"%7B%%20static%20\u0027css/mui.min.css\u0027%20%%7D",
+			"images/sin-picon-02.png",
+			"images/nav1.png",
+			"fonts/mui.ttf",
+			"images/sin-picon-07.png",
+			"images/nav2.png",
+			"images/nav4s.png",
+			"images/sin-picon-03.jpg",
+			"css/m_account_index.css",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"images/bg-user.png",
+			"images/nav3.png",
+			"images/sin-picon-05.jpg",
+			"images/sin-picon-04.jpg",
+			"images/pen.png",
+			"images/sin-picon-06.jpg",
+			"css/m_common.css"
+		]
+	},
+	"m_welfare_main.html": {
+		"resources": [
+			"m_welfare_pullfresh.html"
+		],
+		"refer": [
+			"m_welfare_pullfresh.html"
 		]
 	}
 }
