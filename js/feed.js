@@ -18,7 +18,7 @@
 		return items;
 	};
 	$.getNews = function(url, success, error) {
-		error = error || $.noop;
+		var merror = error || $.noop;
 		$.ajax({
 			type: "get",
 			url: url,
@@ -29,7 +29,10 @@
 				}
 				success(parseNews(response));
 			},
-			error: error
+			error:function(xhr,type,errorThrown){
+				console.log(type);
+				merror();
+			}
 		});
 	};
 	var parseSlider = function(dstList) {

@@ -1,4 +1,7 @@
 var wa = [];
+var SLIDER_URL = 'http://m.wafuli.cn/app/slider/';
+var RECOM_URL = 'http://m.wafuli.cn/app/recom/';
+var NEWS_URL = 'http://m.wafuli.cn/app/news/'; 
 (function($, wa, websql) {
 
 	var DB_VERSION_NUMBER = '1.0';
@@ -21,11 +24,9 @@ var wa = [];
 	var IMAGE_DOWNLOAD_WHEN_WIFI = "true";
 	var DIR_IMAGE = "_doc/image/news/";
 
-	var SLIDER_URL = 'http://m.wafuli.cn/app/slider/';
-	var RECOM_URL = 'http://m.wafuli.cn/app/recom/';
-	var NEWS_URL = 'http://m.wafuli.cn/app/news/'; //'http://www.36wa.com/feed';
+
 	var SQL_TABLE = 'DROP TABLE IF EXISTS wa_news;DROP TABLE IF EXISTS wa_slider;DROP TABLE IF EXISTS wa_recom;' + 
-		'CREATE TABLE wa_news (id INTEGER PRIMARY KEY, title TEXT,mark1 TEXT,mark2 TEXT,mark3 TEXT,image TEXT,pubDate INTEGER,source TEXT, time TEXT, views TEXT);' + 
+		'CREATE TABLE wa_news (id INTEGER PRIMARY KEY, title TEXT,mark1 TEXT,mark2 TEXT,mark3 TEXT,image TEXT,pubDate INTEGER,source TEXT, time TEXT, view INTEGER);' + 
 		'CREATE TABLE wa_slider (id INTEGER PRIMARY KEY, image TEXT,priority INTEGER, pubDate INTEGER);' +
 		'CREATE TABLE wa_recom (id INTEGER PRIMARY KEY, image TEXT, location INTEGER UNIQUE);';
 	var SQL_SELECT_NEWS= 'SELECT id,title,mark1,mark2,mark3,pubDate,image,source,time,view FROM wa_news WHERE pubDate < ? ORDER BY pubDate DESC LIMIT ?;';
@@ -34,7 +35,7 @@ var wa = [];
 	var SQL_UPDATE_NEWS = 'UPDATE wa_news SET image = ? WHERE id = ?';
 	var SQL_DELETE_NEWS = 'DELETE FROM wa_news';
 	
-	var SQL_SELECT_SLIDER= 'SELECT id,image,priority FROM wa_slider ORDER BY priority DESC, pubDate DESC LIMIT 5;';
+	var SQL_SELECT_SLIDER= 'SELECT id,image,priority,pubDate FROM wa_slider ORDER BY priority DESC, pubDate DESC LIMIT 5;';
 	var SQL_INSERT_SLIDER = 'INSERT INTO wa_slider(id,image,priority,pubDate) VALUES(?,?,?,?);';
 	var SQL_SELECT_SLIDER_DETAIL = 'SELECT * FROM wa_slider WHERE id = ? LIMIT 1;';
 	var SQL_UPDATE_SLIDER = 'UPDATE wa_slider SET image = ? WHERE id = ?';
@@ -54,7 +55,7 @@ var wa = [];
 		return date.getFullYear() + '/' + _format(date.getMonth() + 1) + '/' + _format(date.getDay()) + '-' + _format(date.getHours()) + ':' + _format(date.getMinutes());
 	};
 	wa.dbReady = function(successCallback, errorCallback) {
-		html5sql.openDatabase("wa", "wafuli", 5 * 1024 * 1024);
+		html5sql.openDatabase("wafuli5", "wafuli5", 5 * 1024 * 1024);
 		if (html5sql.database.version === '') {
 			html5sql.changeVersion('', DB_VERSION_NUMBER, SQL_TABLE, function() {
 				successCallback && successCallback(true);
@@ -106,26 +107,25 @@ var wa = [];
 		plus.nativeUI.showWaiting('正在删除缓存...');
 		wa.deleteSlider();
 		wa.deleteRecom();
-		wa.deleteNews(function() {
+		wa.deleteNews();
 			//清除图片缓存
-			plus.io.resolveLocalFileSystemURL(DIR_IMAGE, function(entry) {
-				entry.removeRecursively(function() {
-					plus.nativeUI.closeWaiting();
-					plus.nativeUI.toast("缓存删除成功");
-				}, function() {
-					plus.nativeUI.closeWaiting();
-				});
-			}, function(e) {
+		plus.io.resolveLocalFileSystemURL(DIR_IMAGE, function(entry) {
+			entry.removeRecursively(function() {
+				plus.nativeUI.closeWaiting();
+				plus.nativeUI.toast("缓存删除成功");
+			}, function() {
 				plus.nativeUI.closeWaiting();
 			});
-			//通知首页重新拉取最新
-			localStorage.removeItem(TIME_UPDATE); //移除上次更新时间
-			localStorage.removeItem(TIME_PUBDATE); //移除最新的feed更新时间
-			localStorage.removeItem(TIME_UPDATE_SLIDER); //移除上次slider更新时间
-			localStorage.removeItem(SLIDER_id); //移除上次slider的id
-			localStorage.removeItem(LAST_PUBDATE);
-			plus.webview.getWebviewById("news").evalJS('getFeed("true")');
-		}, function() {});
+		}, function(e) {
+			plus.nativeUI.closeWaiting();
+		});
+		//通知首页重新拉取最新
+		localStorage.removeItem(TIME_UPDATE); //移除上次更新时间
+		localStorage.removeItem(TIME_PUBDATE); //移除最新的feed更新时间
+		localStorage.removeItem(TIME_UPDATE_SLIDER); //移除上次slider更新时间
+		localStorage.removeItem(SLIDER_id); //移除上次slider的id
+		localStorage.removeItem(LAST_PUBDATE);
+//			plus.webview.getWebviewById("news").evalJS('getFeed("true")');
 	};
 	wa.downloadImage = function(name, imgUrl, successCallback, errorCallback) {
 		var url = DIR_IMAGE + name + ".png";
@@ -150,7 +150,7 @@ var wa = [];
 			plus.nativeUI.toast('似乎已断开与互联网的连接', {
 				verticalAlign: 'top'
 			});
-			successCallback(false);
+			errorCallback(false);
 			return;
 		}
 		//		//避免频繁刷新，默认最短刷新间隔为10分钟
@@ -161,12 +161,18 @@ var wa = [];
 		//		}
 		var comp1 = false, comp2 = false, comp3 = false, ret = true;
 		$.getNews(NEWS_URL + '?lastDate=' + latestPubDate, function(items) {
-			if (items) {
-				var news = items;
+			if (items && items.length>0) {
+				var news = [];
+				$.each(items, function(index, item) {
+					news.push([item.id, item.title, item.mark1, item.mark2, item.mark3, item.pubDate,
+						item.image, item.source, item.time, item.view]);
+				});
+				wa.deleteNews();
 				wa.addNews(news, function() {
 					comp1 = true;
 					console.log("获得初始信息完成1");
 					if ( comp1 && comp2 &&comp3){
+						console.log("获得初始信息完成1");
 						if (ret){
 							localStorage.setItem(TIME_UPDATE, Date.parse(new Date()) + ''); //本地更新时间
 							successCallback(false);
@@ -179,25 +185,33 @@ var wa = [];
 					ret = false;
 					comp1 = true;
 					if ( comp1 && comp2 &&comp3){
+						console.log("获得初始信息失败11");
 						errorCallback();
 					}			
 				});
+				
 			}
 		}, function(xhr) {
 			ret = false;
 			comp1 = true;
 			console.log("获得初始信息失败12");
 			if ( comp1 && comp2 &&comp3){
+				console.log("获得初始信息失败12");
 				errorCallback();
 			}
 		});
 		$.getSlider(SLIDER_URL, function(items) {
 			if (items) {
-				var news = items;
+				var news = [];
+				$.each(items, function(index, item) {
+					news.push([item.id, item.image, item.priority, item.pubDate]);
+				});
+				wa.deleteSlider();
 				wa.addSlider(news, function() {
 					comp2 = true;
 					console.log("获得初始信息完成2");
 					if ( comp1 && comp2 &&comp3){
+						console.log("获得初始信息完成2");
 						if (ret){
 							localStorage.setItem(TIME_UPDATE, Date.parse(new Date()) + ''); //本地更新时间
 							successCallback(false);
@@ -210,6 +224,7 @@ var wa = [];
 					ret = false;
 					comp2 = true;
 					if ( comp1 && comp2 &&comp3){
+						console.log("获得初始信息失败21");
 						errorCallback();
 					}			
 				});
@@ -219,16 +234,22 @@ var wa = [];
 			comp2 = true;
 			console.log("获得初始信息失败22");
 			if ( comp1 && comp2 &&comp3){
+				console.log("获得初始信息失败22");
 				errorCallback();
 			}
 		});
 		$.getRecom(RECOM_URL, function(items) {
 			if (items) {
-				var news = items;
+				var news = [];
+				$.each(items, function(index, item) {
+					news.push([item.id, item.image, item.location]);
+				});
+				wa.deleteRecom();
 				wa.addRecom(news, function() {
 					comp3 = true;
 					console.log("获得初始信息完成3");
 					if ( comp1 && comp2 &&comp3){
+						console.log("获得初始信息完成3");
 						if (ret){
 							localStorage.setItem(TIME_UPDATE, Date.parse(new Date()) + ''); //本地更新时间
 							successCallback(false);
@@ -241,6 +262,7 @@ var wa = [];
 					ret = false;
 					comp3 = true;
 					if ( comp1 && comp2 &&comp3){
+						console.log("获得初始信息失败31");
 						errorCallback();
 					}			
 				});
@@ -250,6 +272,7 @@ var wa = [];
 			comp3 = true;
 			console.log("获得初始信息失败32");
 			if ( comp1 && comp2 &&comp3){
+				console.log("获得初始信息失败32");
 				errorCallback();
 			}
 		});
@@ -297,6 +320,7 @@ var wa = [];
 		websql.process(sqls, function(tx, results) {
 			successCallback(true);
 		}, function(error, failingQuery) {
+			console.log(error.message);console.log(failingQuery);
 			errorCallback && errorCallback(error, failingQuery);
 		});
 
@@ -315,6 +339,7 @@ var wa = [];
 		websql.process(SQL_DELETE_NEWS, function(tx, results) {
 			successCallback && successCallback();
 		}, function(error, failingQuery) {
+			console.log(error.message);
 			errorCallback && errorCallback(error, failingQuery);
 		});
 	};
@@ -377,7 +402,7 @@ var wa = [];
 			errorCallback && errorCallback(error, failingQuery);
 		});
 	};
-	wa.getRecom = function(latestId, pageSize, successCallback, errorCallback) {
+	wa.getRecom = function(successCallback, errorCallback) {
 		websql.process(SQL_SELECT_RECOM, function(tx, results) {
 			successCallback(results.rows);
 		}, function(error, failingQuery) {

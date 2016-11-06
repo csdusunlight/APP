@@ -92,7 +92,8 @@
 					<div class="today-tittle">
 						<h3>今日推荐</h3>
 					</div>
-
+					<div class="today-img clearfix">
+		            </div>
 				</div>
 				<div id="hot" class="recent today">
 			    	<div class="today-tittle">
@@ -104,7 +105,9 @@
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript" charset="UTF-8" src="js/mui.min.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="js/mui.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="js/mui.pullToRefresh.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="js/mui.pullToRefresh.material.js"></script>
 		<script type="text/javascript" charset="UTF-8" src="js/feed.js"></script>
 		<script type="text/javascript" charset="UTF-8" src="js/html5sql.js"></script>
 		<script type="text/javascript" charset="UTF-8" src="js/app.js"></script>
@@ -113,7 +116,8 @@
 			console.time("进入页面到呈现");
 			var slide_group = document.body.querySelector('.mui-slider-group');
 			var news_group = document.body.querySelector('.mui-table-view');
-			var recom_group = document.body.querySelector('.today');
+			var recom_group = document.body.querySelector('.today-img');
+
 			 //初始化下拉刷新模块  
 			mui.init({
 				pullRefresh: {
@@ -155,24 +159,34 @@
 			/** 新版首次进入执行代码开始 **/
 			var latestPubDate = Number.MAX_VALUE;
 			var hasMore = true;
-			wa.dbReady(function(isFirst) {
-				//document.body.style.backgroundColor = '#efeff4';
-				//第一次显示，从服务器中加载
-				if (!isFirst) {
-					//非第一次，直接从本地数据库中读取
-					//加载初始化数据
-					wa.getNews(Number.MAX_VALUE, 10,function(news) {
-						add_doms_news(news, false);
-					}, throwGetNewsError);
-					wa.getSlider(function(sliders) {
-						add_doms_slider(sliders, false);
-					}, throwGetNewsError);
-					wa.getRecom(function(recoms) {
-						add_doms_recom(recoms, false);
-					}, throwGetNewsError);
-				}
-				mui('#pullrefresh').pullRefresh().pulldownLoading();
+			mui.plusReady(function(){
+				wa.clearCache();
+				wa.dbReady(function(isFirst) {
+					//document.body.style.backgroundColor = '#efeff4';
+					//第一次显示，从服务器中加载
+					if (!isFirst) {
+						//非第一次，直接从本地数据库中读取
+						//加载初始化数据
+						wa.getNews(Number.MAX_VALUE, 1,function(news) {
+							add_doms_news(news, false);
+						}, throwGetNewsError);
+						wa.getSlider(function(sliders) {
+							add_doms_slider(sliders, false);
+						}, throwGetNewsError);
+						wa.getRecom(function(recoms) {
+							add_doms_recom(recoms, false);
+						}, throwGetNewsError);
+					}
+					setTimeout(function(){
+						mui('#pullrefresh').pullRefresh().pulldownLoading();
+						var gallery = mui('#slider');
+						gallery.slider({
+							interval: 4000 //自动轮播周期，若为0则不自动播放，默认为0；
+						});
+					},200);
+				});
 			});
+			
 //			mui.plusReady(function() {
 //				//关闭splash界面
 //				plus.navigator.closeSplashscreen();
@@ -184,7 +198,6 @@
 //				}, 2000);
 //			});
 			function pulldownRefresh() {
-				console.log('pulldown');
 				latestPubDate = Number.MAX_VALUE;
 				if (!hasMore) { //当清除缓存之前已上拉加载到底需要重置pullrefresh
 					mui('#pullrefresh').pullRefresh().refresh(true);
@@ -201,6 +214,7 @@
 					wa.getSlider(function(sliders) {
 						slide_group.innerHTML = '';
 						add_doms_slider(sliders, true);
+						console.log(sliders[0].image);
 						processNews(sliders, 'slider_img_')
 					}, throwGetNewsError);
 					wa.getRecom(function(recoms) {
@@ -222,6 +236,7 @@
 				//console.log('pullup');
 				mui.getNews(NEWS_URL + '?lastDate=' + latestPubDate, function(items) {
 					if (items) {
+						console.log(items.length);
 						var news = items;
 						add_doms_news(news);
 					}
@@ -263,53 +278,67 @@
 			}
 
 			function processNews(news, prefix) {
-				var news = mui.extend({}, news); //需要clone出来一个新对象，旧对象无法赋值修改
+//				var news = mui.extend({}, news); //需要clone出来一个新对象，旧对象无法赋值修改
 //				news.id = news.id; //.substring(news.id.lastIndexOf('/') + 1, news.id.length - 5);
 //				news.humanize = wa.humanize(Date.now() - news.pubDate);
-				news.forEach(function(item){
+				var length = news.length;
+				for (var i = 0; i<length; i++){
+					item = news[i];
 					if (item.image) {
-						wa.isDownloadImageAsync(function(yes) {
-							if (!yes) return;
-							addDownloadImage(item.id, item.image, function(src) {
-								if (src == null) return;
-								wa.updateNews(item.id, src); //更新数据库
-								var img = document.querySelector("#" + prefix + item.id + ' img');
-								img.src = src;
-								img.setAttribute('data-loaded', 'true');
-								console.log('list downloaded image:::' + src);
+						(function(n,img){
+							var selector = prefix + n;
+							wa.isDownloadImageAsync(function(yes) {
+								if (!yes) return;
+								addDownloadImage(selector, img, function(src) {
+//									console.log(img);
+									if (src == null) return;
+									wa.updateNews(n, src); //更新数据库
+									var img_ele = document.getElementById(selector);
+//									console.log("img#" + prefix + n);
+//									console.log(img_ele.src);
+									img_ele.src = src;
+									var duplicate_ele = document.getElementById(selector+"s");
+									if (duplicate_ele){
+										duplicate_ele.src = src;
+										duplicate_ele.setAttribute('data-loaded', 'true');
+									}
+									img_ele.setAttribute('data-loaded', 'true');
+								});
 							});
-						});
+						})(item.id,item.image);
 					}
 					else {
-						item.image = 'img/blank.jpg';
+						item.image = 'images/blank.jpg';
 					}
-				});
+				}
 			}
 			function add_doms_news(news, delay){
-				var news = mui.extend({}, news); 
-				if (!news){
+				if (!news || news.length === 0){
 					return;
 				}
 				latestPubDate = news[news.length-1].pubDate;
-				news.forEach(function(wel){
+				var length = news.length;
+				for (var i = 0; i < length; i++){
+					wel = news[i];
+					var image = wel.image;
 					if(delay){
-						wel.image = 'img/blank.jpg';
+						image = 'images/blank.jpg';
 					}
 					var li = document.createElement('li');
 					li.className = 'mui-table-view-cell';
-					str_block = '<a class="clearfix" data_id="' + item.id + '"><img id="news_img_' + item.id + '" src="'+ 
-									wel.image + '" /><div class="li-info"><h6>' + wel.title + '</h6>';
-					if (item.view>1000){
+					str_block = '<a class="clearfix" data_id="' + wel.id + '"><img id="news_img_' + wel.id + '" src="'+ 
+									image + '" /><div class="li-info"><h6>' + wel.title + '</h6>';
+					if (wel.view>1000){
 						str_block += '<span class="after-hot">hot</span>';
 					}
-					else if ( item.pubDate > Date.parse(new Date()) -24*60*60*1000 ){
+					else if ( wel.pubDate > Date.parse(new Date()) -24*60*60*1000 ){
 					 	str_block += '<span class="after-new">new</span>';
 					}
 					str_block += '<p class="first">';
 					marks = [wel.mark1, wel.mark2, wel.mark3];
 					for (var j in marks){
 						if(marks[j]){
-							str_block += '<span>' + wel.mark1 + '</span>'
+							str_block += '<span>' + marks[j] + '</span>';
 						}
 					}
 					str_block += '</p><p><span class="s1">'+wel.source+'</span></p>'+
@@ -317,39 +346,75 @@
 									wel.view +'</span></p></div></a>';
 					li.innerHTML = str_block;
 					news_group.appendChild(li);
-				});
+				}
 			}
 			function add_doms_slider(sliders, delay){
-				var sliders = mui.extend({}, sliders); 
-				if (!sliders){
+				if (!sliders || sliders.length === 0){
 					return;
 				}
-				sliders.forEach(function(slider){
-					if(delay){
-						slider.image = 'img/blank.jpg';
-					}
-				});
+				var length = sliders.length;
 				var adv_first = sliders[0];
 				var adv_last = sliders[sliders.length-1]
 				var adv_first_div = document.createElement('div');
 				adv_first_div.className = 'mui-slider-item mui-slider-item-duplicate';
+				var image = adv_last.image;
+				if (delay){
+					image = 'images/blank.jpg';
+				}
 				adv_first_div.innerHTML= '<a data_id="' + adv_last.id + '"><img id="slider_img_' + 
-					adv_last.id + '"src="'+ adv_last.image + '"></a>';
+					adv_last.id + 's" src="'+ image + '"></a>';
 				slide_group.appendChild(adv_first_div);
-				sliders.forEach(function(slider){
+				for (var i = 0; i < length; i++){
+					var slider = sliders[i];
+					image = slider.image;
+					if(delay){
+						image = 'images/blank.jpg';
+					}
 					var adv_div = document.createElement('div');
 					adv_div.className = 'mui-slider-item';
 					adv_div.innerHTML= '<a data_id="' + slider.id + '"><img id="slider_img_' + 
-						slider.id + '"src="'+ slider.image + '"></a>';
+						slider.id + '" src="'+ image + '"></a>';
 					slide_group.appendChild(adv_div);
-				});
+				};
 				var adv_last_div = document.createElement('div');
 				adv_last_div.className = 'mui-slider-item mui-slider-item-duplicate';
+				image = adv_first.image;
+				if (delay){
+					image = 'images/blank.jpg';
+				}
 				adv_last_div.innerHTML= '<a data_id="' + adv_first.id + '"><img id="slider_img_' + 
-					adv_first.id + '"src="'+ adv_first.image + '"></a>';
+					adv_first.id + 's" src="'+ image + '"></a>';
+				console.log(adv_first.image);
 				slide_group.appendChild(adv_last_div);
 				var gallery = mui('.mui-slider');
 				gallery.slider().gotoItem(0);
+			}
+			function add_doms_recom(recoms, delay){
+//				var recoms = mui.extend({}, recoms); 
+				if (!recoms || recoms.length === 0){
+					return;
+				}
+				var length = recoms.length;
+				for (var i = 0; i < length; i++){
+					recom = recoms[i];
+					if(delay){
+						recom.image = 'images/blank.jpg';
+					}
+					var a = document.createElement('a');
+					if (i==0){
+						a.className = "ti-left fl";
+					}
+					else if (i==1){
+						a.className = "ti-right fr";
+					}
+					else if (i==2){
+						a.className = "ti-right ti-03 fr";
+					}
+					a.href = recom.image;
+					a.setAttribute("data_id",recom.id);
+					a.innerHTML = '<img id="recom_img_' + recom.id + '" src="' + recom.image + '"/>';
+					recom_group.appendChild(a);
+				}
 			}
 		</script>
 
