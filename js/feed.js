@@ -12,7 +12,8 @@
 				image: srcItem.image,
 				time: srcItem.time,
 				source: srcItem.source,
-				view: srcItem.view
+				view: srcItem.view,
+				type: srcItem.type
 			});
 		});
 		return items;

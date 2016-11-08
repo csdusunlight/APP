@@ -26,11 +26,11 @@ var NEWS_URL = 'http://m.wafuli.cn/app/news/';
 
 
 	var SQL_TABLE = 'DROP TABLE IF EXISTS wa_news;DROP TABLE IF EXISTS wa_slider;DROP TABLE IF EXISTS wa_recom;' + 
-		'CREATE TABLE wa_news (id INTEGER PRIMARY KEY, title TEXT,mark1 TEXT,mark2 TEXT,mark3 TEXT,image TEXT,pubDate INTEGER,source TEXT, time TEXT, view INTEGER);' + 
+		'CREATE TABLE wa_news (id INTEGER PRIMARY KEY, title TEXT,mark1 TEXT,mark2 TEXT,mark3 TEXT,image TEXT,pubDate INTEGER,source TEXT, time TEXT, view INTEGER, type TEXT);' + 
 		'CREATE TABLE wa_slider (id INTEGER PRIMARY KEY, image TEXT,priority INTEGER, pubDate INTEGER);' +
 		'CREATE TABLE wa_recom (id INTEGER PRIMARY KEY, image TEXT, location INTEGER UNIQUE);';
-	var SQL_SELECT_NEWS= 'SELECT id,title,mark1,mark2,mark3,pubDate,image,source,time,view FROM wa_news WHERE pubDate < ? ORDER BY pubDate DESC LIMIT ?;';
-	var SQL_INSERT_NEWS = 'INSERT INTO wa_news(id,title,mark1,mark2,mark3,pubDate,image,source,time,view) VALUES(?,?,?,?,?,?,?,?,?,?);';
+	var SQL_SELECT_NEWS= 'SELECT id,title,mark1,mark2,mark3,pubDate,image,source,time,view,type FROM wa_news WHERE pubDate < ? ORDER BY pubDate DESC LIMIT ?;';
+	var SQL_INSERT_NEWS = 'INSERT INTO wa_news(id,title,mark1,mark2,mark3,pubDate,image,source,time,view,type) VALUES(?,?,?,?,?,?,?,?,?,?,?);';
 	var SQL_SELECT_NEWS_DETAIL = 'SELECT * FROM wa_news WHERE id = ? LIMIT 1;';
 	var SQL_UPDATE_NEWS = 'UPDATE wa_news SET image = ? WHERE id = ?';
 	var SQL_DELETE_NEWS = 'DELETE FROM wa_news';
@@ -165,7 +165,7 @@ var NEWS_URL = 'http://m.wafuli.cn/app/news/';
 				var news = [];
 				$.each(items, function(index, item) {
 					news.push([item.id, item.title, item.mark1, item.mark2, item.mark3, item.pubDate,
-						item.image, item.source, item.time, item.view]);
+						item.image, item.source, item.time, item.view, item.type]);
 				});
 				wa.deleteNews();
 				wa.addNews(news, function() {

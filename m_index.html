@@ -77,8 +77,8 @@
 				self.append(sub);
 			}
 			var headerWebview = mui.preload({
-				url: header,
-				id: "detail-main",
+				url: 'template.html',
+				id: "detail_main",
 				styles: {
 					popGesture: "hide",
 				},
@@ -88,8 +88,8 @@
 			});
 			//预加载共用子webview
 			var subWebview = mui.preload({
-				url: !content ? "" : content,
-				id: "detail-content",
+				url: '',
+				id: "detail_content",
 				styles: {
 					top: '45px',
 					bottom: '0px',
@@ -98,12 +98,6 @@
 					mType: 'sub'
 				}
 			});
-			headerWebview.addEventListener('titleUpdate', function() {
-				setTimeout(function() {
-					subWebview.show();
-				}, 50);
-			});
-			subWebview.hide();
 			headerWebview.append(subWebview);
 		}
 		//当前激活选项

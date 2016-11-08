@@ -135,27 +135,31 @@
 			function throwGetNewsError() {
 				mui.toast("获取新闻时发生了异常");
 			};
-			 //点击新闻列表，打开新闻详情
-//			mui('#pullrefresh').on('tap', 'a', function() {
-//				open_new_detail(this.getAttribute('data-id'));
-//			});
-//			var detailMainWebview = null; //详情页面父webview
-//			var detailWebview = null; //详情页面子webview
-//			function open_new_detail(id) {
-//				console.log("open_new_detail");
-//				if (!detailMainWebview) {
-//					detailMainWebview = plus.webview.getWebviewById('detail_main');
-//				}
-//				if (!detailWebview) {
-//					detailWebview = plus.webview.getWebviewById('detail');
-//				}
-//				//触发子窗口变更新闻详情
-//				mui.fire(detailWebview, 'mui.view.beforeshow', {
-//					id: id
-//				});
-//				//显示新闻详情页面
-//				detailMainWebview.show('pop-in', 200);
-//			};
+			 点击新闻列表，打开新闻详情
+			mui('#pullrefresh').on('tap', 'a', function() {
+				var title = this.querySelector('h6').innerText;
+				open_new_detail(this.getAttribute('data_id'),title);
+			});
+			var detailMainWebview = null; //详情页面父webview
+			var detailWebview = null; //详情页面子webview
+			function open_new_detail(id,title) {
+				console.log("open_new_detail");
+				if (!detailMainWebview) {
+					detailMainWebview = plus.webview.getWebviewById('detail_main');
+				}
+				if (!detailWebview) {
+					detailWebview = plus.webview.getWebviewById('detail_content');
+				}
+				mui.fire(detailMainWebview, 'updateHeader', {
+					title: title
+				});
+				//触发子窗口变更新闻详情
+				mui.fire(detailWebview, 'newsId', {
+					id: id
+				});
+				//显示新闻详情页面
+				detailMainWebview.show('pop-in', 200);
+			};
 			/** 新版首次进入执行代码开始 **/
 			var latestPubDate = Number.MAX_VALUE;
 			var hasMore = true;
@@ -326,7 +330,7 @@
 					}
 					var li = document.createElement('li');
 					li.className = 'mui-table-view-cell';
-					str_block = '<a class="clearfix" data_id="' + wel.id + '"><img id="news_img_' + wel.id + '" src="'+ 
+					str_block = '<a class="clearfix" data_id="' + wel.id + '" data_type=' + wel.type + '"><img id="news_img_' + wel.id + '" src="'+ 
 									image + '" /><div class="li-info"><h6>' + wel.title + '</h6>';
 					if (wel.view>1000){
 						str_block += '<span class="after-hot">hot</span>';

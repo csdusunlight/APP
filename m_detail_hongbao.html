@@ -1,0 +1,115 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <!-- 优先使用 IE 最新版本和 Chrome -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <!-- 为移动设备添加 viewport -->
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <!-- 添加到主屏后的标题（iOS 6 新增） -->
+    <meta name="apple-mobile-web-app-title" content="">
+    <!-- 是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏 -->
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <!-- 设置苹果工具栏颜色 -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <!-- 添加智能 App 广告条 Smart App Banner（iOS 6+ Safari） -->
+    <meta name="apple-itunes-app" content="app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL">
+    <!-- 忽略页面中的数字识别为电话，忽略email识别 -->
+    <meta name="format-detection" content="telphone=no, email=no"/>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/m_common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/m_detail_hongbao.css"/>
+
+</head>
+
+	<body>
+		<div class="mui-content">
+			<div class="ad">
+				<img src="">
+			</div>
+			<!--体验步骤部分-->
+			<div class="taste">
+				<h3><i class="icon iconfont">&#xe61c;</i>体验步骤</h3>
+				<div id="strategy" class="detail-html">是发放松岛枫多少分发</div>
+			</div>
+			<!--温馨提示部分-->
+			<div class="prompt">
+				<h3><i class="icon iconfont">&#xe60b;</i>温馨提示</h3>
+				<p><number>1、</number>为了让您畅快的享受福利，请您务必按照体验步骤详情操作,并在完成后返回该页面提交相关数据，获取相应福利；</p>
+				<p><number>2、</number>投资有风险，入市需谨慎；挖福利尽最大可能的提供最优质的理财渠道、筛选有诚信的合作平台，但是挖福利不对合作平台提供任何的风险担保；</p>
+				<p><number>3、</number>挖福利对福利数据的审核具有最终解释权。</p>
+				<p class="contact">如有疑问请联系<strong>在线客服</strong>或拨打 <strong>服务热线：<number>0734-8344414</number></strong></p>
+			</div>
+			<!--立即体验部分-->
+			<div class="try">
+				<div class="shuju">
+					<span>体验人数：<number id="number_display">111</number></span>
+				    <span>活动日期：<number id="time_display">222</number></span>
+				</div>
+				<button id="exp_btn" type="button" class="mui-btn mui-btn-blue mui-btn-block">立即体验</button>
+
+			</div>
+		</div>
+		<!--弹出二维码部分-->
+		<div id="ding_yue" class="er-wei-ma">
+			<div class="box">
+				<span id="close_01" class="mui-icon mui-icon-close"></span>
+				<p>长安识别图中二维码</p>
+				<img id="erweima_img"/>
+				<p>{{news.title}}</p>
+			</div>
+		</div>
+
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			var id = '';
+			var url_get_erweima = "";
+			var ismobile = false;
+			var url_get_content= "http://m.wafuli.cn/app/detail/hongbao/";
+			//添加newId自定义事件监听
+			window.addEventListener('newsId',function(event){
+			  //获得事件参数
+			  	id = event.detail.id;
+			  //根据id向服务器请求新闻详情
+			  	var self = plus.webview.currentWebview();
+			  	mui.ajax({
+					url:url_get_content + "?id=" + id,
+					dataType:"json",
+					success:function(ret){
+						if(ret.code!=0){
+							mui.alert("请检查网络连接");
+						}
+						else{
+							var ismobile = ret.ismobile;
+							var strategy = ret.strategy;
+							document.getElementById('time_display').innerHTML = ret.strategy;
+							document.getElementById('number_display').innerText = ret.num;
+							document.getElementById('time_display').innerText = ret.time;
+							self.show();
+							document.getElementById("exp_btn").addEventListener('tap', function() {
+								if(ret.ismobile){
+									self.loadURL(ret.url);
+								}
+								else {
+									document.getElementById('erweima_img').src = ret.url;
+									document.getElementById("ding_yue").style.display="block";
+								}
+							});
+							document.getElementById("close_01").addEventListener('tap', function() {
+								document.getElementById("ding_yue").style.display="none";
+							});
+						}
+						
+					},
+					error:function(xhr,type,errorThrown){
+						mui.alert(type);
+					}
+				});
+			});
+				
+			});
+		</script>
+	</body>
+</html>
