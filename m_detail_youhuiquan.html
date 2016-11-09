@@ -17,32 +17,21 @@
     <meta name="apple-itunes-app" content="app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL">
     <!-- 忽略页面中的数字识别为电话，忽略email识别 -->
     <meta name="format-detection" content="telphone=no, email=no"/>
-    <!--下面三个是清除缓存 微信浏览器缓存严重又无刷新；这个方法调试的时候很方便-->
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Cache-Control" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-	<title>{{news.seo_title}}</title>
-	<meta name="keywords" content="{{news.seo_keywords}}" />
-	<meta name="description" content="{{news.seo_description}}" />
-	<link href="{% static 'images/favicon.ico'%}" rel="shortcut icon"/>
-    <link href="{% static 'css/mui.min.css' %}" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/m_common.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/m_detail_hongbao.css' %}"/>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="css/m_common.css"/>
+    <link rel="stylesheet" type="text/css" href="css/m_detail_hongbao.css"/>
+
 </head>
+
 	<body>
-		<header id="header" class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">{{news.title}}</h1>
-			<a id="share" class="share iconfont icon-fenxiang"></a>
-		</header>
 		<div class="mui-content">
 			<div class="ad">
-				<img src="{{news.pic.url}}">
+				<img src="">
 			</div>
 			<!--体验步骤部分-->
 			<div class="taste">
 				<h3><i class="icon iconfont">&#xe61c;</i>体验步骤</h3>
-				<div class="detail-html">{{news.strategy|safe}}</div>
+				<div id="strategy" class="detail-html">是发放松岛枫多少分发</div>
 			</div>
 			<!--温馨提示部分-->
 			<div class="prompt">
@@ -50,119 +39,77 @@
 				<p><number>1、</number>为了让您畅快的享受福利，请您务必按照体验步骤详情操作,并在完成后返回该页面提交相关数据，获取相应福利；</p>
 				<p><number>2、</number>投资有风险，入市需谨慎；挖福利尽最大可能的提供最优质的理财渠道、筛选有诚信的合作平台，但是挖福利不对合作平台提供任何的风险担保；</p>
 				<p><number>3、</number>挖福利对福利数据的审核具有最终解释权。</p>
-				<p class="contact">如有疑问请联系<strong>在线客服</strong>或拨打 <strong>服务热线：0734-8344414</strong></p>
+				<p class="contact">如有疑问请联系<strong>在线客服</strong>或拨打 <strong>服务热线：<number>0734-8344414</number></strong></p>
 			</div>
 			<!--立即体验部分-->
 			<div class="try">
 				<div class="shuju">
-					<span>剩余张数：<number>{{news.left_count}}</number></span>
-				    <span>活动日期：<number>{{news.time_limit}}</number></span>
+					<span>剩余张数：<number id="number_display">111</number></span>
+				    <span>活动日期：<number id="time_display">222</number></span>
 				</div>
-				<button id="Btn" type="button" class="mui-btn mui-btn-blue mui-btn-block">立即领取</button>
+				<button id="exp_btn" type="button" class="mui-btn mui-btn-blue mui-btn-block">立即领取</button>
 
 			</div>
 		</div>
+		<!--弹出二维码部分-->
+		<div id="ding_yue" class="er-wei-ma">
+			<div class="box">
+				<span id="close_01" class="mui-icon mui-icon-close"></span>
+				<p>长安识别图中二维码</p>
+				<img id="erweima_img"/>
+				<p>{{news.title}}</p>
+			</div>
+		</div>
 
-
-		<script src="{% static 'js/mui.min.js' %}"></script>
-		<script src="{% static 'js/share.js' %}"></script>
-		<!--弹窗部分-->
-		<script type="text/javascript" charset="utf-8">
-				var id = '{{news.id}}'
-				mui.init({
-					beforeback: function(){
-						var is_back = true;
-						var refer = document.referrer;
-						if(refer){
-							var flag = refer.indexOf("m.wafuli.cn");
-							if (flag===-1){
-								is_back = false;
-							}
-							else {
-								is_back = true;
-							}
-						}
-						else {
-							is_back = false;
-						}
-						if (is_back){
-							return true;
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			var id = '';
+			var url_get_erweima = "";
+			var ismobile = false;
+			var url_get_content= "http://m.wafuli.cn/app/detail/hongbao/";
+			//添加newId自定义事件监听
+			window.addEventListener('newsId',function(event){
+			  //获得事件参数
+			  	id = event.detail.id;
+			  //根据id向服务器请求新闻详情
+			  	var self = plus.webview.currentWebview();
+			  	mui.ajax({
+					url:url_get_content + "?id=" + id,
+					dataType:"json",
+					success:function(ret){
+						if(ret.code!=0){
+							mui.alert("请检查网络连接");
 						}
 						else{
-							mui.openWindow({
-					            url: "{% url 'index' %}",
-					            styles: {
-					                top: 0,
-					                bottom: 0
-					            },
-					            show: {
-					                aniShow: 'slide-in-right',
-					            },
-					            waiting: {
-					                autoShow: false, //自动显示等待框
-					                title: '正在加载...', //等待对话框上显示的提示内容
-					            }
-					        });
-							return false;
+							var ismobile = ret.ismobile;
+							var strategy = ret.strategy;
+							document.getElementById('time_display').innerHTML = ret.strategy;
+							document.getElementById('number_display').innerText = ret.num;
+							document.getElementById('time_display').innerText = ret.time;
+							self.show();
+							document.getElementById("exp_btn").addEventListener('tap', function() {
+								if(ret.ismobile){
+									self.loadURL(ret.url);
+								}
+								else {
+									document.getElementById('erweima_img').src = ret.url;
+									document.getElementById("ding_yue").style.display="block";
+								}
+							});
+							document.getElementById("close_01").addEventListener('tap', function() {
+								document.getElementById("ding_yue").style.display="none";
+							});
 						}
+						
+					},
+					error:function(xhr,type,errorThrown){
+						mui.alert(type);
 					}
 				});
-		      	mui.ready(function(){
-			      	document.getElementById("Btn").addEventListener('tap', function() {
-			    		mui.ajax({
-			    			url:"{%url 'exp_welfare_youhuiquan' %}?id=" + id,
-			    			dataType:"json",
-			    			success:function(ret){
-			    				if(ret.code==0){
-			    					window.location.href = ret.url;
-			    				}
-			    				else if(ret.code==1){
-			    					mui.alert("抱歉，该优惠券已被领取完了");
-			    				}
-			    				else if(ret.code==2){
-			    					mui.alert("抱歉，您已达到领取次数上限");
-			    				}
-			    				else if(ret.code==3){
-			    					var coupon_id = ret.coupon_id;
-			    					mui.openWindow({
-			    			            url: "{% url 'get_coupon_success' %}?id=" + coupon_id,
-			    			            styles: {
-			    			                top: 0,
-			    			                bottom: 0
-			    			            },
-			    			            show: {
-			    			                aniShow: 'slide-in-right',
-			    			            },
-			    			            waiting: {
-			    			                autoShow: false, //自动显示等待框
-			    			                title: '正在加载...', //等待对话框上显示的提示内容
-			    			            }
-			    			        });
-			    				}
-			    				else if(ret.code==4){
-			    					mui.alert("抱歉，该项目已结束");
-			    				}
-			    			},
-			    			error:function(xhr,type,errorThrown){
-								mui.alert(type);
-							}
-			    		});
-			    	});
-		      	});
+			});
+				
+			});
 		</script>
-	{%if back %}
-		<script>
-		mui.back = function(){
-			var history = window.history;
-			if (history.length > 4 ){
-				history.go(-4);
-			}
-			else{
-				history.back();
-			}
-		};
-		</script>
-	{%endif%}
 	</body>
-
 </html>

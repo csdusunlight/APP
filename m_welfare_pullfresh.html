@@ -112,6 +112,7 @@
 		<script type="text/javascript" charset="UTF-8" src="js/html5sql.js"></script>
 		<script type="text/javascript" charset="UTF-8" src="js/app.js"></script>
 		<script type="text/javascript" charset="UTF-8" src="js/news.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="js/template.js"></script>
 		<script>
 			console.time("进入页面到呈现");
 			var slide_group = document.body.querySelector('.mui-slider-group');
@@ -135,21 +136,21 @@
 			function throwGetNewsError() {
 				mui.toast("获取新闻时发生了异常");
 			};
-			 点击新闻列表，打开新闻详情
+			 //点击新闻列表，打开新闻详情
 			mui('#pullrefresh').on('tap', 'a', function() {
 				var title = this.querySelector('h6').innerText;
-				open_new_detail(this.getAttribute('data_id'),title);
+				open_new_detail(this.getAttribute('data_id'),this.getAttribute('data_type'),title);
 			});
 			var detailMainWebview = null; //详情页面父webview
 			var detailWebview = null; //详情页面子webview
-			function open_new_detail(id,title) {
+			function open_new_detail(id,type,title) {
 				console.log("open_new_detail");
-				if (!detailMainWebview) {
-					detailMainWebview = plus.webview.getWebviewById('detail_main');
+				var template = getTemplate(type,"m_detail_" + type + ".html");
+				if (!template){
+					mui.alert("系统错误！");
 				}
-				if (!detailWebview) {
-					detailWebview = plus.webview.getWebviewById('detail_content');
-				}
+				detailMainWebview = template.header;
+				detailWebview = template.content;
 				mui.fire(detailMainWebview, 'updateHeader', {
 					title: title
 				});
@@ -164,7 +165,6 @@
 			var latestPubDate = Number.MAX_VALUE;
 			var hasMore = true;
 			mui.plusReady(function(){
-				wa.clearCache();
 				wa.dbReady(function(isFirst) {
 					//document.body.style.backgroundColor = '#efeff4';
 					//第一次显示，从服务器中加载
@@ -172,6 +172,7 @@
 						//非第一次，直接从本地数据库中读取
 						//加载初始化数据
 						wa.getNews(Number.MAX_VALUE, 1,function(news) {
+							console.log('add_newsde length:' + news.length);
 							add_doms_news(news, false);
 						}, throwGetNewsError);
 						wa.getSlider(function(sliders) {
@@ -188,6 +189,9 @@
 							interval: 4000 //自动轮播周期，若为0则不自动播放，默认为0；
 						});
 					},200);
+					setTimeout(function(){
+						getTemplate("hongbao","m_detail_hongbao.html");
+					},400);
 				});
 			});
 			
@@ -388,7 +392,7 @@
 				}
 				adv_last_div.innerHTML= '<a data_id="' + adv_first.id + '"><img id="slider_img_' + 
 					adv_first.id + 's" src="'+ image + '"></a>';
-				console.log(adv_first.image);
+				console.log(image);
 				slide_group.appendChild(adv_last_div);
 				var gallery = mui('.mui-slider');
 				gallery.slider().gotoItem(0);

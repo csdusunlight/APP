@@ -51,7 +51,7 @@
 		//mui初始化
 		mui.init();
 //		var subpages = ['m_welfare_main.html', 'm_task_main.html', 'm_finance_main.html', 'm_account_index.html'];
-		var subpages = ['m_welfare_main.html','http://www.baidu.com', 'http://www.baidu.com'];
+		var subpages = ['m_welfare_main.html','m_finance_main.html', 'm_task_main.html'];
 		var subpage_style = {
 			top: '45px',
 			bottom: '51px'
@@ -76,29 +76,6 @@
 				}
 				self.append(sub);
 			}
-			var headerWebview = mui.preload({
-				url: 'template.html',
-				id: "detail_main",
-				styles: {
-					popGesture: "hide",
-				},
-				extras: {
-					mType: 'main'
-				}
-			});
-			//预加载共用子webview
-			var subWebview = mui.preload({
-				url: '',
-				id: "detail_content",
-				styles: {
-					top: '45px',
-					bottom: '0px',
-				},
-				extras: {
-					mType: 'sub'
-				}
-			});
-			headerWebview.append(subWebview);
 		}
 		//当前激活选项
 		var activeTab = subpages[0];

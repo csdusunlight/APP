@@ -74,6 +74,7 @@
 			  	id = event.detail.id;
 			  //根据id向服务器请求新闻详情
 			  	var self = plus.webview.currentWebview();
+			  	console.log("kaishiajax");
 			  	mui.ajax({
 					url:url_get_content + "?id=" + id,
 					dataType:"json",
@@ -107,8 +108,6 @@
 						mui.alert(type);
 					}
 				});
-			});
-				
 			});
 		</script>
 	</body>

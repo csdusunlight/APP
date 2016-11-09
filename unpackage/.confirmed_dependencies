@@ -1,176 +1,197 @@
 {
-  "index.html": {
-    "resources": [
-      "js/mui.min.js",
-      "css/mui.min.css"
-    ]
-  },
-  "m_index.html": {
-    "resources": [
-      "m_welfare.html",
-      "js/mui.min.js",
-      "fonts/mui.ttf",
-      "css/mui.min.css",
-      "js/app.js",
-      "m_welfare_main.html"
-    ],
-    "refer": [
-      "m_welfare.html",
-      "m_task.html",
-      "m_finance.html",
-      "m_account_index.html",
-      "m_welfare_main.html",
-      "m_finance_main.html",
-      "m_task_main.html"
-    ]
-  },
-  "m_task.html": {
-    "resources": [
-      "%7B%static%20\u0027images/nav3.png\u0027%%7D",
-      "%7B%static%20\u0027js/mui.min.js\u0027%%7D",
-      "%7B%static%20\u0027images/nav4.png\u0027%%7D",
-      "%7B%static%20\u0027css/m_task.css\u0027%%7D",
-      "%7B%static%20\u0027images/nav2s.png\u0027%%7D",
-      "%7B%static%20\u0027js/mui.pullToRefresh.material.js\u0027%%7D",
-      "%7B%static%20\u0027css/mui.min.css\u0027%%7D",
-      "%7B%static%20\u0027js/mui.pullToRefresh.js\u0027%%7D",
-      "%7B%static%20\u0027images/nav1.png\u0027%%7D",
-      "%7B%static%20\u0027css/m_common.css\u0027%%7D"
-    ]
-  },
-  "m_finance.html": {
-    "resources": [
-      "%7B%static%20\u0027images/nav3s.png\u0027%%7D",
-      "%7B%static%20\u0027images/diannao.png\u0027%%7D",
-      "%7B%static%20\u0027images/logo.png\u0027%%7D",
-      "%7B%static%20\u0027css/m_finance.css\u0027%%7D",
-      "%7B%static%20\u0027images/nav2.png\u0027%%7D",
-      "%7B%static%20\u0027js/mui.min.js\u0027%%7D",
-      "%7B%static%20\u0027images/nav4.png\u0027%%7D",
-      "%7B%static%20\u0027js/mui.pullToRefresh.material.js\u0027%%7D",
-      "%7B%static%20\u0027css/mui.min.css\u0027%%7D",
-      "%7B%static%20\u0027js/mui.pullToRefresh.js\u0027%%7D",
-      "%7B%static%20\u0027images/nav1.png\u0027%%7D",
-      "%7B%static%20\u0027css/m_common.css\u0027%%7D"
-    ]
-  },
-  "m_welfare.html": {
-    "resources": [
-      "m_welfare_pullfresh.html",
-      "js/mui.min.js",
-      "css/mui.min.css"
-    ],
-    "refer": [
-      "m_welfare_pullfresh.html"
-    ]
-  },
-  "m_welfare_pullfresh.html": {
-    "resources": [
-      "js/mui.min.js",
-      "css/mui.min.css",
-      "images/s2.png",
-      "css/m_index.css",
-      "images/s1.png",
-      "images/s3.png",
-      "css/m_common.css",
-      "images/nav-pic5.png",
-      "images/nav-pic1.png",
-      "images/nav-pic3.png",
-      "images/nav-pic6.png",
-      "images/nav-pic4.png",
-      "images/nav-pic2.png",
-      "images/nav-pic7.png",
-      "images/nav-pic8.png",
-      "%7B%%20url%20\u0027activity\u0027%20%%7D",
-      "%7B%%20url%20\u0027information\u0027%20%%7D",
-      "%7B%%20url%20\u0027activity_lottery\u0027%20%%7D",
-      "js/news.js",
-      "js/html5sql.js",
-      "js/feed.js",
-      "js/app.js",
-      "js/mui.js",
-      "js/mui.pullToRefresh.js",
-      "js/mui.pullToRefresh.material.js",
-      "images/blank.jpg"
-    ],
-    "refer": [
-      "%7B%%20url%20\u0027activity\u0027%20%%7D",
-      "%7B%%20url%20\u0027information\u0027%20%%7D",
-      "%7B%%20url%20\u0027activity_lottery\u0027%20%%7D"
-    ]
-  },
-  "m_account_index.html": {
-    "resources": [
-      "%7B%%20static%20\u0027css/m_common.css\u0027%20%%7D",
-      "%7B%%20static%20\u0027js/mui.min.js\u0027%20%%7D",
-      "%7B%static%20\u0027js/cookie.js\u0027%%7D",
-      "%7B%%20static%20\u0027images/nav4s.png\u0027%20%%7D",
-      "%7B%%20static%20\u0027images/nav2.png\u0027%20%%7D",
-      "%7B%%20static%20\u0027images/nav1.png\u0027%20%%7D",
-      "%7B%%20static%20\u0027css/m_account_index.css\u0027%20%%7D",
-      "%7B%%20static%20\u0027images/nav3.png\u0027%20%%7D",
-      "%7B%%20static%20\u0027css/mui.min.css\u0027%20%%7D",
-      "images/sin-picon-02.png",
-      "images/nav1.png",
-      "fonts/mui.ttf",
-      "images/sin-picon-07.png",
-      "images/nav2.png",
-      "images/nav4s.png",
-      "images/sin-picon-03.jpg",
-      "css/m_account_index.css",
-      "js/mui.min.js",
-      "css/mui.min.css",
-      "images/bg-user.png",
-      "images/nav3.png",
-      "images/sin-picon-05.jpg",
-      "images/sin-picon-04.jpg",
-      "images/pen.png",
-      "images/sin-picon-06.jpg",
-      "css/m_common.css"
-    ]
-  },
-  "m_welfare_main.html": {
-    "resources": [
-      "m_welfare_pullfresh.html"
-    ],
-    "refer": [
-      "m_welfare_pullfresh.html"
-    ]
-  },
-  "m_task_main.html": {
-    "resources": [
-      "%7B%static%20\u0027images/nav3.png\u0027%%7D",
-      "%7B%static%20\u0027css/m_task.css\u0027%%7D",
-      "%7B%static%20\u0027images/nav2s.png\u0027%%7D"
-    ]
-  },
-  "m_finance_main.html": {
-    "resources": [
-      "%7B%static%20\u0027images/nav3s.png\u0027%%7D",
-      "%7B%static%20\u0027js/mui.min.js\u0027%%7D",
-      "%7B%static%20\u0027images/nav4.png\u0027%%7D",
-      "%7B%static%20\u0027images/diannao.png\u0027%%7D",
-      "%7B%static%20\u0027images/logo.png\u0027%%7D",
-      "%7B%static%20\u0027js/mui.pullToRefresh.material.js\u0027%%7D",
-      "%7B%static%20\u0027css/m_finance.css\u0027%%7D",
-      "%7B%static%20\u0027css/mui.min.css\u0027%%7D",
-      "%7B%static%20\u0027js/mui.pullToRefresh.js\u0027%%7D",
-      "%7B%static%20\u0027images/nav2.png\u0027%%7D",
-      "%7B%static%20\u0027images/nav1.png\u0027%%7D",
-      "%7B%static%20\u0027css/m_common.css\u0027%%7D",
-      "js/mui.pullToRefresh.js",
-      "js/mui.pullToRefresh.material.js",
-      "images/nav1.png",
-      "images/nav2.png",
-      "images/nav4.png",
-      "images/logo.png",
-      "js/mui.min.js",
-      "images/diannao.png",
-      "%7B%%20url%20\u0027finance_json\u0027%20%%7D",
-      "css/m_finance.css",
-      "css/mui.min.css",
-      "images/nav3s.png",
-      "css/m_common.css"
-    ]
-  }
+	"index.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css"
+		]
+	},
+	"m_index.html": {
+		"resources": [
+			"m_welfare.html",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/app.js",
+			"m_welfare_main.html"
+		],
+		"refer": [
+			"m_welfare.html",
+			"m_task.html",
+			"m_finance.html",
+			"m_account_index.html",
+			"m_welfare_main.html",
+			"m_finance_main.html",
+			"m_task_main.html"
+		]
+	},
+	"m_task.html": {
+		"resources": [
+			"%7B%static%20\u0027images/nav3.png\u0027%%7D",
+			"%7B%static%20\u0027js/mui.min.js\u0027%%7D",
+			"%7B%static%20\u0027images/nav4.png\u0027%%7D",
+			"%7B%static%20\u0027css/m_task.css\u0027%%7D",
+			"%7B%static%20\u0027images/nav2s.png\u0027%%7D",
+			"%7B%static%20\u0027js/mui.pullToRefresh.material.js\u0027%%7D",
+			"%7B%static%20\u0027css/mui.min.css\u0027%%7D",
+			"%7B%static%20\u0027js/mui.pullToRefresh.js\u0027%%7D",
+			"%7B%static%20\u0027images/nav1.png\u0027%%7D",
+			"%7B%static%20\u0027css/m_common.css\u0027%%7D"
+		]
+	},
+	"m_finance.html": {
+		"resources": [
+			"%7B%static%20\u0027images/nav3s.png\u0027%%7D",
+			"%7B%static%20\u0027images/diannao.png\u0027%%7D",
+			"%7B%static%20\u0027images/logo.png\u0027%%7D",
+			"%7B%static%20\u0027css/m_finance.css\u0027%%7D",
+			"%7B%static%20\u0027images/nav2.png\u0027%%7D",
+			"%7B%static%20\u0027js/mui.min.js\u0027%%7D",
+			"%7B%static%20\u0027images/nav4.png\u0027%%7D",
+			"%7B%static%20\u0027js/mui.pullToRefresh.material.js\u0027%%7D",
+			"%7B%static%20\u0027css/mui.min.css\u0027%%7D",
+			"%7B%static%20\u0027js/mui.pullToRefresh.js\u0027%%7D",
+			"%7B%static%20\u0027images/nav1.png\u0027%%7D",
+			"%7B%static%20\u0027css/m_common.css\u0027%%7D"
+		]
+	},
+	"m_welfare.html": {
+		"resources": [
+			"m_welfare_pullfresh.html",
+			"js/mui.min.js",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"m_welfare_pullfresh.html"
+		]
+	},
+	"m_welfare_pullfresh.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"images/s2.png",
+			"css/m_index.css",
+			"images/s1.png",
+			"images/s3.png",
+			"css/m_common.css",
+			"images/nav-pic5.png",
+			"images/nav-pic1.png",
+			"images/nav-pic3.png",
+			"images/nav-pic6.png",
+			"images/nav-pic4.png",
+			"images/nav-pic2.png",
+			"images/nav-pic7.png",
+			"images/nav-pic8.png",
+			"%7B%%20url%20\u0027activity\u0027%20%%7D",
+			"%7B%%20url%20\u0027information\u0027%20%%7D",
+			"%7B%%20url%20\u0027activity_lottery\u0027%20%%7D",
+			"js/news.js",
+			"js/html5sql.js",
+			"js/feed.js",
+			"js/app.js",
+			"js/mui.js",
+			"js/mui.pullToRefresh.js",
+			"js/mui.pullToRefresh.material.js",
+			"images/blank.jpg",
+			"js/template.js"
+		],
+		"refer": [
+			"%7B%%20url%20\u0027activity\u0027%20%%7D",
+			"%7B%%20url%20\u0027information\u0027%20%%7D",
+			"%7B%%20url%20\u0027activity_lottery\u0027%20%%7D",
+			"m_detail_hongbao.html",
+			"template.html"
+		]
+	},
+	"m_account_index.html": {
+		"resources": [
+			"%7B%%20static%20\u0027css/m_common.css\u0027%20%%7D",
+			"%7B%%20static%20\u0027js/mui.min.js\u0027%20%%7D",
+			"%7B%static%20\u0027js/cookie.js\u0027%%7D",
+			"%7B%%20static%20\u0027images/nav4s.png\u0027%20%%7D",
+			"%7B%%20static%20\u0027images/nav2.png\u0027%20%%7D",
+			"%7B%%20static%20\u0027images/nav1.png\u0027%20%%7D",
+			"%7B%%20static%20\u0027css/m_account_index.css\u0027%20%%7D",
+			"%7B%%20static%20\u0027images/nav3.png\u0027%20%%7D",
+			"%7B%%20static%20\u0027css/mui.min.css\u0027%20%%7D",
+			"images/sin-picon-02.png",
+			"images/nav1.png",
+			"fonts/mui.ttf",
+			"images/sin-picon-07.png",
+			"images/nav2.png",
+			"images/nav4s.png",
+			"images/sin-picon-03.jpg",
+			"css/m_account_index.css",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"images/bg-user.png",
+			"images/nav3.png",
+			"images/sin-picon-05.jpg",
+			"images/sin-picon-04.jpg",
+			"images/pen.png",
+			"images/sin-picon-06.jpg",
+			"css/m_common.css"
+		]
+	},
+	"m_welfare_main.html": {
+		"resources": [
+			"m_welfare_pullfresh.html"
+		],
+		"refer": [
+			"m_welfare_pullfresh.html"
+		]
+	},
+	"m_task_main.html": {
+		"resources": [
+			"%7B%static%20\u0027images/nav3.png\u0027%%7D",
+			"%7B%static%20\u0027css/m_task.css\u0027%%7D",
+			"%7B%static%20\u0027images/nav2s.png\u0027%%7D"
+		]
+	},
+	"m_finance_main.html": {
+		"resources": [
+			"%7B%static%20\u0027images/nav3s.png\u0027%%7D",
+			"%7B%static%20\u0027js/mui.min.js\u0027%%7D",
+			"%7B%static%20\u0027images/nav4.png\u0027%%7D",
+			"%7B%static%20\u0027images/diannao.png\u0027%%7D",
+			"%7B%static%20\u0027images/logo.png\u0027%%7D",
+			"%7B%static%20\u0027js/mui.pullToRefresh.material.js\u0027%%7D",
+			"%7B%static%20\u0027css/m_finance.css\u0027%%7D",
+			"%7B%static%20\u0027css/mui.min.css\u0027%%7D",
+			"%7B%static%20\u0027js/mui.pullToRefresh.js\u0027%%7D",
+			"%7B%static%20\u0027images/nav2.png\u0027%%7D",
+			"%7B%static%20\u0027images/nav1.png\u0027%%7D",
+			"%7B%static%20\u0027css/m_common.css\u0027%%7D",
+			"js/mui.pullToRefresh.js",
+			"js/mui.pullToRefresh.material.js",
+			"images/nav1.png",
+			"images/nav2.png",
+			"images/nav4.png",
+			"images/logo.png",
+			"js/mui.min.js",
+			"images/diannao.png",
+			"%7B%%20url%20\u0027finance_json\u0027%20%%7D",
+			"css/m_finance.css",
+			"css/mui.min.css",
+			"images/nav3s.png",
+			"css/m_common.css"
+		]
+	},
+	"m_detail_hongbao.html": {
+		"resources": [
+			"images/task-04.png",
+			"images/task-05.png",
+			"css/m_detail_hongbao.css",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/m_common.css"
+		]
+	},
+	"template.html": {
+		"resources": [
+			"m_detail_hongbao.html",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		]
+	}
 }

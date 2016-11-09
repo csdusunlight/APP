@@ -321,9 +321,13 @@
 					"js/mui.js",
 					"js/mui.pullToRefresh.js",
 					"js/mui.pullToRefresh.material.js",
-					"images/blank.jpg"
+					"images/blank.jpg",
+					"js/template.js"
 				],
-				"refer": [],
+				"refer": [
+					"m_detail_hongbao.html",
+					"template.html"
+				],
 				"priority": 0
 			},
 			"m_account_index.html": {
@@ -401,6 +405,28 @@
 					"css/mui.min.css",
 					"images/nav3s.png",
 					"css/m_common.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"m_detail_hongbao.html": {
+				"resources": [
+					"images/task-04.png",
+					"images/task-05.png",
+					"css/m_detail_hongbao.css",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/m_common.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"template.html": {
+				"resources": [
+					"m_detail_hongbao.html",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css"
 				],
 				"refer": [],
 				"priority": 0
@@ -531,7 +557,6 @@
 				"images/about1.png",
 				"images/task-03.png",
 				"images/img4.jpg",
-				"css/m_detail_hongbao.css",
 				"images/jf03.png",
 				"images/contpic2.png",
 				"images/in-02.png",
@@ -867,12 +892,10 @@
 				"images/ico2.png",
 				"images/sin-picon-v.png",
 				"images/Icon.png",
-				"images/task-05.png",
 				"images/diannao .png",
 				"images/invited-reg-btn.png",
 				"images/newimg2.png",
 				"images/bg-manage-02.png",
-				"images/task-04.png",
 				"images/pwd.jpg",
 				"css/m_login.css",
 				"images/pic6.png",

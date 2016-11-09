@@ -55,7 +55,7 @@ var NEWS_URL = 'http://m.wafuli.cn/app/news/';
 		return date.getFullYear() + '/' + _format(date.getMonth() + 1) + '/' + _format(date.getDay()) + '-' + _format(date.getHours()) + ':' + _format(date.getMinutes());
 	};
 	wa.dbReady = function(successCallback, errorCallback) {
-		html5sql.openDatabase("wafuli5", "wafuli5", 5 * 1024 * 1024);
+		html5sql.openDatabase("wafuli6", "wafuli", 5 * 1024 * 1024);
 		if (html5sql.database.version === '') {
 			html5sql.changeVersion('', DB_VERSION_NUMBER, SQL_TABLE, function() {
 				successCallback && successCallback(true);
@@ -121,9 +121,6 @@ var NEWS_URL = 'http://m.wafuli.cn/app/news/';
 		});
 		//通知首页重新拉取最新
 		localStorage.removeItem(TIME_UPDATE); //移除上次更新时间
-		localStorage.removeItem(TIME_PUBDATE); //移除最新的feed更新时间
-		localStorage.removeItem(TIME_UPDATE_SLIDER); //移除上次slider更新时间
-		localStorage.removeItem(SLIDER_id); //移除上次slider的id
 		localStorage.removeItem(LAST_PUBDATE);
 //			plus.webview.getWebviewById("news").evalJS('getFeed("true")');
 	};
@@ -159,6 +156,7 @@ var NEWS_URL = 'http://m.wafuli.cn/app/news/';
 		//			successCallback(false);
 		//			return;
 		//		}
+		wa.clearCache();
 		var comp1 = false, comp2 = false, comp3 = false, ret = true;
 		$.getNews(NEWS_URL + '?lastDate=' + latestPubDate, function(items) {
 			if (items && items.length>0) {
