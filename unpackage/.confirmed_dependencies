@@ -99,7 +99,8 @@
 			"%7B%%20url%20\u0027information\u0027%20%%7D",
 			"%7B%%20url%20\u0027activity_lottery\u0027%20%%7D",
 			"m_detail_hongbao.html",
-			"template.html"
+			"template.html",
+			"m_detail_youhuiquan.html"
 		]
 	},
 	"m_account_index.html": {
@@ -144,7 +145,14 @@
 		"resources": [
 			"%7B%static%20\u0027images/nav3.png\u0027%%7D",
 			"%7B%static%20\u0027css/m_task.css\u0027%%7D",
-			"%7B%static%20\u0027images/nav2s.png\u0027%%7D"
+			"%7B%static%20\u0027images/nav2s.png\u0027%%7D",
+			"%7B%static%20\u0027js/mui.min.js\u0027%%7D",
+			"%7B%static%20\u0027images/nav4.png\u0027%%7D",
+			"%7B%static%20\u0027js/mui.pullToRefresh.material.js\u0027%%7D",
+			"%7B%static%20\u0027css/mui.min.css\u0027%%7D",
+			"%7B%static%20\u0027js/mui.pullToRefresh.js\u0027%%7D",
+			"%7B%static%20\u0027images/nav1.png\u0027%%7D",
+			"%7B%static%20\u0027css/m_common.css\u0027%%7D"
 		]
 	},
 	"m_finance_main.html": {
@@ -192,6 +200,9 @@
 			"js/mui.min.js",
 			"fonts/mui.ttf",
 			"css/mui.min.css"
+		],
+		"refer": [
+			"m_detail_youhuiquan.html"
 		]
 	}
 }

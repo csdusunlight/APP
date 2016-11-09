@@ -326,7 +326,8 @@
 				],
 				"refer": [
 					"m_detail_hongbao.html",
-					"template.html"
+					"template.html",
+					"m_detail_youhuiquan.html"
 				],
 				"priority": 0
 			},
@@ -373,7 +374,14 @@
 				"resources": [
 					"%7B%static%20\u0027images/nav3.png\u0027%%7D",
 					"%7B%static%20\u0027css/m_task.css\u0027%%7D",
-					"%7B%static%20\u0027images/nav2s.png\u0027%%7D"
+					"%7B%static%20\u0027images/nav2s.png\u0027%%7D",
+					"%7B%static%20\u0027js/mui.min.js\u0027%%7D",
+					"%7B%static%20\u0027images/nav4.png\u0027%%7D",
+					"%7B%static%20\u0027js/mui.pullToRefresh.material.js\u0027%%7D",
+					"%7B%static%20\u0027css/mui.min.css\u0027%%7D",
+					"%7B%static%20\u0027js/mui.pullToRefresh.js\u0027%%7D",
+					"%7B%static%20\u0027images/nav1.png\u0027%%7D",
+					"%7B%static%20\u0027css/m_common.css\u0027%%7D"
 				],
 				"refer": [],
 				"priority": 0
@@ -428,7 +436,9 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css"
 				],
-				"refer": [],
+				"refer": [
+					"m_detail_youhuiquan.html"
+				],
 				"priority": 0
 			}
 		},

@@ -154,12 +154,14 @@
 				mui.fire(detailMainWebview, 'updateHeader', {
 					title: title
 				});
+				var wvs=plus.webview.all();
+				for(var i=0;i<wvs.length;i++){
+					console.log("webview"+i+": "+wvs[i].getURL());
+				}
 				//触发子窗口变更新闻详情
 				mui.fire(detailWebview, 'newsId', {
 					id: id
 				});
-				//显示新闻详情页面
-				detailMainWebview.show('pop-in', 200);
 			};
 			/** 新版首次进入执行代码开始 **/
 			var latestPubDate = Number.MAX_VALUE;
@@ -222,7 +224,6 @@
 					wa.getSlider(function(sliders) {
 						slide_group.innerHTML = '';
 						add_doms_slider(sliders, true);
-						console.log(sliders[0].image);
 						processNews(sliders, 'slider_img_')
 					}, throwGetNewsError);
 					wa.getRecom(function(recoms) {
@@ -334,7 +335,7 @@
 					}
 					var li = document.createElement('li');
 					li.className = 'mui-table-view-cell';
-					str_block = '<a class="clearfix" data_id="' + wel.id + '" data_type=' + wel.type + '"><img id="news_img_' + wel.id + '" src="'+ 
+					str_block = '<a class="clearfix" data_id="' + wel.id + '" data_type="' + wel.type + '"><img id="news_img_' + wel.id + '" src="'+ 
 									image + '" /><div class="li-info"><h6>' + wel.title + '</h6>';
 					if (wel.view>1000){
 						str_block += '<span class="after-hot">hot</span>';
@@ -392,7 +393,6 @@
 				}
 				adv_last_div.innerHTML= '<a data_id="' + adv_first.id + '"><img id="slider_img_' + 
 					adv_first.id + 's" src="'+ image + '"></a>';
-				console.log(image);
 				slide_group.appendChild(adv_last_div);
 				var gallery = mui('.mui-slider');
 				gallery.slider().gotoItem(0);
