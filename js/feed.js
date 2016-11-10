@@ -34,7 +34,8 @@
 			error:function(xhr,type,errorThrown){
 				console.log(type);
 				merror();
-			}
+			},
+			timeout:5000
 		});
 	};
 	var parseSlider = function(dstList) {

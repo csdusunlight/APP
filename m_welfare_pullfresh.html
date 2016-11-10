@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="css/mui.min.css">
+		<link rel="stylesheet" type="text/css" href="css/m_common.css"/>
+    	<link rel="stylesheet" type="text/css" href="css/m_index.css"/>
+	</head>
+
+	<body>
+		<!--下拉刷新容器-->
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<div id="slider" class="mui-slider" >
+					<div class="mui-slider-group mui-slider-loop">
+					</div>
+					<div class="mui-slider-indicator">
+						<div class="mui-indicator mui-active"></div>
+						<div class="mui-indicator"></div>
+						<div class="mui-indicator"></div>
+						<div class="mui-indicator"></div>
+						<div class="mui-indicator"></div>
+					</div>
+				</div>
+				<!--提示消息部分-->
+				<div class="news clearfix">
+					<span class="fl">今日上线福利 <b><number id="new_num"></number></b> 个</span>
+					<span class="tr fr">累计上线福利 <b><number id="all_num"></number></b>个</span>
+				</div>
+				<!--图标导航部分-->
+				<div id="nav" class="icon-nav">
+					<ul class="nav-list clearfix">
+						<li>
+							<a href="{% url 'signin' %}">
+								<img src="images/nav-pic1.png" />
+								<span>每日签到</span>
+							</a>
+						</li>
+						<li>
+							<a href="{% url 'activity_lottery' %}">
+								<img src="images/nav-pic2.png" />
+								<span>积分抽奖</span>
+							</a>
+						</li>
+						<li>
+							<a href="{% url 'activity' %}">
+								<img src="images/nav-pic3.png" />
+								<span>要赚现金</span>
+							</a>
+						</li>
+						<li>
+							<a href="{% url 'information' %}">
+								<img src="images/nav-pic4.png" />
+								<span>我有故事</span>
+							</a>
+						</li>
+						<li>
+							<a href="{% url 'welfare_list' type='hb' %}">
+								<img src="images/nav-pic5.png" />
+								<span>红包</span>
+							</a>
+						</li>
+						<li>
+							<a href="{% url 'welfare_list' type='yhq' %}">
+								<img src="images/nav-pic6.png" />
+								<span>优惠券</span>
+							</a>
+						</li>
+						<li>
+							<a href="{% url 'welfare_list' type='by' %}">
+								<img src="images/nav-pic7.png" />
+								<span><number>9.9</number>包邮</span>
+							</a>
+						</li>
+						<li id="weixin_btn">
+							<a href="#">
+								<img src="images/nav-pic8.png" />
+								<span>微信公众号</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				
+				<!--今日推荐部分-->
+				<div id="today" class="today">
+					<div class="today-tittle">
+						<h3>今日推荐</h3>
+					</div>
+					<div class="today-img clearfix">
+		            </div>
+				</div>
+				<div id="hot" class="recent today">
+			    	<div class="today-tittle">
+			        	<h3>福利精选</h3>
+			        </div>
+			        <ul class="mui-table-view">
+			        	<li>正在加载...</li>
+			        </ul>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" charset="UTF-8" src="js/mui.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="js/mui.pullToRefresh.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="js/mui.pullToRefresh.material.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="js/feed.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="js/html5sql.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="js/app.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="js/news.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="js/template.js"></script>
+		<script>
+			console.time("进入页面到呈现");
+			var slide_group = document.body.querySelector('.mui-slider-group');
+			var news_group = document.body.querySelector('.mui-table-view');
+			var recom_group = document.body.querySelector('.today-img');
+
+			 //初始化下拉刷新模块  
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+
+			function throwGetNewsError() {
+				mui.toast("获取新闻时发生了异常");
+			};
+			 //点击新闻列表，打开新闻详情
+			mui('#pullrefresh').on('tap', 'a', function() {
+				var title = this.querySelector('h6').innerText;
+				open_new_detail(this.getAttribute('data_id'),this.getAttribute('data_type'),title);
+			});
+			var detailMainWebview = null; //详情页面父webview
+			var detailWebview = null; //详情页面子webview
+			function open_new_detail(id,type,title) {
+				console.log("open_new_detail");
+				var template = getTemplate(type,"m_detail_" + type + ".html");
+				if (!template){
+					mui.alert("系统错误！");
+				}
+				detailMainWebview = template.header;
+				detailWebview = template.content;
+				mui.fire(detailMainWebview, 'updateHeader', {
+					title: title
+				});
+				var wvs=plus.webview.all();
+				for(var i=0;i<wvs.length;i++){
+					console.log("webview"+i+": "+wvs[i].getURL());
+				}
+				//触发子窗口变更新闻详情
+				mui.fire(detailWebview, 'newsId', {
+					id: id
+				});
+			};
+			/** 新版首次进入执行代码开始 **/
+			var latestPubDate = Number.MAX_VALUE;
+			var hasMore = true;
+			mui.plusReady(function(){
+				wa.dbReady(function(isFirst) {
+					//document.body.style.backgroundColor = '#efeff4';
+					//第一次显示，从服务器中加载
+					if (!isFirst) {
+						//非第一次，直接从本地数据库中读取
+						//加载初始化数据
+						wa.getNews(Number.MAX_VALUE, 1,function(news) {
+							console.log('add_newsde length:' + news.length);
+							add_doms_news(news, false);
+						}, throwGetNewsError);
+						wa.getSlider(function(sliders) {
+							add_doms_slider(sliders, false);
+						}, throwGetNewsError);
+						wa.getRecom(function(recoms) {
+							add_doms_recom(recoms, false);
+						}, throwGetNewsError);
+					}
+					setTimeout(function(){
+						mui('#pullrefresh').pullRefresh().pulldownLoading();
+						var gallery = mui('#slider');
+						gallery.slider({
+							interval: 4000 //自动轮播周期，若为0则不自动播放，默认为0；
+						});
+					},200);
+					setTimeout(function(){
+						getTemplate("hongbao","m_detail_hongbao.html");
+					},400);
+				});
+			});
+			
+//			mui.plusReady(function() {
+//				//关闭splash界面
+//				plus.navigator.closeSplashscreen();
+//				//获取图片轮播区的新闻
+//				getSlider(true);
+//				//2秒之后，自动刷新
+//				setTimeout(function() {
+//					pulldownRefresh();
+//				}, 2000);
+//			});
+			function pulldownRefresh() {
+				latestPubDate = Number.MAX_VALUE;
+				if (!hasMore) { //当清除缓存之前已上拉加载到底需要重置pullrefresh
+					mui('#pullrefresh').pullRefresh().refresh(true);
+					hasMore = true;
+				}
+				wa.getFeed(function(hasNew) {
+					console.log('终于成功了');
+					//显示列表数据
+					wa.getNews(Number.MAX_VALUE, 10,function(news) {
+						news_group.innerHTML = '';
+						add_doms_news(news, true);
+						processNews(news, 'news_img_')
+					}, throwGetNewsError);
+					wa.getSlider(function(sliders) {
+						slide_group.innerHTML = '';
+						add_doms_slider(sliders, true);
+						processNews(sliders, 'slider_img_')
+					}, throwGetNewsError);
+					wa.getRecom(function(recoms) {
+						recom_group.innerHTML = '';
+						add_doms_recom(recoms, true);
+						processNews(recoms, 'recom_img_')
+					}, throwGetNewsError);
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+				}, function() {
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+				});
+			};
+	
+			function clearNewsList() {
+				news_group.innerHTML = '';
+			};
+
+			function pullupRefresh() {
+				//console.log('pullup');
+				mui.getNews(NEWS_URL + '?lastDate=' + latestPubDate, function(items) {
+					if (items) {
+						console.log(items.length);
+						var news = items;
+						add_doms_news(news);
+					}
+	
+				});
+			}
+			var downloads = {};
+
+			function addDownloadImage(id, url, callback) {
+				if (downloads.hasOwnProperty(id)) { //已存在该download
+					var download = downloads[id];
+					download.callbacks.push(callback); //增加回调
+					if (download.finished) { //该download已完成
+						callback(download.filepath); //直接回调
+					}
+				} else { //新增download
+					//					console.log('新增download::::' + id + '::::' + url);
+					var download = {
+						callbacks: [callback],
+						finished: false,
+						filepath: false
+					}
+					downloads[id] = download;
+					mui.plusReady(function() {
+						wa.downloadImage(id, url, function(imgUrl) {
+							if (imgUrl == null) {
+								return callback(null);
+							}
+							plus.io.resolveLocalFileSystemURL(imgUrl, function(entry) {
+								download.finished = true;
+								download.filepath = entry.toLocalURL();
+								mui.each(download.callbacks, function(index, callback) {
+									callback(download.filepath);
+								});
+							}, function(e) {});
+						}).start();
+					});
+				}
+			}
+
+			function processNews(news, prefix) {
+//				var news = mui.extend({}, news); //需要clone出来一个新对象，旧对象无法赋值修改
+//				news.id = news.id; //.substring(news.id.lastIndexOf('/') + 1, news.id.length - 5);
+//				news.humanize = wa.humanize(Date.now() - news.pubDate);
+				var length = news.length;
+				for (var i = 0; i<length; i++){
+					item = news[i];
+					if (item.image) {
+						(function(n,img){
+							var selector = prefix + n;
+							wa.isDownloadImageAsync(function(yes) {
+								if (!yes) return;
+								addDownloadImage(selector, img, function(src) {
+//									console.log(img);
+									if (src == null) return;
+									wa.updateNews(n, src); //更新数据库
+									var img_ele = document.getElementById(selector);
+//									console.log("img#" + prefix + n);
+//									console.log(img_ele.src);
+									img_ele.src = src;
+									var duplicate_ele = document.getElementById(selector+"s");
+									if (duplicate_ele){
+										duplicate_ele.src = src;
+										duplicate_ele.setAttribute('data-loaded', 'true');
+									}
+									img_ele.setAttribute('data-loaded', 'true');
+								});
+							});
+						})(item.id,item.image);
+					}
+					else {
+						item.image = 'images/blank.jpg';
+					}
+				}
+			}
+			function add_doms_news(news, delay){
+				if (!news || news.length === 0){
+					return;
+				}
+				latestPubDate = news[news.length-1].pubDate;
+				var length = news.length;
+				for (var i = 0; i < length; i++){
+					wel = news[i];
+					var image = wel.image;
+					if(delay){
+						image = 'images/blank.jpg';
+					}
+					var li = document.createElement('li');
+					li.className = 'mui-table-view-cell';
+					str_block = '<a class="clearfix" data_id="' + wel.id + '" data_type="' + wel.type + '"><img id="news_img_' + wel.id + '" src="'+ 
+									image + '" /><div class="li-info"><h6>' + wel.title + '</h6>';
+					if (wel.view>1000){
+						str_block += '<span class="after-hot">hot</span>';
+					}
+					else if ( wel.pubDate > Date.parse(new Date()) -24*60*60*1000 ){
+					 	str_block += '<span class="after-new">new</span>';
+					}
+					str_block += '<p class="first">';
+					marks = [wel.mark1, wel.mark2, wel.mark3];
+					for (var j in marks){
+						if(marks[j]){
+							str_block += '<span>' + marks[j] + '</span>';
+						}
+					}
+					str_block += '</p><p><span class="s1">'+wel.source+'</span></p>'+
+									'<p><span class="s3">'+wel.time+'</span><span class="s2">'+
+									wel.view +'</span></p></div></a>';
+					li.innerHTML = str_block;
+					news_group.appendChild(li);
+				}
+			}
+			function add_doms_slider(sliders, delay){
+				if (!sliders || sliders.length === 0){
+					return;
+				}
+				var length = sliders.length;
+				var adv_first = sliders[0];
+				var adv_last = sliders[sliders.length-1]
+				var adv_first_div = document.createElement('div');
+				adv_first_div.className = 'mui-slider-item mui-slider-item-duplicate';
+				var image = adv_last.image;
+				if (delay){
+					image = 'images/blank.jpg';
+				}
+				adv_first_div.innerHTML= '<a data_id="' + adv_last.id + '"><img id="slider_img_' + 
+					adv_last.id + 's" src="'+ image + '"></a>';
+				slide_group.appendChild(adv_first_div);
+				for (var i = 0; i < length; i++){
+					var slider = sliders[i];
+					image = slider.image;
+					if(delay){
+						image = 'images/blank.jpg';
+					}
+					var adv_div = document.createElement('div');
+					adv_div.className = 'mui-slider-item';
+					adv_div.innerHTML= '<a data_id="' + slider.id + '"><img id="slider_img_' + 
+						slider.id + '" src="'+ image + '"></a>';
+					slide_group.appendChild(adv_div);
+				};
+				var adv_last_div = document.createElement('div');
+				adv_last_div.className = 'mui-slider-item mui-slider-item-duplicate';
+				image = adv_first.image;
+				if (delay){
+					image = 'images/blank.jpg';
+				}
+				adv_last_div.innerHTML= '<a data_id="' + adv_first.id + '"><img id="slider_img_' + 
+					adv_first.id + 's" src="'+ image + '"></a>';
+				slide_group.appendChild(adv_last_div);
+				var gallery = mui('.mui-slider');
+				gallery.slider().gotoItem(0);
+			}
+			function add_doms_recom(recoms, delay){
+//				var recoms = mui.extend({}, recoms); 
+				if (!recoms || recoms.length === 0){
+					return;
+				}
+				var length = recoms.length;
+				for (var i = 0; i < length; i++){
+					recom = recoms[i];
+					if(delay){
+						recom.image = 'images/blank.jpg';
+					}
+					var a = document.createElement('a');
+					if (i==0){
+						a.className = "ti-left fl";
+					}
+					else if (i==1){
+						a.className = "ti-right fr";
+					}
+					else if (i==2){
+						a.className = "ti-right ti-03 fr";
+					}
+					a.href = recom.image;
+					a.setAttribute("data_id",recom.id);
+					a.innerHTML = '<img id="recom_img_' + recom.id + '" src="' + recom.image + '"/>';
+					recom_group.appendChild(a);
+				}
+			}
+		</script>
+
+	</body>
+
+</html>
