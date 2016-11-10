@@ -89,16 +89,6 @@
 							document.getElementById('time_display').innerText = ret.time;
 							self.show();
 							document.getElementById("exp_btn").addEventListener('tap', function() {
-								if(ret.ismobile){
-									self.loadURL(ret.url);
-								}
-								else {
-									document.getElementById('erweima_img').src = ret.url;
-									document.getElementById("ding_yue").style.display="block";
-								}
-							});
-							document.getElementById("close_01").addEventListener('tap', function() {
-								document.getElementById("ding_yue").style.display="none";
 							});
 						}
 						

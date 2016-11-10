@@ -216,9 +216,7 @@
 				"android": {
 					"mdpi": "", /*普通屏启动图片，分辨率：240x282*/
 					"ldpi": "", /*大屏启动图片，分辨率：320x442*/
-					"hdpi": "", /*高分屏启动图片，分辨率：480x762*/
-					"xhdpi": "C:/Users/lch/Desktop/splash2.png", /*720P高分屏启动图片，分辨率：720x1242*/
-					"xxhdpi": "C:/Users/lch/Desktop/splash2.png"
+					"hdpi": ""
 				}
 			}
 		}
@@ -289,9 +287,31 @@
 				"resources": [
 					"m_welfare_pullfresh.html",
 					"js/mui.min.js",
-					"css/mui.min.css"
+					"css/mui.min.css",
+					"js/mui.pullToRefresh.js",
+					"images/blank.jpg",
+					"js/mui.pullToRefresh.material.js",
+					"images/nav-pic3.png",
+					"images/nav-pic6.png",
+					"images/nav-pic2.png",
+					"images/nav-pic7.png",
+					"js/feed.js",
+					"images/nav-pic8.png",
+					"images/nav-pic5.png",
+					"js/news.js",
+					"js/html5sql.js",
+					"css/m_index.css",
+					"images/nav-pic1.png",
+					"images/nav-pic4.png",
+					"js/template.js",
+					"js/mui.js",
+					"css/m_common.css",
+					"js/app.js"
 				],
-				"refer": [],
+				"refer": [
+					"m_detail_hongbao.html",
+					"template.html"
+				],
 				"priority": 0
 			},
 			"m_welfare_pullfresh.html": {

@@ -10,6 +10,7 @@ var getTemplate = function(name, sub_url) {
 			id: name + "_main",
 			styles: {
 				popGesture: "hide",
+				hardwareAccelerated: true
 			},
 			extras: {
 				mType: 'main'

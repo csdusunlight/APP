@@ -20,6 +20,7 @@
 	};
 	$.getNews = function(url, success, error) {
 		var merror = error || $.noop;
+		console.log("laile");
 		$.ajax({
 			type: "get",
 			url: url,
