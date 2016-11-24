@@ -238,7 +238,8 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"js/app.js",
-					"m_welfare_main.html"
+					"m_welfare_main.html",
+					null
 				],
 				"refer": [
 					"m_task.html",
@@ -310,7 +311,8 @@
 				],
 				"refer": [
 					"m_detail_hongbao.html",
-					"template.html"
+					"template.html",
+					"m_detail_welfare.html"
 				],
 				"priority": 0
 			},
@@ -454,11 +456,22 @@
 					"m_detail_hongbao.html",
 					"js/mui.min.js",
 					"fonts/mui.ttf",
-					"css/mui.min.css"
+					"css/mui.min.css",
+					"m_detail_welfare.html"
 				],
 				"refer": [
 					"m_detail_youhuiquan.html"
 				],
+				"priority": 0
+			},
+			"m_detail_welfare.html": {
+				"resources": [
+					"css/m_detail_hongbao.css",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/m_common.css"
+				],
+				"refer": [],
 				"priority": 0
 			}
 		},

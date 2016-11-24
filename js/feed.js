@@ -20,7 +20,6 @@
 	};
 	$.getNews = function(url, success, error) {
 		var merror = error || $.noop;
-		console.log("laile");
 		$.ajax({
 			type: "get",
 			url: url,
@@ -29,7 +28,12 @@
 				if (!response) {
 					return error();
 				}
-				success(parseNews(response));
+				if(response.code!=0){
+					mui.alert(response.message)
+				}
+				else{
+					success(parseNews(response.data));
+				}
 			},
 			error:function(xhr,type,errorThrown){
 				console.log(type);
@@ -60,7 +64,12 @@
 				if (!response) {
 					return error();
 				}
-				success(parseSlider(response));
+				if(response.code!=0){
+					mui.alert(response.message)
+				}
+				else{
+					success(parseSlider(response.data));
+				}
 			},
 			error: error
 		});
@@ -86,7 +95,12 @@
 				if (!response) {
 					return error();
 				}
-				success(parseRecom(response));
+				if(response.code!=0){
+					mui.alert(response.message)
+				}
+				else{
+					success(parseRecom(response.data));
+				}
 			},
 			error: error
 		});
