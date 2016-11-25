@@ -312,7 +312,8 @@
 				"refer": [
 					"m_detail_hongbao.html",
 					"template.html",
-					"m_detail_welfare.html"
+					"m_detail_welfare.html",
+					"browser.html"
 				],
 				"priority": 0
 			},
@@ -470,6 +471,17 @@
 					"js/mui.min.js",
 					"css/mui.min.css",
 					"css/m_common.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"browser.html": {
+				"resources": [
+					"js/app.js",
+					"js/mui.min.js",
+					"css/app.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css"
 				],
 				"refer": [],
 				"priority": 0

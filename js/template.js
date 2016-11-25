@@ -1,12 +1,12 @@
 var templates = {}
-var getTemplate = function(name, sub_url) {
+var getTemplate = function(name, main_url, sub_url) {
 	console.log(name);
 	var template = templates[name];
 	if (!template) {
 		console.log("注意！！！新建的模板！");
 		//预加载共用父模板；
 		var headerWebview = mui.preload({
-			url: 'template.html',
+			url: main_url,
 			id: name + "_main",
 			styles: {
 				popGesture: "hide",
@@ -23,6 +23,8 @@ var getTemplate = function(name, sub_url) {
 			styles: {
 				top: '45px',
 				bottom: '0px',
+				popGesture: "hide",
+				hardwareAccelerated: true
 			},
 			extras: {
 				mType: 'sub'

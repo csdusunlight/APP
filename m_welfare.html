@@ -145,7 +145,7 @@
 			var detailWebview = null; //详情页面子webview
 			function open_new_detail(id,type,title) {
 				console.log("open_new_detail");
-				var template = getTemplate('welfare',"m_detail_welfare.html");
+				var template = getTemplate('welfare','template.html',"m_detail_welfare.html");
 				if (!template){
 					mui.alert("系统错误！");
 				}
@@ -190,7 +190,8 @@
 						});
 					},1000);
 					setTimeout(function(){
-						getTemplate("welfare","m_detail_welfare.html");
+						getTemplate('welfare','template.html',"m_detail_welfare.html");
+						getTemplate("browser","browser.html","");
 					},400);
 				});
 			});

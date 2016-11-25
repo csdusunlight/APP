@@ -104,7 +104,11 @@
 									}
 									else {
 										console.log(ret.url);
-										self.loadURL(ret.url);
+										var browserMainWebview = plus.webview.getWebviewById('browser_main');
+										var browserWebview = plus.webview.getWebviewById('browser_sub');
+										mui.fire(browserMainWebview, 'mui.view.beforeshow');
+										browserWebview.loadURL(ret.url);
+										browserMainWebview.show('slide-in-bottom', 200);
 									}
 								});
 								document.getElementById("close_01").addEventListener('tap', function() {
