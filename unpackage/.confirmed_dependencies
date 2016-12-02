@@ -21,7 +21,8 @@
 			"m_account_index.html",
 			"m_welfare_main.html",
 			"m_finance_main.html",
-			"m_task_main.html"
+			"m_task_main.html",
+			"a_login.html"
 		]
 	},
 	"m_task.html": {
@@ -246,6 +247,16 @@
 			"css/app.css",
 			"fonts/mui.ttf",
 			"css/mui.min.css"
+		]
+	},
+	"a_login.html": {
+		"resources": [
+			"css/style.css",
+			"js/app.js",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"js/mui.enterfocus.js",
+			"fonts/mui.ttf"
 		]
 	}
 }

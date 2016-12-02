@@ -246,7 +246,8 @@
 					"m_finance.html",
 					"m_account_index.html",
 					"m_finance_main.html",
-					"m_task_main.html"
+					"m_task_main.html",
+					"a_login.html"
 				],
 				"priority": 0
 			},
@@ -482,6 +483,18 @@
 					"css/app.css",
 					"fonts/mui.ttf",
 					"css/mui.min.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"a_login.html": {
+				"resources": [
+					"css/style.css",
+					"js/app.js",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"js/mui.enterfocus.js",
+					"fonts/mui.ttf"
 				],
 				"refer": [],
 				"priority": 0
@@ -931,7 +944,6 @@
 				"images/about4.png",
 				"images/01_19.jpg",
 				"css/mui.css",
-				"js/mui.enterfocus.js",
 				"images/pict_60.png",
 				"images/chkbox.png",
 				"images/pic2.png",

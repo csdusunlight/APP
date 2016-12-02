@@ -43,6 +43,9 @@ var getTemplate = function(name, main_url, sub_url) {
 			content: subWebview,
 		};
 	}
-	console.log("已有模板");
+	else{
+		console.log("已有模板");
+	}
+	
 	return template;
 };
