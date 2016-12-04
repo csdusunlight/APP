@@ -155,7 +155,7 @@
 					title: title
 				});
 				//触发子窗口变更新闻详情
-				mui.fire(detailWebview, 'newsId', {
+				mui.fire(detailWebview, 'display', {
 					id: id,
 					type: type
 				});
@@ -171,7 +171,7 @@
 						//非第一次，直接从本地数据库中读取
 						//加载初始化数据
 						wa.getNews(Number.MAX_VALUE, 1,function(news) {
-							console.log('add_newsde length:' + news.length);
+							news_group.innerHTML = '';
 							add_doms_news(news, false);
 						}, throwGetNewsError);
 						wa.getSlider(function(sliders) {

@@ -61,20 +61,26 @@
 		</div>
 
 		<script src="js/mui.min.js"></script>
+		<script src="js/UserInfo.js"></script>
 		<script type="text/javascript">
 			mui.init();
 			var id = '';
 			var type ='';
 			var ismobile = false;
+			var self = null;
+		  	var num_desc_ele = document.getElementById("num_desc");
+		  	var exp_btn_ele = document.getElementById("exp_btn");
+		  	var title = '';
+		  	var pic_url = '';
+		  	var time_limit = '';
+		  	var exp_url = '';
 			//添加newId自定义事件监听
-			window.addEventListener('newsId',function(event){
+			window.addEventListener('display',function(event){
 			  //获得事件参数
 			  	id = event.detail.id;
 			  	type = event.detail.type;
+			  	self = plus.webview.currentWebview();
 			  //根据id向服务器请求新闻详情
-			  	var self = plus.webview.currentWebview();
-			  	var num_desc_ele = document.getElementById("num_desc");
-			  	var exp_btn_ele = document.getElementById("exp_btn");
 			  	if (type==="hongbao"){
 			  		exp_btn_ele.innerText="立即体验";
 			  		var url_get_content= "http://m.wafuli.cn/app/detail/hongbao/";
@@ -95,25 +101,13 @@
 								document.getElementById('time_display').innerText = ret.time;
 								self.show();
 								mui.scrollTo(0, 100);
-								exp_btn_ele.addEventListener('tap', function() {
-									console.log(ret.url);
-									if(ismobile){
-										document.getElementById('erweima_img').src = ret.url;
-										document.getElementById('erweima_title').src = ret.title;
-										document.getElementById("ding_yue").style.display="block";
-									}
-									else {
-										console.log(ret.url);
-										var browserMainWebview = plus.webview.getWebviewById('browser_main');
-										var browserWebview = plus.webview.getWebviewById('browser_sub');
-										mui.fire(browserMainWebview, 'mui.view.beforeshow');
-										browserWebview.loadURL(ret.url);
-										browserMainWebview.show('slide-in-bottom', 200);
-									}
-								});
-								document.getElementById("close_01").addEventListener('tap', function() {
-									document.getElementById("ding_yue").style.display="none";
-								});
+								if(ismobile){
+									document.getElementById('erweima_img').src = ret.url;
+									document.getElementById('erweima_title').src = ret.title;
+								}
+								else {
+									exp_url = ret.url;
+								}
 							}
 							
 						},
@@ -138,6 +132,10 @@
 								document.getElementById('strategy').innerHTML = ret.strategy;
 								document.getElementById('number_display').innerText = ret.num;
 								document.getElementById('time_display').innerText = ret.time;
+								title = ret.title;
+								pic_url = ret.image;
+								time_limit = ret.time;
+								exp_url = ret.url;
 								self.show();
 								mui.scrollTo(0, 100);
 							}
@@ -147,43 +145,101 @@
 							mui.alert(type);
 						}
 					});
-					var obtain_coupon_url = "http://m.wafuli.cn/app/obtain_youhuiquan/";
-					exp_btn_ele.addEventListener('tap', function() {
-			    		mui.ajax({
-			    			url:obtain_coupon_url,
-			    			dataType:"json",
-			    			type:"post",
-			    			data:{
-			    				id: id
-			    			},
-			    			success:function(ret){
-			    				if(ret.code==0){
-			    					var coupon_id = ret.coupon_id;
-			    					mui.openWindow({
-			    			            url: "{http://m.wafuli.cn/app/expsumbit_youhuiquan/" + coupon_id,
-			    			            styles: {
-			    			                top: 0,
-			    			                bottom: 0
-			    			            },
-			    			            show: {
-			    			                aniShow: 'slide-in-right',
-			    			            },
-			    			            waiting: {
-			    			                autoShow: false, //自动显示等待框
-			    			                title: '正在加载...', //等待对话框上显示的提示内容
-			    			            }
-			    			        });
-			    				}
-			    				else{
-			    					mui.alert(ret.msg);
-			    				}
-			    			},
-			    			error:function(xhr,type,errorThrown){
-								mui.alert(type);
-							}
-			    		});
-			    	});
 			  	}
+			});
+			exp_btn_ele.addEventListener('tap', function() {
+				if (!UserInfo.has_login()){
+					mui.openWindow({
+			            url: "a_login.html",
+			            id:"login",
+			            styles: {
+			                top: 0,
+			                bottom: 0
+			            },
+			            show: {
+			                aniShow: 'slide-in-right',
+			            },
+			            extras:{
+			            	backid:self.id
+			            }
+			        });
+			        return;
+				}
+				if (type==="hongbao"){
+					if(ismobile){
+						document.getElementById("ding_yue").style.display="block";
+					}
+					else {
+						var browserMainWebview = plus.webview.getWebviewById('browser_main');
+						var browserWebview = plus.webview.getWebviewById('browser_sub');
+						mui.fire(browserMainWebview, 'mui.view.beforeshow');
+						browserWebview.loadURL(exp_url);
+						browserMainWebview.show('slide-in-bottom', 200);
+					}
+				}
+				else if (type==="youhuiquan"){
+					console.log("aaaa");
+					var obtain_coupon_url = "http://m.wafuli.cn/app/obtain_youhuiquan/";
+					mui.ajax({
+		    			url:obtain_coupon_url,
+		    			dataType:"json",
+		    			type:"post",
+		    			data:{
+		    				id: id,
+		    				token:UserInfo.token()
+		    			},
+		    			success:function(ret){
+		    				console.log(ret.code);
+		    				if(ret.code==0){
+		    					mui.openWindow({
+		    			            url: "html/m_get_coupon_success.html",
+		    			            id:"coupon_success",
+		    			            styles: {
+		    			                top: 0,
+		    			                bottom: 0
+		    			            },
+		    			            show: {
+		    			                aniShow: 'slide-in-right',
+		    			            },
+		    			            extras:{
+		    			            	coupon_id: ret.coupon_id,
+		    			            	exp_url: exp_url,
+		    			            	pic_url: pic_url,
+		    			            	exchange_code: ret.exchange_code,
+		    			            	title: title,
+		    			            	time_limit:time_limit
+		    			            }
+		    			        });
+		    				}
+		    				else if(ret.code<0){
+		    					mui.openWindow({
+						            url: "a_login.html",
+						            id:"login",
+						            styles: {
+						                top: 0,
+						                bottom: 0
+						            },
+						            show: {
+						                aniShow: 'slide-in-right',
+						            },
+						            extras:{
+						            	backid:self.id
+						            }
+						        });
+						        return;
+		    				}
+		    				else{
+		    					mui.alert(ret.msg);
+		    				}
+		    			},
+		    			error:function(xhr,type,errorThrown){
+							mui.alert(type);
+						}
+		    		});
+				}
+			});
+			document.getElementById("close_01").addEventListener('tap', function() {
+				document.getElementById("ding_yue").style.display="none";
 			});
 		</script>
 	</body>

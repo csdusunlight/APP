@@ -471,9 +471,14 @@
 					"css/m_detail_hongbao.css",
 					"js/mui.min.js",
 					"css/mui.min.css",
-					"css/m_common.css"
+					"css/m_common.css",
+					"js/UserInfo.js",
+					"fonts/mui.ttf"
 				],
-				"refer": [],
+				"refer": [
+					"a_login.html",
+					"html/m_get_coupon_success.html"
+				],
 				"priority": 0
 			},
 			"browser.html": {
@@ -494,7 +499,18 @@
 					"js/mui.min.js",
 					"css/mui.min.css",
 					"js/mui.enterfocus.js",
-					"fonts/mui.ttf"
+					"fonts/mui.ttf",
+					"js/UserInfo.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/m_get_coupon_success.html": {
+				"resources": [
+					"images/bg-youhuiquan.png",
+					"images/yes.png",
+					"css/m_get_coupon_success.css",
+					"html/%7B%%20static%20\u0027js/mui.min.js\u0027%20%%7D"
 				],
 				"refer": [],
 				"priority": 0
@@ -607,7 +623,6 @@
 				"css/m_detail_task.css",
 				"fonts/DroidSans.ttf",
 				"images/new_cont.png",
-				"images/bg-youhuiquan.png",
 				"images/01_14.jpg",
 				"images/img4.png",
 				"images/youhuiquan-icon.jpg",
@@ -777,7 +792,6 @@
 				"images/bottom-01.png",
 				"images/logo-6.png",
 				"images/ic1.png",
-				"images/yes.png",
 				"images/topimg1.jpg",
 				"css/m_account_welfare.css",
 				"images/juchi.png",
@@ -881,7 +895,6 @@
 				"css/m_account_settings.css",
 				"images/图层 4.png",
 				"images/task-01.jpg",
-				"css/m_get_coupon_success.css",
 				"images/go-pc.png",
 				"images/t2.png",
 				"images/login_banner.jpg",

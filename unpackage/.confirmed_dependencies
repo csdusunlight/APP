@@ -237,7 +237,13 @@
 			"css/m_detail_hongbao.css",
 			"js/mui.min.js",
 			"css/mui.min.css",
-			"css/m_common.css"
+			"css/m_common.css",
+			"js/UserInfo.js",
+			"fonts/mui.ttf"
+		],
+		"refer": [
+			"a_login.html",
+			"html/m_get_coupon_success.html"
 		]
 	},
 	"browser.html": {
@@ -256,7 +262,16 @@
 			"js/mui.min.js",
 			"css/mui.min.css",
 			"js/mui.enterfocus.js",
-			"fonts/mui.ttf"
+			"fonts/mui.ttf",
+			"js/UserInfo.js"
+		]
+	},
+	"html/m_get_coupon_success.html": {
+		"resources": [
+			"images/bg-youhuiquan.png",
+			"images/yes.png",
+			"css/m_get_coupon_success.css",
+			"html/%7B%%20static%20\u0027js/mui.min.js\u0027%20%%7D"
 		]
 	}
 }
