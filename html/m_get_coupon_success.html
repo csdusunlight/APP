@@ -45,8 +45,9 @@
       <div class="box">
         <div class="benefit clearfix">
           <img id="coupon_pic" src="" alt="优惠券图标" />
-          <p id="coupon_title"><br />
-            有效日期：<number id="coupon_time"></number></p>
+          <p id="coupon_title"></p>
+          <p>有效日期：<number id="time_limit"></number></p>
+          
         </div>
         <p>优惠券代码：<number id="exchange_code"></number></p>
         <!--查看使用部分-->
@@ -57,17 +58,22 @@
       </div>
     </div>
 
-    <script src="{% static 'js/mui.min.js' %}"></script>
+    <script src="../js/mui.min.js"></script>
     <script type="text/javascript">
     mui.init();
     mui.plusReady(function(){
     	var self = plus.webview.currentWebview();
+    	console.log(self.exchange_code);
     	document.getElementById('coupon_title').innerText = self.title;
 		document.getElementById('coupon_pic').src = self.pic_url;
-		document.getElementById('coupon_time').innerText = self.time_limit;
-		document.getElementById('exchange_code').src = self.exchange_code;
+		document.getElementById('exchange_code').innerText = self.exchange_code;
+		document.getElementById('time_limit').innerText = self.time_limit;
 		document.getElementById("useCoupon").addEventListener('tap',function(event){
-			mui.alert(self.exp_url);
+			var browserMainWebview = plus.webview.getWebviewById('browser_main');
+			var browserWebview = plus.webview.getWebviewById('browser_sub');
+			mui.fire(browserMainWebview, 'mui.view.beforeshow');
+			browserWebview.loadURL(self.exp_url);
+			browserMainWebview.show('slide-in-bottom', 200);
 		});
     });
     

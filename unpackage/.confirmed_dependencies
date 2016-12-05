@@ -271,7 +271,11 @@
 			"images/bg-youhuiquan.png",
 			"images/yes.png",
 			"css/m_get_coupon_success.css",
-			"html/%7B%%20static%20\u0027js/mui.min.js\u0027%20%%7D"
+			"html/%7B%%20static%20\u0027js/mui.min.js\u0027%20%%7D",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/m_common.css"
 		]
 	}
 }
