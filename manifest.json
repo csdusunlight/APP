@@ -308,7 +308,8 @@
 					"js/template.js",
 					"js/mui.js",
 					"css/m_common.css",
-					"js/app.js"
+					"js/app.js",
+					"fonts/wafuli-iconfont.woff"
 				],
 				"refer": [
 					"m_detail_hongbao.html",
@@ -473,7 +474,9 @@
 					"css/mui.min.css",
 					"css/m_common.css",
 					"js/UserInfo.js",
-					"fonts/mui.ttf"
+					"fonts/mui.ttf",
+					"images/blank.jpg",
+					"fonts/wafuli-iconfont.woff"
 				],
 				"refer": [
 					"a_login.html",

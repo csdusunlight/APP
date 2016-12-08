@@ -17,7 +17,7 @@ img {
 	border-bottom: 1px solid #e9e8e8;
 	background: #fff;
 }
-/*ä½“éªŒæ­¥éª¤éƒ¨åˆ†*/
+/*体验步骤部分*/
 .taste,
 .prompt {
 	padding: 0 1.875% 0;
@@ -50,7 +50,7 @@ img {
 	line-height: 2rem;;
 }
 
-/*ç«‹å³ä½“éªŒéƒ¨åˆ†*/
+/*立即体验部分*/
 .try {
 	position: fixed;
 	bottom: 0;
@@ -80,7 +80,7 @@ img {
 	padding: 0;
 }
 
-/*å¼¹å‡ºå±‚éƒ¨åˆ†*/
+/*弹出层部分*/
 .er-wei-ma {
 	position: fixed;
 	top: 0;
@@ -118,9 +118,9 @@ img {
 .er-wei-ma span:active {
 	color: #ff6767;
 }
-/*ä¸Šä¼ æ ·å¼è®¾ç½®*/
+/*上传样式设置*/
 p {
-	font-family: "å¾®è½¯é›…é»‘";
+	font-family: "微软雅黑";
 	font-size: 16px !important;
 	line-height: 2;
 	color: #333;
