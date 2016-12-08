@@ -63,7 +63,6 @@
     mui.init();
     mui.plusReady(function(){
     	var self = plus.webview.currentWebview();
-    	console.log(self.exchange_code);
     	document.getElementById('coupon_title').innerText = self.title;
 		document.getElementById('coupon_pic').src = self.pic_url;
 		document.getElementById('exchange_code').innerText = self.exchange_code;

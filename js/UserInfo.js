@@ -3,10 +3,10 @@
 
 //清除登录信息
 UserInfo.clear = function(){
-    plus.storage.removeItem('username');
-    plus.storage.removeItem('password');
-    plus.storage.removeItem('token');
-    plus.storage.removeItem('expire');
+    localStorage.removeItem('username');
+    localStorage.removeItem('password');
+    localStorage.removeItem('token');
+    localStorage.removeItem('expire');
 }
 
 //检查是否包含自动登录的信息
@@ -25,7 +25,6 @@ UserInfo.has_login = function(){
     var token = UserInfo.token();
     var expire = parseInt(UserInfo.expire());
     var currentTime = Date.parse(new Date());
-    console.log(username);console.log(token);console.log(UserInfo.expire());
     if(username && token && expire){
     	if (expire > currentTime){
     		return true;
@@ -36,44 +35,44 @@ UserInfo.has_login = function(){
 
 UserInfo.username = function(){
     if(arguments.length == 0){
-        return plus.storage.getItem('username');
+        return localStorage.getItem('username');
     }
     if(arguments[0] === ''){
-        plus.storage.removeItem('username');
+        localStorage.removeItem('username');
         return;
     }
-    plus.storage.setItem('username', arguments[0]);
+    localStorage.setItem('username', arguments[0]);
 };
 
 UserInfo.password = function(){
     if(arguments.length == 0){
-        return plus.storage.getItem('password');        
+        return localStorage.getItem('password');        
     }
     if(arguments[0] === ''){
-        plus.storage.removeItem('password');
+        localStorage.removeItem('password');
         return;
     }
-    plus.storage.setItem('password', arguments[0]);
+    localStorage.setItem('password', arguments[0]);
 };
 
 UserInfo.token = function(){
     if(arguments.length == 0){
-        return plus.storage.getItem('token');       
+        return localStorage.getItem('token');       
     }
     if(arguments[0] === ''){
-        plus.storage.removeItem('token');
+        localStorage.removeItem('token');
         return;
     }
-    plus.storage.setItem('token', arguments[0]);
+    localStorage.setItem('token', arguments[0]);
 };
 
 UserInfo.expire = function(){
     if(arguments.length == 0){
-        return plus.storage.getItem('expire');       
+        return localStorage.getItem('expire');       
     }
     if(arguments[0] === ''){
-        plus.storage.removeItem('expire');
+        localStorage.removeItem('expire');
         return;
     }
-    plus.storage.setItem('expire', arguments[0].toString());
+    localStorage.setItem('expire', arguments[0].toString());
 };

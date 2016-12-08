@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Hello MUI</title>
+		<title>首页</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -20,11 +20,6 @@
 					<div class="mui-slider-group mui-slider-loop">
 					</div>
 					<div class="mui-slider-indicator">
-						<div class="mui-indicator mui-active"></div>
-						<div class="mui-indicator"></div>
-						<div class="mui-indicator"></div>
-						<div class="mui-indicator"></div>
-						<div class="mui-indicator"></div>
 					</div>
 				</div>
 				<!--提示消息部分-->
@@ -34,57 +29,57 @@
 				</div>
 				<!--图标导航部分-->
 				<div id="nav" class="icon-nav">
-					<ul class="nav-list clearfix">
-						<li>
-							<a href="{% url 'signin' %}">
-								<img src="images/nav-pic1.png" />
-								<span>每日签到</span>
-							</a>
-						</li>
-						<li>
-							<a href="{% url 'activity_lottery' %}">
-								<img src="images/nav-pic2.png" />
-								<span>积分抽奖</span>
-							</a>
-						</li>
-						<li>
-							<a href="{% url 'activity' %}">
-								<img src="images/nav-pic3.png" />
-								<span>要赚现金</span>
-							</a>
-						</li>
-						<li>
-							<a href="{% url 'information' %}">
-								<img src="images/nav-pic4.png" />
-								<span>我有故事</span>
-							</a>
-						</li>
-						<li>
-							<a href="{% url 'welfare_list' type='hb' %}">
-								<img src="images/nav-pic5.png" />
-								<span>红包</span>
-							</a>
-						</li>
-						<li>
-							<a href="{% url 'welfare_list' type='yhq' %}">
-								<img src="images/nav-pic6.png" />
-								<span>优惠券</span>
-							</a>
-						</li>
-						<li>
-							<a href="{% url 'welfare_list' type='by' %}">
-								<img src="images/nav-pic7.png" />
-								<span><number>9.9</number>包邮</span>
-							</a>
-						</li>
-						<li id="weixin_btn">
-							<a href="#">
-								<img src="images/nav-pic8.png" />
-								<span>微信公众号</span>
-							</a>
-						</li>
-					</ul>
-				</div>
+		        	<ul class="nav-list clearfix">
+		            	<li>
+		                	<a href="/account/signin/">
+		                    	<i class="icon iconfont ic-01"></i>
+		                        <span>每日签到</span>
+		                    </a>
+		                </li>
+		            	<li>
+		                	<a href="/activity/lottery/">
+		                    	<i class="icon iconfont ic-02"></i>
+		                        <span>积分抽奖</span>
+		                    </a>
+		                </li>
+		            	<li>
+		                	<a href="/activity/">
+		                    	<i class="icon iconfont ic-03"></i>
+		                        <span>要赚福币</span>
+		                    </a>
+		                </li>
+		            	<li>
+		                	<a href="/information/">
+		                    	<i class="icon iconfont ic-04"></i>
+		                        <span>我有故事</span>
+		                    </a>
+		                </li>
+		            	<li>
+		                	<a href="/welfare/hb/">
+		                    	<i class="icon iconfont ic-05"></i>
+		                        <span>红包</span>
+		                    </a>
+		                </li>
+		            	<li>
+		                	<a href="/welfare/yhq/">
+		                    	<i class="icon iconfont ic-06"></i>
+		                        <span>优惠券</span>
+		                    </a>
+		                </li>
+		            	<li>
+		                	<a href="/welfare/by/">
+		                    	<i class="icon iconfont ic-07"></i>
+		                        <span><number>9.9</number>包邮</span>
+		                    </a>
+		                </li>
+		            	<li id="weixin_btn">
+		                	<a href="#">
+		                    	<i class="icon iconfont ic-08"></i>
+		                        <span>微信公众号</span>
+		                    </a>
+		                </li>
+		            </ul>
+		    	</div>
 				
 				<!--今日推荐部分-->
 				<div id="today" class="today">
@@ -113,11 +108,10 @@
 		<script type="text/javascript" charset="UTF-8" src="js/news.js"></script>
 		<script type="text/javascript" charset="UTF-8" src="js/template.js"></script>
 		<script>
-			console.time("进入页面到呈现");
 			var slide_group = document.body.querySelector('.mui-slider-group');
 			var news_group = document.body.querySelector('.mui-table-view');
 			var recom_group = document.body.querySelector('.today-img');
-
+			var slide_indicator = document.body.querySelector('.mui-slider-indicator');
 			 //初始化下拉刷新模块  
 			mui.init({
 				pullRefresh: {
@@ -223,6 +217,7 @@
 					}, throwGetNewsError);
 					wa.getSlider(function(sliders) {
 						slide_group.innerHTML = '';
+						slide_indicator.innerHTML = '';
 						add_doms_slider(sliders, true);
 						processNews(sliders, 'slider_img_')
 					}, throwGetNewsError);
@@ -390,6 +385,15 @@
 					adv_div.innerHTML= '<a data_id="' + slider.id + '"><img id="slider_img_' + 
 						slider.id + '" src="'+ image + '"></a>';
 					slide_group.appendChild(adv_div);
+					
+					var ind_div = document.createElement('div');
+					if (i==0){
+						ind_div.className = 'mui-indicator mui-active';
+					}
+					else{
+						ind_div.className = 'mui-indicator';
+					}
+					slide_indicator.appendChild(ind_div);
 				};
 				var adv_last_div = document.createElement('div');
 				adv_last_div.className = 'mui-slider-item mui-slider-item-duplicate';
