@@ -43,7 +43,13 @@
 			"css/m_common.css",
 			"js/mui.min.js",
 			"images/task-right-bg.png",
-			"css/mui.min.css"
+			"css/mui.min.css",
+			"m_task_junior.html"
+		],
+		"refer": [
+			"m_task_junior.html",
+			"m_task_middle.html",
+			"m_task_senior.html"
 		]
 	},
 	"m_finance.html": {
@@ -286,6 +292,24 @@
 			"fonts/mui.ttf",
 			"css/mui.min.css",
 			"css/m_common.css"
+		]
+	},
+	"m_task_junior.html": {
+		"resources": [
+			"js/mui.pullToRefresh.js",
+			"js/mui.min.js",
+			"js/mui.pullToRefresh.material.js",
+			"css/m_task.css",
+			"css/mui.min.css",
+			"css/m_common.css",
+			"images/task-right-bg.png"
+		]
+	},
+	"m_task_senior.html": {
+		"resources": [
+			"js/mui.pullToRefresh.js",
+			"js/mui.pullToRefresh.material.js",
+			"images/task-right-bg.png"
 		]
 	}
 }

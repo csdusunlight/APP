@@ -29,12 +29,6 @@
 		<div class="mui-content">
 			<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
 				<div class="mui-scroll">
-					<div id="slider" class="mui-slider" >
-						<div class="mui-slider-group mui-slider-loop">
-						</div>
-						<div class="mui-slider-indicator">
-						</div>
-					</div>
 					<ul class="mui-table-view">
 					</ul>
 				</div>
@@ -45,11 +39,8 @@
 		<script type="text/javascript" charset="UTF-8" src="js/mui.pullToRefresh.js"></script>
 		<script type="text/javascript" charset="UTF-8" src="js/mui.pullToRefresh.material.js"></script>
 		<script>
-			var slide_group = document.body.querySelector('.mui-slider-group');
-			var slide_indicator = document.body.querySelector('.mui-slider-indicator');
 			var table = document.body.querySelector('.mui-table-view');
 			var get_task_url = "http://m.wafuli.cn/task_json";
-			var get_slider_url = "http://m.wafuli.cn/app/slider/?type=task";
 			var host = "http://m.wafuli.cn";
 			var count = 0;
 			mui.init({
@@ -61,84 +52,12 @@
 					up: {
 						contentrefresh: '正在加载...',
 						callback: function(){
-							get_task_list(table,count++,1);
+							get_task_list(table,count++,3);
 						},
 						auto:true
 					}
 				}
 			});
-			mui.ready(function() {
-				mui.ajax({
-					type: "get",
-					url: get_slider_url,
-					dataType: 'json',
-					success: function(response) {
-						if (!response) {
-							return error();
-						}
-						if(response.code!=0){
-							mui.alert(response.message)
-						}
-						else{
-							add_doms_slider(response.data,false);
-						}
-					},
-					error:function(xhr,type,errorThrown){
-						mui.alert(type);
-					}
-				});
-			});
-			function add_doms_slider(sliders, delay){
-				if (!sliders || sliders.length === 0){
-					return;
-				}
-				var length = sliders.length;
-				var adv_first = sliders[0];
-				var adv_last = sliders[sliders.length-1]
-				var adv_first_div = document.createElement('div');
-				adv_first_div.className = 'mui-slider-item mui-slider-item-duplicate';
-				var image = adv_last.image;
-				if (delay){
-					image = 'images/blank.jpg';
-				}
-				adv_first_div.innerHTML= '<a data_id="' + adv_last.id + '"><img id="slider_img_' + 
-					adv_last.id + 's" src="'+ image + '"></a>';
-				slide_group.appendChild(adv_first_div);
-				for (var i = 0; i < length; i++){
-					var slider = sliders[i];
-					image = slider.image;
-					if(delay){
-						image = 'images/blank.jpg';
-					}
-					var adv_div = document.createElement('div');
-					adv_div.className = 'mui-slider-item';
-					adv_div.innerHTML= '<a data_id="' + slider.id + '"><img id="slider_img_' + 
-						slider.id + '" src="'+ image + '"></a>';
-					slide_group.appendChild(adv_div);
-					
-					var ind_div = document.createElement('div');
-					if (i==0){
-						ind_div.className = 'mui-indicator mui-active';
-					}
-					else{
-						ind_div.className = 'mui-indicator';
-					}
-					slide_indicator.appendChild(ind_div);
-				};
-				var adv_last_div = document.createElement('div');
-				adv_last_div.className = 'mui-slider-item mui-slider-item-duplicate';
-				image = adv_first.image;
-				if (delay){
-					image = 'images/blank.jpg';
-				}
-				adv_last_div.innerHTML= '<a data_id="' + adv_first.id + '"><img id="slider_img_' + 
-					adv_first.id + 's" src="'+ image + '"></a>';
-				slide_group.appendChild(adv_last_div);
-				var gallery = mui('.mui-slider');
-				gallery.slider({
-					interval: 4000 //自动轮播周期，若为0则不自动播放，默认为0；
-				});
-			}
 			function get_task_list(ul,n,index){
 				mui.ajax(get_task_url,{
 					data:{
