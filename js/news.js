@@ -28,7 +28,8 @@ var NEWS_URL = 'http://m.wafuli.cn/app/news/';
 	var SQL_TABLE = 'DROP TABLE IF EXISTS wa_news;DROP TABLE IF EXISTS wa_slider;DROP TABLE IF EXISTS wa_recom;' + 
 		'CREATE TABLE wa_news (id INTEGER PRIMARY KEY, title TEXT,mark1 TEXT,mark2 TEXT,mark3 TEXT,image TEXT,pubDate INTEGER,source TEXT, time TEXT, view INTEGER, type TEXT);' + 
 		'CREATE TABLE wa_slider (id INTEGER PRIMARY KEY, image TEXT,priority INTEGER, pubDate INTEGER);' +
-		'CREATE TABLE wa_recom (id INTEGER PRIMARY KEY, image TEXT, location INTEGER UNIQUE);';
+		'CREATE TABLE wa_recom (id INTEGER PRIMARY KEY, image TEXT, location INTEGER UNIQUE);' + 
+		'CREATE TABLE wa_task (id INTEGER PRIMARY KEY, title TEXT, image TEXT,pubDate INTEGER,source TEXT, time TEXT, view INTEGER, type TEXT);';
 	var SQL_SELECT_NEWS= 'SELECT id,title,mark1,mark2,mark3,pubDate,image,source,time,view,type FROM wa_news WHERE pubDate < ? ORDER BY pubDate DESC LIMIT ?;';
 	var SQL_INSERT_NEWS = 'INSERT INTO wa_news(id,title,mark1,mark2,mark3,pubDate,image,source,time,view,type) VALUES(?,?,?,?,?,?,?,?,?,?,?);';
 	var SQL_SELECT_NEWS_DETAIL = 'SELECT * FROM wa_news WHERE id = ? LIMIT 1;';
@@ -55,7 +56,7 @@ var NEWS_URL = 'http://m.wafuli.cn/app/news/';
 		return date.getFullYear() + '/' + _format(date.getMonth() + 1) + '/' + _format(date.getDay()) + '-' + _format(date.getHours()) + ':' + _format(date.getMinutes());
 	};
 	wa.dbReady = function(successCallback, errorCallback) {
-		html5sql.openDatabase("wafuli6", "wafuli", 5 * 1024 * 1024);
+		html5sql.openDatabase("wafuli", "wafuli", 5 * 1024 * 1024);
 		if (html5sql.database.version === '') {
 			html5sql.changeVersion('', DB_VERSION_NUMBER, SQL_TABLE, function() {
 				successCallback && successCallback(true);

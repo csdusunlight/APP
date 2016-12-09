@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 	<head lang="en">
@@ -23,16 +22,16 @@
 	    <link href="css/mui.min.css" rel="stylesheet"/>
 	</head>
 	<body>
-		<header class="mui-bar mui-bar-nav">
+		<!--<header class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 id="title" class="mui-title">免费</h1>
-		</header>
+		</header>-->
 		<nav class="mui-bar mui-bar-tab">
 			<a id="defaultTab" class="mui-tab-item mui-active" href="m_welfare.html">
 				<span class="mui-icon mui-icon-home"></span>
 				<span class="mui-tab-label">免费</span>
 			</a>
-			<a class="mui-tab-item" href="m_task_main.html">
+			<a class="mui-tab-item" href="m_task.html">
 				<span class="mui-icon mui-icon-email"></span>
 				<span class="mui-tab-label">任务</span>
 			</a>
@@ -51,9 +50,9 @@
 		//mui初始化
 		mui.init();
 //		var subpages = ['m_welfare_main.html', 'm_task_main.html', 'm_finance_main.html', 'm_account_index.html'];
-		var subpages = ['m_welfare.html','a_login.html'];
+		var subpages = ['m_welfare.html','m_task.html','a_login.html'];
 		var subpage_style = {
-			top: '45px',
+			top: '0px',
 			bottom: '51px',
 			hardwareAccelerated:true
 		};
@@ -88,7 +87,7 @@
 				return;
 			}
 			//更换标题
-			title.innerHTML = this.querySelector('.mui-tab-label').innerHTML;
+//			title.innerHTML = this.querySelector('.mui-tab-label').innerHTML;
 			//显示目标选项卡
 			//若为iOS平台或非首次显示，则直接显示
 			if(mui.os.ios || aniShow[targetTab]) {

@@ -36,7 +36,14 @@
 			"%7B%static%20\u0027css/mui.min.css\u0027%%7D",
 			"%7B%static%20\u0027js/mui.pullToRefresh.js\u0027%%7D",
 			"%7B%static%20\u0027images/nav1.png\u0027%%7D",
-			"%7B%static%20\u0027css/m_common.css\u0027%%7D"
+			"%7B%static%20\u0027css/m_common.css\u0027%%7D",
+			"js/mui.pullToRefresh.js",
+			"js/mui.pullToRefresh.material.js",
+			"css/m_task.css",
+			"css/m_common.css",
+			"js/mui.min.js",
+			"images/task-right-bg.png",
+			"css/mui.min.css"
 		]
 	},
 	"m_finance.html": {
