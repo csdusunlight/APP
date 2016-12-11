@@ -22,7 +22,7 @@
 		<meta http-equiv="Expires" content="0">
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="css/m_common.css" />
-		<link rel="stylesheet" type="text/css" href="css/m_task.css" />
+		<link rel="stylesheet" type="text/css" href="css/m_finance.css" />
 	</head>
 
 	<body>
@@ -46,8 +46,8 @@
 			var slide_group = document.body.querySelector('.mui-slider-group');
 			var slide_indicator = document.body.querySelector('.mui-slider-indicator');
 			var table = document.body.querySelector('.mui-table-view');
-			var get_task_url = "http://m.wafuli.cn/task_json";
-			var get_slider_url = "http://m.wafuli.cn/app/slider/?type=task";
+			var get_task_url = "http://m.wafuli.cn/finance_json";
+			var get_slider_url = "http://m.wafuli.cn/app/slider/?type=finance";
 			var host = "http://m.wafuli.cn";
 			var count = 0;
 			var gallery_firstrun = 0;
@@ -60,7 +60,7 @@
 					up: {
 						contentrefresh: '正在加载...',
 						callback: function(){
-							get_task_list(table,count++,1);
+							get_finance_list(table,count++,0);
 						},
 						auto:true
 					}
@@ -135,10 +135,9 @@
 				slide_group.appendChild(adv_last_div);
 				if (length>1){
 					mui('#slider').slider({ interval:4000 });
-					mui('#slider').slider().gotoItem(0);
 				}
 			}
-			function get_task_list(ul,n,index){
+			function get_finance_list(ul,n,index){
 				mui.ajax(get_task_url,{
 					data:{
 						count:n,
@@ -158,29 +157,13 @@
 								var wel = data[i];
 								var li = document.createElement('li');
 								li.className = 'mui-table-view-cell';
-								str_html = '<a class="clearfix" href="' + wel.url + '"><div class="img-box"><img src="'+
-			                    	host + wel.picurl + '" /></div><p class="info-right';
-								if (wel.state=='2'){
-			                    	str_html += ' task-end';
-			                    }
-			                    str_html += '"><span>';
-			                    if(wel.money>0)
-			                    	str_html += '<b>+<number>' + wel.money + '</number>福币</b>';
-			                    if(wel.score>0)
-			                    	str_html += '<b>+<number>' + wel.score + '</number>积分</b>';
-			                    str_html += '</span></p><div class="info-middle">'+
-			                    	'<h6>' + wel.title + '</h6>';
-			                    if (wel.state=='2'){
-			                    	str_html += '<p>抢光啦</p>';
-			                    }
-			                    else if(wel.is_forbidden){
-			                    	str_html += '<p>已暂停（数据审核中...）</p>'
-			                    }
-			                    else{
-			                    	str_html += '<p>剩&nbsp;<number>'+wel.num+'</number>&nbsp;份</p>';
-			                    }
-			                    str_html += '</div></a>';
-			                    li.innerHTML = str_html;
+								li.innerHTML = '<a href="' + wel.url + '"><div class="title"><strong>'+ wel.title +
+									'</strong><span>官网利息：<font>' + wel.interest + '</font></span></div>'+
+									'<div class="container clearfix">'+
+									'<div><img src="' + host + wel.picurl + '" /><span>' + wel.category + '</span>'+
+									'</div><div class="inc2"><p>补贴收益：<number>+' + wel.benefit +
+									'</number></p><p>起投金额：' + wel.amount +
+									'</p><p>标期长度：' + wel.time + '</p></div></div></a>';
 								ul.appendChild(li);
 							}
 						}

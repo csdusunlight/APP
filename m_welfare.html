@@ -110,6 +110,7 @@
 			var news_group = document.body.querySelector('.mui-table-view');
 			var recom_group = document.body.querySelector('.today-img');
 			var slide_indicator = document.body.querySelector('.mui-slider-indicator');
+			var gallery_firstrun = 0;
 			 //初始化下拉刷新模块  
 			mui.init({
 				pullRefresh: {
@@ -178,10 +179,6 @@
 					}
 					setTimeout(function(){
 						mui('#pullrefresh').pullRefresh().pulldownLoading();
-						var gallery = mui('#slider');
-						gallery.slider({
-							interval: 4000 //自动轮播周期，若为0则不自动播放，默认为0；
-						});
 					},1000);
 					setTimeout(function(){
 						getTemplate('welfare','template.html',"m_detail_welfare.html");
@@ -235,7 +232,6 @@
 			};
 
 			function pullupRefresh() {
-				console.log('pullup');
 				mui.getNews(NEWS_URL + '?lastDate=' + latestPubDate, function(items) {
 					if (items) {
 						if (items&&items.length>0){
@@ -402,8 +398,12 @@
 				adv_last_div.innerHTML= '<a data_id="' + adv_first.id + '"><img id="slider_img_' + 
 					adv_first.id + 's" src="'+ image + '"></a>';
 				slide_group.appendChild(adv_last_div);
-				var gallery = mui('.mui-slider');
-				gallery.slider().gotoItem(0);
+				if( gallery_firstrun == 0 ){
+					mui('#slider').slider({ interval:4000 });
+					gallery_firstrun++;
+				}else{
+					mui('#slider').slider().refresh(); // 第二次就是刷新轮播数据
+				}
 			}
 			function add_doms_recom(recoms, delay){
 //				var recoms = mui.extend({}, recoms); 

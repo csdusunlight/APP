@@ -270,7 +270,8 @@
 					"js/mui.min.js",
 					"images/task-right-bg.png",
 					"css/mui.min.css",
-					"m_task_junior.html"
+					"m_task_junior.html",
+					"js/mui.js"
 				],
 				"refer": [
 					"m_task_middle.html",
@@ -291,9 +292,14 @@
 					"%7B%static%20\u0027css/mui.min.css\u0027%%7D",
 					"%7B%static%20\u0027js/mui.pullToRefresh.js\u0027%%7D",
 					"%7B%static%20\u0027images/nav1.png\u0027%%7D",
-					"%7B%static%20\u0027css/m_common.css\u0027%%7D"
+					"%7B%static%20\u0027css/m_common.css\u0027%%7D",
+					"m_finance_sub1.html",
+					"css/m_task.css"
 				],
-				"refer": [],
+				"refer": [
+					"m_finance_sub3.html",
+					"m_finance_sub2.html"
+				],
 				"priority": 0
 			},
 			"m_welfare.html": {
@@ -394,9 +400,15 @@
 					"images/sin-picon-04.jpg",
 					"images/pen.png",
 					"images/sin-picon-06.jpg",
-					"css/m_common.css"
+					"css/m_common.css",
+					"fonts/wafuli-iconfont.woff",
+					"js/UserInfo.js",
+					"images/user-01.png",
+					"images/user-03.png"
 				],
-				"refer": [],
+				"refer": [
+					"a_login.html"
+				],
 				"priority": 0
 			},
 			"m_welfare_main.html": {
@@ -541,7 +553,8 @@
 					"css/m_task.css",
 					"css/mui.min.css",
 					"css/m_common.css",
-					"images/task-right-bg.png"
+					"images/task-right-bg.png",
+					"js/mui.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -550,7 +563,36 @@
 				"resources": [
 					"js/mui.pullToRefresh.js",
 					"js/mui.pullToRefresh.material.js",
-					"images/task-right-bg.png"
+					"images/task-right-bg.png",
+					"css/m_task.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"m_task_middle.html": {
+				"resources": [
+					"images/task-right-bg.png",
+					"js/mui.pullToRefresh.js",
+					"js/mui.pullToRefresh.material.js",
+					"css/m_task.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"m_finance_sub1.html": {
+				"resources": [
+					"css/m_finance.css",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/m_common.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"m_finance_sub3.html": {
+				"resources": [
+					"css/m_finance.css",
+					"css/m_common.css"
 				],
 				"refer": [],
 				"priority": 0
@@ -976,7 +1018,6 @@
 				"images/img5.png",
 				"images/share-guide-bottom.png",
 				"images/my_pic3.png",
-				"images/user-03.png",
 				"images/i277x148-2.jpg",
 				"images/i-13.jpg",
 				"css/lottery.css",
@@ -1044,7 +1085,6 @@
 				"images/img2.png",
 				"images/activity_invite_bottom.png",
 				"images/newico2.png",
-				"images/user-01.png",
 				"images/new4.png"
 			]
 		}
