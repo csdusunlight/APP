@@ -68,7 +68,8 @@
 			"%7B%static%20\u0027images/nav1.png\u0027%%7D",
 			"%7B%static%20\u0027css/m_common.css\u0027%%7D",
 			"m_finance_sub1.html",
-			"css/m_task.css"
+			"css/m_task.css",
+			"css/m_common.css"
 		],
 		"refer": [
 			"m_finance_sub1.html",
@@ -349,6 +350,11 @@
 		"resources": [
 			"css/m_finance.css",
 			"css/m_common.css"
+		]
+	},
+	"m_finance_sub2.html": {
+		"resources": [
+			"css/m_finance.css"
 		]
 	}
 }

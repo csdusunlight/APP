@@ -101,10 +101,57 @@
     <script type="text/javascript" charset="utf-8">
       	mui.init();
       	var get_userinfo_url = "http://m.wafuli.cn/app/user/";
+      	var self = null;
       	mui.plusReady(function() {
-      		plus.webview.currentWebview().addEventListener('show',function(){
+      		self = plus.webview.currentWebview();
+      		window.addEventListener('login-refresh',function(){
+      			console.log('backwebview.id');
+				mui.ajax({
+					type: "post",
+					url: get_userinfo_url,
+					dataType: 'json',
+					data:{
+		    			token:UserInfo.token()
+		    		},
+					success: function(ret) {
+						if(ret.code==0){
+							document.getElementById('userimg').src = "images/user-0" + ret.userimg + ".png";
+							document.getElementById('mobile').innerText = ret.mobile;
+							document.getElementById('scores').innerText = ret.scores;
+	    					document.getElementById('accu_income').innerHTML = ret.accu_income;
+							document.getElementById('balance').innerText = ret.balance
+							document.getElementById('scores').innerText = ret.scores;
+	    				}
+	    				else if(ret.code<0){
+	    					console.log('22222');
+	    					mui.openWindow({
+					            url: "a_login.html",
+					            id:"login",
+					            styles: {
+					                top: 0,
+					                bottom: 0
+					            },
+					            show: {
+					                aniShow: 'slide-in-right',
+					            },
+					            extras:{
+					            	backid:self.id
+					            }
+					        });
+					        return;
+	    				}
+	    				else{
+	    					mui.alert(ret.msg);
+	    				}
+					},
+					error:function(xhr,type,errorThrown){
+						mui.alert(type);
+					}
+				});
+      		});
+      		self.addEventListener('show',function(){
       			if (!UserInfo.has_login()){
-      				console.log('11111111');
+      				console.log(self.id);
 					mui.openWindow({
 			            url: "a_login.html",
 			            id:"login",
@@ -139,7 +186,7 @@
 							document.getElementById('scores').innerText = ret.scores;
 	    				}
 	    				else if(ret.code<0){
-	    					console.log('22222');
+	    					console.log(self.id);
 	    					mui.openWindow({
 					            url: "a_login.html",
 					            id:"login",
