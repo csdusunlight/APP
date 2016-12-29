@@ -200,9 +200,8 @@
 //					}, false);
 					regButton.addEventListener('tap', function(event) {
 						$.openWindow({
-							url: 'reg.html',
-							id: 'reg',
-							preload: true,
+							url: 'account/m_register.html',
+							id: 'register',
 							show: {
 								aniShow: 'pop-in'
 							},
@@ -210,15 +209,14 @@
 								popGesture: 'hide'
 							},
 							waiting: {
-								autoShow: false
+								autoShow: true
 							}
 						});
 					}, false);
 					forgetButton.addEventListener('tap', function(event) {
 						$.openWindow({
-							url: 'forget_password.html',
+							url: 'account/m_password_reset.html',
 							id: 'forget_password',
-							preload: true,
 							show: {
 								aniShow: 'pop-in'
 							},
@@ -226,25 +224,10 @@
 								popGesture: 'hide'
 							},
 							waiting: {
-								autoShow: false
+								autoShow: true
 							}
 						});
 					}, false);
-					//
-
-//					var backButtonPress = 0;
-//					$.back = function(event) {
-//						backButtonPress++;
-//						if (backButtonPress > 1) {
-//							plus.runtime.quit();
-//						} else {
-//							plus.nativeUI.toast('再按一次退出应用');
-//						}
-//						setTimeout(function() {
-//							backButtonPress = 0;
-//						}, 1000);
-//						return false;
-//					};
 				});
 			}(mui, document));
 		</script>

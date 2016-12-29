@@ -294,7 +294,12 @@
 			"css/mui.min.css",
 			"js/mui.enterfocus.js",
 			"fonts/mui.ttf",
-			"js/UserInfo.js"
+			"js/UserInfo.js",
+			"account/m_register.html"
+		],
+		"refer": [
+			"account/m_register.html",
+			"account/m_password_reset.html"
 		]
 	},
 	"html/m_get_coupon_success.html": {
@@ -348,6 +353,33 @@
 	"m_finance_sub3.html": {
 		"resources": [
 			"css/m_finance.css",
+			"css/m_common.css"
+		]
+	},
+	"account/m_register.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/m_style.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/m_register.css",
+			"js/accounts/user-validate.js",
+			"fonts/wafuli-iconfont.woff",
+			"css/m_common.css",
+			"a_login.html"
+		],
+		"refer": [
+			"a_login.html"
+		]
+	},
+	"account/m_password_reset.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/m_password_reset.css",
+			"js/accounts/user-validate.js",
+			"fonts/wafuli-iconfont.woff",
 			"css/m_common.css"
 		]
 	}

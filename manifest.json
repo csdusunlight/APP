@@ -526,9 +526,12 @@
 					"css/mui.min.css",
 					"js/mui.enterfocus.js",
 					"fonts/mui.ttf",
-					"js/UserInfo.js"
+					"js/UserInfo.js",
+					"account/m_register.html"
 				],
-				"refer": [],
+				"refer": [
+					"account/m_password_reset.html"
+				],
 				"priority": 0
 			},
 			"html/m_get_coupon_success.html": {
@@ -596,6 +599,34 @@
 				],
 				"refer": [],
 				"priority": 0
+			},
+			"account/m_register.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/m_style.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/m_register.css",
+					"js/accounts/user-validate.js",
+					"fonts/wafuli-iconfont.woff",
+					"css/m_common.css",
+					"a_login.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/m_password_reset.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/m_password_reset.css",
+					"js/accounts/user-validate.js",
+					"fonts/wafuli-iconfont.woff",
+					"css/m_common.css"
+				],
+				"refer": [],
+				"priority": 0
 			}
 		},
 		"idle": {
@@ -637,7 +668,6 @@
 				"images/choujiang-top.jpg",
 				"css/money.css",
 				"images/share-friend-row.png",
-				"css/m_password_reset.css",
 				"images/fenge.png",
 				"images/icon-3.png",
 				"images/newbox.png",
@@ -712,7 +742,6 @@
 				"images/pic3.png",
 				"images/header-x.gif",
 				"images/newimg1.png",
-				"js/accounts/user-validate.js",
 				"js/ZeroClipboard.swf",
 				"js/cookie.js",
 				"images/i_logo7.png",
@@ -810,7 +839,6 @@
 				"images/nav-3.png",
 				"images/newico1.png",
 				"images/logo-7.png",
-				"css/m_register.css",
 				"css/page.css",
 				"css/m_hongbao.css",
 				"images/pic4.png",
@@ -1071,7 +1099,6 @@
 				"images/back_to_top.png",
 				"images/01_20.jpg",
 				"images/i_logo6.png",
-				"css/m_style.css",
 				"images/headinfo.png",
 				"js/elastiStack.js",
 				"images/x-botin.png",

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>用户注册</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link href="../css/m_style.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/m_common.css"/>
+		<link rel="stylesheet" type="text/css" href="../css/m_register.css"/>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">用户注册</h1>
+		</header>
+		<div class="mui-content">
+			<form class="mui-input-group">
+				<div class="mui-input-row">
+					<label><i class="icon iconfont">&#xe637;</i></label>
+					<input id='mobile' type="text" maxlength=11 class="mui-input" placeholder="11位手机号">
+				</div>
+				<div class="mui-input-row mui-password">
+					<label><i class="icon iconfont">&#xe600;</i></label>
+					<input id='password' type="password" class="mui-input-password " placeholder="6-16位密码，字母和数字组合">
+				</div>
+				<div class="yanzhengma mui-input-row">
+					<label><i class="icon iconfont">&#xe603;</i></label>
+					<input id='x_yanzhengma' type="text" maxlength=4 class="mui-input" placeholder="图形验证码">
+					<img src="" id="id_checkImg"  alt="验证码图片" class="yanzheng ">
+       				<input id="id_hashkey" name="hashkey" type="hidden"">
+				</div>
+				<div class="yanzhengma mui-input-row">
+					<label><i class="icon iconfont">&#xe61a;</i></label>
+					<input id='telcode' type="text" maxlength=6 class="mui-input" placeholder="手机验证码">
+					<button type="button" id="gettelcode" class=" huoqu mui-btn-blue mui-btn-outlined">获取验证码</button>
+				</div>
+				<div class="mui-input-row">
+					<label><i class="icon iconfont">&#xe617;</i></label>
+					<input id='icode' type="email" maxlength=20 class="mui-input" placeholder="邀请码（可不填写）" >
+				</div>
+			</form>
+			<div class="mui-content-padded">
+				<button id='register' class="mui-btn mui-btn-block mui-btn-primary">注册</button>
+				<p class="link-area tc">已有账号？<span class="spliter">|</span> <a href="../a_login.html">请登录</a></p>
+				</div>
+			</div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/accounts/user-validate.js"></script>
+		<script type="text/javascript" charset="utf-8">
+	      	mui.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+	      	var countdown=60;
+			var coderefresh_url = "http://m.wafuli.cn/captcha/refresh/";
+			var sendtelcode_url = "http://m.wafuli.cn/account/phoneImageV/";
+			var register_url = "http://m.wafuli.cn/account/register/";
+			var index_url = "";
+			var host = "http://m.wafuli.cn";
+			mui.getJSON(coderefresh_url, null, function(data) {
+				var new_cptch_key = data.key;
+				var new_cptch_image = data.image_url;
+				key = document.getElementById("id_hashkey");
+				img = document.getElementById("id_checkImg");
+				key.value = new_cptch_key;
+				img.src = host + new_cptch_image;
+			});
+			document.getElementById("register").addEventListener('tap', function() {
+				var mobile = document.getElementById("mobile").value;
+				if(!validatePhone(mobile)) {
+					mui.alert('您输入的手机号格式有误，请重新输入！', '抱歉');
+					return;
+				}
+				var password = document.getElementById("password").value;
+				if(!validatePassport(password)) {
+					mui.alert('您输入的密码格式有误，请重新输入！（6-18位，至少包含字母、数字和特殊字符中的两种）', '抱歉');
+					return;
+				}
+				var telcode = document.getElementById("telcode").value;
+				if(!validatetelcode(telcode)) {
+					mui.alert('您输入的手机验证码格式有误，请重新输入！', '抱歉');
+					return;
+				}
+				var invite = document.getElementById("icode").value;
+				mui.ajax({
+					url : register_url,
+					data : {
+						password: password,
+						code : telcode,
+						mobile : mobile,
+						invite: invite,
+					},
+					type:'POST',
+					timeout : 3000,
+					success : function(data) {
+						if (data.code == '0') {
+							window.location.href = index_url;
+						}
+						else {
+							mui.alert(data.res_msg);
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						mui.alert(type);
+					}
+				});
+			});
+			document.getElementById("gettelcode").addEventListener('tap', function() {
+				var mobile = document.getElementById("mobile").value;
+				if(!validatePhone(mobile)) {
+					mui.alert('您输入的手机号格式有误，请重新输入！', '抱歉');
+				}
+				else{
+					sendTelVerifyCodeImageV(mobile);
+					settime(this);
+				}
+			});
+			function settime(val) {
+			    if (countdown == 0) {
+				    val.removeAttribute("disabled");
+				    val.innerText="获取验证码";
+				    countdown = 60;
+				    return;
+			  	} else {
+				    val.setAttribute("disabled", true);
+				    val.innerText="重新发送(" + countdown + ")";
+				    countdown--;
+			  	}
+			  	setTimeout(function() {
+			    	settime(val);
+			    },1000)
+			}
+			document.getElementById("id_checkImg").addEventListener('tap',function(){
+				mui.getJSON(coderefresh_url, null, function(data) {
+					var new_cptch_key = data.key;
+					var new_cptch_image = data.image_url;
+					key = document.getElementById("id_hashkey");
+					img = document.getElementById("id_checkImg");
+					key.value = new_cptch_key;
+					img.src = host + new_cptch_image;
+				});
+			});
+			var sendTelVerifyCodeImageV = function(mobile) {
+				var hashkey = document.getElementById("id_hashkey").value;
+				var response = document.getElementById("x_yanzhengma").value;
+				if (!response){
+					mui.alert("请输入图形验证码!");
+					countdown = 0;
+					return;
+				}
+				mui.ajax({
+					url : sendtelcode_url,
+					data : {
+						'phone' : mobile,
+						'action' : 'register',
+						'hashkey': hashkey,
+						'response': response,
+						},
+					timeout : 3000,
+					success : function(data) {
+						if (data.code != 0) {
+							mui.alert(data.message);
+							var new_cptch_key = data.key;
+					        var new_cptch_image = data.image_url;
+					        key = document.getElementById("id_hashkey");
+							img = document.getElementById("id_checkImg");
+							key.value = new_cptch_key;
+							img.src = host + new_cptch_image;
+						}
+						if (data.code == 1){
+							countdown = 0;
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						mui.alert(type);
+					}
+				});
+			};
+		</script>
+	</body>
+
+</html>
