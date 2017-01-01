@@ -408,7 +408,8 @@
 					"images/user-03.png"
 				],
 				"refer": [
-					"a_login.html"
+					"a_login.html",
+					"account/m_account_charge.html"
 				],
 				"priority": 0
 			},
@@ -633,6 +634,21 @@
 					"js/accounts/user-validate.js",
 					"fonts/wafuli-iconfont.woff",
 					"css/m_common.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/m_account_charge.html": {
+				"resources": [
+					"js/mui.pullToRefresh.js",
+					"css/m_account_charge.css",
+					"js/mui.pullToRefresh.material.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"fonts/wafuli-iconfont.woff",
+					"css/m_common.css",
+					"images/user-03.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -861,7 +877,6 @@
 				"images/newico4.png",
 				"images/box_pic.png",
 				"images/ico7.png",
-				"css/m_account_charge.css",
 				"images/pict_38.png",
 				"images/numberg1.png",
 				"images/icon-2.png",

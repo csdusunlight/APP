@@ -1,0 +1,132 @@
+{
+	"m_task_middle.html": {
+		"resources": [
+			"js/mui.pullToRefresh.js",
+			"js/mui.pullToRefresh.material.js",
+			"images/task-right-bg.png"
+		]
+	},
+	"m_welfare.html": {
+		"resources": [
+			"js/news.js",
+			"js/html5sql.js",
+			"css/m_index.css",
+			"js/template.js",
+			"fonts/wafuli-iconfont.woff",
+			"js/feed.js",
+			"css/m_common.css"
+		],
+		"refer": [
+			"browser.html",
+			"template.html",
+			"m_detail_welfare.html"
+		]
+	},
+	"m_task_junior.html": {
+		"resources": [
+			"images/task-right-bg.png"
+		]
+	},
+	"m_account_index.html": {
+		"resources": [
+			"css/m_account_index.css",
+			"js/UserInfo.js",
+			"images/bg-user.png",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"fonts/wafuli-iconfont.woff",
+			"images/user-01.png",
+			"css/m_common.css",
+			"images/user-03.png"
+		],
+		"refer": [
+			"a_login.html",
+			"account/m_account_charge.html"
+		]
+	},
+	"m_finance_sub2.html": {
+		"resources": [
+			"css/m_finance.css"
+		]
+	},
+	"m_index.html": {
+		"resources": [
+			"m_welfare.html",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"m_welfare.html",
+			"m_account_index.html",
+			"m_task.html",
+			"m_finance.html"
+		]
+	},
+	"template.html": {
+		"resources": [
+			"m_detail_welfare.html"
+		],
+		"refer": [
+			"m_detail_welfare.html"
+		]
+	},
+	"m_task.html": {
+		"resources": [
+			"m_task_junior.html"
+		],
+		"refer": [
+			"m_task_middle.html",
+			"m_task_junior.html",
+			"m_task_senior.html"
+		]
+	},
+	"m_finance.html": {
+		"resources": [
+			"m_finance_sub1.html",
+			"css/m_task.css",
+			"css/m_common.css"
+		],
+		"refer": [
+			"m_finance_sub3.html",
+			"m_finance_sub1.html",
+			"m_finance_sub2.html"
+		]
+	},
+	"m_detail_welfare.html": {
+		"resources": [
+			"images/blank.jpg",
+			"css/m_detail_hongbao.css"
+		]
+	},
+	"a_login.html": {
+		"resources": [
+			"css/style.css",
+			"js/mui.enterfocus.js"
+		]
+	},
+	"account/m_account_charge.html": {
+		"resources": [
+			"js/mui.pullToRefresh.js",
+			"css/m_account_charge.css",
+			"js/mui.pullToRefresh.material.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"fonts/wafuli-iconfont.woff",
+			"css/m_common.css",
+			"images/user-03.png"
+		]
+	},
+	"m_finance_sub3.html": {
+		"resources": [
+			"css/m_finance.css"
+		]
+	},
+	"m_finance_sub1.html": {
+		"resources": [
+			"css/m_finance.css"
+		]
+	}
+}

@@ -1,5 +1,3 @@
-
-{% load myfilter %}
 <!DOCTYPE html>
 <html>
 
@@ -23,7 +21,7 @@
 		<meta http-equiv="Pragma" content="no-cache">
 		<meta http-equiv="Cache-Control" content="no-cache">
 		<meta http-equiv="Expires" content="0">
-		<title></title>
+		<title>资金管理</title>
 
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="../css/m_common.css" />
@@ -39,10 +37,10 @@
 			<!--帐号部分-->
 			<div class="content-box">
 				<div class="msg clearfix">
-					<img src="/static/images/user-0{{user.id| modulo:'4'}}.png" alt="用户头像" />
+					<img id="userimg" src="images/user-01.png" alt="用户头像" />
 					<div class="text">
-						<p><number>{{user.mobile}}</number><br />
-						<span>账户余额：<strong><number>&nbsp;{{user.balance}}&nbsp;</number></strong>元</p>
+						<p><number id="mobile"></number><br />
+						<span>账户余额：<strong>&nbsp;<number id="balance"></number>&nbsp;</strong>元</p>
 					</div>
 				    <button id="Btn" type="button" class="mui-btn mui-btn-warning">提&nbsp;现</button>
 				</div>
@@ -104,7 +102,16 @@
 		<script src="../js/mui.pullToRefresh.material.js"></script>
 		<script>
 			mui.init();
-			var get_charge_url = "{% url 'charge_json' %}";
+			var get_charge_url = "http://m.wafuli.cn/account/charge_json/";
+			var self = null;
+			mui.plusReady(function(){
+				self = plus.webview.currentWebview();
+				user = self.user;
+				document.getElementById("balance").innerText = user.balance;
+				document.getElementById('userimg').src = user.img;
+				document.getElementById('mobile').innerText = user.mobile;
+				self.show();
+			});
 			(function($) {
 				//阻尼系数
 				var deceleration = mui.os.ios?0.003:0.0009;
@@ -204,7 +211,8 @@
 
 			document.getElementById('Btn').addEventListener("tap",function(){
 				mui.openWindow({
-		            url: "{% url 'account_withdraw' %}",
+		            url: "m_account_withdraw",
+		            id: "withdraw",
 		            styles: {
 		                top: 0,
 		                bottom: 0

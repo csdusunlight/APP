@@ -59,12 +59,12 @@
 
 			<ul class="mui-table-view">
 			        <li class="mui-table-view-cell">
-			            <a class="icon-qiandai mui-navigate-right" href="m_account_settings.html">
+			            <a class="icon-qiandai mui-navigate-right" href="account/m_account_charge.html">
 			                 福币管理
 			            </a>
 			        </li>
 			        <li class="mui-table-view-cell">
-			            <a class="icon-jifen mui-navigate-right"  href="m_account_settings.html">
+			            <a class="icon-jifen mui-navigate-right"  href="account/m_account_score.html">
 			                 	积分管理
 			            </a>
 			        </li>
@@ -72,19 +72,19 @@
 			</ul>
 			<ul class="mui-table-view">
 			        <li class="mui-table-view-cell">
-			            <a class="icon-iconfontfuli mui-navigate-right"  href="m_account_settings.html">
+			            <a class="icon-iconfontfuli mui-navigate-right"  href="account/m_account_welfare.html">
 			                 	福利管理
 			            </a>
 			        </li>
 			       <li class="mui-table-view-cell">
-			            <a class="icon-youhuiquan mui-navigate-right"  href="m_account_settings.html">
+			            <a class="icon-youhuiquan mui-navigate-right"  href="account/m_account_coupon.html">
 			                 	优惠券管理
 			            </a>
 			        </li>
 			</ul>
 			<ul class="mui-table-view">
 			        <li class="mui-table-view-cell">
-			            <a class="icon-fuligonglve mui-navigate-right"  href="m_account_settings.html">
+			            <a class="icon-fuligonglve mui-navigate-right"  href="account/m_account_settings.html">
 			                 	挖福利攻略
 			            </a>
 			        </li>
@@ -102,52 +102,11 @@
       	mui.init();
       	var get_userinfo_url = "http://m.wafuli.cn/app/user/";
       	var self = null;
+      	var user = null;
       	mui.plusReady(function() {
       		self = plus.webview.currentWebview();
       		window.addEventListener('login-refresh',function(){
-      			console.log('backwebview.id');
-				mui.ajax({
-					type: "post",
-					url: get_userinfo_url,
-					dataType: 'json',
-					data:{
-		    			token:UserInfo.token()
-		    		},
-					success: function(ret) {
-						if(ret.code==0){
-							document.getElementById('userimg').src = "images/user-0" + ret.userimg + ".png";
-							document.getElementById('mobile').innerText = ret.mobile;
-							document.getElementById('scores').innerText = ret.scores;
-	    					document.getElementById('accu_income').innerHTML = ret.accu_income;
-							document.getElementById('balance').innerText = ret.balance
-							document.getElementById('scores').innerText = ret.scores;
-	    				}
-	    				else if(ret.code<0){
-	    					console.log('22222');
-	    					mui.openWindow({
-					            url: "a_login.html",
-					            id:"login",
-					            styles: {
-					                top: 0,
-					                bottom: 0
-					            },
-					            show: {
-					                aniShow: 'slide-in-right',
-					            },
-					            extras:{
-					            	backid:self.id
-					            }
-					        });
-					        return;
-	    				}
-	    				else{
-	    					mui.alert(ret.msg);
-	    				}
-					},
-					error:function(xhr,type,errorThrown){
-						mui.alert(type);
-					}
-				});
+      			get_user_info();
       		});
       		self.addEventListener('show',function(){
       			if (!UserInfo.has_login()){
@@ -167,7 +126,30 @@
 			        });
 			        return;
 				}
-	      		
+      			get_user_info();
+      			
+      		});
+      		mui('.mui-table-view').on('tap', 'a', function(e) {
+				var targetTab = this.getAttribute('href');
+				mui.openWindow({
+		            url: targetTab,
+		            id: targetTab,
+		            styles: {
+		                top: 0,
+		                bottom: 0
+		            },
+		            show: {
+		                aniShow: 'slide-in-right',
+		            },
+		            waiting: {
+						autoShow: false
+					},
+		            extras:{
+		            	user:user
+		            }
+		        });
+			});
+			function get_user_info(){
 				mui.ajax({
 					type: "post",
 					url: get_userinfo_url,
@@ -177,15 +159,17 @@
 		    		},
 					success: function(ret) {
 						if(ret.code==0){
-							document.getElementById('userimg').src = "images/user-0" + ret.userimg + ".png";
+							var img = "images/user-0" + ret.userimg + ".png";
+							document.getElementById('userimg').src = img;
 							document.getElementById('mobile').innerText = ret.mobile;
 							document.getElementById('scores').innerText = ret.scores;
 	    					document.getElementById('accu_income').innerHTML = ret.accu_income;
 							document.getElementById('balance').innerText = ret.balance
 							document.getElementById('scores').innerText = ret.scores;
+							user = ret;
+							user.img = '../' + img;
 	    				}
 	    				else if(ret.code<0){
-	    					console.log(self.id);
 	    					mui.openWindow({
 					            url: "a_login.html",
 					            id:"login",
@@ -210,7 +194,7 @@
 						mui.alert(type);
 					}
 				});
-      		});
+			}
 		});
     </script>
 	</body>
