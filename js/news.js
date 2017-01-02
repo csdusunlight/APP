@@ -1,7 +1,7 @@
 var wa = [];
-var SLIDER_URL = 'http://m.wafuli.cn/app/slider/';
-var RECOM_URL = 'http://m.wafuli.cn/app/recom/';
-var NEWS_URL = 'http://m.wafuli.cn/app/news/'; 
+var SLIDER_URL = 'http://test.wafuli.cn/app/slider/';
+var RECOM_URL = 'http://test.wafuli.cn/app/recom/';
+var NEWS_URL = 'http://test.wafuli.cn/app/news/'; 
 (function($, wa, websql) {
 
 	var DB_VERSION_NUMBER = '1.0';
@@ -316,6 +316,10 @@ var NEWS_URL = 'http://m.wafuli.cn/app/news/';
 				"data": item
 			})
 		});
+		if (sqls.length === 0){
+			successCallback(false);
+			return;
+		}
 		websql.process(sqls, function(tx, results) {
 			successCallback(true);
 		}, function(error, failingQuery) {
@@ -367,6 +371,10 @@ var NEWS_URL = 'http://m.wafuli.cn/app/news/';
 				"data": item
 			})
 		});
+		if (sqls.length === 0){
+			successCallback(false);
+			return;
+		}
 		websql.process(sqls, function(tx, results) {
 			successCallback(true);
 		}, function(error, failingQuery) {
@@ -416,6 +424,10 @@ var NEWS_URL = 'http://m.wafuli.cn/app/news/';
 				"data": item
 			})
 		});
+		if (sqls.length === 0){
+			successCallback(false);
+			return;
+		}
 		websql.process(sqls, function(tx, results) {
 			successCallback(true);
 		}, function(error, failingQuery) {

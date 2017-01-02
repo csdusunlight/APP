@@ -409,7 +409,8 @@
 				],
 				"refer": [
 					"a_login.html",
-					"account/m_account_charge.html"
+					"account/m_account_charge.html",
+					"account/m_account_score.html"
 				],
 				"priority": 0
 			},
@@ -648,7 +649,54 @@
 					"css/mui.min.css",
 					"fonts/wafuli-iconfont.woff",
 					"css/m_common.css",
-					"images/user-03.png"
+					"images/user-03.png",
+					"js/UserInfo.js"
+				],
+				"refer": [
+					"account/m_account_withdraw.html"
+				],
+				"priority": 0
+			},
+			"account/m_account_score.html": {
+				"resources": [
+					"css/m_account_score.css",
+					"js/mui.pullToRefresh.js",
+					"images/user-03.png",
+					"js/mui.min.js",
+					"js/mui.pullToRefresh.material.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"fonts/wafuli-iconfont.woff",
+					"css/m_common.css",
+					"js/UserInfo.js"
+				],
+				"refer": [
+					"account/m_account_exchange.html"
+				],
+				"priority": 0
+			},
+			"account/m_account_exchange.html": {
+				"resources": [
+					"css/m_account_exchange.css",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/m_common.css",
+					"js/UserInfo.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/m_account_withdraw.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/m_account_withdraw.css",
+					"css/mui.min.css",
+					"css/m_common.css",
+					"images/user-03.png",
+					"images/fubi.png",
+					"js/UserInfo.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -824,7 +872,6 @@
 				"images/share-friend-bottom.png",
 				"images/i_logo2.png",
 				"css/m_activity_recommend.css",
-				"css/m_account_withdraw.css",
 				"images/footer-x.gif",
 				"images/out-02.png",
 				"css/youhuiquan-guanli.css",
@@ -955,7 +1002,6 @@
 				"images/new3.png",
 				"css/m_activity.css",
 				"js/page.min.js",
-				"css/m_account_score.css",
 				"images/bg-02.png",
 				"images/logo-5.png",
 				"images/window.png",
@@ -970,7 +1016,6 @@
 				"images/pointer.png",
 				"images/bg-every.png",
 				"images/code.jpg",
-				"css/m_account_exchange.css",
 				"js/new_file.html",
 				"images/phone.png",
 				"images/yzm.png",

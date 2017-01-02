@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 	<head lang="en">
 		<meta charset="UTF-8">
@@ -36,73 +35,89 @@
 			<!--帐号部分-->
 			<div class="zhanghu">
 				<div class="msg clearfix">
-					<img src="../images/user.png" alt="用户图标" />
+					<img id="userimg" alt="用户图标" />
 					<div class="text">
-						<p><number>{{user.mobile}}</number><br />
-						{%if user.zhifubao %}
-							<span>支付宝帐号：<number>{{user.zhifubao}}</number>（{{user.zhifubao_name}}）
-						{%else%}
-							<span>支付宝帐号：未绑定
-						{%endif%}
+						<p><number id="mobile"></number><br />
+							<span id="zhifubao"></span>
 						</p>
 					</div>
 				</div>
-				{%if user.zhifubao %}
-					<a class="right" href="{% url 'change_zhifubao' %}">更换支付宝帐号></a>
-				{%else%}
-					<a class="right" href="{% url 'bind_zhifubao' %}">绑定支付宝帐号></a>
-				{%endif%}
-
+				<a id="change_zhifubao" class="right"></a>
 			</div>
 			<!--提现部分-->
 			<form class="mui-input-group">
-			
-			    <div class="mui-input-row">
-			        <label>￥</label>
-			        <input id="with_amount" autofocus="autofocus" type="text" class="mui-input-clear" placeholder="请输入提现金额">
+				<div class="mui-input-row">
+			        <label></label>
+			        <input id="with_amount" autofocus="autofocus" type="text" class="mui-input-clear" placeholder="请输入提现福币个数">
 			    </div>
 			</form>
 		    <p>
-		    	<span>余额（元）：<number>{{user.balance}}</number></span>
-				<span>最低提现金额<number>10.00</number>元</span>
+		    	<span>可提现福币（个）：<number id="balance"></number></span>
+				<span>最低提现福币<number>1000</number>个</span>
 			</p>
 			<button id="Btn" type="button" class="mui-btn mui-btn-blue mui-btn-block">确认提现</button>
 		</div>
 
 
 		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="../js/UserInfo.js"></script>
 		<!--弹窗部分-->
 		<script type="text/javascript" charset="utf-8">
-			mui.init({
-				swipeBack: true //启用右滑关闭功能
+			mui.init();
+			var self = null;
+			mui.plusReady(function(){
+				self = plus.webview.currentWebview();
+				user = self.user;
+				document.getElementById("balance").innerText = user.balance;
+				document.getElementById('userimg').src = user.img;
+				document.getElementById('mobile').innerText = user.mobile;
+				plus.nativeUI.closeWaiting();
+				self.show();
+				console.log(user.zhifubao);
+				if (user.zhifubao){
+					document.getElementById("zhifubao").innerHTML = "支付宝帐号：<number>" + user.zhifubao + "</number>";
+					document.getElementById("change_zhifubao").src = "m_account_change_zhifubao.html";
+					document.getElementById("change_zhifubao").innerText = "更换支付宝账号";
+				}
+				else{
+					document.getElementById("zhifubao").innerHTML = "支付宝帐号：未绑定";
+					document.getElementById("change_zhifubao").src = "m_account_bind_zhifubao.html";
+					document.getElementById("change_zhifubao").innerText = "绑定支付宝账号";
+				}
 			});
-			var withdraw_url = "{%url 'account_withdraw' %}";
+			var withdraw_url = "http://test.wafuli.cn/app/withdraw/";
 			document.getElementById("Btn").addEventListener('tap', function() {
 				var amount = document.getElementById("with_amount").value;
-				if (!amount){
-					mui.alert('请输入提现金额！');
+				amount = parseInt(amount);
+				if (isNaN(amount)){
+					mui.alert('提现数量必须为整数！');
 					return;
 				}
-				if (amount<10){
-					mui.alert('最低提现金额为10元！');
+				if (amount<1000){
+					mui.alert('最低提现福币数量为1000！');
 					return;
 				}
-				var csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
-				mui.ajax({
-					url: withdraw_url,
-					dataType:"json",
-					type:'POST',
-					data : {
-						amount: amount,
-						csrfmiddlewaretoken:csrfmiddlewaretoken
-					},
-					success:function(ret){
-						mui.alert(ret.res_msg);
-					},
-					error:function(){
-						alert("请检查网络连接");
-					}
-				});
+				var btnArray = ['否', '是'];
+				var confirm_str = "您提现的金额为人民币" + amount/100.0 + "元，确认？"
+                mui.confirm(confirm_str, '提现确认', btnArray, function(e) {
+                    if (e.index == 1) {
+        				mui.ajax({
+        					url: withdraw_url,
+        					dataType:"json",
+        					type:'POST',
+        					data : {
+        						amount: amount,
+        						token:UserInfo.token()
+        					},
+        					success:function(ret){
+        						mui.alert(ret.res_msg);
+        					},
+        					error:function(xhr,type,errorThrown){
+								mui.alert(type);
+							}
+        				});
+                    }
+                });
 			});
 		</script>
 	</body>

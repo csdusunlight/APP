@@ -54,11 +54,11 @@
 				swipeBack:true //启用右滑关闭功能
 			});
 	      	var countdown=60;
-			var coderefresh_url = "http://m.wafuli.cn/captcha/refresh/";
-			var sendtelcode_url = "http://m.wafuli.cn/account/phoneImageV/";
-			var register_url = "http://m.wafuli.cn/account/register/";
+			var coderefresh_url = "http://test.wafuli.cn/captcha/refresh/";
+			var sendtelcode_url = "http://test.wafuli.cn/account/phoneImageV/";
+			var register_url = "http://test.wafuli.cn/account/register/";
 			var index_url = "";
-			var host = "http://m.wafuli.cn";
+			var host = "http://test.wafuli.cn";
 			mui.getJSON(coderefresh_url, null, function(data) {
 				var new_cptch_key = data.key;
 				var new_cptch_image = data.image_url;

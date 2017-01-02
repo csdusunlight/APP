@@ -23,7 +23,7 @@
 		<meta http-equiv="Pragma" content="no-cache">
 		<meta http-equiv="Cache-Control" content="no-cache">
 		<meta http-equiv="Expires" content="0">
-		<title></title>
+		<title>积分管理</title>
 
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="../css/m_common.css" />
@@ -39,10 +39,10 @@
 			<!--帐号部分-->
 			<div class="content-box">
 				<div class="msg clearfix">
-					<img src="/static/images/user-0{{user.id| modulo:'4'}}.png" alt="用户头像" />
+					<img id="userimg" alt="用户头像" />
 					<div class="text">
-						<p>您总共获得积分：<strong><number>{{user.accu_scores}}</number></strong><br />
-							<span>可用积分：<strong><number>{{user.scores}}</number></strong></p>
+						<p>您总共获得积分：<strong><number id="accu_scores"></number></strong><br />
+							<span>可用积分：<strong><number id="scores"></number></strong></p>
 					</div>
 				</div>
 
@@ -112,9 +112,20 @@
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/mui.pullToRefresh.js"></script>
 		<script src="../js/mui.pullToRefresh.material.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="../js/UserInfo.js"></script>
 		<script>
 			mui.init();
-			var get_charge_url = "{% url 'score_json' %}";
+			var get_score_url = "http://test.wafuli.cn/app/score_json/";
+			var self = null;
+			mui.plusReady(function(){
+				self = plus.webview.currentWebview();
+				user = self.user;
+				document.getElementById("accu_scores").innerText = user.accu_scores;
+				document.getElementById('userimg').src = user.img;
+				document.getElementById('scores').innerText = user.scores;
+				plus.nativeUI.closeWaiting();
+				self.show();
+			});
 			(function($) {
 				//阻尼系数
 				var deceleration = mui.os.ios?0.003:0.0009;
@@ -142,10 +153,11 @@
 					});
 
 					function get_charge_list(obj,ul,n,index){
-						mui.ajax(get_charge_url,{
+						mui.ajax(get_score_url,{
 							data:{
 								count:n,
 								type:index,
+								token:UserInfo.token()
 							},
 							dataType:'json',//服务器返回json格式数据
 							type:'get',//HTTP请求类型
@@ -214,23 +226,29 @@
 
 			document.getElementById('exchange_btn').addEventListener("tap",function(){
 				mui.openWindow({
-		            url: "{% url 'account_exchange' %}",
+		            url: "m_account_exchange.html",
+		            id:"exchange",
 		            styles: {
 		                top: 0,
-		                bottom: 0
+		                bottom: 0,
+		                hardwareAccelerated:true
 		            },
 		            show: {
 		                aniShow: 'slide-in-right',
 		            },
 		            waiting: {
-		                autoShow: false, //自动显示等待框
+		                autoShow: true, //自动显示等待框
 		                title: '正在加载...', //等待对话框上显示的提示内容
+		            },
+		            extras:{
+		            	user:self.user
 		            }
 		        });
 			});
 			document.getElementById('lottery_btn').addEventListener("tap",function(){
 				mui.openWindow({
-		            url: "{% url 'activity_lottery' %}",
+		            url: "m_activity_lottery",
+		            id: "lottery",
 		            styles: {
 		                top: 0,
 		                bottom: 0

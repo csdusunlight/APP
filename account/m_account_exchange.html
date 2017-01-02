@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -34,20 +33,6 @@
 </header>
 <div id="pullrefresh" class="mui-scroll-wrapper">
 	<div class="mui-content">
-		<div class="top">
-			<ul>
-				<li class="mui-table-view-cell mui-collapse">
-					<a class="mui-navigate-right" href="#">可用积分：<span><number>{{user.scores}}</number></span></a>
-					<div class="mui-collapse-content">
-						<a href="{% url 'exchange_morescore' %}">获取更多积分></a>
-						<a href="{% url 'exchange_introduction' %}">查看兑换流程></a>
-						<a href="{% url 'exchange_questions' %}">常见问题></a>
-					</div>
-				</li>
-			</ul>
-
-
-		</div>
 
 		<ul class="box clearfix">
 
@@ -67,7 +52,6 @@
             <p>您的积分不足以兑换该商品~！</p>
             <div class="btn_cont">
             	<button type="button" class="mui-btn mui-btn-yellow">确定</button>
-            	<button id="but_width" type="button" class="mui-btn mui-btn-yellow">获得积分</button>
             </div>
         </div>
         <span class="btn_x mui-icon mui-icon-closeempty"></span>
@@ -140,6 +124,7 @@
     </div>
   </div>
     <script src="../js/mui.min.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="../js/UserInfo.js"></script>
     <script type="text/javascript" charset="utf-8">
       	mui.init({
 				pullRefresh: {
@@ -155,9 +140,16 @@
 		 * 上拉加载具体业务实现
 		 */
 		var count = 0;
-		var get_commodity_url = "{% url 'commodity_json' %}"
+		var get_commodity_url = "http://test.wafuli.cn/account/commodity_json/";
 		var good_id = 0;
-		var post_url = "{%url 'submit_order' %}";
+		var post_url = "http://test.wafuli.cn/app/submit_order/";
+		var self = null;
+		var host = "http://test.wafuli.cn";
+//		mui.plusReady(function(){
+//				self = plus.webview.currentWebview();
+//				user = self.user;
+//				document.getElementById('scores').innerText = user.scores;
+//		});
 		function pullupRefresh() {
 			if (count == 0){
 		//		mui('#pullrefresh').pullRefresh().scrollTo(0,0);
@@ -183,7 +175,7 @@
 							var good = data[i];
 							var li = document.createElement('li');
 							li.className = 'card';
-							str_block = '<a href="#"><img src="' + good.picurl + '"/></a>' +
+							str_block = '<a href="#"><img src="' + host + good.picurl + '"/></a>' +
 								'<div class="text"><h3>' + good.name + '</h3><div class="clearfix">'+
 								'<span><number>' + good.price + '</number>积分</span>' +
 								'<button type="button" good_id="' + good.id + '" ' +
@@ -231,7 +223,8 @@
 						addr: addr,
 						remark: remark,
 						id:good_id,
-						postcode: postcode
+						postcode: postcode,
+						token:UserInfo.token()
 					},
 					success:function(ret){
 						obj.parentNode.parentNode.parentNode.parentNode.style.display="none";

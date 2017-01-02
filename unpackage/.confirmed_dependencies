@@ -4,7 +4,8 @@
 			"js/mui.pullToRefresh.js",
 			"js/mui.pullToRefresh.material.js",
 			"images/task-right-bg.png"
-		]
+		],
+		"refer": []
 	},
 	"m_welfare.html": {
 		"resources": [
@@ -14,7 +15,9 @@
 			"js/template.js",
 			"fonts/wafuli-iconfont.woff",
 			"js/feed.js",
-			"css/m_common.css"
+			"css/m_common.css",
+			"js/mui.min.js",
+			"css/mui.min.css"
 		],
 		"refer": [
 			"browser.html",
@@ -25,7 +28,8 @@
 	"m_task_junior.html": {
 		"resources": [
 			"images/task-right-bg.png"
-		]
+		],
+		"refer": []
 	},
 	"m_account_index.html": {
 		"resources": [
@@ -42,13 +46,15 @@
 		],
 		"refer": [
 			"a_login.html",
-			"account/m_account_charge.html"
+			"account/m_account_charge.html",
+			"account/m_account_score.html"
 		]
 	},
 	"m_finance_sub2.html": {
 		"resources": [
 			"css/m_finance.css"
-		]
+		],
+		"refer": []
 	},
 	"m_index.html": {
 		"resources": [
@@ -97,14 +103,17 @@
 	"m_detail_welfare.html": {
 		"resources": [
 			"images/blank.jpg",
-			"css/m_detail_hongbao.css"
-		]
+			"css/m_detail_hongbao.css",
+			"js/UserInfo.js"
+		],
+		"refer": []
 	},
 	"a_login.html": {
 		"resources": [
 			"css/style.css",
 			"js/mui.enterfocus.js"
-		]
+		],
+		"refer": []
 	},
 	"account/m_account_charge.html": {
 		"resources": [
@@ -116,17 +125,62 @@
 			"css/mui.min.css",
 			"fonts/wafuli-iconfont.woff",
 			"css/m_common.css",
-			"images/user-03.png"
+			"images/user-03.png",
+			"js/UserInfo.js"
+		],
+		"refer": [
+			"account/m_account_withdraw.html"
 		]
 	},
 	"m_finance_sub3.html": {
 		"resources": [
 			"css/m_finance.css"
-		]
+		],
+		"refer": []
 	},
 	"m_finance_sub1.html": {
 		"resources": [
 			"css/m_finance.css"
+		],
+		"refer": []
+	},
+	"account/m_account_score.html": {
+		"resources": [
+			"css/m_account_score.css",
+			"js/mui.pullToRefresh.js",
+			"images/user-03.png",
+			"js/mui.min.js",
+			"js/mui.pullToRefresh.material.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"fonts/wafuli-iconfont.woff",
+			"css/m_common.css",
+			"js/UserInfo.js"
+		],
+		"refer": [
+			"account/m_account_exchange.html"
+		]
+	},
+	"account/m_account_exchange.html": {
+		"resources": [
+			"css/m_account_exchange.css",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/m_common.css",
+			"js/UserInfo.js"
+		]
+	},
+	"account/m_account_withdraw.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/m_account_withdraw.css",
+			"css/mui.min.css",
+			"css/m_common.css",
+			"images/user-03.png",
+			"images/fubi.png",
+			"js/UserInfo.js"
 		]
 	}
 }

@@ -1,0 +1,287 @@
+/*@font-face {
+	font-family: "浪漫雅圆";
+	src: url('../fonts/浪漫雅圆.ttf') format('truetype');
+
+}
+
+@font-face {
+	font-family: "迷你简汉真广标";
+	src: url('../fonts/迷你简汉真广标.ttf') format('truetype');
+}*/
+body {
+	width: 100%;
+	*cursor: default;
+	overflow: hidden;
+}
+
+#pageContain {
+	overflow: hidden;
+}
+
+.page {
+	box-shadow: 1px 1px 4px 0 #000;
+	display: none;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.contain {
+	width: 100%;
+	height: 100%;
+	display: none;
+	position: relative;
+	z-index: 0;
+}
+
+.current .contain,
+.slide .contain {
+	display: block;
+}
+
+.current {
+	display: block;
+	z-index: 1;
+}
+
+.slide {
+	display: block;
+	z-index: 2;
+}
+
+.swipe {
+	display: block;
+	z-index: 3;
+	transition-duration: 0ms !important;
+	-webkit-transition-duration: 0ms !important;
+}
+
+#navBar {
+	position: absolute;
+	width: 20px;
+	right: 5%;
+	;
+	top: 40%;
+	*padding-left: 80px;
+	font-size: 0px;
+	line-height: 0;
+	text-align: center;
+	z-index: 3;
+}
+
+#navBar .active {
+	background: #ccc;
+}
+
+#navBar li {
+	border: 1px solid #ccc;
+	font-size: 0px;
+	margin: 4px 4px;
+	cursor: pointer;
+	transition: all .7s ease;
+	border-radius: 50%;
+	line-height: 10px;
+	text-align: center;
+	width: 10px;
+	height: 10px;
+}
+
+.nav {
+	z-index: 5;
+	position: fixed;
+	_position: absolute;
+	box-shadow: 0 2px 10px 0px #000;
+	background: #fff;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 70px;
+	line-height: 70px;
+}
+
+
+/*页面元素*/
+.section1 .contain h1 {
+	padding-top: 15rem;
+	margin: 0 0 0.2rem -3.6rem;
+	font-size: 5rem;
+	font-family: "迷你简汉真广标";
+	color: #fd0300;
+	text-align: center;
+	animation: toBottom 1s ease-in-out;
+}
+
+.section1 .contain .title-after {
+	position: relative;
+	width: 100%;
+	height: 10rem;
+	background: url(../images/act-task-bg-hb.png) 82% center/auto 100% no-repeat;
+	z-index: 2;
+}
+
+.section1 .contain h3 {
+	margin-top: -2.2rem;
+	font-size: 2.6rem;
+	font-family: "迷你简汉真广标";
+	color: #f0cf06;
+	text-align: center;
+}
+
+.contain h2 {
+	margin: 0 auto;
+	padding-top: 2.8rem;
+	width: 90%;
+	font-family: "迷你简汉真广标";
+	font-size: 4.4rem;
+	text-align: center;
+	color: #fff;
+	text-shadow: 5px 5px 8px rgba(0, 0, 0, 0.3);
+	transform: skewY(-5deg);
+}
+
+.contain h2 span {
+	font-size: 5.6rem;
+}
+
+.contain h4 {
+	margin: 1rem auto 0;
+	width: 80%;
+	font-family: "迷你简汉真广标";
+	font-size: 2.4rem;
+	text-align: right;
+	color: #fff;
+	text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+	transform: skewY(-5deg);
+}
+
+.section2 .contain h4 {
+	letter-spacing: 0.4rem;
+}
+
+.section5 .contain h4 {
+	font-size: 2.1rem;
+}
+
+.contain p {
+	font-family: "浪漫雅圆";
+	font-size: 1.6rem;
+	line-height: 1.8;
+	color: #fff;
+	text-align: center;
+}
+
+.contain p.first-text {
+	margin: 60% auto 0;
+	text-align: center;
+}
+
+.contain>.link {
+	display: block;
+	font-family: "浪漫雅圆";
+	padding: 1.4rem 0;
+	font-size: 1.8rem;
+	text-align: center;
+}
+.section1 .contain a {
+	position: absolute;
+	padding: 10px;
+}
+.mui-icon-back:before, .mui-icon-left-nav:before {
+	color: #fff;
+}
+.contain .mark-red {
+	color: #fa1407;
+}
+
+.contain .mark-yellow {
+	color: #fafa02;
+}
+/*头部页面*/
+.section1 .contain {
+	background: url(../images/act-center-00.png) center 98%/94% auto no-repeat, url(../images/act-task-bg.png) center center/100% 100% no-repeat, url(../images/act-task-bg-top.png) 40% -2%/50% auto no-repeat;
+	background-color: #fff;
+}
+
+.section2 .contain {
+	background: url(../images/act-center-01.png) center 46%/auto 40% no-repeat, url(../images/act-task-bg-all.png) center center/100% 100% no-repeat;
+	background-color: #f3c82c;
+}
+
+.section3 .contain {
+	background: url(../images/act-center-03.png) center 46%/auto 40% no-repeat, url(../images/act-task-bg-all.png) center center/100% 100% no-repeat;
+	background-color: #ff9024;
+}
+
+.section4 .contain {
+	background: url(../images/act-center-04.png) center 46%/auto 36% no-repeat, url(../images/act-task-bg-all.png) center center/100% 100% no-repeat;
+	background-color: #ff596d;
+}
+
+.section5 .contain {
+	background: url(../images/act-center-05.png) center 46%/auto 36% no-repeat, url(../images/act-task-bg-all.png) center center/100% 100% no-repeat;
+	background-color: #dd903e;
+}
+
+.section6 .contain {
+	background: url(../images/act-center-02.png) center 46%/auto 36% no-repeat, url(../images/act-task-bg-all.png) center center/100% 100% no-repeat;
+	background-color: #e64c42;
+}
+.section7 .contain {
+	background: url(../images/act-center-06.png) center 16%/auto 60% no-repeat, url(../images/act-task-bg-all.png) center center/100% 100% no-repeat;
+	background-color: #5aa9fb;
+}
+.section7 a {
+	margin-top: 80%;
+	color: #fafa02;
+}
+.guide-icon {
+	position: absolute;
+	bottom: 2%;
+	left: 44%;
+	left: calc(50% - 2rem);
+	display: block;
+	margin: 0 auto;
+	width: 4rem;
+	height: 4rem;
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+	border: 6px solid rgba(255,255,255,0.5);
+	border-right: none;
+	border-bottom: none;
+	-ms-animation: guide 1s ease-in-out infinite;
+	-webkit-animation: guide 1s ease-in-out infinite;
+	animation: guide 1s ease-in-out infinite;
+}
+@-ms-keyframes guide {
+	0% {
+		-ms-transform: translateY(50px) rotate(45deg);
+		opacity: 0;
+	}
+	100% {
+		-ms-transform: translateY(0) rotate(45deg);
+		opacity: 1;
+	}
+}
+@-webkit-keyframes guide {
+	0% {
+		-webkit-transform: translateY(50px) rotate(45deg);
+		opacity: 0;
+	}
+	100% {
+		-webkit-transform: translateY(0) rotate(45deg);
+		opacity: 1;
+	}
+}
+@keyframes guide {
+	0% {
+		transform: translateY(50px) rotate(45deg);
+		opacity: 0;
+	}
+	100% {
+		transform: translateY(0) rotate(45deg);
+		opacity: 1;
+	}
+}

@@ -25,7 +25,6 @@
     <link rel="stylesheet" type="text/css" href="css/m_common.css"/>
     <link rel="stylesheet" type="text/css" href="css/m_account_index.css"/>
 </head>
-
 	<body>
 		<div class="mui-content">
 			<div class="top">
@@ -100,7 +99,7 @@
 	<script type="text/javascript" charset="UTF-8" src="js/UserInfo.js"></script>
     <script type="text/javascript" charset="utf-8">
       	mui.init();
-      	var get_userinfo_url = "http://m.wafuli.cn/app/user/";
+      	var get_userinfo_url = "http://test.wafuli.cn/app/user/";
       	var self = null;
       	var user = null;
       	mui.plusReady(function() {
@@ -136,11 +135,13 @@
 		            id: targetTab,
 		            styles: {
 		                top: 0,
-		                bottom: 0
+		                bottom: 0,
+		                hardwareAccelerated:true
 		            },
-		            show: {
-		                aniShow: 'slide-in-right',
-		            },
+		            show:{
+				      autoShow:false,//页面loaded事件发生后自动显示，默认为true
+				      aniShow: 'slide-in-right'
+				    },
 		            waiting: {
 						autoShow: false
 					},
@@ -175,7 +176,7 @@
 					            id:"login",
 					            styles: {
 					                top: 0,
-					                bottom: 0
+					                bottom: 0,
 					            },
 					            show: {
 					                aniShow: 'slide-in-right',
