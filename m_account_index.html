@@ -29,7 +29,7 @@
 		<div class="mui-content">
 			<div class="top">
         	<img id="userimg" src="images/user-01.png" alt="用户头像" />
-				<a href="m_account_settings.html"><number id="mobile"></number><i class="icon iconfont">&#xe63d;</i></a>
+				<a id="settings"><number id="mobile"></number><i class="icon iconfont">&#xe63d;</i></a>
 			</div>
 
 			<div class="mui-row">
@@ -133,6 +133,28 @@
 				mui.openWindow({
 		            url: targetTab,
 		            id: targetTab,
+		            styles: {
+		                top: 0,
+		                bottom: 0,
+		                hardwareAccelerated:true
+		            },
+		            show:{
+				      autoShow:false,//页面loaded事件发生后自动显示，默认为true
+				      aniShow: 'slide-in-right'
+				    },
+		            waiting: {
+						autoShow: false
+					},
+		            extras:{
+		            	user:user
+		            }
+		        });
+			});
+			document.getElementById("settings").addEventListener("tap",function(e) {
+				var targetTab = this.getAttribute('href');
+				mui.openWindow({
+		            url: "account/m_account_settings.html",
+		            id: "account/m_account_settings.html",
 		            styles: {
 		                top: 0,
 		                bottom: 0,

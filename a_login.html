@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html class="ui-page-login">
-
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
@@ -155,6 +154,7 @@
 					var autoLoginButton = doc.getElementById("autoLogin");
 					var regButton = doc.getElementById('reg');
 					var forgetButton = doc.getElementById('forgetPassword');
+					accountBox.value = UserInfo.username();
 					loginButton.addEventListener('tap', function(event) {
 						var loginInfo = {
 							username: accountBox.value,

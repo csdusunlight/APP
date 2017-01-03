@@ -22,28 +22,10 @@
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Cache-Control" content="no-cache">
     <meta http-equiv="Expires" content="0">
-    <title></title>
-    <script src="../js/mui.min.js"></script>
+    <title>账户管理</title>
     <link href="../css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="../css/m_common.css"/>
     <link rel="stylesheet" type="text/css" href="../css/m_account_settings.css"/>
-    <script type="text/javascript" charset="utf-8">
-      	mui.init();
-      	mui.ready(function(){
-      		document.getElementById('logout').addEventListener('tap',function(){
-          		var btnArray = ['确定退出', '取消'];
-    			mui.confirm('此操作将清除当前用户登录信息。', '退出当前账号', btnArray, function(e) {
-    				if (e.index == 1) {
-    					return;
-    				} else {
-    					mui.openWindow({
-    		                url: "{%url 'logout'%}",
-    					});
-    				}
-    			});
-          	});
-      	});
-    </script>
 </head>
 
 	<body>
@@ -53,30 +35,85 @@
 		</header>
 		<div class="mui-content">
 			<div class="top">
-				<img src="/static/images/user-0{{user.id| modulo:'4'}}.png" alt="用户头像" />
-				<a><number>{{user.mobile}}</number></a>
+				<img id="userimg" alt="用户头像" />
+				<a><number id="mobile"></number></a>
 			</div>
 			<ul class="mui-table-view">
 		        <li class="mui-table-view-cell">
-		            <a>手机绑定 <number>（{{user.mobile}}）</number></a>
+		            <a>手机绑定 （<number id="mobile2"></number>）</a>
 		        </li>
 		        <li class="mui-table-view-cell">
-		             {%if user.zhifubao %}
-		             <a class="mui-navigate-right" href="{%url 'change_zhifubao'%}">支付宝绑定<number>（{{user.zhifubao}}）</number><span>更换</span></a>
-		             {%else%}
-		             <a class="mui-navigate-right" href="{%url 'bind_zhifubao'%}">支付宝绑定<number>（未绑定）</number><span>绑定</span></a>
-		             {%endif%}
+		            <a class="mui-navigate-right" id="zhifubao"></a>
 		        </li>
 		    </ul>
 			<ul class="mui-table-view">
-
 		        <li class="mui-table-view-cell">
-		            <a class="mui-navigate-right" href="{%url 'password_change'%}">登录密码<span>修改</span>
+		            <a class="mui-navigate-right" href="m_account_change_password.html">登录密码<span>修改</span>
 		            </a>
 		        </li>
 		    </ul>
 		    <button id="logout" type="button" class="mui-btn mui-btn-danger mui-btn-block">退出该帐户</button>
 		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/UserInfo.js"></script>
+		<script>
+      	mui.init();
+      	mui.plusReady(function(){
+			self = plus.webview.currentWebview();
+			user = self.user;
+			document.getElementById('userimg').src = user.img;
+			document.getElementById('mobile').innerText = user.mobile;
+			document.getElementById('mobile2').innerText = user.mobile;
+			plus.nativeUI.closeWaiting();
+			self.show();
+			if (user.zhifubao){
+				document.getElementById("zhifubao").innerHTML = "支付宝<number>（" + user.zhifubao + "）</number><span>更换</span>";
+				document.getElementById("zhifubao").href = "m_account_change_zhifubao.html";
+			}
+			else{
+				document.getElementById("zhifubao").innerHTML = "支付宝帐号：未绑定";
+				document.getElementById("zhifubao").href = "m_account_bind_zhifubao.html";
+			}
+		});
+      	mui.ready(function(){
+      		mui('.mui-table-view').on('tap', 'a', function(e) {
+				var targetTab = this.getAttribute('href');
+				if (!targetTab){
+					return;
+				}
+				mui.openWindow({
+		            url: targetTab,
+		            id: targetTab,
+		            styles: {
+		                top: 0,
+		                bottom: 0,
+		                hardwareAccelerated:true
+		            },
+		            show:{
+				      autoShow:true,//页面loaded事件发生后自动显示，默认为true
+				      aniShow: 'slide-in-right'
+				    },
+		            waiting: {
+						autoShow: true
+					},
+		            extras:{
+		            	user:user
+		            }
+		        });
+			});
+      		document.getElementById('logout').addEventListener('tap',function(){
+          		var btnArray = ['确定退出', '取消'];
+    			mui.confirm('此操作将清除当前用户登录信息。', '退出当前账号', btnArray, function(e) {
+    				if (e.index == 1) {
+    					return;
+    				} else {
+    					UserInfo.clear();
+    					mui.back();
+    				}
+    			});
+          	});
+      	});
+    	</script>
 	</body>
 
 </html>

@@ -42,12 +42,15 @@
 			"fonts/wafuli-iconfont.woff",
 			"images/user-01.png",
 			"css/m_common.css",
-			"images/user-03.png"
+			"images/user-03.png",
+			"account/m_account_settings.html"
 		],
 		"refer": [
 			"a_login.html",
 			"account/m_account_charge.html",
-			"account/m_account_score.html"
+			"account/m_account_score.html",
+			"account/m_account_settings.html",
+			"account/m_account_welfare.html"
 		]
 	},
 	"m_finance_sub2.html": {
@@ -181,6 +184,70 @@
 			"images/user-03.png",
 			"images/fubi.png",
 			"js/UserInfo.js"
+		]
+	},
+	"m_task_senior.html": {
+		"resources": [
+			"js/mui.pullToRefresh.js",
+			"js/mui.pullToRefresh.material.js"
+		]
+	},
+	"account/m_account_settings.html": {
+		"resources": [
+			"css/m_account_settings.css",
+			"images/user-03.png",
+			"js/UserInfo.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"images/bg-user.png",
+			"css/mui.min.css",
+			"css/m_common.css",
+			"account/m_account_change_zhifubao.html"
+		],
+		"refer": [
+			"account/m_account_change_zhifubao.html",
+			"account/m_account_change_password.html"
+		]
+	},
+	"account/m_account_change_zhifubao.html": {
+		"resources": [
+			"css/m_account_zhifubao.css",
+			"images/zhifubao.png",
+			"account/m_account_settings.html",
+			"js/UserInfo.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/m_common.css"
+		],
+		"refer": [
+			"account/m_account_settings.html"
+		]
+	},
+	"account/m_account_change_password.html": {
+		"resources": [
+			"css/m_account_change_password.css",
+			"css/m_style.css",
+			"js/accounts/user-validate.js",
+			"js/UserInfo.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"css/m_common.css"
+		]
+	},
+	"account/m_account_welfare.html": {
+		"resources": [
+			"js/mui.pullToRefresh.js",
+			"account/%7B%%20url%20\u0027get_user_welfare_json\u0027%20%%7D",
+			"images/bg-manage-01.png",
+			"js/mui.min.js",
+			"js/mui.pullToRefresh.material.js",
+			"css/m_account_welfare.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"images/bg-manage-02.png",
+			"css/m_common.css"
 		]
 	}
 }

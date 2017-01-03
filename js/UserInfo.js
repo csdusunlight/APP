@@ -3,8 +3,8 @@
 
 //清除登录信息
 UserInfo.clear = function(){
-    localStorage.removeItem('username');
-    localStorage.removeItem('password');
+//  localStorage.removeItem('username');
+//  localStorage.removeItem('password');
     localStorage.removeItem('token');
     localStorage.removeItem('expire');
 }

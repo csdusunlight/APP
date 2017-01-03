@@ -60,7 +60,7 @@
 
 
 		<script src="../js/mui.min.js"></script>
-		<script type="text/javascript" charset="UTF-8" src="../js/UserInfo.js"></script>
+		<script src="../js/UserInfo.js"></script>
 		<!--弹窗部分-->
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
@@ -73,7 +73,6 @@
 				document.getElementById('mobile').innerText = user.mobile;
 				plus.nativeUI.closeWaiting();
 				self.show();
-				console.log(user.zhifubao);
 				if (user.zhifubao){
 					document.getElementById("zhifubao").innerHTML = "支付宝帐号：<number>" + user.zhifubao + "</number>";
 					document.getElementById("change_zhifubao").src = "m_account_change_zhifubao.html";

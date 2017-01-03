@@ -405,12 +405,14 @@
 					"fonts/wafuli-iconfont.woff",
 					"js/UserInfo.js",
 					"images/user-01.png",
-					"images/user-03.png"
+					"images/user-03.png",
+					"account/m_account_settings.html"
 				],
 				"refer": [
 					"a_login.html",
 					"account/m_account_charge.html",
-					"account/m_account_score.html"
+					"account/m_account_score.html",
+					"account/m_account_welfare.html"
 				],
 				"priority": 0
 			},
@@ -700,6 +702,67 @@
 				],
 				"refer": [],
 				"priority": 0
+			},
+			"account/m_account_settings.html": {
+				"resources": [
+					"css/m_account_settings.css",
+					"images/user-03.png",
+					"js/UserInfo.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"images/bg-user.png",
+					"css/mui.min.css",
+					"css/m_common.css",
+					"account/m_account_change_zhifubao.html"
+				],
+				"refer": [
+					"account/m_account_change_password.html"
+				],
+				"priority": 0
+			},
+			"account/m_account_change_zhifubao.html": {
+				"resources": [
+					"css/m_account_zhifubao.css",
+					"images/zhifubao.png",
+					"account/m_account_settings.html",
+					"js/UserInfo.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/m_common.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/m_account_change_password.html": {
+				"resources": [
+					"css/m_account_change_password.css",
+					"css/m_style.css",
+					"js/accounts/user-validate.js",
+					"js/UserInfo.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"css/m_common.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/m_account_welfare.html": {
+				"resources": [
+					"js/mui.pullToRefresh.js",
+					"account/%7B%%20url%20\u0027get_user_welfare_json\u0027%20%%7D",
+					"images/bg-manage-01.png",
+					"js/mui.min.js",
+					"js/mui.pullToRefresh.material.js",
+					"css/m_account_welfare.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"images/bg-manage-02.png",
+					"css/m_common.css"
+				],
+				"refer": [],
+				"priority": 0
 			}
 		},
 		"idle": {
@@ -842,7 +905,6 @@
 				"images/nav-2.png",
 				"images/lf.png",
 				"js/MSClass.js",
-				"images/bg-manage-01.png",
 				"images/iconew.png",
 				"js/jquery.roundabout-1.0.min.js",
 				"images/back04.png",
@@ -905,7 +967,6 @@
 				"images/i-12.jpg",
 				"images/user-02.png",
 				"images/btn-3.png",
-				"css/m_account_zhifubao.css",
 				"images/notice.png",
 				"images/share.png",
 				"images/nav-3.png",
@@ -973,7 +1034,6 @@
 				"images/logo-6.png",
 				"images/ic1.png",
 				"images/topimg1.jpg",
-				"css/m_account_welfare.css",
 				"images/juchi.png",
 				"images/pict_100.png",
 				"images/sinaweibo.png",
@@ -1059,18 +1119,15 @@
 				"images/pop.png",
 				"images/newback1.png",
 				"js/accounts/common.js",
-				"images/zhifubao.png",
 				"images/sin-picon-06.png",
 				"images/i_logo4.png",
 				"css/everyday.css",
-				"css/m_account_change_password.css",
 				"images/zp.png",
 				"images/choujiang-zhizhen.png",
 				"images/left-icon4.png",
 				"images/sin-picon-03.png",
 				"fonts/浪漫雅圆.ttf",
 				"css/press.css",
-				"css/m_account_settings.css",
 				"images/图层 4.png",
 				"images/task-01.jpg",
 				"images/go-pc.png",
@@ -1152,7 +1209,6 @@
 				"images/diannao .png",
 				"images/invited-reg-btn.png",
 				"images/newimg2.png",
-				"images/bg-manage-02.png",
 				"images/pwd.jpg",
 				"css/m_login.css",
 				"images/pic6.png",
