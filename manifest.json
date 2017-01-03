@@ -412,7 +412,8 @@
 					"a_login.html",
 					"account/m_account_charge.html",
 					"account/m_account_score.html",
-					"account/m_account_welfare.html"
+					"account/m_account_welfare.html",
+					"account/m_account_coupon.html"
 				],
 				"priority": 0
 			},
@@ -759,6 +760,22 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"images/bg-manage-02.png",
+					"css/m_common.css",
+					"js/UserInfo.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/m_account_coupon.html": {
+				"resources": [
+					"js/mui.pullToRefresh.js",
+					"account/%7B%%20url%20\u0027get_user_coupon_exchange_detail\u0027%20%%7D",
+					"account/%7B%%20url%20\u0027user_coupon_json\u0027%20%%7D",
+					"js/mui.min.js",
+					"js/mui.pullToRefresh.material.js",
+					"fonts/mui.ttf",
+					"css/m_account_coupon.css",
+					"css/mui.min.css",
 					"css/m_common.css"
 				],
 				"refer": [],
@@ -989,7 +1006,6 @@
 				"images/numberg1.png",
 				"images/icon-2.png",
 				"images/user-04.png",
-				"css/m_account_coupon.css",
 				"images/back03.png",
 				"images/logo-8.png",
 				"images/login-icon-password.png",
