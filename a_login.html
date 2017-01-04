@@ -168,7 +168,6 @@
 			    			data:loginInfo,
 			    			success:function(ret){
 			    				if(ret.code==0){
-			    					console.log(ret.expire);
 			    					UserInfo.token(ret.token);
 			    					UserInfo.expire(ret.expire);
 			    					toMain();

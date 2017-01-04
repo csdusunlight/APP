@@ -776,7 +776,9 @@
 					"fonts/mui.ttf",
 					"css/m_account_coupon.css",
 					"css/mui.min.css",
-					"css/m_common.css"
+					"css/m_common.css",
+					"js/UserInfo.js",
+					"images/youhuiquan-bg.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -1102,7 +1104,6 @@
 				"js/hashtabber.js",
 				"images/bg-logo.png",
 				"images/bg-3.jpg",
-				"images/youhuiquan-bg.png",
 				"images/today-03.jpg",
 				"images/banner1.jpg",
 				"images/bg-no.png",

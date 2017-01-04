@@ -17,7 +17,8 @@
 			"js/feed.js",
 			"css/m_common.css",
 			"js/mui.min.js",
-			"css/mui.min.css"
+			"css/mui.min.css",
+			"images/blank.jpg"
 		],
 		"refer": [
 			"browser.html",
@@ -190,7 +191,8 @@
 	"m_task_senior.html": {
 		"resources": [
 			"js/mui.pullToRefresh.js",
-			"js/mui.pullToRefresh.material.js"
+			"js/mui.pullToRefresh.material.js",
+			"images/task-right-bg.png"
 		]
 	},
 	"account/m_account_settings.html": {
@@ -262,7 +264,9 @@
 			"fonts/mui.ttf",
 			"css/m_account_coupon.css",
 			"css/mui.min.css",
-			"css/m_common.css"
+			"css/m_common.css",
+			"js/UserInfo.js",
+			"images/youhuiquan-bg.png"
 		]
 	}
 }

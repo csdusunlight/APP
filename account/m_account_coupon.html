@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -132,15 +131,29 @@
   </div>   
   
     <script src="../js/mui.min.js"></script>
-    <script src="../js/jquery-1.11.2.min.js"></script>
-		<script src="../js/mui.pullToRefresh.js"></script>
-		<script src="../js/mui.pullToRefresh.material.js"></script>
-		<script>
-		var get_coupon_url = "{% url 'user_coupon_json' %}";
-		var use_coupon_url = "{% url 'account_useCoupon' %}";
-		var get_coupon_exchange_detail_url = "{% url 'get_user_coupon_exchange_detail' %}";
+	<script src="../js/mui.pullToRefresh.js"></script>
+	<script src="../js/mui.pullToRefresh.material.js"></script>
+	<script src="../js/UserInfo.js"></script>
+	<script>
+		var get_coupon_url = "http://test.wafuli.cn/account/user_coupon_json/";
+		var use_coupon_url = "http://test.wafuli.cn/account/useCoupon/";
+		var get_coupon_exchange_detail_url = "http://test.wafuli.cn/account/coupondetail/";
 		var coupon_id = 0;
+		var host = "http://test.wafuli.cn";
 		mui.init();
+		mui.plusReady(function(){
+			self = plus.webview.currentWebview();
+			plus.nativeUI.closeWaiting();
+			self.show();
+			mui('.mui-slider-group').on('tap', 'a', function() {
+	            var exp_url = this.href;
+	            var browserMainWebview = plus.webview.getWebviewById('browser_main');
+				var browserWebview = plus.webview.getWebviewById('browser_sub');
+				mui.fire(browserMainWebview, 'mui.view.beforeshow');
+				browserWebview.loadURL(exp_url);
+				browserMainWebview.show('slide-in-bottom', 200);
+	        });
+		});
 		(function($) {
 			//阻尼系数
 			var deceleration = mui.os.ios?0.003:0.0009;
@@ -176,6 +189,7 @@
 				data:{
 					count:n,
 					type:index,
+					token:UserInfo.token()
 				},
 				dataType:'json',//服务器返回json格式数据
 				type:'get',//HTTP请求类型
@@ -200,7 +214,7 @@
 								str_html += '<p><span>优惠券码：</span><number>' + coupon.code + '</number></p>';
 							}
 							str_html += '</div><div class="youhuiquan-right fr">' +
-								'<img src="' + coupon.imgurl + '" alt="优惠券商家图标" /><p>' +
+								'<img src="' + host + coupon.imgurl + '" alt="优惠券商家图标" /><p>' +
 								coupon.title + '</p></div></a>';
 							if ( index==1||index==2 ){
 								var is_used = coupon.is_used;
@@ -227,10 +241,11 @@
 			mui.ajax(get_coupon_exchange_detail_url,{
 				data:{
 					count:n,
+					token:UserInfo.token()
 				},
 				dataType:'json',//服务器返回json格式数据
 				type:'get',//HTTP请求类型
-				timeout:10000,//超时时间设置为10秒；
+				timeout:3000,//超时时间设置为3秒；
 //				headers:{'Content-Type':'application/json'},
 				success:function(data){
 					if (!data.length){
@@ -260,30 +275,12 @@
             coupon_id = this.getAttribute('coupon_id');
             document.getElementById('popup_03').style.display = "block";
         });
-		mui('.mui-slider-group').on('tap', 'a', function() {
-            var id = this.getAttribute('href');
-            mui.openWindow({
-                url: this.href,
-                styles: {
-                    top: 0,
-                    bottom: 0
-                },
-                show: {
-                    aniShow: 'slide-in-right',
-                },
-                waiting: {
-                    autoShow: false, //自动显示等待框
-                    title: '正在加载...', //等待对话框上显示的提示内容
-                }
-            });
-        });
 		document.getElementById('submit_btn').addEventListener("tap",function(){
 			var telnum = document.getElementById('telnum').value;
 			var remark = document.getElementById('remark').value;
 			if (!telnum){
 				mui.toast("请输入投资账号（手机号）");
 			}
-			var csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
 			mui.ajax({
 				url:use_coupon_url,
 				dataType:"json",
@@ -292,7 +289,7 @@
 					id: coupon_id,
 					telnum: telnum,
 					remark: remark,
-					csrfmiddlewaretoken:csrfmiddlewaretoken
+					token:UserInfo.token()
 				},
 				success:function(ret){
 					mui.alert(ret.res_msg);
