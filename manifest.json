@@ -60,9 +60,7 @@
 		"Invocation": {
 			"description": "使用Native.js能力"
 		},
-		"Messaging": {
-			"description": "访问通讯能力"
-		},
+
 		"Orientation": {
 			"description": "访问方向感应器"
 		},
@@ -105,7 +103,8 @@
 		},
 		"NativeObj": {
 			"description": "原生对象"
-		}
+		},
+		"Share": {}
 	},
 	"plus": {
 		"splashscreen": {
@@ -116,6 +115,15 @@
 		"runmode": "liberate",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
 		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
 		"distribute": {
+			"plugins": {
+				"share": {
+					"weixin": {
+						"appid": "wx67edd001369b435f",
+						"appsecret": "88ad19dcfd76d0af5631f75d8fb1f480",
+						"description": "可选，微信分享"
+					}
+				}
+			},
 			"apple": {
 				"appid": "",/*iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5*/
 				"mobileprovision": "",/*iOS应用打包配置文件*/
@@ -130,30 +138,31 @@
 				"password": "",/*Android应用打包使用密钥库中证书的密码*/
 				"aliasname": "",/*Android应用打包使用密钥库中证书的别名*/
 				"permissions": [
+					"<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
+					"<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
 					"<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
+					"<uses-permission android:name=\"com.android.launcher.permission.INSTALL_SHORTCUT\"/>",
+					"<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
 					"<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
 					"<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
+					"<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
 					"<uses-permission android:name=\"android.permission.VIBRATE\"/>",
 					"<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
-					"<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
-					"<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
-					"<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
-					"<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
-					"<uses-permission android:name=\"com.android.launcher.permission.UNINSTALL_SHORTCUT\"/>",
-					"<uses-permission android:name=\"android.permission.CAMERA\"/>",
-					"<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
-					"<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
-					"<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
-					"<uses-permission android:name=\"com.android.launcher.permission.INSTALL_SHORTCUT\"/>",
-					"<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
-					"<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
 					"<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
-					"<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
 					"<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+					"<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
 					"<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+					"<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
 					"<uses-feature android:name=\"android.hardware.camera\"/>",
+					"<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
 					"<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
-					"<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
+					"<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+					"<uses-permission android:name=\"android.permission.ACCESS_MOCK_LOCATION\"/>",
+					"<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>",
+					"<uses-permission android:name=\"com.android.launcher.permission.UNINSTALL_SHORTCUT\"/>",
+					"<uses-permission android:name=\"android.permission.CAMERA\"/>"
 				]
 			},
 			"orientation": [
@@ -218,7 +227,8 @@
 					"ldpi": "", /*大屏启动图片，分辨率：320x442*/
 					"hdpi": ""
 				}
-			}
+			},
+			"debug": false
 		}
 	},
 	"dependencies": {
@@ -413,7 +423,8 @@
 					"account/m_account_charge.html",
 					"account/m_account_score.html",
 					"account/m_account_welfare.html",
-					"account/m_account_coupon.html"
+					"account/m_account_coupon.html",
+					"account/m_account_invite.html"
 				],
 				"priority": 0
 			},
@@ -489,7 +500,9 @@
 					"js/mui.min.js",
 					"fonts/mui.ttf",
 					"css/mui.min.css",
-					"m_detail_welfare.html"
+					"m_detail_welfare.html",
+					"js/share.js",
+					"fonts/wafuli-iconfont.woff"
 				],
 				"refer": [
 					"m_detail_youhuiquan.html"
@@ -782,6 +795,22 @@
 				],
 				"refer": [],
 				"priority": 0
+			},
+			"account/m_account_invite.html": {
+				"resources": [
+					"images/share-guide-copy.png",
+					"js/UserInfo.js",
+					"js/mui.min.js",
+					"images/share-friend-bottom.png",
+					"fonts/mui.ttf",
+					"images/share-friend.png",
+					"css/mui.min.css",
+					"css/m_account_invite.css",
+					"css/m_common.css",
+					"js/share.js"
+				],
+				"refer": [],
+				"priority": 0
 			}
 		},
 		"idle": {
@@ -843,7 +872,6 @@
 				"images/left-icon3.png",
 				"images/banner-new1.png",
 				"images/box1.png",
-				"images/share-guide-copy.png",
 				"images/Integral.png",
 				"images/pict_94.png",
 				"images/didi.png",
@@ -913,7 +941,6 @@
 				"images/today-02.jpg",
 				"js/weixin_share.js",
 				"images/btn-1.png",
-				"images/share-friend.png",
 				"images/shape.png",
 				"js/varify.js",
 				"images/bg-01.png",
@@ -939,7 +966,6 @@
 				"images/top.png",
 				"images/pic_11.png",
 				"images/in-01.png",
-				"js/share.js",
 				"images/my_pic5.gif",
 				"images/box1.jpg",
 				"images/today-01.jpg",
@@ -950,7 +976,6 @@
 				"images/i110x72-2.jpg",
 				"images/none.png",
 				"images/rt.png",
-				"images/share-friend-bottom.png",
 				"images/i_logo2.png",
 				"css/m_activity_recommend.css",
 				"images/footer-x.gif",
@@ -1184,7 +1209,6 @@
 				"images/action.png",
 				"images/address.png",
 				"css/m_detail_information.css",
-				"css/m_account_invite.css",
 				"images/Sign.png",
 				"images/img5.png",
 				"images/share-guide-bottom.png",

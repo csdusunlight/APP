@@ -52,7 +52,8 @@
 			"account/m_account_score.html",
 			"account/m_account_settings.html",
 			"account/m_account_welfare.html",
-			"account/m_account_coupon.html"
+			"account/m_account_coupon.html",
+			"account/m_account_invite.html"
 		]
 	},
 	"m_finance_sub2.html": {
@@ -77,7 +78,12 @@
 	},
 	"template.html": {
 		"resources": [
-			"m_detail_welfare.html"
+			"m_detail_welfare.html",
+			"js/share.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"fonts/wafuli-iconfont.woff"
 		],
 		"refer": [
 			"m_detail_welfare.html"
@@ -109,7 +115,11 @@
 		"resources": [
 			"images/blank.jpg",
 			"css/m_detail_hongbao.css",
-			"js/UserInfo.js"
+			"js/UserInfo.js",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"fonts/wafuli-iconfont.woff",
+			"css/m_common.css"
 		],
 		"refer": []
 	},
@@ -174,7 +184,8 @@
 			"css/mui.min.css",
 			"css/m_common.css",
 			"js/UserInfo.js"
-		]
+		],
+		"refer": []
 	},
 	"account/m_account_withdraw.html": {
 		"resources": [
@@ -186,14 +197,16 @@
 			"images/user-03.png",
 			"images/fubi.png",
 			"js/UserInfo.js"
-		]
+		],
+		"refer": []
 	},
 	"m_task_senior.html": {
 		"resources": [
 			"js/mui.pullToRefresh.js",
 			"js/mui.pullToRefresh.material.js",
 			"images/task-right-bg.png"
-		]
+		],
+		"refer": []
 	},
 	"account/m_account_settings.html": {
 		"resources": [
@@ -237,7 +250,8 @@
 			"fonts/mui.ttf",
 			"css/mui.min.css",
 			"css/m_common.css"
-		]
+		],
+		"refer": []
 	},
 	"account/m_account_welfare.html": {
 		"resources": [
@@ -252,7 +266,8 @@
 			"images/bg-manage-02.png",
 			"css/m_common.css",
 			"js/UserInfo.js"
-		]
+		],
+		"refer": []
 	},
 	"account/m_account_coupon.html": {
 		"resources": [
@@ -267,6 +282,21 @@
 			"css/m_common.css",
 			"js/UserInfo.js",
 			"images/youhuiquan-bg.png"
+		],
+		"refer": []
+	},
+	"account/m_account_invite.html": {
+		"resources": [
+			"images/share-guide-copy.png",
+			"js/UserInfo.js",
+			"js/mui.min.js",
+			"images/share-friend-bottom.png",
+			"fonts/mui.ttf",
+			"images/share-friend.png",
+			"css/mui.min.css",
+			"css/m_account_invite.css",
+			"css/m_common.css",
+			"js/share.js"
 		]
 	}
 }

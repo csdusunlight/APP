@@ -132,11 +132,12 @@
 			 //点击新闻列表，打开新闻详情
 			mui('#pullrefresh').on('tap', 'a', function() {
 				var title = this.querySelector('h6').innerText;
-				open_new_detail(this.getAttribute('data_id'),this.getAttribute('data_type'),title);
+				var img = this.querySelector('img').src;
+				open_new_detail(this.getAttribute('data_id'),this.getAttribute('data_type'),title,img);
 			});
 			var detailMainWebview = null; //详情页面父webview
 			var detailWebview = null; //详情页面子webview
-			function open_new_detail(id,type,title) {
+			function open_new_detail(id,type,title,img) {
 //				var wvs=plus.webview.all();
 //				for(var i=0;i<wvs.length;i++){
 //					console.log("webview"+i+": "+wvs[i].id);
@@ -153,7 +154,8 @@
 				//触发子窗口变更新闻详情
 				mui.fire(detailWebview, 'display', {
 					id: id,
-					type: type
+					type: type,
+					img: img,
 				});
 			};
 			/** 新版首次进入执行代码开始 **/
