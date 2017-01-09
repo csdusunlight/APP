@@ -32,26 +32,13 @@
 			<h1 class="mui-title">挖福利攻略</h1>
 		</header>
 		<div class="mui-content">
-			<div class="ad">
-				<img src="{% static 'images/banner1.jpg' %}">
-			</div>
 			<!--列表部分-->
 			<ul class="mui-table-view">
-			        <li class="mui-table-view-cell mui-collapse">
+			        <li class="mui-table-view-cell mui-collapse open_window" id="li_strategy">
 			            <a class="left-icon1 mui-navigate-right" href="#"><i class="icon iconfont ic01">&#xe614;</i>福利攻略</a>
-			            {% for strategy in strategy_list %}
-			            <div class="mui-collapse-content">
-			                <a href="{{strategy.url}}">{{strategy.title}}</a>
-			            </div>
-			            {% endfor %}
 			        </li>
-			        <li class="mui-table-view-cell mui-collapse">
+			        <li class="mui-table-view-cell mui-collapse open_window" id="li_notice">
 			            <a class="left-icon2 left-icon1 mui-navigate-right" href="#"><i class="icon iconfont ic02">&#xe61b;</i>最新公告</a>
-			            {% for notice in notice_list %}
-			            <div class="mui-collapse-content">
-			                <a href="{{notice.url}}">{{notice.title}}</a>
-			            </div>
-			            {% endfor %}
 			        </li>
 			        <li class="mui-table-view-cell mui-collapse">
 			            <a class="left-icon3 left-icon1 mui-navigate-right" href="#"><i class="icon iconfont ic03">&#xe62d;</i>关注微信</a>
@@ -84,7 +71,7 @@
 			<div class="weixin-box">
 				<span id="close_01" class="mui-icon mui-icon-closeempty"></span>
 				<p>长安识别图中二维码</p>
-				<img src="{% static 'images/dingyuehao.jpg' %}"/>
+				<img src="../images/dingyuehao.jpg"/>
 				<p>挖福利订阅号</p>
 			</div>
 		</div>
@@ -92,42 +79,100 @@
 			<div class="weixin-box">
 				<span id="close_02" class="mui-icon mui-icon-closeempty"></span>
 				<p>长安识别图中二维码</p>
-				<img src="{% static 'images/gongzhong.jpg' %}"/>
+				<img src="../images/gongzhong.jpg"/>
 				<p>挖福利公众号</p>
 			</div>
 		</div>
 
-		<script src="{% static 'js/mui.min.js' %}"></script>
+		<script src="../js/mui.min.js"></script>
 		<!--弹窗部分-->
 		<script type="text/javascript" charset="utf-8">
-		      	mui.init({
-					swipeBack:true //启用右滑关闭功能
+	      	mui.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+			mui.plusReady(function(){
+				var self = plus.webview.currentWebview();
+				plus.nativeUI.closeWaiting();
+				self.show();
+			});
+			mui.ready(function(){
+				mui.ajax({
+					url: 'http://test.wafuli.cn/app/strategy/',
+					dataType:"json",
+					type:'GET',
+					success:function(ret){
+						var li_strategy = document.getElementById("li_strategy");
+						var li_notice = document.getElementById("li_notice");
+						var slist = ret.slist;
+						for (var i=0;i<slist.length;i++){
+							var s = slist[i];
+							var div = document.createElement('div');
+							div.innerHTML = '<div class="mui-collapse-content"><a data_id="' + s.id +'">' + s.title +'</a></div>';
+							li_strategy.appendChild(div);
+						}
+						var nlist = ret.nlist;
+						for (var i=0;i<nlist.length;i++){
+							var n = nlist[i];
+							var div = document.createElement('div');
+							div.innerHTML = '<div class="mui-collapse-content"><a data_id="' + n.id +'">' + n.title +'</a></div>';
+							li_notice.appendChild(div);
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						mui.alert(type);
+					}
 				});
-				var gong_zhong_hao = document.getElementById("gong_zhong_hao"),
-					fu_wu_hao = document.getElementById("fu_wu_hao"),
-					close_01 = document.getElementById("close_01"),
-					close_02 = document.getElementById("close_02"),
-					weixin_bg = document.getElementById("weixin_bg"),
-					weixin_box = document.getElementById("weixin_box"),
-					weixin_box_02 = document.getElementById("weixin_box_02");
-					//监听点击事件
-				gong_zhong_hao.addEventListener("tap",function () {
-					weixin_bg.style.display = "block";
-				  	weixin_box.setAttribute("class","weixin-box-01");
+				mui(".open_window").on('tap', 'a', function(e) {
+					console.log('dsdsdd');
+					var sid = this.getAttribute('data_id');
+					var htitle = this.innerText;
+					mui.openWindow({
+			            url: "m_detail_press.html",
+			            id: "m_detail_press.html",
+			            styles: {
+			                top: 0,
+			                bottom: 0,
+			                hardwareAccelerated:true
+			            },
+//			            show:{
+//					      autoShow:false,//页面loaded事件发生后自动显示，默认为true
+//					      aniShow: 'slide-in-right'
+//					    },
+//			            waiting: {
+//							autoShow: true,
+//						},
+			            extras:{
+			            	sid:sid,
+			            	htitle:htitle
+			            }
+			        });
 				});
-				close_01.addEventListener("tap",function () {
-					weixin_bg.style.display = "none";
-				  	weixin_box.setAttribute("class","weixin-box-02");
-				});
+			});
+			var gong_zhong_hao = document.getElementById("gong_zhong_hao"),
+				fu_wu_hao = document.getElementById("fu_wu_hao"),
+				close_01 = document.getElementById("close_01"),
+				close_02 = document.getElementById("close_02"),
+				weixin_bg = document.getElementById("weixin_bg"),
+				weixin_box = document.getElementById("weixin_box"),
+				weixin_box_02 = document.getElementById("weixin_box_02");
+				//监听点击事件
+			gong_zhong_hao.addEventListener("tap",function () {
+				weixin_bg.style.display = "block";
+			  	weixin_box.setAttribute("class","weixin-box-01");
+			});
+			close_01.addEventListener("tap",function () {
+				weixin_bg.style.display = "none";
+			  	weixin_box.setAttribute("class","weixin-box-02");
+			});
 
-				fu_wu_hao.addEventListener("tap",function () {
-					weixin_bg.style.display = "block";
-				  	weixin_box_02.setAttribute("class","weixin-box-01");
-				});
-				close_02.addEventListener("tap",function () {
-					weixin_bg.style.display = "none";
-				  	weixin_box_02.setAttribute("class","weixin-box-02");
-				});
+			fu_wu_hao.addEventListener("tap",function () {
+				weixin_bg.style.display = "block";
+			  	weixin_box_02.setAttribute("class","weixin-box-01");
+			});
+			close_02.addEventListener("tap",function () {
+				weixin_bg.style.display = "none";
+			  	weixin_box_02.setAttribute("class","weixin-box-02");
+			});
 		</script>
 	</body>
 

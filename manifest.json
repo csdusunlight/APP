@@ -424,7 +424,8 @@
 					"account/m_account_score.html",
 					"account/m_account_welfare.html",
 					"account/m_account_coupon.html",
-					"account/m_account_invite.html"
+					"account/m_account_invite.html",
+					"account/m_strategy.html"
 				],
 				"priority": 0
 			},
@@ -811,6 +812,36 @@
 				],
 				"refer": [],
 				"priority": 0
+			},
+			"account/m_strategy.html": {
+				"resources": [
+					"images/dingyuehao.jpg",
+					"account/%7B%%20static%20\u0027images/banner1.jpg\u0027%20%%7D",
+					"images/gongzhong.jpg",
+					"css/m_strategy.css",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"fonts/wafuli-iconfont.woff",
+					"css/m_common.css"
+				],
+				"refer": [
+					"account/m_detail_press.html"
+				],
+				"priority": 0
+			},
+			"account/m_detail_press.html": {
+				"resources": [
+					"css/m_detail_press.css",
+					"js/share.js",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"fonts/wafuli-iconfont.woff",
+					"css/m_common.css"
+				],
+				"refer": [],
+				"priority": 0
 			}
 		},
 		"idle": {
@@ -877,7 +908,6 @@
 				"images/didi.png",
 				"images/ico1.png",
 				"images/pic_03.png",
-				"images/gongzhong.jpg",
 				"images/top-2.png",
 				"images/icon-5.png",
 				"css/zixun-style.css",
@@ -988,7 +1018,6 @@
 				"images/bg-50.png",
 				"images/pic_32.png",
 				"images/icon-6.png",
-				"css/m_strategy.css",
 				"images/icon-3.jpg",
 				"css/person.css",
 				"images/pict_98.png",
@@ -1004,7 +1033,6 @@
 				"css/main.css",
 				"css/m_detail_taskandfinance.css",
 				"images/图层 227.png",
-				"images/dingyuehao.jpg",
 				"images/share_logo.jpg",
 				"css/m_signin.css",
 				"images/jf-in-01.png",
@@ -1151,7 +1179,6 @@
 				"images/understand-finacing.png",
 				"images/icon-1.gif",
 				"images/understand-free.png",
-				"css/m_detail_press.css",
 				"js/accounts/jquery.blockUI.js",
 				"css/m_expsubmit.css",
 				"images/back1.png",
