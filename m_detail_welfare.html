@@ -74,11 +74,15 @@
 		  	var pic_url = '';
 		  	var time_limit = '';
 		  	var exp_url = '';
+		  	var share_msg = {};
+		  	var img = null;
 			//添加newId自定义事件监听
 			window.addEventListener('display',function(event){
 			  //获得事件参数
 			  	id = event.detail.id;
 			  	type = event.detail.type;
+			  	img = event.detail.img;
+			  	document.getElementById('picture').src = img;
 			  	self = plus.webview.currentWebview();
 			  //根据id向服务器请求新闻详情
 			  	if (type==="hongbao"){
@@ -94,8 +98,6 @@
 							else{
 								ismobile = ret.ismobile;
 								var strategy = ret.strategy;
-								console.log(strategy);
-								document.getElementById('picture').src = ret.image;
 								document.getElementById('strategy').innerHTML = ret.strategy;
 								document.getElementById('number_display').innerText = ret.num;
 								document.getElementById('time_display').innerText = ret.time;
@@ -146,6 +148,8 @@
 						}
 					});
 			  	}
+			  	var sss='share_msg.pictures=["' + img + '",];share_msg.thumbs=["' + img + '",];share_msg.href = "http://test.wafuli.cn/welfare/' + id + '/";';
+				self.parent().evalJS(sss);
 			});
 			exp_btn_ele.addEventListener('tap', function() {
 				if (!UserInfo.has_login()){

@@ -1,4 +1,3 @@
-{%load staticfiles%}
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -34,16 +33,15 @@
 	</header>
 	<div class="mui-content">
 		<div class="top">
-			<p>我的邀请人数&nbsp;<span>{{statis.acc_count}}</span>&nbsp;人</p>
-			<p>我的奖励&nbsp;<span>{{statis.accu_invite_award}}</span>&nbsp;元，<span>10</span>&nbsp积分;</p>
-			<p>本月待发奖励&nbsp;<span>{{statis.this_month_award}}</span>&nbsp;元</p>
-			<p>邀请奖励结余&nbsp;<span>{{statis.left_award}}</span>&nbsp;元</p>
+			<p>我的邀请人数&nbsp;<span id="invite_num"></span>&nbsp;人</p>
+			<p>我的奖励&nbsp;<span id="invite_award"></span>&nbsp;元，<span id="invite_score"></span>&nbsp积分;</p>
+			<p>本月待发奖励&nbsp;<span id="to_award"></span>&nbsp;元</p>
+			<p>邀请奖励结余&nbsp;<span id="left_award"></span>&nbsp;元</p>
 			<button id="transfer_btn" type="button" class="mui-btn mui-btn-blue">转至余额</button>
-			{%csrf_token%}
 		</div>
 		<div class="middle">
 			<h3>邀请链接</h3>
-      <textarea name="share-reg-url" rows="2" cols="20">http://test.wafuli.cn{% url 'invite_accept' %}?icode={{user.invite_code}}</textarea>
+      <textarea id="share_link" name="share-reg-url" rows="2" cols="20"></textarea>
       <div id="share" class="share-btn"><img src="../images/share-friend.png"/></div>
 			<!-- <div class="yqm-bg"><p class="yao-qing-ma">{{user.invite_code}}</p></div> -->
 		</div>
@@ -58,21 +56,53 @@
 	</div>
 
     <script src="../js/mui.min.js"></script>
+    <script src="../js/UserInfo.js"></script>
+    <script src="../js/share.js"></script>
     <script type="text/javascript" charset="utf-8">
       	mui.init();
-      	var post_url = "{%url 'account_invite' %}";
+      	var share_href = null;
+      	mui.plusReady(function(){
+			var self = plus.webview.currentWebview();
+			user = self.user;
+			share_href = 'http://test.wafuli.cn/invite_accept?icode=' + user.invite_code;
+			document.getElementById('share_link').innerText = share_href;
+			plus.nativeUI.closeWaiting();
+			self.show();
+		});
+      	mui.ajax({
+			url: "http://test.wafuli.cn/app/get_invite_info/",
+			dataType:"json",
+			type:'POST',
+			data:{
+				'token': UserInfo.token(),
+			},
+			success:function(ret){
+				if(ret.code!=0){
+					mui.alert(ret.msg);
+				}
+				else {
+					document.getElementById('invite_num').innerText = ret.invite_num;
+					document.getElementById('invite_award').innerText = ret.invite_award;
+					document.getElementById('invite_score').innerText = ret.invite_score;
+					document.getElementById('to_award').innerText = ret.to_award;
+					document.getElementById('left_award').innerText = ret.left_award;
+				}
+			},
+			error:function(xhr,type,errorThrown){
+				alert(type);
+			}
+		});
       	document.getElementById("transfer_btn").addEventListener('tap', function() {
-      		var csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
 			mui.ajax({
-				url: "",
-				data: {
-					csrfmiddlewaretoken:csrfmiddlewaretoken
-				},
+				url: "http://test.wafuli.cn/app/invite_to_balance/",
 				dataType:"json",
 				type:'POST',
+				data:{
+					'token': UserInfo.token(),
+				},
 				success:function(ret){
 					if(ret.code!=0){
-						mui.alert(ret.res_msg);
+						mui.alert(ret.msg);
 					}
 					else {
 						mui.alert("您的邀请奖励已成功转至账户余额！");
@@ -83,39 +113,19 @@
 				}
 			});
       	});
-      	var share_url = 'http://test.wafuli.cn' + "{% url 'invite_accept' %}?icode=" + "{{user.invite_code}}";
-      	var appId = "{{weixin_params.appId}}";
-      	var timestamp = "{{weixin_params.timestamp}}";
-      	var nonceStr = "{{weixin_params.nonceStr}}";
-      	var signature = "{{weixin_params.signature}}";
-   </script>
-   <script>
-    var body = document.getElementsByTagName("body")[0],
-    share = document.getElementById("share");
-    //    动态创建HTML
-    var div = document.createElement('div');
-    var ua = navigator.userAgent.toLowerCase();
-    // if(navigator.userAgent.match(/MQQBrowser.+(QQ|MicroMessenger)/i)) {
-    if(ua.match(/MicroMessenger/i)=="micromessenger") {
-        div.className = 'share-guide-box share-top';
-    } else {
-        div.className = 'share-guide-box share-copy';
-    }
-    div.id = 'share_guide_box';
-    body.appendChild(div);
+	    document.getElementById("share").addEventListener('tap',function(){
+	    	share_msg = {};
+			share_msg.title = '免费领取现金红包！';
+			share_msg.content = '红包话费流量包，优惠影视VIP，全部都是免费领，一切尽在挖福利！';
+			share_msg.href = share_href;
+			share_msg.pictures = ['../images/share_logo.jpg'];
+			console.log(JSON.stringify(share_msg));
+			window.share.open(share_msg,function(ret){
+				console.log(ret);
+			});
+		});
 
     //    点击分享按钮弹出弹窗
-    var share_guide_box = document.getElementById("share_guide_box");
-    share.addEventListener("tap",function () {
-      share_guide_box.style.display = "block";
-    });
-    //    点击背景关闭分享弹窗;
-    share_guide_box.addEventListener("tap",function () {
-      share_guide_box.style.display = "none";
-    });
    </script>
-   <script src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-	<script src="../js/weixin_share.js"></script>
-
 </body>
 </html>

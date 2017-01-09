@@ -87,6 +87,7 @@
 				plus.nativeUI.toast("分享到\"" + service.description + "\"成功！");
 				callback && callback(true);
 			}, function(e) {
+				console.log(JSON.stringify(e));
 				plus.nativeUI.toast("分享到\"" + service.description + "\"失败！");
 				callback && callback(false);
 			});

@@ -59,7 +59,7 @@
 		<script>
       	mui.init();
       	mui.plusReady(function(){
-			self = plus.webview.currentWebview();
+			var self = plus.webview.currentWebview();
 			user = self.user;
 			document.getElementById('userimg').src = user.img;
 			document.getElementById('mobile').innerText = user.mobile;
