@@ -1,5 +1,3 @@
-
-{% load myfilter %}
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -23,7 +21,6 @@
     <meta http-equiv="Cache-Control" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>每日签到</title>
-    <script src="../js/mui.min.js"></script>
     <link href="../css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="../css/m_common.css"/>
     <link rel="stylesheet" type="text/css" href="../css/m_signin.css"/>
@@ -113,13 +110,19 @@
 		</div>
 		{%endif%}
 
-
+	<script src="../js/mui.min.js"></script>
 	<script>
-		url = "{% url 'signin_record' %}"
 		mui.init();
+		var close = document.getElementById("close"),
+			login = document.getElementById("login");
+  		window.addEventListener('signin',function(){
+  			login.style.display="block";
+  		});
+  		var url = "http://test.wafuli.cn/account/signin_record/";
 		mui.ready(function(){
 			mui.get(url,function(data){
 				var arr = document.getElementById("calendar").getElementsByTagName("number");
+				data.push(dnow);
 				for (var ele in arr){
 					var i = arr[ele].innerHTML;
 					i = parseInt(i);
@@ -127,13 +130,8 @@
 						arr[ele].parentNode.className = "yes";
 					}
 				}
-			},'json'
-		);
+			},'json');
 		});
-	</script>
-	<script>
-		var close = document.getElementById("close"),
-			login = document.getElementById("login");
 		//监听点击事件
 		if(close){
 			close.addEventListener("tap",function () {
@@ -141,20 +139,6 @@
 			});
 		}
 	</script>
-	{%if back %}
-	<script>
-	mui.back = function(){
-		var history = window.history;
-		if (history.length > 3 ){
-			history.go(-3);
-		}
-		else{
-			history.back();
-		}
-	};
-	</script>
-	{%endif%}
-
 	</body>
 
 </html>

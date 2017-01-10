@@ -142,9 +142,11 @@
 //					});
 					var toMain = function() {
 						var backid = self.backid;
-						var backwebview = plus.webview.getWebviewById(backid);
-						console.log(backwebview.id);
-						mui.fire(backwebview, 'login-refresh');
+						if(backid){
+							var backwebview = plus.webview.getWebviewById(backid);
+							console.log(backwebview.id);
+							mui.fire(backwebview, 'login-refresh');
+						}
 						self.close();
 					};
 					//检查 "登录状态/锁屏状态" 结束
