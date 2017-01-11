@@ -102,6 +102,7 @@
       	var get_userinfo_url = "http://test.wafuli.cn/app/user/";
       	var self = null;
       	var user = null;
+      	var tempview = null;
       	mui.plusReady(function() {
       		self = plus.webview.currentWebview();
       		self.addEventListener('show',function(){
@@ -112,6 +113,7 @@
       				get_user_info();
       			}
       		});
+      		tempview = plus.webview.create("", "temp");
       		window.addEventListener('login-refresh',function(){
       			get_user_info();
       		});
@@ -129,6 +131,7 @@
       			}
       			else{
       				var targetTab = this.getAttribute('href');
+//    				tempview.loadURL(targetTab);
 					mui.openWindow({
 			            url: targetTab,
 			            id: targetTab,
