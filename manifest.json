@@ -417,7 +417,8 @@
 					"js/UserInfo.js",
 					"images/user-01.png",
 					"images/user-03.png",
-					"account/m_account_settings.html"
+					"account/m_account_settings.html",
+					"images/user.png"
 				],
 				"refer": [
 					"a_login.html",
@@ -857,7 +858,10 @@
 					"js/calendar.js",
 					"css/m_common.css",
 					"js/mui.js",
-					"images/user-01.png"
+					"images/user-01.png",
+					"images/user.png",
+					"images/bg-yes.png",
+					"images/user-03.png"
 				],
 				"refer": [
 					"a_login.html"
@@ -1134,7 +1138,6 @@
 				"images/i-5.jpg",
 				"images/flow-back.png",
 				"images/ico3.png",
-				"images/user.png",
 				"js/modernizr.custom.js",
 				"images/back2.png",
 				"css/login.css",
@@ -1233,7 +1236,6 @@
 				"images/btn-2.png",
 				"images/bottom-02.png",
 				"images/bg-money.png",
-				"images/bg-yes.png",
 				"images/about01.png",
 				"images/pic_05.png",
 				"images/bg-6.png",

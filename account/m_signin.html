@@ -116,6 +116,8 @@
 			}
 			else{
 				console.log("whatlksjfdko");
+				var self = plus.webview.currentWebview();
+				console.log(self.id);
 				mui.openWindow({
 		            url: "../a_login.html",
 		            id:"login",
@@ -127,7 +129,7 @@
 		                aniShow: 'slide-in-right',
 		            },
 		            extras:{
-		            	backid:"account/m_signin.html"
+		            	backid:self.id
 		            }
 		        });
 			}
@@ -139,23 +141,36 @@
   			signin();
   		});
   		function signin(){
+  			console.log('dddd');
   			var url = "http://test.wafuli.cn/app/signin/";
-  			mui.get(url,function(data){
-  				if(data.code==0){
-  					login.style.display="block";
-  				}
-  				var img = "images/user-0" + ret.userimg + ".png";
-				document.getElementById('userimg').src = img;
-				document.getElementById('scores').innerText = ret.scores;
-				var arr = document.getElementById("calendar").getElementsByTagName("number");
-				for (var ele in arr){
-					var i = arr[ele].innerHTML;
-					i = parseInt(i);
-					if ( data.records.indexOf(i) != -1 ){
-						arr[ele].parentNode.className = "yes";
+			mui.ajax({
+				type: "get",
+				url: url,
+				dataType: 'json',
+				data:{
+	    			token:UserInfo.token()
+	    		},
+				success: function(ret) {
+					console.log(JSON.stringify(ret));
+					if(ret.code==0){
+						login.style.display="block";
 					}
+					var img = "../images/user-0" + ret.userimg + ".png";
+					document.getElementById('userimg').src = img;
+					document.getElementById('scores').innerText = ret.scores;
+					var arr = document.getElementById("calendar").getElementsByTagName("number");
+					for (var ele in arr){
+						var i = arr[ele].innerHTML;
+						i = parseInt(i);
+						if ( ret.records.indexOf(i) != -1 ){
+							arr[ele].parentNode.className = "yes";
+						}
+					}
+				},
+				error:function(xhr,type,errorThrown){
+					mui.alert(type);
 				}
-			},'json');
+			});
   		}
 		//监听点击事件
 		if(close){
