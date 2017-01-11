@@ -100,38 +100,59 @@
 					</table>
 				</div>
 		</div>	<!--mui-content-->
-		{%if flag == 1%}
-		<div id="login" class="delete">
+		<div id="login" class="delete" style="display: none;">
 			<div>
 			<a href="#" id="close" class="close mui-icon mui-icon-closeempty"></a>
 				<p class="top">签到成功</p>
 				<p class="bottom">今日已签到，奖励<number>5</number>积分</p>
 			</div>
 		</div>
-		{%endif%}
 
 	<script src="../js/mui.min.js"></script>
+	<script src="../js/UserInfo.js"></script>
 	<script>
 		mui.init();
+		mui.plusReady()
+		if(UserInfo.has_login()){
+			signin();
+		}
+		else{
+			mui.openWindow({
+	            url: "../a_login.html",
+	            id:"login",
+	            styles: {
+	                top: 0,
+	                bottom: 0
+	            },
+	            show: {
+	                aniShow: 'slide-in-right',
+	            },
+	            extras:{
+	            	backid:"m_signin.html"
+	            }
+	        });
+		}
 		var close = document.getElementById("close"),
 			login = document.getElementById("login");
-  		window.addEventListener('signin',function(){
-  			login.style.display="block";
+  		window.addEventListener('login-refresh',function(){
+  			signin();
   		});
-  		var url = "http://test.wafuli.cn/account/signin_record/";
-		mui.ready(function(){
-			mui.get(url,function(data){
+  		function signin(){
+  			var url = "http://test.wafuli.cn/app/signin/";
+  			mui.get(url,function(data){
+  				if(data.code==0){
+  					login.style.display="block";
+  				}
 				var arr = document.getElementById("calendar").getElementsByTagName("number");
-				data.push(dnow);
 				for (var ele in arr){
 					var i = arr[ele].innerHTML;
 					i = parseInt(i);
-					if ( data.indexOf(i) != -1 ){
+					if ( data.records.indexOf(i) != -1 ){
 						arr[ele].parentNode.className = "yes";
 					}
 				}
 			},'json');
-		});
+  		}
 		//监听点击事件
 		if(close){
 			close.addEventListener("tap",function () {

@@ -31,7 +31,7 @@
 				<div id="nav" class="icon-nav">
 		        	<ul class="nav-list clearfix">
 		            	<li>
-		                	<a href="/account/signin/">
+		                	<a href="account/m_signin.html">
 		                    	<i class="icon iconfont ic-01"></i>
 		                        <span>每日签到</span>
 		                    </a>
@@ -130,14 +130,28 @@
 				mui.toast("获取新闻时发生了异常");
 			};
 			 //点击新闻列表，打开新闻详情
-			mui('#pullrefresh').on('tap', 'a', function() {
+			mui('.hot').on('tap', 'a', function() {
 				var title = this.querySelector('h6').innerText;
 				var img = this.querySelector('img').src;
-				open_new_detail(this.getAttribute('data_id'),this.getAttribute('data_type'),title,img);
+				open_welfare_detail(this.getAttribute('data_id'),this.getAttribute('data_type'),title,img);
+			});
+			mui('.nav').on('tap', 'a', function() {
+				var id = this.href;
+				mui.openWindow({
+		            url: id,
+		            id: id,
+		            styles: {
+		                top: 0,
+		                bottom: 0
+		            },
+		            show: {
+		                aniShow: 'slide-in-right',
+		            },
+		        });
 			});
 			var detailMainWebview = null; //详情页面父webview
 			var detailWebview = null; //详情页面子webview
-			function open_new_detail(id,type,title,img) {
+			function open_welfare_detail(id,type,title,img) {
 //				var wvs=plus.webview.all();
 //				for(var i=0;i<wvs.length;i++){
 //					console.log("webview"+i+": "+wvs[i].id);
