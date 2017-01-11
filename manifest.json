@@ -337,7 +337,8 @@
 					"js/mui.js",
 					"css/m_common.css",
 					"js/app.js",
-					"fonts/wafuli-iconfont.woff"
+					"fonts/wafuli-iconfont.woff",
+					"account/m_signin.html"
 				],
 				"refer": [
 					"m_detail_hongbao.html",
@@ -842,6 +843,26 @@
 				],
 				"refer": [],
 				"priority": 0
+			},
+			"account/m_signin.html": {
+				"resources": [
+					"css/m_signin.css",
+					"images/bg-every.png",
+					"js/UserInfo.js",
+					"js/mui.min.js",
+					"images/juchi.png",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"fonts/wafuli-iconfont.woff",
+					"js/calendar.js",
+					"css/m_common.css",
+					"js/mui.js",
+					"images/user-01.png"
+				],
+				"refer": [
+					"a_login.html"
+				],
+				"priority": 0
 			}
 		},
 		"idle": {
@@ -1034,7 +1055,6 @@
 				"css/m_detail_taskandfinance.css",
 				"images/图层 227.png",
 				"images/share_logo.jpg",
-				"css/m_signin.css",
 				"images/jf-in-01.png",
 				"images/i-12.jpg",
 				"images/user-02.png",
@@ -1105,7 +1125,6 @@
 				"images/logo-6.png",
 				"images/ic1.png",
 				"images/topimg1.jpg",
-				"images/juchi.png",
 				"images/pict_100.png",
 				"images/sinaweibo.png",
 				"images/ico6.png",
@@ -1145,7 +1164,6 @@
 				"images/left-icon2.png",
 				"images/bg-2.png",
 				"images/pointer.png",
-				"images/bg-every.png",
 				"images/code.jpg",
 				"js/new_file.html",
 				"images/phone.png",
@@ -1282,7 +1300,6 @@
 				"images/pic6.png",
 				"images/t4.png",
 				"images/img6.png",
-				"js/calendar.js",
 				"images/turntable.png",
 				"js/move.js",
 				"js/jquery.js",

@@ -31,7 +31,7 @@
 				<div id="nav" class="icon-nav">
 		        	<ul class="nav-list clearfix">
 		            	<li>
-		                	<a href="account/m_signin.html">
+		                	<a id="account/m_signin.html">
 		                    	<i class="icon iconfont ic-01"></i>
 		                        <span>每日签到</span>
 		                    </a>
@@ -130,13 +130,13 @@
 				mui.toast("获取新闻时发生了异常");
 			};
 			 //点击新闻列表，打开新闻详情
-			mui('.hot').on('tap', 'a', function() {
+			mui('#hot').on('tap', 'a', function() {
 				var title = this.querySelector('h6').innerText;
 				var img = this.querySelector('img').src;
 				open_welfare_detail(this.getAttribute('data_id'),this.getAttribute('data_type'),title,img);
 			});
-			mui('.nav').on('tap', 'a', function() {
-				var id = this.href;
+			mui('#nav').on('tap', 'a', function() {
+				var id = this.id;
 				mui.openWindow({
 		            url: id,
 		            id: id,
