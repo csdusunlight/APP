@@ -108,6 +108,8 @@
     					return;
     				} else {
     					UserInfo.clear();
+    					acc_index = plus.webview.getWebviewById("m_account_index.html");
+    					mui.fire(acc_index, 'logoff-refresh');
     					mui.back();
     				}
     			});

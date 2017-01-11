@@ -1,5 +1,3 @@
-
-{% load myfilter %}
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -23,7 +21,6 @@
     <meta http-equiv="Cache-Control" content="no-cache">
     <meta http-equiv="Expires" content="0">
     <title>每日签到</title>
-    <script src="../js/mui.min.js"></script>
     <link href="../css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="../css/m_common.css"/>
     <link rel="stylesheet" type="text/css" href="../css/m_signin.css"/>
@@ -36,19 +33,19 @@
 		<footer>
 			<ul class="clearfix tc">
 		    	<li>
-		        	<a href="{% url 'activity_lottery' %}">
+		        	<a >
 		            <i class="icon iconfont">&#xe619;</i>
 		        	<span>积分抽奖</span>
 		            </a>
 		        </li>
 		    	<li>
-		        	<a href="{% url 'account_exchange' %}">
+		        	<a >
 		            <i class="icon iconfont">&#xe629;</i>
 		        	<span>积分兑换</span>
 		            </a>
 		        </li>
 		    	<li>
-		        	<a href="{% url 'exchange_morescore' %}">
+		        	<a >
 		            <i class="icon iconfont ic-03">&#xe618;</i>
 		        	<span>更多积分</span>
 		            </a>
@@ -57,83 +54,124 @@
 		    </ul>
 		</footer>
 		<div class="mui-content">
-			<!--帐号部分-->
-
-				<div class="msg clearfix">
-					<img src="/static/images/user-0{{user.id| modulo:'4'}}.png" alt="用户头像" />
-					<div class="text">
-						<p>当前可用积分：<number>{{user.scores}}</number><br />
-						<span>今日已奖励5个积分，连续签七日可获得额外积分</p>
-					</div>
+			<div class="msg clearfix">
+				<img id="userimg" src="../images/user.png" alt="用户头像" />
+				<div class="text">
+					<p>当前可用积分：<number id="scores"></number><br />
+					<span>今日已奖励5个积分，连续签七日可获得额外积分</span></p>
 				</div>
-				<div class="table">
-					<h6><number>
-							<script>
-							Date.prototype.format = function (fmt) {
-							    var o = {
-							        "M+": this.getMonth() + 1, //月份
-							        "d+": this.getDate(), //日
-							        "h+": this.getHours(), //小时
-							        "m+": this.getMinutes(), //分
-							        "s+": this.getSeconds(), //秒
-							        "q+": Math.floor((this.getMonth() + 3) / 3), //季度
-							        "S": this.getMilliseconds() //毫秒
-							    };
-							    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
-							    for (var k in o)
-							    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
-							    return fmt;
-							}
-							document.write(new Date().format("yyyy-MM-dd"));
-							</script>
-						</number>
-					</h6>
-					<table id="calendar" border="" cellspacing="" cellpadding="">
+			</div>
+			<div class="table">
+				<h6><number>
+						<script>
+						Date.prototype.format = function (fmt) {
+						    var o = {
+						        "M+": this.getMonth() + 1, //月份
+						        "d+": this.getDate(), //日
+						        "h+": this.getHours(), //小时
+						        "m+": this.getMinutes(), //分
+						        "s+": this.getSeconds(), //秒
+						        "q+": Math.floor((this.getMonth() + 3) / 3), //季度
+						        "S": this.getMilliseconds() //毫秒
+						    };
+						    if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
+						    for (var k in o)
+						    if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+						    return fmt;
+						}
+						document.write(new Date().format("yyyy-MM-dd"));
+						</script>
+					</number>
+				</h6>
+				<table id="calendar" border="" cellspacing="" cellpadding="">
 
-						<tr>
-							<th>日</th>
-							<th>一</th>
-							<th>二</th>
-							<th>三</th>
-							<th>四</th>
-							<th>五</th>
-							<th>六</th>
-						</tr>
-						<script src="../js/calendar.js"></script>
-					</table>
-				</div>
+					<tr>
+						<th>日</th>
+						<th>一</th>
+						<th>二</th>
+						<th>三</th>
+						<th>四</th>
+						<th>五</th>
+						<th>六</th>
+					</tr>
+					<script src="../js/calendar.js"></script>
+				</table>
+			</div>
 		</div>	<!--mui-content-->
-		{%if flag == 1%}
-		<div id="login" class="delete">
+		<div id="login" class="delete" style="display: none;">
 			<div>
 			<a href="#" id="close" class="close mui-icon mui-icon-closeempty"></a>
 				<p class="top">签到成功</p>
 				<p class="bottom">今日已签到，奖励<number>5</number>积分</p>
 			</div>
 		</div>
-		{%endif%}
 
-
+	<script src="../js/mui.min.js"></script>
+	<script src="../js/UserInfo.js"></script>
 	<script>
-		url = "{% url 'signin_record' %}"
 		mui.init();
-		mui.ready(function(){
-			mui.get(url,function(data){
-				var arr = document.getElementById("calendar").getElementsByTagName("number");
-				for (var ele in arr){
-					var i = arr[ele].innerHTML;
-					i = parseInt(i);
-					if ( data.indexOf(i) != -1 ){
-						arr[ele].parentNode.className = "yes";
-					}
-				}
-			},'json'
-		);
+		mui.plusReady(function(){
+			if(UserInfo.has_login()){
+				signin();
+			}
+			else{
+				console.log("whatlksjfdko");
+				var self = plus.webview.currentWebview();
+				console.log(self.id);
+				mui.openWindow({
+		            url: "../a_login.html",
+		            id:"login",
+		            styles: {
+		                top: 0,
+		                bottom: 0
+		            },
+		            show: {
+		                aniShow: 'slide-in-right',
+		            },
+		            extras:{
+		            	backid:self.id
+		            }
+		        });
+			}
 		});
-	</script>
-	<script>
+		
 		var close = document.getElementById("close"),
 			login = document.getElementById("login");
+  		window.addEventListener('login-refresh',function(){
+  			signin();
+  		});
+  		function signin(){
+  			console.log('dddd');
+  			var url = "http://test.wafuli.cn/app/signin/";
+			mui.ajax({
+				type: "get",
+				url: url,
+				dataType: 'json',
+				data:{
+	    			token:UserInfo.token()
+	    		},
+				success: function(ret) {
+					console.log(JSON.stringify(ret));
+					if(ret.code==0){
+						login.style.display="block";
+					}
+					var img = "../images/user-0" + ret.userimg + ".png";
+					document.getElementById('userimg').src = img;
+					document.getElementById('scores').innerText = ret.scores;
+					var arr = document.getElementById("calendar").getElementsByTagName("number");
+					for (var ele in arr){
+						var i = arr[ele].innerHTML;
+						i = parseInt(i);
+						if ( ret.records.indexOf(i) != -1 ){
+							arr[ele].parentNode.className = "yes";
+						}
+					}
+				},
+				error:function(xhr,type,errorThrown){
+					mui.alert(type);
+				}
+			});
+  		}
 		//监听点击事件
 		if(close){
 			close.addEventListener("tap",function () {
@@ -141,20 +179,6 @@
 			});
 		}
 	</script>
-	{%if back %}
-	<script>
-	mui.back = function(){
-		var history = window.history;
-		if (history.length > 3 ){
-			history.go(-3);
-		}
-		else{
-			history.back();
-		}
-	};
-	</script>
-	{%endif%}
-
 	</body>
 
 </html>

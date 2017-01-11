@@ -28,7 +28,7 @@
 	<body>
 		<div class="mui-content">
 			<div class="top">
-        	<img id="userimg" src="images/user-01.png" alt="用户头像" />
+        	<img id="userimg" src="images/user.png" alt="用户头像" />
 				<a id="settings"><number id="mobile"></number><i class="icon iconfont">&#xe63d;</i></a>
 			</div>
 
@@ -104,74 +104,95 @@
       	var user = null;
       	mui.plusReady(function() {
       		self = plus.webview.currentWebview();
+      		self.addEventListener('show',function(){
+      			if (!UserInfo.has_login()){
+      				tologin();
+      			}
+      			else{
+      				get_user_info();
+      			}
+      		});
       		window.addEventListener('login-refresh',function(){
       			get_user_info();
       		});
-      		self.addEventListener('show',function(){
-      			if (!UserInfo.has_login()){
-					mui.openWindow({
-			            url: "a_login.html",
-			            id:"login",
-			            styles: {
-			                top: 0,
-			                bottom: 0
-			            },
-			            show: {
-			                aniShow: 'slide-in-right',
-			            },
-			            extras:{
-			            	backid:self.id
-			            }
-			        });
-			        return;
-				}
-      			get_user_info();
-      			
+      		window.addEventListener('logoff-refresh',function(){
+      			document.getElementById('userimg').src = "images/user.png";
+				document.getElementById('mobile').innerText = "";
+				document.getElementById('scores').innerText = "";
+				document.getElementById('accu_income').innerHTML = "";
+				document.getElementById('balance').innerText = "";
+				document.getElementById('scores').innerText = "";
       		});
       		mui('.mui-table-view').on('tap', 'a', function(e) {
-				var targetTab = this.getAttribute('href');
-				mui.openWindow({
-		            url: targetTab,
-		            id: targetTab,
-		            styles: {
-		                top: 0,
-		                bottom: 0,
-		                hardwareAccelerated:true
-		            },
-		            show:{
-				      autoShow:false,//页面loaded事件发生后自动显示，默认为true
-				      aniShow: 'slide-in-right'
-				    },
-		            waiting: {
-						autoShow: true,
-					},
-		            extras:{
-		            	user:user
-		            }
-		        });
+      			if (!UserInfo.has_login()){
+      				tologin();
+      			}
+      			else{
+      				var targetTab = this.getAttribute('href');
+					mui.openWindow({
+			            url: targetTab,
+			            id: targetTab,
+			            styles: {
+			                top: 0,
+			                bottom: 0,
+			                hardwareAccelerated:true
+			            },
+			            show:{
+					      autoShow:false,//页面loaded事件发生后自动显示，默认为true
+					      aniShow: 'slide-in-right'
+					    },
+			            waiting: {
+							autoShow: true,
+						},
+			            extras:{
+			            	user:user
+			            }
+			        });
+      			}
 			});
 			document.getElementById("settings").addEventListener("tap",function(e) {
-				var targetTab = this.getAttribute('href');
+				if (!UserInfo.has_login()){
+      				tologin();
+      			}
+      			else{
+      				var targetTab = this.getAttribute('href');
+					mui.openWindow({
+			            url: "account/m_account_settings.html",
+			            id: "account/m_account_settings.html",
+			            styles: {
+			                top: 0,
+			                bottom: 0,
+			                hardwareAccelerated:true
+			            },
+			            show:{
+					      autoShow:false,//页面loaded事件发生后自动显示，默认为true
+					      aniShow: 'slide-in-right'
+					    },
+			            waiting: {
+							autoShow: true,
+						},
+			            extras:{
+			            	user:user
+			            }
+			        });
+      			}
+			});
+			function tologin(){
 				mui.openWindow({
-		            url: "account/m_account_settings.html",
-		            id: "account/m_account_settings.html",
+		            url: "a_login.html",
+		            id:"login",
 		            styles: {
 		                top: 0,
-		                bottom: 0,
-		                hardwareAccelerated:true
+		                bottom: 0
 		            },
-		            show:{
-				      autoShow:false,//页面loaded事件发生后自动显示，默认为true
-				      aniShow: 'slide-in-right'
-				    },
-		            waiting: {
-						autoShow: true,
-					},
+		            show: {
+		                aniShow: 'slide-in-right',
+		            },
 		            extras:{
-		            	user:user
+		            	backid:self.id
 		            }
 		        });
-			});
+			}
 			function get_user_info(){
 				mui.ajax({
 					type: "post",

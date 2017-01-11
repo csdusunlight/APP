@@ -101,8 +101,8 @@
 								document.getElementById('strategy').innerHTML = ret.strategy;
 								document.getElementById('number_display').innerText = ret.num;
 								document.getElementById('time_display').innerText = ret.time;
+								mui.scrollTo(0);
 								self.show();
-								mui.scrollTo(0, 100);
 								if(ismobile){
 									document.getElementById('erweima_img').src = ret.url;
 									document.getElementById('erweima_title').src = ret.title;
