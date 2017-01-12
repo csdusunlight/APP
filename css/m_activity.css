@@ -6,7 +6,7 @@ body {
 	overflow-y: scroll;
 	font-weight: 300;
 	padding-top: 10rem;
-	background: url(../images/make-money-bg.png) center center no-repeat;
+	/*background: url(../images/make-money-bg.png) center center no-repeat;*/
 }
 .mui-content {
 	width: 100%;

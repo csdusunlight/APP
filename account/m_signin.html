@@ -107,17 +107,20 @@
 		</div>
 
 	<script src="../js/mui.min.js"></script>
-	<script src="../js/UserInfo.js"></script>
+	<script src="../js/UserInfo.js"></script> 
 	<script>
 		mui.init();
+		var self = null;
 		mui.plusReady(function(){
 			if(UserInfo.has_login()){
+				var user = UserInfo.userinfo();
+				var img = "../images/user-0" + user.userimg + ".png";
+				document.getElementById('userimg').src = img;
+				document.getElementById('scores').innerText = user.scores;
 				signin();
 			}
 			else{
-				console.log("whatlksjfdko");
-				var self = plus.webview.currentWebview();
-				console.log(self.id);
+				self = plus.webview.currentWebview();
 				mui.openWindow({
 		            url: "../a_login.html",
 		            id:"login",
@@ -141,7 +144,6 @@
   			signin();
   		});
   		function signin(){
-  			console.log('dddd');
   			var url = "http://test.wafuli.cn/app/signin/";
 			mui.ajax({
 				type: "get",
@@ -151,13 +153,9 @@
 	    			token:UserInfo.token()
 	    		},
 				success: function(ret) {
-					console.log(JSON.stringify(ret));
 					if(ret.code==0){
 						login.style.display="block";
 					}
-					var img = "../images/user-0" + ret.userimg + ".png";
-					document.getElementById('userimg').src = img;
-					document.getElementById('scores').innerText = ret.scores;
 					var arr = document.getElementById("calendar").getElementsByTagName("number");
 					for (var ele in arr){
 						var i = arr[ele].innerHTML;

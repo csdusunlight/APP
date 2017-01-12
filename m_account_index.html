@@ -112,20 +112,12 @@
       				refresh_userinfo();
       			}
       		});
-      		tempview = mui.preload({url:"", id:"temp"});
       		window.addEventListener('login-refresh',function(){
       			var info = UserInfo.userinfo();
       			display_userinfo(info);
       		});
       		window.addEventListener('logoff-refresh',function(){
       			display_userinfo();
-      			var a = {};
-      			if(!a){
-      				console.log('ddddddddd');
-      			}
-      		});
-      		tempview.addEventListener('hide',function(){
-      			tempview.clear();
       		});
       		function display_userinfo(dict){
       			if (!dict){
@@ -151,6 +143,9 @@
       				tologin();
       			}
       			else{
+      				if (!tempview){
+      					tempview = plus.webview.getWebviewById("temp");
+      				}
       				var targetTab = this.getAttribute('href');
       				tempview.loadURL(targetTab);
       				setTimeout(function(){

@@ -43,7 +43,7 @@
 		                    </a>
 		                </li>
 		            	<li>
-		                	<a href="/activity/">
+		                	<a id="html/m_activity.html">
 		                    	<i class="icon iconfont ic-03"></i>
 		                        <span>要赚福币</span>
 		                    </a>
@@ -111,6 +111,7 @@
 			var recom_group = document.body.querySelector('.today-img');
 			var slide_indicator = document.body.querySelector('.mui-slider-indicator');
 			var gallery_firstrun = 0;
+			var tempview = null;
 			 //初始化下拉刷新模块  
 			mui.init({
 				pullRefresh: {
@@ -125,7 +126,37 @@
 					}
 				}
 			});
-
+			mui.plusReady(function(){
+				wa.dbReady(function(isFirst) {
+					//document.body.style.backgroundColor = '#efeff4';
+					//第一次显示，从服务器中加载
+					if (!isFirst) {
+						//非第一次，直接从本地数据库中读取
+						//加载初始化数据
+						wa.getNews(Number.MAX_VALUE, 1,function(news) {
+							news_group.innerHTML = '';
+							add_doms_news(news, false);
+						}, throwGetNewsError);
+						wa.getSlider(function(sliders) {
+							add_doms_slider(sliders, false);
+						}, throwGetNewsError);
+						wa.getRecom(function(recoms) {
+							add_doms_recom(recoms, false);
+						}, throwGetNewsError);
+					}
+					setTimeout(function(){
+						mui('#pullrefresh').pullRefresh().pulldownLoading();
+					},1000);
+					setTimeout(function(){
+						getTemplate('welfare','template.html',"m_detail_welfare.html");
+						getTemplate("browser","browser.html","");
+					},400);
+				});
+				tempview = mui.preload({url:"", id:"temp",styles: {	hardwareAccelerated: true}});
+	      		tempview.addEventListener('hide',function(){
+	      			tempview.clear();
+	      		});
+			});
 			function throwGetNewsError() {
 				mui.toast("获取新闻时发生了异常");
 			};
@@ -137,17 +168,20 @@
 			});
 			mui('#nav').on('tap', 'a', function() {
 				var id = this.id;
-				mui.openWindow({
-		            url: id,
-		            id: id,
-		            styles: {
-		                top: 0,
-		                bottom: 0
-		            },
-		            show: {
-		                aniShow: 'slide-in-right',
-		            },
-		        });
+				tempview.loadURL(id);
+				tempview.show("pop-in");
+//				mui.openWindow({
+//		            url: id,
+//		            id: id,
+//		            styles: {
+//		                top: 0,
+//		                bottom: 0,
+//		                hardwareAccelerated: true
+//		            },
+//		            show: {
+//		                aniShow: 'slide-in-right',
+//		            },
+//		        });
 			});
 			var detailMainWebview = null; //详情页面父webview
 			var detailWebview = null; //详情页面子webview
@@ -175,33 +209,6 @@
 			/** 新版首次进入执行代码开始 **/
 			var latestPubDate = Number.MAX_VALUE;
 			var hasMore = true;
-			mui.plusReady(function(){
-				wa.dbReady(function(isFirst) {
-					//document.body.style.backgroundColor = '#efeff4';
-					//第一次显示，从服务器中加载
-					if (!isFirst) {
-						//非第一次，直接从本地数据库中读取
-						//加载初始化数据
-						wa.getNews(Number.MAX_VALUE, 1,function(news) {
-							news_group.innerHTML = '';
-							add_doms_news(news, false);
-						}, throwGetNewsError);
-						wa.getSlider(function(sliders) {
-							add_doms_slider(sliders, false);
-						}, throwGetNewsError);
-						wa.getRecom(function(recoms) {
-							add_doms_recom(recoms, false);
-						}, throwGetNewsError);
-					}
-					setTimeout(function(){
-						mui('#pullrefresh').pullRefresh().pulldownLoading();
-					},1000);
-					setTimeout(function(){
-						getTemplate('welfare','template.html',"m_detail_welfare.html");
-						getTemplate("browser","browser.html","");
-					},400);
-				});
-			});
 			
 //			mui.plusReady(function() {
 //				//关闭splash界面

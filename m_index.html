@@ -54,7 +54,7 @@
 			bottom: '51px',
 			hardwareAccelerated:true
 		};
-	
+		
 		var aniShow = {};
 	
 		//创建子页面，首个选项卡页面显示，其它均隐藏；
@@ -65,6 +65,10 @@
 			var self = plus.webview.currentWebview();
 			for(var i = 0; i < 4; i++) {
 				var temp = {};
+				if(i==0){
+					subpage_style.render = "always";
+					console.log(JSON.stringify(subpage_style));
+				}
 				var sub = plus.webview.create(subpages[i], subpages[i], subpage_style);
 				if(i > 0) {
 					sub.hide();
