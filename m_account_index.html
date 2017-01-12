@@ -101,7 +101,6 @@
       	mui.init();
       	var get_userinfo_url = "http://test.wafuli.cn/app/user/";
       	var self = null;
-      	var user = null;
       	var tempview = null;
       	mui.plusReady(function() {
       		self = plus.webview.currentWebview();
@@ -110,47 +109,70 @@
       				tologin();
       			}
       			else{
-      				get_user_info();
+      				refresh_userinfo();
       			}
       		});
-      		tempview = plus.webview.create("", "temp");
+      		tempview = mui.preload({url:"", id:"temp"});
       		window.addEventListener('login-refresh',function(){
-      			get_user_info();
+      			var info = UserInfo.userinfo();
+      			display_userinfo(info);
       		});
       		window.addEventListener('logoff-refresh',function(){
-      			document.getElementById('userimg').src = "images/user.png";
-				document.getElementById('mobile').innerText = "";
-				document.getElementById('scores').innerText = "";
-				document.getElementById('accu_income').innerHTML = "";
-				document.getElementById('balance').innerText = "";
-				document.getElementById('scores').innerText = "";
+      			display_userinfo();
+      			var a = {};
+      			if(!a){
+      				console.log('ddddddddd');
+      			}
       		});
+      		tempview.addEventListener('hide',function(){
+      			tempview.clear();
+      		});
+      		function display_userinfo(dict){
+      			if (!dict){
+      				document.getElementById('userimg').src = "images/user.png";
+					document.getElementById('mobile').innerText = "";
+					document.getElementById('scores').innerText = "";
+					document.getElementById('accu_income').innerHTML = "";
+					document.getElementById('balance').innerText = "";
+					document.getElementById('scores').innerText = "";
+      			}
+      			else{
+      				var img = "images/user-0" + dict.userimg + ".png";
+					document.getElementById('userimg').src = img;
+					document.getElementById('mobile').innerText = dict.mobile;
+					document.getElementById('scores').innerText = dict.scores;
+					document.getElementById('accu_income').innerHTML = dict.accu_income;
+					document.getElementById('balance').innerText = dict.balance
+					document.getElementById('scores').innerText = dict.scores;
+      			}
+      		}
       		mui('.mui-table-view').on('tap', 'a', function(e) {
       			if (!UserInfo.has_login()){
       				tologin();
       			}
       			else{
       				var targetTab = this.getAttribute('href');
-//    				tempview.loadURL(targetTab);
-					mui.openWindow({
-			            url: targetTab,
-			            id: targetTab,
-			            styles: {
-			                top: 0,
-			                bottom: 0,
-			                hardwareAccelerated:true
-			            },
-			            show:{
-					      autoShow:false,//页面loaded事件发生后自动显示，默认为true
-					      aniShow: 'slide-in-right'
-					    },
-			            waiting: {
-							autoShow: true,
-						},
-			            extras:{
-			            	user:user
-			            }
-			        });
+      				tempview.loadURL(targetTab);
+      				setTimeout(function(){
+      					tempview.show('slide-in-right');
+      				},10);
+//    				console.log(tempview.id);
+//					mui.openWindow({
+//			            url: targetTab,
+//			            id: targetTab,
+//			            styles: {
+//			                top: 0,
+//			                bottom: 0,
+//			                hardwareAccelerated:true
+//			            },
+//			            show:{
+//					      autoShow:false,//页面loaded事件发生后自动显示，默认为true
+//					      aniShow: 'slide-in-right'
+//					    },
+//			            waiting: {
+//							autoShow: true,
+//						},
+//			        });
       			}
 			});
 			document.getElementById("settings").addEventListener("tap",function(e) {
@@ -158,26 +180,26 @@
       				tologin();
       			}
       			else{
-      				var targetTab = this.getAttribute('href');
-					mui.openWindow({
-			            url: "account/m_account_settings.html",
-			            id: "account/m_account_settings.html",
-			            styles: {
-			                top: 0,
-			                bottom: 0,
-			                hardwareAccelerated:true
-			            },
-			            show:{
-					      autoShow:false,//页面loaded事件发生后自动显示，默认为true
-					      aniShow: 'slide-in-right'
-					    },
-			            waiting: {
-							autoShow: true,
-						},
-			            extras:{
-			            	user:user
-			            }
-			        });
+      				tempview.loadURL("account/m_account_settings.html");
+      				setTimeout(function(){
+      					tempview.show('slide-in-right');
+      				},10);
+//					mui.openWindow({
+//			            url: "account/m_account_settings.html",
+//			            id: "account/m_account_settings.html",
+//			            styles: {
+//			                top: 0,
+//			                bottom: 0,
+//			                hardwareAccelerated:true
+//			            },
+//			            show:{
+//					      autoShow:false,//页面loaded事件发生后自动显示，默认为true
+//					      aniShow: 'slide-in-right'
+//					    },
+//			            waiting: {
+//							autoShow: true,
+//						},
+//			        });
       			}
 			});
 			function tologin(){
@@ -196,7 +218,7 @@
 		            }
 		        });
 			}
-			function get_user_info(){
+			function refresh_userinfo(){
 				mui.ajax({
 					type: "post",
 					url: get_userinfo_url,
@@ -206,15 +228,9 @@
 		    		},
 					success: function(ret) {
 						if(ret.code==0){
-							var img = "images/user-0" + ret.userimg + ".png";
-							document.getElementById('userimg').src = img;
-							document.getElementById('mobile').innerText = ret.mobile;
-							document.getElementById('scores').innerText = ret.scores;
-	    					document.getElementById('accu_income').innerHTML = ret.accu_income;
-							document.getElementById('balance').innerText = ret.balance
-							document.getElementById('scores').innerText = ret.scores;
-							user = ret;
-							user.img = '../' + img;
+							var info = ret.info;
+							display_userinfo(info);
+							UserInfo.userinfo(info);
 	    				}
 	    				else if(ret.code<0){
 	    					mui.openWindow({

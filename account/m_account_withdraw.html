@@ -35,7 +35,7 @@
 			<!--帐号部分-->
 			<div class="zhanghu">
 				<div class="msg clearfix">
-					<img id="userimg" alt="用户图标" />
+					<img id="userimg" src="../images/user.png" alt="用户图标" />
 					<div class="text">
 						<p><number id="mobile"></number><br />
 							<span id="zhifubao"></span>
@@ -66,21 +66,19 @@
 			mui.init();
 			var self = null;
 			mui.plusReady(function(){
-				self = plus.webview.currentWebview();
-				user = self.user;
+				user = UserInfo.userinfo();
 				document.getElementById("balance").innerText = user.balance;
-				document.getElementById('userimg').src = user.img;
+				document.getElementById('userimg').src = "../images/user-0" + user.userimg + ".png";
 				document.getElementById('mobile').innerText = user.mobile;
-				plus.nativeUI.closeWaiting();
-				self.show();
+				
 				if (user.zhifubao){
 					document.getElementById("zhifubao").innerHTML = "支付宝帐号：<number>" + user.zhifubao + "</number>";
-					document.getElementById("change_zhifubao").src = "m_account_change_zhifubao.html";
+					document.getElementById("change_zhifubao").href = "m_account_change_zhifubao.html";
 					document.getElementById("change_zhifubao").innerText = "更换支付宝账号";
 				}
 				else{
 					document.getElementById("zhifubao").innerHTML = "支付宝帐号：未绑定";
-					document.getElementById("change_zhifubao").src = "m_account_bind_zhifubao.html";
+					document.getElementById("change_zhifubao").href = "m_account_bind_zhifubao.html";
 					document.getElementById("change_zhifubao").innerText = "绑定支付宝账号";
 				}
 			});

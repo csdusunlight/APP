@@ -147,7 +147,7 @@
 							console.log(backwebview.id);
 							mui.fire(backwebview, 'login-refresh');
 						}
-						self.close();
+						mui.back();
 					};
 					//检查 "登录状态/锁屏状态" 结束
 					var loginButton = doc.getElementById('login');
@@ -172,6 +172,7 @@
 			    				if(ret.code==0){
 			    					UserInfo.token(ret.token);
 			    					UserInfo.expire(ret.expire);
+			    					UserInfo.userinfo(ret.info);
 			    					toMain();
 			    				}
 			    				else if(ret.code==1){

@@ -7,6 +7,7 @@ UserInfo.clear = function(){
 //  localStorage.removeItem('password');
     localStorage.removeItem('token');
     localStorage.removeItem('expire');
+    localStorage.removeItem('userinfo');
 }
 
 //检查是否包含自动登录的信息
@@ -75,4 +76,17 @@ UserInfo.expire = function(){
         return;
     }
     localStorage.setItem('expire', arguments[0].toString());
+};
+
+UserInfo.userinfo = function(){
+    if(arguments.length == 0){
+        var userinfo_str = localStorage.getItem('userinfo');
+    	return JSON.parse(userinfo_str);
+    }
+    if(!arguments[0]){
+        localStorage.removeItem('userinfo');
+        return;
+    }
+    var userinfo_str = JSON.stringify(arguments[0]);
+    localStorage.setItem('userinfo', userinfo_str);
 };

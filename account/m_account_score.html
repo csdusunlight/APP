@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 	<head lang="en">
 		<meta charset="UTF-8">
 		<!-- 优先使用 IE 最新版本和 Chrome -->
@@ -114,16 +113,10 @@
 		<script>
 			mui.init();
 			var get_score_url = "http://test.wafuli.cn/app/score_json/";
-			var self = null;
-			mui.plusReady(function(){
-				self = plus.webview.currentWebview();
-				user = self.user;
-				document.getElementById("accu_scores").innerText = user.accu_scores;
-				document.getElementById('userimg').src = user.img;
-				document.getElementById('scores').innerText = user.scores;
-				plus.nativeUI.closeWaiting();
-				self.show();
-			});
+			user = UserInfo.userinfo();
+			document.getElementById("accu_scores").innerText = user.accu_scores;
+			document.getElementById('userimg').src = "../images/user-0" + user.userimg + ".png";
+			document.getElementById('scores').innerText = user.scores;
 			(function($) {
 				//阻尼系数
 				var deceleration = mui.os.ios?0.003:0.0009;
@@ -238,9 +231,6 @@
 		                autoShow: true, //自动显示等待框
 		                title: '正在加载...', //等待对话框上显示的提示内容
 		            },
-		            extras:{
-		            	user:self.user
-		            }
 		        });
 			});
 			document.getElementById('lottery_btn').addEventListener("tap",function(){

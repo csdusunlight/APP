@@ -427,7 +427,10 @@
 					"account/m_account_welfare.html",
 					"account/m_account_coupon.html",
 					"account/m_account_invite.html",
-					"account/m_strategy.html"
+					"account/m_strategy.html",
+					"account/m_account_withdraw.html",
+					"account/m_account_change_password.html",
+					"account/m_account_change_zhifubao.html"
 				],
 				"priority": 0
 			},
@@ -687,7 +690,8 @@
 					"css/mui.min.css",
 					"fonts/wafuli-iconfont.woff",
 					"css/m_common.css",
-					"js/UserInfo.js"
+					"js/UserInfo.js",
+					"account/m_account_charge.html"
 				],
 				"refer": [
 					"account/m_account_exchange.html"
@@ -715,7 +719,10 @@
 					"css/m_common.css",
 					"images/user-03.png",
 					"images/fubi.png",
-					"js/UserInfo.js"
+					"js/UserInfo.js",
+					"account/m_account_charge.html",
+					"images/user.png",
+					"account/m_account_change_zhifubao.html"
 				],
 				"refer": [],
 				"priority": 0
@@ -730,7 +737,8 @@
 					"images/bg-user.png",
 					"css/mui.min.css",
 					"css/m_common.css",
-					"account/m_account_change_zhifubao.html"
+					"account/m_account_change_zhifubao.html",
+					"images/user.png"
 				],
 				"refer": [
 					"account/m_account_change_password.html"
@@ -746,7 +754,8 @@
 					"js/mui.min.js",
 					"fonts/mui.ttf",
 					"css/mui.min.css",
-					"css/m_common.css"
+					"css/m_common.css",
+					"account/m_account_withdraw.html"
 				],
 				"refer": [],
 				"priority": 0
@@ -760,7 +769,8 @@
 					"js/mui.min.js",
 					"fonts/mui.ttf",
 					"css/mui.min.css",
-					"css/m_common.css"
+					"css/m_common.css",
+					"account/m_account_settings.html"
 				],
 				"refer": [],
 				"priority": 0
@@ -825,7 +835,8 @@
 					"fonts/mui.ttf",
 					"css/mui.min.css",
 					"fonts/wafuli-iconfont.woff",
-					"css/m_common.css"
+					"css/m_common.css",
+					"account/m_account_charge.html"
 				],
 				"refer": [
 					"account/m_detail_press.html"

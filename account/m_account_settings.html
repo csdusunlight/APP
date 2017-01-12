@@ -35,7 +35,7 @@
 		</header>
 		<div class="mui-content">
 			<div class="top">
-				<img id="userimg" alt="用户头像" />
+				<img id="userimg" src="../images/user.png" alt="用户头像" />
 				<a><number id="mobile"></number></a>
 			</div>
 			<ul class="mui-table-view">
@@ -58,48 +58,44 @@
 		<script src="../js/UserInfo.js"></script>
 		<script>
       	mui.init();
-      	mui.plusReady(function(){
-			var self = plus.webview.currentWebview();
-			user = self.user;
-			document.getElementById('userimg').src = user.img;
-			document.getElementById('mobile').innerText = user.mobile;
-			document.getElementById('mobile2').innerText = user.mobile;
-			plus.nativeUI.closeWaiting();
-			self.show();
-			if (user.zhifubao){
-				document.getElementById("zhifubao").innerHTML = "支付宝<number>（" + user.zhifubao + "）</number><span>更换</span>";
-				document.getElementById("zhifubao").href = "m_account_change_zhifubao.html";
-			}
-			else{
-				document.getElementById("zhifubao").innerHTML = "支付宝帐号：未绑定";
-				document.getElementById("zhifubao").href = "m_account_bind_zhifubao.html";
-			}
-		});
+		user = UserInfo.userinfo();
+		document.getElementById('userimg').src = "../images/user-0" + user.userimg + ".png";
+		document.getElementById('mobile').innerText = user.mobile;
+		document.getElementById('mobile2').innerText = user.mobile;
+		
+		if (user.zhifubao){
+			document.getElementById("zhifubao").innerHTML = "支付宝<number>（" + user.zhifubao + "）</number><span>更换</span>";
+			document.getElementById("zhifubao").href = "m_account_change_zhifubao.html";
+		}
+		else{
+			document.getElementById("zhifubao").innerHTML = "支付宝帐号：未绑定";
+			document.getElementById("zhifubao").href = "m_account_bind_zhifubao.html";
+		}
       	mui.ready(function(){
       		mui('.mui-table-view').on('tap', 'a', function(e) {
 				var targetTab = this.getAttribute('href');
-				if (!targetTab){
-					return;
+				if (targetTab){
+					plus.webview.currentWebview().loadURL(targetTab);
 				}
-				mui.openWindow({
-		            url: targetTab,
-		            id: targetTab,
-		            styles: {
-		                top: 0,
-		                bottom: 0,
-		                hardwareAccelerated:true
-		            },
-		            show:{
-				      autoShow:true,//页面loaded事件发生后自动显示，默认为true
-				      aniShow: 'slide-in-right'
-				    },
-		            waiting: {
-						autoShow: true
-					},
-		            extras:{
-		            	user:user
-		            }
-		        });
+//				mui.openWindow({
+//		            url: targetTab,
+//		            id: targetTab,
+//		            styles: {
+//		                top: 0,
+//		                bottom: 0,
+//		                hardwareAccelerated:true
+//		            },
+//		            show:{
+//				      autoShow:true,//页面loaded事件发生后自动显示，默认为true
+//				      aniShow: 'slide-in-right'
+//				    },
+//		            waiting: {
+//						autoShow: true
+//					},
+//		            extras:{
+//		            	user:user
+//		            }
+//		        });
 			});
       		document.getElementById('logout').addEventListener('tap',function(){
           		var btnArray = ['确定退出', '取消'];

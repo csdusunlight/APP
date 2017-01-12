@@ -60,15 +60,9 @@
     <script src="../js/share.js"></script>
     <script type="text/javascript" charset="utf-8">
       	mui.init();
-      	var share_href = null;
-      	mui.plusReady(function(){
-			var self = plus.webview.currentWebview();
-			user = self.user;
-			share_href = 'http://test.wafuli.cn/invite_accept?icode=' + user.invite_code;
-			document.getElementById('share_link').innerText = share_href;
-			plus.nativeUI.closeWaiting();
-			self.show();
-		});
+      	user = UserInfo.userinfo();
+      	var share_href = 'http://test.wafuli.cn/invite_accept?icode=' + user.invite_code;
+		document.getElementById('share_link').innerText = share_href;
       	mui.ajax({
 			url: "http://test.wafuli.cn/app/get_invite_info/",
 			dataType:"json",
@@ -81,10 +75,10 @@
 					mui.alert(ret.msg);
 				}
 				else {
-					document.getElementById('invite_num').innerText = ret.invite_num;
-					document.getElementById('invite_award').innerText = ret.invite_award;
-					document.getElementById('invite_score').innerText = ret.invite_score;
-					document.getElementById('to_award').innerText = ret.to_award;
+					document.getElementById('invite_num').innerText = ret.acc_count;
+					document.getElementById('invite_award').innerText = ret.accu_invite_award;
+					document.getElementById('invite_score').innerText = ret.accu_invite_scores;
+					document.getElementById('to_award').innerText = ret.this_month_award;
 					document.getElementById('left_award').innerText = ret.left_award;
 				}
 			},
