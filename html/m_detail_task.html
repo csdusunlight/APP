@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title></title>
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../css/m_common.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/m_detail_taskandfinance.css"/>
+</head>
+	<body>
+		<div class="mui-content">
+			<div class="ad">
+				<img id="picture" src="../images/blank.jpg">
+			</div>
+			<!--体验步骤部分-->
+			<div class="taste">
+				<h3 class="reward"><i class="iconfont">&#xe613;</i>奖励规则</h3>
+				<div id="rules" class="detail-html"></div>
+			</div>
+			<div class="taste-02">
+				<h3><i class="iconfont">&#xe61c;</i>体验步骤</h3>
+				<div id="strategy" class="detail-html"></div>
+			</div>
+			<!--温馨提示部分-->
+			<div class="prompt">
+				<h3><i class="iconfont">&#xe60b;</i>温馨提示</h3>
+				<p><number>1、</number>为了让您畅快的享受福利，请您务必先详细阅读奖励规则，按照体验步骤详情操作，并在完成后返回本页面<span style="color:#ff6767">提交相关数据</span>（注册手机号码和截图），以便挖福利工作人员进行审核数据；</p>
+				<p><number>2、</number>用户提交数据后，挖福利工作人员将在48小时内完成审核，并发放相应奖励至用户账户；</p>
+				<p><number>3、</number>用户赚取的福币可在个人中心以100：1的比例兑换成现金并提现至支付宝账户（100个福币兑换成1元现金）； 积分则可在积分商城兑换相应的奖品；</p>
+				<p><number>4、</number>挖福利对数据审核具有最终解释权。</p>
+				<p class="contact">如有疑问请联系<strong>在线客服</strong>或拨打 <strong>服务热线：0734-8344414</strong></p>
+			</div>
+			<!--立即体验部分-->
+			<div class="mui-row">
+		        <div class="left-btn mui-col-sm-6 mui-col-xs-6">
+		        <button id="reg_btn" type="button" class="mui-btn mui-btn-blue mui-btn-outlined">提交任务</button>
+		        </div>
+		        <div class=" mui-col-sm-6 mui-col-xs-6">
+		        <button id="exp_btn" type="button" class="right mui-btn mui-btn-blue mui-btn-outlined">领取任务</button>
+		        </div>
+		    </div>
+
+		</div>
+		<!--弹出二维码部分-->
+		<div id="ding_yue" class="er-wei-ma">
+			<div class="box">
+				<span id="close_01" class="mui-icon mui-icon-close"></span>
+				<p>长安识别图中二维码</p>
+				<img id="erweima_img"/>
+				<p id="erweima_title"></p>
+			</div>
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/UserInfo.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			var id = '';
+			var type = 'Task';
+			var ismobile = true;
+			var url_get_erweima = "{%url 'exp_welfare_erweima' %}"
+			var ismobile = false;
+			var url_openwindow = "{% url 'exp_welfare_openwindow' %}";
+			var exp_url = '';
+			var accepted = null;
+			exp_btn.addEventListener('tap', function() {
+					if (!accepted){
+						var btnArray = ['取消', '确认领取'];
+		                mui.confirm('1、领取的任务必须在当日24点前完成并提交，次日无效；\n'+
+		                		'2、手机号和截图需规范且有效，否则视为无效信息；\n'+
+		                		'3、任务被领取后请确保完成且提交，否则可能会被挖福利加入黑名单。', '温馨提示', btnArray, function(e) {
+		                    if (e.index == 1) {
+		                    	experient();
+		                    }
+		                })
+					}
+					else{
+						experient();
+					}
+				});
+			window.addEventListener('display',function(event){
+			  //获得事件参数
+			  	id = event.detail.id;
+			  	img = event.detail.img;
+			  	document.getElementById('picture').src = img;
+			  	self = plus.webview.currentWebview();
+			  //根据id向服务器请求新闻详情
+		  		
+		  		var url_get_content= "http://test.wafuli.cn/app/detail/task/";
+		  		mui.ajax({
+					url:url_get_content,
+					dataType:"json",
+					data: {
+						token:UserInfo.token(),
+						id:id,
+					},
+					success:function(ret){
+						if(ret.code!=0){
+							mui.alert(ret.msg);
+						}
+						else{
+							var info = ret.taskinfo;
+							ismobile = info.ismobile;
+							document.getElementById('strategy').innerHTML = info.strategy;
+							document.getElementById('rules').innerHTML = info.rules;
+							mui.scrollTo(0);
+							self.show();
+							if(ismobile){
+								document.getElementById('erweima_img').src = info.url;
+								document.getElementById('erweima_title').src = info.title;
+							}
+							else {
+								exp_url = info.url;
+							}
+							if(info.accepted==0){
+								exp_btn.innerText="领取任务";
+								reg_btn.innerText = "提交任务（未领取）";
+							}
+							else {
+								exp_btn.innerText="立即体验";
+								reg_btn.innerText = "提交任务";
+							}
+						}
+						
+					},
+					error:function(xhr,type,errorThrown){
+						mui.alert(type);
+					}
+				});
+			  	var sss='share_msg.pictures=["' + img + '",];share_msg.thumbs=["' + img + '",];share_msg.href = "http://test.wafuli.cn/task/' + id + '/";';
+				self.parent().evalJS(sss);
+			});
+			exp_btn.addEventListener('tap', function() {
+				if (!UserInfo.has_login()){
+					mui.openWindow({
+			            url: "../a_login.html",
+			            id:"login",
+			            styles: {
+			                top: 0,
+			                bottom: 0
+			            },
+			            show: {
+			                aniShow: 'slide-in-right',
+			            },
+			            extras:{
+			            	backid:self.id
+			            }
+			        });
+				}
+				else{
+					if(ismobile){
+						document.getElementById("ding_yue").style.display="block";
+					}
+					else {
+						var browserMainWebview = plus.webview.getWebviewById('browser_main');
+						var browserWebview = plus.webview.getWebviewById('browser_sub');
+						mui.fire(browserMainWebview, 'mui.view.beforeshow');
+						browserWebview.loadURL(exp_url);
+						browserMainWebview.show('pop-in', 200);
+					}
+				}
+			});
+			document.getElementById("close_01").addEventListener('tap', function() {
+				document.getElementById("ding_yue").style.display="none";
+			});
+			reg_btn.addEventListener('tap', function() {
+				var sub_url = "m_expsubmit_task.html";
+				self.sub_id = id;
+				self.loadURL(sub_url);
+//				mui.openWindow({
+//		            url: sub_url,
+//		            styles: {
+//		                top: 0,
+//		                bottom: 0
+//		            },
+//		            show: {
+//		                aniShow: 'slide-in-right',
+//		            },
+//		            waiting: {
+//		                autoShow: false, //自动显示等待框
+//		                title: '正在加载...', //等待对话框上显示的提示内容
+//		            },
+//		        });
+			});
+		</script>
+	</body>
+
+</html>

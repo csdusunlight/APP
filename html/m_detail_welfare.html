@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+	    <link href="../css/mui.min.css" rel="stylesheet"/>
+	    <link rel="stylesheet" type="text/css" href="../css/m_common.css"/>
+	    <link rel="stylesheet" type="text/css" href="../css/m_detail_hongbao.css"/>
+	</head>
+	<body>
+		<div class="mui-content">
+			<div class="ad">
+				<img id="picture" src="../images/blank.jpg">
+			</div>
+			<!--体验步骤部分-->
+			<div class="taste">
+				<h3><i class="icon iconfont">&#xe61c;</i>体验步骤</h3>
+				<div id="strategy" class="detail-html"></div>
+			</div>
+			<!--温馨提示部分-->
+			<div class="prompt">
+				<h3><i class="icon iconfont">&#xe60b;</i>温馨提示</h3>
+				<p><number>1、</number>为了让您畅快的享受福利，请您务必按照体验步骤详情操作,并在完成后返回该页面提交相关数据，获取相应福利；</p>
+				<p><number>2、</number>投资有风险，入市需谨慎；挖福利尽最大可能的提供最优质的理财渠道、筛选有诚信的合作平台，但是挖福利不对合作平台提供任何的风险担保；</p>
+				<p><number>3、</number>挖福利对福利数据的审核具有最终解释权。</p>
+				<p class="contact">如有疑问请联系<strong>在线客服</strong>或拨打 <strong>服务热线：<number>0734-8344414</number></strong></p>
+			</div>
+			<!--立即体验部分-->
+			<div class="try">
+				<div class="shuju">
+					<span id="num_desc">体验人数：<number id="number_display"></number></span>
+				    <span>活动日期：<number id="time_display"></number></span>
+				</div>
+				<button id="exp_btn" type="button" class="mui-btn mui-btn-blue mui-btn-block">立即体验</button>
+
+			</div>
+		</div>
+		<!--弹出二维码部分-->
+		<div id="ding_yue" class="er-wei-ma">
+			<div class="box">
+				<span id="close_01" class="mui-icon mui-icon-close"></span>
+				<p>长安识别图中二维码</p>
+				<img id="erweima_img"/>
+				<p id="erweima_title"></p>
+			</div>
+		</div>
+
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/UserInfo.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			var id = '';
+			var type ='';
+			var ismobile = false;
+			var self = null;
+		  	var num_desc_ele = document.getElementById("num_desc");
+		  	var exp_btn_ele = document.getElementById("exp_btn");
+		  	var title = '';
+		  	var pic_url = '';
+		  	var time_limit = '';
+		  	var exp_url = '';
+		  	var share_msg = {};
+		  	var img = null;
+			//添加newId自定义事件监听
+			window.addEventListener('display',function(event){
+			  //获得事件参数
+			  	id = event.detail.id;
+			  	type = event.detail.type;
+			  	img = event.detail.img;
+			  	document.getElementById('picture').src = img;
+			  	self = plus.webview.currentWebview();
+			  //根据id向服务器请求新闻详情
+			  	if (type==="hongbao"){
+			  		exp_btn_ele.innerText="立即体验";
+			  		var url_get_content= "http://test.wafuli.cn/app/detail/hongbao/";
+			  		mui.ajax({
+						url:url_get_content + "?id=" + id,
+						dataType:"json",
+						success:function(ret){
+							if(ret.code!=0){
+								mui.alert("请检查网络连接");
+							}
+							else{
+								ismobile = ret.ismobile;
+								var strategy = ret.strategy;
+								document.getElementById('strategy').innerHTML = ret.strategy;
+								document.getElementById('number_display').innerText = ret.num;
+								document.getElementById('time_display').innerText = ret.time;
+								mui.scrollTo(0);
+								self.show();
+								if(ismobile){
+									document.getElementById('erweima_img').src = ret.url;
+									document.getElementById('erweima_title').src = ret.title;
+								}
+								else {
+									exp_url = ret.url;
+								}
+							}
+							
+						},
+						error:function(xhr,type,errorThrown){
+							mui.alert(type);
+						}
+					});
+			  	}
+			  	else if (type==="youhuiquan"){
+			  		exp_btn_ele.innerText="立即领取";
+			  		var url_get_content= "http://test.wafuli.cn/app/detail/youhuiquan/";
+			  		mui.ajax({
+						url:url_get_content + "?id=" + id,
+						dataType:"json",
+						success:function(ret){
+							if(ret.code!=0){
+								mui.alert("请检查网络连接");
+							}
+							else{
+								var strategy = ret.strategy;
+								document.getElementById('picture').src = ret.image;
+								document.getElementById('strategy').innerHTML = ret.strategy;
+								document.getElementById('number_display').innerText = ret.num;
+								document.getElementById('time_display').innerText = ret.time;
+								title = ret.title;
+								pic_url = ret.image;
+								time_limit = ret.time;
+								exp_url = ret.url;
+								self.show();
+								mui.scrollTo(0);
+							}
+							
+						},
+						error:function(xhr,type,errorThrown){
+							mui.alert(type);
+						}
+					});
+			  	}
+			  	var sss='share_msg.pictures=["' + img + '",];share_msg.thumbs=["' + img + '",];share_msg.href = "http://test.wafuli.cn/welfare/' + id + '/";';
+				self.parent().evalJS(sss);
+			});
+			exp_btn_ele.addEventListener('tap', function() {
+				if (!UserInfo.has_login()){
+					mui.openWindow({
+			            url: "../a_login.html",
+			            id:"login",
+			            styles: {
+			                top: 0,
+			                bottom: 0
+			            },
+			            show: {
+			                aniShow: 'slide-in-right',
+			            },
+//			            extras:{
+//			            	backid:self.id
+//			            }
+			        });
+			        return;
+				}
+				if (type==="hongbao"){
+					if(ismobile){
+						document.getElementById("ding_yue").style.display="block";
+					}
+					else {
+						var browserMainWebview = plus.webview.getWebviewById('browser_main');
+						var browserWebview = plus.webview.getWebviewById('browser_sub');
+						mui.fire(browserMainWebview, 'mui.view.beforeshow');
+						browserWebview.loadURL(exp_url);
+						browserMainWebview.show('slide-in-bottom', 200);
+					}
+				}
+				else if (type==="youhuiquan"){
+					var obtain_coupon_url = "http://test.wafuli.cn/app/obtain_youhuiquan/";
+					mui.ajax({
+		    			url:obtain_coupon_url,
+		    			dataType:"json",
+		    			type:"post",
+		    			data:{
+		    				id: id,
+		    				token:UserInfo.token()
+		    			},
+		    			success:function(ret){
+		    				if(ret.code==0){
+		    					mui.openWindow({
+		    			            url: "html/m_get_coupon_success.html",
+		    			            id:"coupon_success",
+		    			            styles: {
+		    			                top: 0,
+		    			                bottom: 0
+		    			            },
+		    			            show: {
+		    			                aniShow: 'slide-in-right',
+		    			            },
+		    			            extras:{
+		    			            	coupon_id: ret.coupon_id,
+		    			            	exp_url: exp_url,
+		    			            	pic_url: pic_url,
+		    			            	exchange_code: ret.exchange_code,
+		    			            	title: title,
+		    			            	time_limit:time_limit
+		    			            }
+		    			        });
+		    				}
+		    				else if(ret.code<0){
+		    					mui.openWindow({
+						            url: "a_login.html",
+						            id:"login",
+						            styles: {
+						                top: 0,
+						                bottom: 0
+						            },
+						            show: {
+						                aniShow: 'slide-in-right',
+						            },
+						        });
+						        return;
+		    				}
+		    				else{
+		    					mui.alert(ret.msg);
+		    				}
+		    			},
+		    			error:function(xhr,type,errorThrown){
+							mui.alert(type);
+						}
+		    		});
+				}
+			});
+			document.getElementById("close_01").addEventListener('tap', function() {
+				document.getElementById("ding_yue").style.display="none";
+			});
+		</script>
+	</body>
+</html>
