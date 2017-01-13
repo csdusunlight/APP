@@ -2,24 +2,6 @@
 <html>
 	<head lang="en">
 		<meta charset="UTF-8">
-		<!-- 优先使用 IE 最新版本和 Chrome -->
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		<!-- 为移动设备添加 viewport -->
-		<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-		<!-- 添加到主屏后的标题（iOS 6 新增） -->
-		<meta name="apple-mobile-web-app-title" content="">
-		<!-- 是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏 -->
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<!-- 设置苹果工具栏颜色 -->
-		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-		<!-- 添加智能 App 广告条 Smart App Banner（iOS 6+ Safari） -->
-		<meta name="apple-itunes-app" content="app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL">
-		<!-- 忽略页面中的数字识别为电话，忽略email识别 -->
-		<meta name="format-detection" content="telphone=no, email=no" />
-		<!--下面三个是清除缓存 微信浏览器缓存严重又无刷新；这个方法调试的时候很方便-->
-		<meta http-equiv="Pragma" content="no-cache">
-		<meta http-equiv="Cache-Control" content="no-cache">
-		<meta http-equiv="Expires" content="0">
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="css/m_common.css" />
 		<link rel="stylesheet" type="text/css" href="css/m_task.css" />
@@ -29,12 +11,6 @@
 		<div class="mui-content">
 			<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
 				<div class="mui-scroll">
-					<div id="slider" class="mui-slider" >
-						<div class="mui-slider-group mui-slider-loop">
-						</div>
-						<div class="mui-slider-indicator">
-						</div>
-					</div>
 					<ul class="mui-table-view">
 					</ul>
 				</div>
@@ -47,10 +23,8 @@
 			var slide_indicator = document.body.querySelector('.mui-slider-indicator');
 			var table = document.body.querySelector('.mui-table-view');
 			var get_task_url = "http://test.wafuli.cn/task_json";
-			var get_slider_url = "http://test.wafuli.cn/app/slider/?type=task";
 			var host = "http://test.wafuli.cn";
 			var count = 0;
-			var gallery_firstrun = 0;
 			mui.init({
 				pullRefresh: {
 					container: '#pullrefresh',
@@ -66,78 +40,6 @@
 					}
 				}
 			});
-			mui.ready(function() {
-				mui.ajax({
-					type: "get",
-					url: get_slider_url,
-					dataType: 'json',
-					success: function(response) {
-						if (!response) {
-							return error();
-						}
-						if(response.code!=0){
-							mui.alert(response.message)
-						}
-						else{
-							add_doms_slider(response.data,false);
-						}
-					},
-					error:function(xhr,type,errorThrown){
-						mui.alert(type);
-					}
-				});
-			});
-			function add_doms_slider(sliders, delay){
-				if (!sliders || sliders.length === 0){
-					return;
-				}
-				var length = sliders.length;
-				var adv_first = sliders[0];
-				var adv_last = sliders[sliders.length-1]
-				var adv_first_div = document.createElement('div');
-				adv_first_div.className = 'mui-slider-item mui-slider-item-duplicate';
-				var image = adv_last.image;
-				if (delay){
-					image = 'images/blank.jpg';
-				}
-				adv_first_div.innerHTML= '<a data_id="' + adv_last.id + '"><img id="slider_img_' + 
-					adv_last.id + 's" src="'+ image + '"></a>';
-				slide_group.appendChild(adv_first_div);
-				for (var i = 0; i < length; i++){
-					var slider = sliders[i];
-					image = slider.image;
-					if(delay){
-						image = 'images/blank.jpg';
-					}
-					var adv_div = document.createElement('div');
-					adv_div.className = 'mui-slider-item';
-					adv_div.innerHTML= '<a data_id="' + slider.id + '"><img id="slider_img_' + 
-						slider.id + '" src="'+ image + '"></a>';
-					slide_group.appendChild(adv_div);
-					
-					var ind_div = document.createElement('div');
-					if (i==0){
-						ind_div.className = 'mui-indicator mui-active';
-					}
-					else{
-						ind_div.className = 'mui-indicator';
-					}
-					slide_indicator.appendChild(ind_div);
-				};
-				var adv_last_div = document.createElement('div');
-				adv_last_div.className = 'mui-slider-item mui-slider-item-duplicate';
-				image = adv_first.image;
-				if (delay){
-					image = 'images/blank.jpg';
-				}
-				adv_last_div.innerHTML= '<a data_id="' + adv_first.id + '"><img id="slider_img_' + 
-					adv_first.id + 's" src="'+ image + '"></a>';
-				slide_group.appendChild(adv_last_div);
-				if (length>1){
-					mui('#slider').slider({ interval:4000 });
-					mui('#slider').slider().gotoItem(0);
-				}
-			}
 			function get_task_list(ul,n,index){
 				mui.ajax(get_task_url,{
 					data:{
@@ -158,7 +60,7 @@
 								var wel = data[i];
 								var li = document.createElement('li');
 								li.className = 'mui-table-view-cell';
-								str_html = '<a class="clearfix" href="' + wel.url + '"><div class="img-box"><img src="'+
+								str_html = '<a class="clearfix" data_id="' + wel.id + '" href="' + wel.url + '"><div class="img-box"><img src="'+
 			                    	host + wel.picurl + '" /></div><p class="info-right';
 								if (wel.state=='2'){
 			                    	str_html += ' task-end';
@@ -190,6 +92,24 @@
 					}
 				});
 			}
+			var detailMainWebview = null; //详情页面父webview
+			var detailWebview = null; //详情页面子webview
+			function open_welfare_detail(id,title,img) {
+				var template = getTemplate('task','template.html',"html/m_detail_task.html");
+				if (!template){
+					mui.alert("系统错误！");
+				}
+				detailMainWebview = template.header;
+				detailWebview = template.content;
+				mui.fire(detailMainWebview, 'updateHeader', {
+					title: title
+				});
+				//触发子窗口变更新闻详情
+				mui.fire(detailWebview, 'display', {
+					id: id,
+					img: img,
+				});
+			};
 		</script>
 	</body>
 

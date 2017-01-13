@@ -148,7 +148,7 @@
 						mui('#pullrefresh').pullRefresh().pulldownLoading();
 					},1000);
 					setTimeout(function(){
-						getTemplate('welfare','template.html',"m_detail_welfare.html");
+						getTemplate('welfare','template.html',"html/m_detail_welfare.html");
 						getTemplate("browser","browser.html","");
 					},400);
 				});
@@ -190,7 +190,7 @@
 //				for(var i=0;i<wvs.length;i++){
 //					console.log("webview"+i+": "+wvs[i].id);
 //				}
-				var template = getTemplate('welfare','template.html',"m_detail_welfare.html");
+				var template = getTemplate('welfare','template.html',"html/m_detail_welfare.html");
 				if (!template){
 					mui.alert("系统错误！");
 				}

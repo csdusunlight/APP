@@ -350,7 +350,9 @@
 					"account/m_account_welfare.html",
 					"html/m_activity.html",
 					"account/m_account_coupon.html",
-					"account/m_strategy.html"
+					"account/m_strategy.html",
+					"html/m_detail_welfare.html",
+					"account/m_account_withdraw.html"
 				],
 				"priority": 0
 			},
@@ -514,7 +516,8 @@
 					"css/mui.min.css",
 					"m_detail_welfare.html",
 					"js/share.js",
-					"fonts/wafuli-iconfont.woff"
+					"fonts/wafuli-iconfont.woff",
+					"html/m_detail_welfare.html"
 				],
 				"refer": [
 					"m_detail_youhuiquan.html"
@@ -902,6 +905,18 @@
 					"js/share.js",
 					"fonts/wafuli-iconfont.woff",
 					"images/make-money-zhongfuli.jpg",
+					"css/m_common.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/m_detail_welfare.html": {
+				"resources": [
+					"js/UserInfo.js",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/m_detail_hongbao.css",
+					"fonts/wafuli-iconfont.woff",
 					"css/m_common.css"
 				],
 				"refer": [],

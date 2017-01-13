@@ -24,7 +24,8 @@ var getTemplate = function(name, main_url, sub_url) {
 				top: '45px',
 				bottom: '0px',
 				popGesture: "hide",
-				hardwareAccelerated: true
+				hardwareAccelerated: true,
+				dock: "top",
 			},
 			extras: {
 				mType: 'sub'

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 	<head lang="en">
@@ -46,22 +45,29 @@
 			</div>
 		</div>
 		<script type="text/javascript" charset="UTF-8" src="js/mui.min.js"></script>
+		<script src="js/template.js"></script>
 		<script>
 			mui.init();
 			var subpages = ['m_task_junior.html','m_task_middle.html','m_task_senior.html'];
 			var subpage_style = {
 				top: '45px',
 				bottom: '0px',
-				hardwareAccelerated:true
+				hardwareAccelerated:true,
 			};
 		
 			var aniShow = {};
-		
+			var flag = null;
 			//创建子页面，首个选项卡页面显示，其它均隐藏；
 			mui.plusReady(function() {
 				setTimeout(function(){
 					preload();
 				},200);
+				var self = plus.webview.currentWebview();
+				self.addEventListener('show',function(){
+					if(!flag){
+						flag = getTemplate('task','template.html',"html/m_detail_task.html");
+					}
+				})
 			});
 			function preload(){
 				var self = plus.webview.currentWebview();
