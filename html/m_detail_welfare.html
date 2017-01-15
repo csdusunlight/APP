@@ -6,6 +6,8 @@
 	    <link href="../css/mui.min.css" rel="stylesheet"/>
 	    <link rel="stylesheet" type="text/css" href="../css/m_common.css"/>
 	    <link rel="stylesheet" type="text/css" href="../css/m_detail_hongbao.css"/>
+	    
+	    
 	</head>
 	<body>
 		<div class="mui-content">
@@ -45,7 +47,7 @@
 			</div>
 		</div>
 
-		<script src="../js/mui.min.js"></script>
+		<script src="../js/mui.js"></script>
 		<script src="../js/UserInfo.js"></script>
 		<script type="text/javascript">
 			mui.init();
@@ -61,6 +63,9 @@
 		  	var exp_url = '';
 		  	var share_msg = {};
 		  	var img = null;
+		  	mui.plusReady(function(){
+		  		self = plus.webview.currentWebview();
+		  	});
 			//添加newId自定义事件监听
 			window.addEventListener('display',function(event){
 			  //获得事件参数
@@ -68,14 +73,16 @@
 			  	type = event.detail.type;
 			  	img = event.detail.img;
 			  	document.getElementById('picture').src = img;
-			  	self = plus.webview.currentWebview();
 			  //根据id向服务器请求新闻详情
 			  	if (type==="hongbao"){
 			  		exp_btn_ele.innerText="立即体验";
 			  		var url_get_content= "http://test.wafuli.cn/app/detail/hongbao/";
 			  		mui.ajax({
-						url:url_get_content + "?id=" + id,
+						url:url_get_content,
 						dataType:"json",
+						data:{
+							id:id,
+						},
 						success:function(ret){
 							if(ret.code!=0){
 								mui.alert("请检查网络连接");
@@ -86,8 +93,6 @@
 								document.getElementById('strategy').innerHTML = ret.strategy;
 								document.getElementById('number_display').innerText = ret.num;
 								document.getElementById('time_display').innerText = ret.time;
-								mui.scrollTo(0);
-								self.show();
 								if(ismobile){
 									document.getElementById('erweima_img').src = ret.url;
 									document.getElementById('erweima_title').src = ret.title;
@@ -123,8 +128,6 @@
 								pic_url = ret.image;
 								time_limit = ret.time;
 								exp_url = ret.url;
-								self.show();
-								mui.scrollTo(0);
 							}
 							
 						},
@@ -133,6 +136,8 @@
 						}
 					});
 			  	}
+			  	window.scrollTo(0, 0);
+				setTimeout(function(){self.show();},100);
 			  	var sss='share_msg.pictures=["' + img + '",];share_msg.thumbs=["' + img + '",];share_msg.href = "http://test.wafuli.cn/welfare/' + id + '/";';
 				self.parent().evalJS(sss);
 			});

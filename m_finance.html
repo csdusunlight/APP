@@ -3,58 +3,41 @@
 <html>
 	<head lang="en">
 		<meta charset="UTF-8">
-		<!-- 优先使用 IE 最新版本和 Chrome -->
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		<!-- 为移动设备添加 viewport -->
-		<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-		<!-- 添加到主屏后的标题（iOS 6 新增） -->
-		<meta name="apple-mobile-web-app-title" content="">
-		<!-- 是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏 -->
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<!-- 设置苹果工具栏颜色 -->
-		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-		<!-- 添加智能 App 广告条 Smart App Banner（iOS 6+ Safari） -->
-		<meta name="apple-itunes-app" content="app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL">
-		<!-- 忽略页面中的数字识别为电话，忽略email识别 -->
-		<meta name="format-detection" content="telphone=no, email=no" />
-		<!--下面三个是清除缓存 微信浏览器缓存严重又无刷新；这个方法调试的时候很方便-->
-		<meta http-equiv="Pragma" content="no-cache">
-		<meta http-equiv="Cache-Control" content="no-cache">
-		<meta http-equiv="Expires" content="0">
 		<title>理财福利</title>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="css/m_common.css" />
-		<link rel="stylesheet" type="text/css" href="css/m_task.css" />
+		<link rel="stylesheet" type="text/css" href="css/m_finance.css" />
 	</head>
 
 	<body>
 		<div class="mui-content">
 			<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-					<a class="mui-control-item" href="m_finance_sub1.html">最新</a>
-					<a class="mui-control-item" href="m_finance_sub2.html">高收益</a>
-					<a class="mui-control-item" href="m_finance_sub3.html">低风险</a>
+					<a class="mui-control-item" id="m_finance_sub1.html">最新</a>
+					<a class="mui-control-item" id="m_finance_sub2.html">高收益</a>
+					<a class="mui-control-item" id="m_finance_sub3.html">低风险</a>
 			</div>
 		</div>
-		<script type="text/javascript" charset="UTF-8" src="js/mui.min.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="js/mui.js"></script>
 		<script>
 			mui.init();
 			var subpages = ['m_finance_sub1.html','m_finance_sub2.html','m_finance_sub3.html'];
 			var subpage_style = {
 				top: '45px',
 				bottom: '0px',
-				hardwareAccelerated:true
+				hardwareAccelerated:true,
+				dock:"top",
 			};
 		
 			var aniShow = {};
-		
+			var self = null;
 			//创建子页面，首个选项卡页面显示，其它均隐藏；
 			mui.plusReady(function() {
 				setTimeout(function(){
 					preload();
 				},200);
+				self = plus.webview.currentWebview();
 			});
 			function preload(){
-				var self = plus.webview.currentWebview();
 				for(var i = 0; i < 3; i++) {
 					var temp = {};
 					var sub = plus.webview.create(subpages[i], subpages[i], subpage_style);
@@ -66,13 +49,14 @@
 					}
 					self.append(sub);
 				}
+				flag = getTemplate('finance','template.html',"html/m_detail_finance.html");
 			}
 			//当前激活选项
 			var activeTab = subpages[0];
 			var title = document.getElementById("title");
 			//选项卡点击事件
 			mui('.mui-slider-indicator').on('tap', 'a', function(e) {
-				var targetTab = this.getAttribute('href');
+				var targetTab = this.id;
 				if(targetTab == activeTab) {
 					return;
 				}

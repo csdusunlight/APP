@@ -17,7 +17,8 @@
 			</div>
 		</div>
 
-		<script type="text/javascript" charset="UTF-8" src="js/mui.min.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="js/mui.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="js/template.js"></script>
 		<script>
 			var slide_group = document.body.querySelector('.mui-slider-group');
 			var slide_indicator = document.body.querySelector('.mui-slider-indicator');
@@ -25,6 +26,7 @@
 			var get_task_url = "http://test.wafuli.cn/task_json";
 			var host = "http://test.wafuli.cn";
 			var count = 0;
+			var template = null;
 			mui.init({
 				pullRefresh: {
 					container: '#pullrefresh',
@@ -39,6 +41,9 @@
 						auto:true
 					}
 				}
+			});
+			mui.plusReady(function(){
+				template = getTemplate('task','template.html',"html/m_detail_task.html");
 			});
 			function get_task_list(ul,n,index){
 				mui.ajax(get_task_url,{
@@ -95,21 +100,24 @@
 			var detailMainWebview = null; //详情页面父webview
 			var detailWebview = null; //详情页面子webview
 			function open_welfare_detail(id,title,img) {
-				var template = getTemplate('task','template.html',"html/m_detail_task.html");
 				if (!template){
-					mui.alert("系统错误！");
+					mui.alert("页面还在加载，稍等~");
 				}
 				detailMainWebview = template.header;
 				detailWebview = template.content;
 				mui.fire(detailMainWebview, 'updateHeader', {
 					title: title
 				});
-				//触发子窗口变更新闻详情
 				mui.fire(detailWebview, 'display', {
 					id: id,
 					img: img,
 				});
 			};
+			mui('.mui-table-view').on('tap', 'a', function() {
+				var title = this.querySelector('h6').innerText;
+				var img = this.querySelector('img').src;
+				open_welfare_detail(this.getAttribute('data_id'),title,img);
+			});
 		</script>
 	</body>
 

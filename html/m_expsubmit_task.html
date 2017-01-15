@@ -50,11 +50,13 @@
 			</div>
 			<p>文件上传中</p>
 		</div>
-		<script src="../js/mui.min.js"></script>
+		<script src="../js/mui.js"></script>
+		<script src="../js/UserInfo.js"></script>
 		<!--弹窗部分-->
 		<script type="text/javascript">
 			mui.init();
 			var id = '';
+			var self = '';
 			var filechooser = document.getElementById("choose");
 			//    用于压缩图片的canvas
 			var canvas = document.createElement("canvas");
@@ -64,6 +66,10 @@
 			var tctx = tCanvas.getContext("2d");
 			var maxsize = 80 * 1024;
 			var file_list = [];
+			mui.plusReady(function(){
+				self = plus.webview.currentWebview();
+				id = self.sub_id;
+			});
 			document.getElementById("upload").addEventListener("tap", function() {
 				if (file_list.length>=6){
 					alert("最多只可上传6张图片");
@@ -270,7 +276,8 @@
 				formdata.append('id', id);
 				formdata.append('telnum', telnum);
 				formdata.append('remark', remark);
-				xhr.open('post', '/app/submit_task/');
+				formdata.append('token', UserInfo.token());
+				xhr.open('post', 'http://test.wafuli.cn/app/submit_task/');
 				xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
 				document.getElementById("img_mask").style.display = "block";
 				xhr.onreadystatechange = function() {
@@ -278,6 +285,7 @@
 					if(xhr.readyState == 4 && xhr.status == 200) {
 						var ret = JSON.parse(xhr.responseText);
 						if(ret.code==0){
+							self.opener().evalJS('exp_btn.innerText="领取任务";reg_btn.innerText = "提交任务（未领取）";reg_btn.disabled = true;accepte=0;');
 							mui.alert("上传成功，奖励将于2个工作日内发放！","温馨提示",function(){
 								mui.back();
 							});

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link href="../css/mui.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="../css/m_common.css" />
+	<link rel="stylesheet" type="text/css" href="../css/m_detail_information.css" />
+</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav">
+			<a id="mui-action-back" class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">资讯详情</h1>
+			<a id="share" class="share iconfont icon-fenxiang"></a>
+		</header>
+		<div class="mui-content">
+			<div class="story">
+				<h1 id="title"></h1>
+				<h6 id="source">&nbsp;&nbsp;</h6>
+				<div id="content"></div>
+			</div>
+		</div>
+
+    <script src="../js/mui.min.js"></script>
+    <script src="../js/share.js"></script>
+    <script type="text/javascript" charset="utf-8">
+	    mui.init();
+	    mui.ready(function(){
+	    	var url_get_content= "http://test.wafuli.cn/app/detail/information/";
+	    	var id = localStorage.getItem('temp_info_id');
+	    	var title = localStorage.getItem('temp_info_title');
+	    	document.getElementById('title').innerText = title;
+	  		mui.ajax({
+				url:url_get_content,
+				dataType:"json",
+				data:{
+					id: id,
+				},
+				success:function(ret){
+					if(ret.code!=0){
+						mui.alert("请检查网络连接");
+					}
+					else{
+						var info = ret.info;
+						document.getElementById('source').innerHTML = info.source + "&nbsp;&nbsp;" + info.time;
+						document.getElementById('content').innerHTML = info.content;
+					}
+				},
+				error:function(xhr,type,errorThrown){
+					mui.alert(type);
+				}
+			});
+	    });
+    </script>
+	</body>
+
+</html>

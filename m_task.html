@@ -26,25 +26,13 @@
 
 	<body>
 		<div class="mui-content">
-			<!--选项卡部分-->
-			<!--<nav class="mui-bar">
-				<a id="defaultTab" class="mui-tab-item mui-active" href="m_task_junior.html">
-					<span class="mui-tab-label">免费</span>
-				</a>
-				<a class="mui-tab-item" href="m_task_middle.html">
-					<span>进阶体验</span>
-				</a>
-				<a class="mui-tab-item" href="m_task_senior.html">
-					<span>高手专区</span>
-				</a>
-			</nav>-->
 			<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
 					<a class="mui-control-item" href="m_task_junior.html">新手入门</a>
 					<a class="mui-control-item" href="m_task_middle.html">进阶体验</a>
 					<a class="mui-control-item" href="m_task_senior.html">高手专区</a>
 			</div>
 		</div>
-		<script type="text/javascript" charset="UTF-8" src="js/mui.min.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="js/mui.js"></script>
 		<script src="js/template.js"></script>
 		<script>
 			mui.init();
@@ -53,24 +41,20 @@
 				top: '45px',
 				bottom: '0px',
 				hardwareAccelerated:true,
+				dock:"top",
 			};
 		
 			var aniShow = {};
 			var flag = null;
+			var self = null;
 			//创建子页面，首个选项卡页面显示，其它均隐藏；
 			mui.plusReady(function() {
 				setTimeout(function(){
 					preload();
 				},200);
-				var self = plus.webview.currentWebview();
-				self.addEventListener('show',function(){
-					if(!flag){
-						flag = getTemplate('task','template.html',"html/m_detail_task.html");
-					}
-				})
+				self = plus.webview.currentWebview();
 			});
 			function preload(){
-				var self = plus.webview.currentWebview();
 				for(var i = 0; i < 3; i++) {
 					var temp = {};
 					var sub = plus.webview.create(subpages[i], subpages[i], subpage_style);
@@ -82,6 +66,7 @@
 					}
 					self.append(sub);
 				}
+				flag = getTemplate('task','template.html',"html/m_detail_task.html");
 			}
 			//当前激活选项
 			var activeTab = subpages[0];

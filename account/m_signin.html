@@ -106,12 +106,13 @@
 			</div>
 		</div>
 
-	<script src="../js/mui.min.js"></script>
+	<script src="../js/mui.js"></script>
 	<script src="../js/UserInfo.js"></script> 
 	<script>
 		mui.init();
 		var self = null;
 		mui.plusReady(function(){
+			self = plus.webview.currentWebview();
 			if(UserInfo.has_login()){
 				var user = UserInfo.userinfo();
 				var img = "../images/user-0" + user.userimg + ".png";
@@ -120,7 +121,6 @@
 				signin();
 			}
 			else{
-				self = plus.webview.currentWebview();
 				mui.openWindow({
 		            url: "../a_login.html",
 		            id:"login",
@@ -156,6 +156,23 @@
 					if(ret.code==0){
 						login.style.display="block";
 					}
+					else{
+						mui.openWindow({
+				            url: "../a_login.html",
+				            id:"login",
+				            styles: {
+				                top: 0,
+				                bottom: 0
+				            },
+				            show: {
+				                aniShow: 'slide-in-right',
+				            },
+				            extras:{
+				            	backid:self.id
+				            }
+				        });
+					}
+					console.log(ret.msg);
 					var arr = document.getElementById("calendar").getElementsByTagName("number");
 					for (var ele in arr){
 						var i = arr[ele].innerHTML;

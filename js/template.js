@@ -10,7 +10,7 @@ var getTemplate = function(name, main_url, sub_url) {
 			id: name + "_main",
 			styles: {
 				popGesture: "hide",
-				hardwareAccelerated: true
+//				hardwareAccelerated: true
 			},
 			extras: {
 				mType: 'main'
@@ -27,9 +27,6 @@ var getTemplate = function(name, main_url, sub_url) {
 				hardwareAccelerated: true,
 				dock: "top",
 			},
-			extras: {
-				mType: 'sub'
-			}
 		});
 		headerWebview.append(subWebview);
 		//iOS平台支持侧滑关闭，父窗体侧滑隐藏后，同时需要隐藏子窗体；

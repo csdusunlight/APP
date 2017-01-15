@@ -49,7 +49,7 @@
 		                    </a>
 		                </li>
 		            	<li>
-		                	<a href="/information/">
+		                	<a id="html/m_information.html">
 		                    	<i class="icon iconfont ic-04"></i>
 		                        <span>我有故事</span>
 		                    </a>
@@ -99,7 +99,7 @@
 				</div>
 			</div>
 		</div>
-		<script type="text/javascript" charset="UTF-8" src="js/mui.min.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="js/mui.js"></script>
 		<script type="text/javascript" charset="UTF-8" src="js/feed.js"></script>
 		<script type="text/javascript" charset="UTF-8" src="js/html5sql.js"></script>
 		<script type="text/javascript" charset="UTF-8" src="js/app.js"></script>
@@ -144,9 +144,9 @@
 							add_doms_recom(recoms, false);
 						}, throwGetNewsError);
 					}
-					setTimeout(function(){
-						mui('#pullrefresh').pullRefresh().pulldownLoading();
-					},1000);
+//					setTimeout(function(){
+//						mui('#pullrefresh').pullRefresh().pulldownLoading();
+//					},1000);
 					setTimeout(function(){
 						getTemplate('welfare','template.html',"html/m_detail_welfare.html");
 						getTemplate("browser","browser.html","");
@@ -169,7 +169,12 @@
 			mui('#nav').on('tap', 'a', function() {
 				var id = this.id;
 				tempview.loadURL(id);
-				tempview.show("pop-in");
+				plus.nativeUI.showWaiting();
+				tempview.addEventListener('loaded',function(){
+					plus.nativeUI.closeWaiting();
+					tempview.show("pop-in",350);
+				});
+				
 //				mui.openWindow({
 //		            url: id,
 //		            id: id,
@@ -186,10 +191,6 @@
 			var detailMainWebview = null; //详情页面父webview
 			var detailWebview = null; //详情页面子webview
 			function open_welfare_detail(id,type,title,img) {
-//				var wvs=plus.webview.all();
-//				for(var i=0;i<wvs.length;i++){
-//					console.log("webview"+i+": "+wvs[i].id);
-//				}
 				var template = getTemplate('welfare','template.html',"html/m_detail_welfare.html");
 				if (!template){
 					mui.alert("系统错误！");
@@ -248,6 +249,10 @@
 				}, function() {
 					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 				});
+				var wvs=plus.webview.all();
+				for(var i=0;i<wvs.length;i++){
+					console.log("webview"+i+": "+wvs[i].id);
+				}
 			};
 	
 			function clearNewsList() {

@@ -4,18 +4,14 @@ body {
 .mui-content {
 	padding-bottom: 6rem;
 }
-img {
-	width: 100%;
+table,img {
+	max-width: 100%;
 }
+.ad {text-align:center}
 .ad img {
-	width: 100%;
-}
-.ad h5 {
-	padding: 0 1.875% 0;
-	font-size: 1.2rem;
-	line-height: 2.6rem;
-	border-bottom: 1px solid #e9e8e8;
-	background: #fff;
+	margin-top:20px;
+	width: 62%;
+	text-align: center;
 }
 /*体验步骤部分*/
 .taste,

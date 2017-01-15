@@ -95,7 +95,7 @@
 			</ul>
 
 		</div>
-	<script type="text/javascript" charset="UTF-8" src="js/mui.min.js"></script>
+	<script type="text/javascript" charset="UTF-8" src="js/mui.js"></script>
 	<script type="text/javascript" charset="UTF-8" src="js/UserInfo.js"></script>
     <script type="text/javascript" charset="utf-8">
       	mui.init();
@@ -175,10 +175,13 @@
       				tologin();
       			}
       			else{
+      				if (!tempview){
+      					tempview = plus.webview.getWebviewById("temp");
+      				}
       				tempview.loadURL("account/m_account_settings.html");
-      				setTimeout(function(){
+      				tempview.addEventListener('loaded',function(){
       					tempview.show('pop-in');
-      				},10);
+      				});
 //					mui.openWindow({
 //			            url: "account/m_account_settings.html",
 //			            id: "account/m_account_settings.html",

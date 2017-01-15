@@ -102,7 +102,7 @@
 		</header>
 		<div class="mui-loader">加载中...</div>
 	</body>
-	<script src="js/mui.min.js"></script>
+	<script src="js/mui.js"></script>
 	<script src="js/share.js"></script>
 	<script type="text/javascript">
 		//启用双击监听
@@ -120,13 +120,12 @@
 		mui.back = function() {
 			self.hide('auto');
 			setTimeout(function() {
-				titleElem.className = 'mui-title mui-fadeout';
 				titleElem.innerText = '';
 				if(contentWebview==null){
 					contentWebview = self.children()[0];
 				}
 				contentWebview.hide("none");
-			}, 350);
+			}, 300);
 		}
 		
 		var titleElem = document.getElementById("title")
@@ -134,8 +133,8 @@
 		window.addEventListener("updateHeader", function(e) {
 			var title = e.detail.title;
 			titleElem.innerHTML = title;
-			titleElem.className = "mui-title mui-fadein";
-			self.show("slide-in-right");
+			contentWebview.hide();
+			self.show("pop-in",300);
 		});
 		
 		document.querySelector('header').addEventListener('doubletap',function () {
