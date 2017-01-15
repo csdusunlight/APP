@@ -364,7 +364,8 @@
 					"account/m_account_withdraw.html",
 					"account/m_account_settings.html",
 					"account/m_account_invite.html",
-					"html/m_information.html"
+					"html/m_information.html",
+					"html/m_detail_information.html"
 				],
 				"priority": 0
 			},
@@ -626,7 +627,8 @@
 					"js/mui.min.js",
 					"css/mui.min.css",
 					"js/template.js",
-					"css/m_common.css"
+					"css/m_common.css",
+					"js/mui.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -640,7 +642,8 @@
 					"js/mui.min.js",
 					"css/mui.min.css",
 					"js/template.js",
-					"css/m_common.css"
+					"css/m_common.css",
+					"js/mui.js"
 				],
 				"refer": [],
 				"priority": 0

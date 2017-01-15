@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <meta charset="UTF-8">
-    <title>新闻资讯</title>
+    <<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <link href="../css/mui.min.css" rel="stylesheet"/>
     <link rel="stylesheet" type="text/css" href="../css/m_common.css"/>
     <link rel="stylesheet" type="text/css" href="../css/m_information.css"/>
@@ -138,7 +138,10 @@
 				var title = this.querySelector('h6').innerText;
 				localStorage.setItem('temp_info_id', this.getAttribute('data_id')); 
 				localStorage.setItem('temp_info_title', title);
-				window.location.href = "m_detail_information.html";
+				mui.openWindow({
+					id:"m_detail_information.html",
+					url:"m_detail_information.html",
+				});
 			});
 		</script>
 </body>
