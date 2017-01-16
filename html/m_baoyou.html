@@ -3,12 +3,9 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-	<script src="{%static 'js/mui.min.js'%}"></script>
-	<script src="{%static 'js/mui.pullToRefresh.js'%}"></script>
-	<script src="{%static 'js/mui.pullToRefresh.material.js'%}"></script>
-	<link href="{%static 'css/mui.min.css'%}" rel="stylesheet" />
-	<link rel="stylesheet" type="text/css" href="{%static 'css/m_common.css'%}" />
-	<link rel="stylesheet" type="text/css" href="{%static 'css/m_baoyou.css'%}" />
+	<link href="../css/mui.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="../css/m_common.css" />
+	<link rel="stylesheet" type="text/css" href="../css/m_baoyou.css" />
 
 </head>
 
@@ -24,8 +21,11 @@
 			</div>
 		</div>
 		<!--回到顶部部分-->
-    <a id="scrollToTop" class="backTop hide"> <span class="mui-icon mui-icon-arrowthinup"></span></a>
+    	<a id="scrollToTop" class="backTop hide"> <span class="mui-icon mui-icon-arrowthinup"></span></a>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/template.js"></script>
 		<script>
+		var host = "http://test.wafuli.cn";
 		mui.init({
 			pullRefresh: {
 				container: '#pullrefresh',
@@ -42,7 +42,7 @@
 	 * 上拉加载具体业务实现
 	 */
 		var count = 0;
-		var get_baoyou_url = "{% url 'baoyou_json' %}"
+		var get_baoyou_url = "http://test.wafuli.cn/baoyou_json/";
 		function get_wel_list(n){
 			mui.ajax(get_baoyou_url,{
 				data:{
@@ -50,7 +50,7 @@
 				},
 				dataType:'json',//服务器返回json格式数据
 				type:'get',//HTTP请求类型
-				timeout:10000,//超时时间设置为10秒；
+				timeout:3000,//超时时间设置为10秒；
 	//			headers:{'Content-Type':'application/json'},
 				success:function(data){
 					if (!data.length){
@@ -64,7 +64,7 @@
 							var wel = data[i];
 							var li = document.createElement('li');
 							li.className = 'mui-table-view-cell';
-							li.innerHTML = '<a target="_blank" href="' + wel.url + '" class="clearfix"><img src="' + wel.picurl +
+							li.innerHTML = '<a target="_blank" data_id="' + wel.id + '" href="' + wel.url + '" class="clearfix"><img src="' + host + wel.picurl +
 								'" /><div class="con-info"><h6>' + wel.title +
 								'</h6><p>' + wel.desc + '</p><div class="c-money">' +
 								'<strong><number>￥' + wel.nprice + '</number></strong>' +
@@ -84,22 +84,27 @@
 			get_wel_list(count++);
 		}
 		mui('.mui-table-view').on('tap', 'a', function() {
-	        var href = this.getAttribute('href');
-	        mui.openWindow({
-	            url: href,
-	            styles: {
-	                top: 0,
-	                bottom: 0
-	            },
-	            show: {
-	                aniShow: 'slide-in-right',
-	            },
-	            waiting: {
-	                autoShow: false, //自动显示等待框
-	                title: '正在加载...', //等待对话框上显示的提示内容
-	            }
-	        });
+	        var title = this.querySelector('h6').innerText;
+			var img = this.querySelector('img').src;
+			open_welfare_detail(this.getAttribute('data_id'),"baoyou",title,img);
 	    });
+	    function open_welfare_detail(id,type,title,img) {
+			var template = getTemplate('welfare','template.html',"html/m_detail_welfare.html");
+			if (!template){
+				mui.alert("系统错误！");
+			}
+			detailMainWebview = template.header;
+			detailWebview = template.content;
+			mui.fire(detailMainWebview, 'updateHeader', {
+				title: title
+			});
+			//触发子窗口变更新闻详情
+			mui.fire(detailWebview, 'display', {
+				id: id,
+				type: type,
+				img: img,
+			});
+		};
 		</script>
 		<script type="text/javascript">
 		var scrollToTopBox = document.getElementById('scrollToTop'); //返回按钮tap

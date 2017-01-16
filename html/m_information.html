@@ -138,10 +138,22 @@
 				var title = this.querySelector('h6').innerText;
 				localStorage.setItem('temp_info_id', this.getAttribute('data_id')); 
 				localStorage.setItem('temp_info_title', title);
-				mui.openWindow({
-					id:"m_detail_information.html",
-					url:"m_detail_information.html",
-				});
+				self.loadURL("m_detail_information.html");
+//				win = mui.openWindow({
+//					id:"m_detail_information.html",
+//					url:"m_detail_information.html",
+//					show:{
+//				      autoShow:false,//页面loaded事件发生后自动显示，默认为true
+//				      aniShow: 'slide-in-right'
+//				    },
+//		            waiting: {
+//						autoShow: true,
+//					},
+//				});
+//				setTimeout(function(){
+//					plus.nativeUI.closeWaiting();
+//					win.show();
+//				},400);
 			});
 		</script>
 </body>

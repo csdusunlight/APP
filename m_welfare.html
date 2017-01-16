@@ -37,7 +37,7 @@
 		                    </a>
 		                </li>
 		            	<li>
-		                	<a href="/activity/lottery/">
+		                	<a id="/activity/lottery/">
 		                    	<i class="icon iconfont ic-02"></i>
 		                        <span>积分抽奖</span>
 		                    </a>
@@ -55,19 +55,19 @@
 		                    </a>
 		                </li>
 		            	<li>
-		                	<a href="/welfare/hb/">
+		                	<a id="html/m_hongbao.html">
 		                    	<i class="icon iconfont ic-05"></i>
 		                        <span>红包</span>
 		                    </a>
 		                </li>
 		            	<li>
-		                	<a href="/welfare/yhq/">
+		                	<a id="html/m_youhuiquan.html">
 		                    	<i class="icon iconfont ic-06"></i>
 		                        <span>优惠券</span>
 		                    </a>
 		                </li>
 		            	<li>
-		                	<a href="/welfare/by/">
+		                	<a id="html/m_baoyou.html">
 		                    	<i class="icon iconfont ic-07"></i>
 		                        <span><number>9.9</number>包邮</span>
 		                    </a>
@@ -133,7 +133,7 @@
 					if (!isFirst) {
 						//非第一次，直接从本地数据库中读取
 						//加载初始化数据
-						wa.getNews(Number.MAX_VALUE, 1,function(news) {
+						wa.getNews(Number.MAX_VALUE, 10,function(news) {
 							news_group.innerHTML = '';
 							add_doms_news(news, false);
 						}, throwGetNewsError);

@@ -314,11 +314,14 @@
 					"js/mui.min.js",
 					"css/mui.min.css",
 					"css/m_finance.css",
-					"js/mui.js"
+					"js/mui.js",
+					"js/template.js"
 				],
 				"refer": [
 					"m_finance_sub3.html",
-					"m_finance_sub2.html"
+					"m_finance_sub2.html",
+					"html/m_detail_finance.html",
+					"template.html"
 				],
 				"priority": 0
 			},
@@ -365,7 +368,8 @@
 					"account/m_account_settings.html",
 					"account/m_account_invite.html",
 					"html/m_information.html",
-					"html/m_detail_information.html"
+					"html/m_detail_information.html",
+					"html/m_baoyou.html"
 				],
 				"priority": 0
 			},
@@ -533,11 +537,11 @@
 					"fonts/wafuli-iconfont.woff",
 					"html/m_detail_welfare.html",
 					"html/m_detail_task.html",
-					"js/mui.js"
+					"js/mui.js",
+					"html/m_detail_finance.html"
 				],
 				"refer": [
-					"m_detail_youhuiquan.html",
-					"html/m_detail_finance.html"
+					"m_detail_youhuiquan.html"
 				],
 				"priority": 0
 			},
@@ -579,7 +583,8 @@
 					"js/mui.enterfocus.js",
 					"fonts/mui.ttf",
 					"js/UserInfo.js",
-					"account/m_register.html"
+					"account/m_register.html",
+					"js/mui.js"
 				],
 				"refer": [
 					"account/m_password_reset.html"
@@ -668,7 +673,10 @@
 					"css/m_finance.css",
 					"css/m_common.css"
 				],
-				"refer": [],
+				"refer": [
+					"template.html",
+					"html/m_detail_finance.html"
+				],
 				"priority": 0
 			},
 			"m_finance_sub3.html": {
@@ -679,7 +687,10 @@
 					"js/template.js",
 					"js/mui.js"
 				],
-				"refer": [],
+				"refer": [
+					"html/m_detail_finance.html",
+					"template.html"
+				],
 				"priority": 0
 			},
 			"account/m_register.html": {
@@ -958,9 +969,12 @@
 					"css/m_detail_hongbao.css",
 					"fonts/wafuli-iconfont.woff",
 					"css/m_common.css",
-					"images/blank.jpg"
+					"images/blank.jpg",
+					"js/mui.js"
 				],
-				"refer": [],
+				"refer": [
+					"a_login.html"
+				],
 				"priority": 0
 			},
 			"html/m_detail_task.html": {
@@ -1032,6 +1046,19 @@
 				],
 				"refer": [],
 				"priority": 0
+			},
+			"html/m_baoyou.html": {
+				"resources": [
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"css/m_baoyou.css",
+					"css/mui.min.css",
+					"css/m_common.css",
+					"fonts/wafuli-iconfont.woff",
+					"js/template.js"
+				],
+				"refer": [],
+				"priority": 0
 			}
 		},
 		"idle": {
@@ -1083,7 +1110,6 @@
 				"images/icon-1.jpg",
 				"images/i-3.jpg",
 				"images/newtitle1.png",
-				"css/m_baoyou.css",
 				"images/ico5.png",
 				"js/define.js",
 				"images/picture_104.png",

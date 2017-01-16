@@ -74,7 +74,7 @@
 			  	img = event.detail.img;
 			  	document.getElementById('picture').src = img;
 			  //根据id向服务器请求新闻详情
-			  	if (type==="hongbao"){
+			  	if (type==="hongbao"||type==="baoyou"){
 			  		exp_btn_ele.innerText="立即体验";
 			  		var url_get_content= "http://test.wafuli.cn/app/detail/hongbao/";
 			  		mui.ajax({
@@ -159,7 +159,7 @@
 			        });
 			        return;
 				}
-				if (type==="hongbao"){
+				if (type==="hongbao" || type==="baoyou"){
 					if(ismobile){
 						document.getElementById("ding_yue").style.display="block";
 					}
@@ -168,6 +168,7 @@
 						var browserWebview = plus.webview.getWebviewById('browser_sub');
 						mui.fire(browserMainWebview, 'mui.view.beforeshow');
 						browserWebview.loadURL(exp_url);
+						console.log(exp_url);
 						browserMainWebview.show('slide-in-bottom', 200);
 					}
 				}
