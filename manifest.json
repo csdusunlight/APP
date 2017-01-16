@@ -350,7 +350,10 @@
 					"css/m_common.css",
 					"js/app.js",
 					"fonts/wafuli-iconfont.woff",
-					"account/m_signin.html"
+					"account/m_signin.html",
+					"%7B%static%20\u0027images/gongzhong.jpg\u0027%%7D",
+					"fonts/mui.ttf",
+					"images/gongzhong.jpg"
 				],
 				"refer": [
 					"m_detail_hongbao.html",
@@ -1055,7 +1058,8 @@
 					"css/mui.min.css",
 					"css/m_common.css",
 					"fonts/wafuli-iconfont.woff",
-					"js/template.js"
+					"js/template.js",
+					"js/UserInfo.js"
 				],
 				"refer": [],
 				"priority": 0

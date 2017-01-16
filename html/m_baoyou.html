@@ -23,7 +23,7 @@
 		<!--回到顶部部分-->
     	<a id="scrollToTop" class="backTop hide"> <span class="mui-icon mui-icon-arrowthinup"></span></a>
 		<script src="../js/mui.min.js"></script>
-		<script src="../js/template.js"></script>
+		<script src="../js/UserInfo.js"></script>
 		<script>
 		var host = "http://test.wafuli.cn";
 		mui.init({
@@ -64,7 +64,7 @@
 							var wel = data[i];
 							var li = document.createElement('li');
 							li.className = 'mui-table-view-cell';
-							li.innerHTML = '<a target="_blank" data_id="' + wel.id + '" href="' + wel.url + '" class="clearfix"><img src="' + host + wel.picurl +
+							li.innerHTML = '<a target="_blank" data_id="' + wel.id + '" href="' + wel.exp_url + '" class="clearfix"><img src="' + host + wel.picurl +
 								'" /><div class="con-info"><h6>' + wel.title +
 								'</h6><p>' + wel.desc + '</p><div class="c-money">' +
 								'<strong><number>￥' + wel.nprice + '</number></strong>' +
@@ -84,27 +84,27 @@
 			get_wel_list(count++);
 		}
 		mui('.mui-table-view').on('tap', 'a', function() {
-	        var title = this.querySelector('h6').innerText;
-			var img = this.querySelector('img').src;
-			open_welfare_detail(this.getAttribute('data_id'),"baoyou",title,img);
-	    });
-	    function open_welfare_detail(id,type,title,img) {
-			var template = getTemplate('welfare','template.html',"html/m_detail_welfare.html");
-			if (!template){
-				mui.alert("系统错误！");
+			if(UserInfo.has_login()){
+				var browserMainWebview = plus.webview.getWebviewById('browser_main');
+				var browserWebview = plus.webview.getWebviewById('browser_sub');
+				mui.fire(browserMainWebview, 'mui.view.beforeshow');
+				browserWebview.loadURL(this.href);
+				browserMainWebview.show('slide-in-right', 200);
 			}
-			detailMainWebview = template.header;
-			detailWebview = template.content;
-			mui.fire(detailMainWebview, 'updateHeader', {
-				title: title
-			});
-			//触发子窗口变更新闻详情
-			mui.fire(detailWebview, 'display', {
-				id: id,
-				type: type,
-				img: img,
-			});
-		};
+			else{
+				mui.openWindow({
+		            url: "../a_login.html",
+		            id:"login",
+		            styles: {
+		                top: 0,
+		                bottom: 0
+		            },
+		            show: {
+		                aniShow: 'slide-in-right',
+		            },
+		        });
+			}
+	    });
 		</script>
 		<script type="text/javascript">
 		var scrollToTopBox = document.getElementById('scrollToTop'); //返回按钮tap

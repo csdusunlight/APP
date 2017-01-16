@@ -108,7 +108,7 @@ header a img {
 	padding-top: 1rem;
 	background-color: #51c332;
 }
-.nav-list li a {
+.nav-list li{
 	display: block;
 	padding-top: 1rem;
 }

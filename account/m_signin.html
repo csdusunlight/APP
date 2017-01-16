@@ -138,7 +138,7 @@
 					if(ret.code==0){
 						login.style.display="block";
 					}
-					else{
+					else if (ret.code<0){
 						mui.openWindow({
 				            url: "../a_login.html",
 				            id:"login",
@@ -154,7 +154,9 @@
 				            }
 				        });
 					}
-					console.log(ret.msg);
+					else{
+						mui.alert(ret.msg);
+					}
 					var arr = document.getElementById("calendar").getElementsByTagName("number");
 					for (var ele in arr){
 						var i = arr[ele].innerHTML;
