@@ -5,20 +5,37 @@ body {
 	background: #add8df;
 }
 .list {
-	margin: 0 auto;
+	padding: 16px 0 10px;
+	margin: 2rem auto 0;
 	width: 62%;
-	margin-top: 2rem;
 	background: #e4e4e4;
 	border-radius: 6px;
-	box-shadow: 0 3px 5px #bbb;
 	-webkit-transition: all 0.2s ease-in;
 	transition: all 0.2s ease-in;
+	border-bottom: 1px solid #e4e4e4;
 }
 .list:active {
 	-webkit-transform: translateY(-6px);
 	transform: translateY(-6px);
+	box-shadow: 0 3px 5px #bbb;
+}
+.li-zhongfuli {
+	background: #ffd101;
+}
+.li-new {
+	background: #f94050;
 }
 .list img {
-	border-radius: 6px;
-	width: 100%;
+	display: block;
+	width: 40%;
+	margin: 0 auto 16px;
+}
+.list p {
+	text-align: center;
+	font-size: 1.4rem;
+	line-height: 1.5;
+	color: #fff;
+}
+.li-new p {
+	color: #fef156;
 }
