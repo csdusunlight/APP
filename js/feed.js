@@ -80,6 +80,8 @@
 			items.push({
 				id: srcItem.id,
 				image: srcItem.image,
+				type: srcItem.type,
+				wel_id: srcItem.wel_id,
 				location: srcItem.location,
 			});
 		});
@@ -102,7 +104,9 @@
 					success(parseRecom(response.data));
 				}
 			},
-			error: error
+			error:function(xhr,type,errorThrown){
+				console.log(type);
+			}
 		});
 	};
 })(mui);

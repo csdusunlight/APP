@@ -489,7 +489,8 @@
 					}
 					a.href = recom.image;
 					a.setAttribute("data_id",recom.id);
-					a.innerHTML = '<img id="recom_img_' + recom.id + '" src="' + recom.image + '"/>';
+					a.innerHTML = '<img id="recom_img_' + recom.id + '" src="' + recom.image + '" type="' + 
+						recom.type + '" wel_id="' + recom.wel_id + '"/>';
 					recom_group.appendChild(a);
 				}
 			}

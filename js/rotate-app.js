@@ -3,28 +3,27 @@ var bRotate = false,
 var pointer = document.getElementById("pointer"),
 	rotate = document.getElementById("rotate");
 	
-var item = 6; 	//此处item值为中奖的类别参数，由后台数据传入
-
+var item = -1; 	//此处item值为中奖的类别参数，由后台数据传入
+var flag = 0;
 function rnd(n, m) {
 	return Math.floor(Math.random() * (m - n + 1) + n)
 }
-var rotateFn = function(flag, angles, txt) {
+var rotateFn = function(f, angles, txt) {
+	mui(".popup1 font")[0].innerText = txt;
+	flag = f;
 	choujiang(angles);
-	rotate.addEventListener("transitionend", function() {
-		if(flag) {
-			mui(".popup1 font")[0].innerText = txt;
-			mui(".popup1")[0].style.display = "block";
-		} else {
-			mui(".popup6")[0].style.display = "block";
-		}
-		bRotate = false;
-
-	});
 }
-
+rotate.addEventListener("transitionend", function() {
+	if(flag) {
+		mui(".popup1")[0].style.display = "block";
+	} else {
+		mui(".popup6")[0].style.display = "block";
+	}
+	bRotate = false;
+	rotate.de
+});
 function lottery(item) {
 	var angle = rnd(3, 57) + angleBasic;
-
 	switch(item) {
 		case 2:
 			angle += 30;
@@ -74,19 +73,21 @@ pointer.addEventListener("tap", function() {
 			return;
 		}
 		else {
-			bRotate = true;
+//			bRotate = true;
 			mui(".popup4")[0].style.display = "block";
 		}
 });
 
-mui('.popup-box').on('tap', '.confirm_lottery', function() {
+mui('.btn_cont').on('tap', '.confirm_lottery', function() {
 	bRotate = true;
 	mui.ajax({
 		url: "http://test.wafuli.cn/activity/lottery/get_lottery/",
 		dataType:"json",
 		type:"post",
+		data:{
+			token:UserInfo.token(),
+		},
 		success:function(ret){
-			console.log(JSON.stringify(ret));
 			if(ret.code==-1){
 				mui.openWindow({
 		            url: "../a_login.html",

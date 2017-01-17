@@ -738,7 +738,8 @@
 					"fonts/wafuli-iconfont.woff",
 					"css/m_common.css",
 					"images/user-03.png",
-					"js/UserInfo.js"
+					"js/UserInfo.js",
+					"images/user.png"
 				],
 				"refer": [
 					"account/m_account_withdraw.html"
@@ -757,7 +758,8 @@
 					"fonts/wafuli-iconfont.woff",
 					"css/m_common.css",
 					"js/UserInfo.js",
-					"account/m_account_charge.html"
+					"account/m_account_charge.html",
+					"images/user.png"
 				],
 				"refer": [
 					"account/m_account_exchange.html"
@@ -1116,7 +1118,8 @@
 					"images/choujiang-zhizhen.png",
 					"images/share-friend.png",
 					"css/mui.min.css",
-					"css/m_common.css"
+					"css/m_common.css",
+					"js/UserInfo.js"
 				],
 				"refer": [
 					"a_login.html"

@@ -39,7 +39,8 @@
 			"html/m_baoyou.html",
 			"html/m_hongbao.html",
 			"html/m_youhuiquan.html",
-			"html/m_activity_lottery.html"
+			"html/m_activity_lottery.html",
+			"account/m_account_score.html"
 		]
 	},
 	"m_task_junior.html": {
@@ -235,7 +236,8 @@
 			"fonts/wafuli-iconfont.woff",
 			"css/m_common.css",
 			"images/user-03.png",
-			"account/m_account_charge.html"
+			"account/m_account_charge.html",
+			"images/user.png"
 		],
 		"refer": [
 			"account/m_account_exchange.html",
@@ -292,7 +294,8 @@
 			"fonts/mui.ttf",
 			"css/mui.min.css",
 			"fonts/wafuli-iconfont.woff",
-			"css/m_common.css"
+			"css/m_common.css",
+			"images/user.png"
 		],
 		"refer": [
 			"account/m_account_withdraw.html"
@@ -523,7 +526,8 @@
 			"images/choujiang-zhizhen.png",
 			"images/share-friend.png",
 			"css/mui.min.css",
-			"css/m_common.css"
+			"css/m_common.css",
+			"js/UserInfo.js"
 		],
 		"refer": [
 			"a_login.html"
