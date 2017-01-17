@@ -3,12 +3,9 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-	<script src="{%static 'js/mui.min.js'%}"></script>
-	<script src="{%static 'js/mui.pullToRefresh.js'%}"></script>
-	<script src="{%static 'js/mui.pullToRefresh.material.js'%}"></script>
-	<link href="{%static 'css/mui.min.css'%}" rel="stylesheet" />
-	<link rel="stylesheet" type="text/css" href="{%static 'css/m_common.css'%}" />
-	<link rel="stylesheet" type="text/css" href="{%static 'css/m_hongbao.css'%}" />
+	<link href="../css/mui.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="../css/m_common.css" />
+	<link rel="stylesheet" type="text/css" href="../css/m_hongbao.css" />
 
 </head>
 
@@ -87,86 +84,108 @@
 				</div>
 			</div>
 		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/mui.pullToRefresh.js"></script>
+		<script src="../js/mui.pullToRefresh.material.js"></script>
+		<script src="../js/UserInfo.js"></script>
+		<script src="../js/template.js"></script>
 		<script>
+			var host = "http://test.wafuli.cn";
 			mui.init();
-			var get_hongbao_url = "{% url 'hongbao_json' %}"
-				mui.init({
-					swipeBack: true //启用右滑关闭功能
-				});
+			var get_hongbao_url = "http://test.wafuli.cn/hongbao_json/";
+				mui.init();
 
-				(function($) {
-					//阻尼系数
-					var deceleration = mui.os.ios?0.003:0.0009;
-					$('.mui-scroll-wrapper').scroll({
-						bounce: true,
-						indicators: true, //是否显示滚动条
-						deceleration:deceleration
-					});
-					$.ready(function() {
-						//循环初始化所有上拉加载
-						$.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
-							var count = 0;
-							$(pullRefreshEl).pullToRefresh({
-								up: {
-									auto:true,
-									callback: function() {
-										var self = this;
-										var ul = self.element.querySelector('.mui-table-view');
-										get_hongbao_list(this,ul,count++,index);
-									//		ul.appendChild(createFragment(ul, index, 5));
-										//	self.endPullUpToRefresh(true);
-									}
-								}
-							});
-						});
-
-						function get_hongbao_list(obj,ul,n,index){
-							var type = document.querySelectorAll('#sliderSegmentedControl .mui-scroll a')[index].innerText;
-							mui.ajax(get_hongbao_url,{
-								data:{
-									count:n,
-									type:type,
-								},
-								dataType:'json',//服务器返回json格式数据
-								type:'get',//HTTP请求类型
-								timeout:10000,//超时时间设置为10秒；
-//								headers:{'Content-Type':'application/json'},
-								success:function(data){
-									if (!data.length){
-										obj.endPullUpToRefresh(true);
-									}
-									else {
-										obj.endPullUpToRefresh(false);//参数为true代表没有更多数据了。
-										var table = document.body.querySelector('.mui-table-view');
-//										var cells = document.body.querySelectorAll('.mui-table-view-cell');
-										for (var i in data) {
-											var wel = data[i];
-											var li = document.createElement('li');
-											li.className = 'mui-table-view-cell';
-											str_block = '<a class="clearfix" href="' + wel.url + '"><img src="'+
-															wel.picurl +
-															'" /><div class="li-info"><h6 class="after-new">'+
-															wel.title +
-															'</h6><p class="first">';
-											marks = wel.marks;
-											for (var j in marks){
-												str_block += '<span>' + marks[j] + '</span>';
-											}
-											str_block += '</p><p><span class="s1 icon-renzhengshangjia">'+wel.provider+'</span></p>'+
-															'<p><span class="s3 icon-time">'+wel.time_limit+'</span><span class="s2 icon-yanjing">'+
-															wel.view_count +'</span></p></div></a>';
-											li.innerHTML = str_block;
-											ul.appendChild(li);
-										}
-									}
-								},
-								error:function(xhr,type,errorThrown){
-									alert(type);
-								}
-							});
+			var deceleration = mui.os.ios?0.003:0.0009;
+			mui('.mui-scroll-wrapper').scroll({
+				bounce: true,
+				indicators: true, //是否显示滚动条
+				deceleration:deceleration
+			});
+			mui.ready(function() {
+				//循环初始化所有上拉加载
+				mui.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
+					var count = 0;
+					mui(pullRefreshEl).pullToRefresh({
+						up: {
+							auto:true,
+							callback: function() {
+								var self = this;
+								var ul = self.element.querySelector('.mui-table-view');
+								get_hongbao_list(this,ul,count++,index);
+							//		ul.appendChild(createFragment(ul, index, 5));
+								//	self.endPullUpToRefresh(true);
+							}
 						}
 					});
-				})(mui);
+				});
+
+				function get_hongbao_list(obj,ul,n,index){
+					var type = document.querySelectorAll('#sliderSegmentedControl .mui-scroll a')[index].innerText;
+					mui.ajax(get_hongbao_url,{
+						data:{
+							count:n,
+							type:type,
+						},
+						dataType:'json',//服务器返回json格式数据
+						type:'get',//HTTP请求类型
+						timeout:3000,//超时时间设置为10秒；
+//								headers:{'Content-Type':'application/json'},
+						success:function(data){
+							if (!data.length){
+								obj.endPullUpToRefresh(true);
+							}
+							else {
+								obj.endPullUpToRefresh(false);//参数为true代表没有更多数据了。
+								var table = document.body.querySelector('.mui-table-view');
+//										var cells = document.body.querySelectorAll('.mui-table-view-cell');
+								for (var i in data) {
+									var wel = data[i];
+									var li = document.createElement('li');
+									li.className = 'mui-table-view-cell';
+									str_block = '<a class="clearfix" data_id="' + wel.id + '" href="' + wel.url + '"><img src="'+
+													host + wel.picurl +
+													'" /><div class="li-info"><h6 class="after-new">'+
+													wel.title + '</h6><p class="first">';
+									marks = wel.marks;
+									for (var j in marks){
+										str_block += '<span>' + marks[j] + '</span>';
+									}
+									str_block += '</p><p><span class="s1 icon-renzhengshangjia">'+wel.provider+'</span></p>'+
+													'<p><span class="s3 icon-time">'+wel.time_limit+'</span><span class="s2 icon-yanjing">'+
+													wel.view_count +'</span></p></div></a>';
+									li.innerHTML = str_block;
+									ul.appendChild(li);
+								}
+							}
+						},
+						error:function(xhr,type,errorThrown){
+							alert(type);
+						}
+					});
+				}
+			});
+			mui('.mui-table-view').on('tap', 'a', function() {
+				var title = this.querySelector('h6').innerText;
+				var img = this.querySelector('img').src;
+				open_welfare_detail(this.getAttribute('data_id'),"hongbao",title,img);
+			});
+			function open_welfare_detail(id,type,title,img) {
+				var template = getTemplate('welfare','template.html',"html/m_detail_welfare.html");
+				if (!template){
+					mui.alert("系统错误！");
+				}
+				detailMainWebview = template.header;
+				detailWebview = template.content;
+				mui.fire(detailMainWebview, 'updateHeader', {
+					title: title
+				});
+				//触发子窗口变更新闻详情
+				mui.fire(detailWebview, 'display', {
+					id: id,
+					type: type,
+					img: img,
+				});
+			};
 		</script>
 	</body>
 

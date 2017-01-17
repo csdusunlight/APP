@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../css/m_common.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/m_activity_lottery.css"/>
+
+</head>
+	<body>
+		<div class="mui-content">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<div class="top">
+				<div class="dial">
+                	<div class="turntable-bg">
+				
+				        <div id="pointer" class="pointer"><img src="../images/choujiang-zhizhen.png" alt="pointer"></div>
+				
+				        <div id="rotate" class="rotate"><img id="rotate" src="../images/choujiang-zhuanpan.png" alt="turntable"></div>
+				
+				    </div>	
+                    
+              </div>
+				<div class="text clearfix">
+					<h4 class="text-01">抽奖方式</h4>
+					<p>①用户自行点击抽奖按钮启动大转盘，每人每天不限抽奖次数，每次抽奖消耗10积分作为启动能量；</p>
+					<p>②请登入本人账户进行抽奖，非本人账户及其他中奖方式中奖均无效。</p>
+				</div>
+				<div id="share" class="share-btn">
+					<img src="../images/share-friend.png"/>
+				</div>
+			</div>
+			
+			<div class="bottom">			
+			</div>
+		</div> <!--mui-content----end-->
+				
+		<!--弹出层部分-->
+		<div class="popup-box">
+		<!--温馨提示-->
+		  <div class="popup4 popup" style="display:none;">
+		  	<div class="popup-box">
+		    	<div class="pop-content">
+		        	<h2>温馨提示</h2>
+		            <p>本次抽奖将消耗您<font><number>10</number>积分</font>！</p>
+		            <div class="btn_cont only-btn">		            	
+		            	<button type="button" class="confirm_lottery mui-btn mui-btn-yellow">确定</button>
+		            </div>
+		        </div>
+		        <span class="btn_x mui-icon mui-icon-closeempty"></span>
+		    </div>
+		  </div>
+		<!--谢谢参与-->
+		  <div class="popup6 popup" style="display:none;">
+		  	<div class="popup-box">
+		    	<div class="pop-content">
+		        	<h2>温馨提示</h2>
+		            <p>您知道吗？平均每三次抽奖，就能中奖一次哦~</p>
+		            <div class="btn_cont">
+		            	<button type="button" class="mui-btn mui-btn-yellow">确定</button>
+		            	<button type="button" class="confirm_lottery mui-btn mui-btn-yellow">继续抽奖</button>
+		            </div>
+		        </div>
+		        <span class="btn_x mui-icon mui-icon-closeempty"></span>
+		    </div>
+		  </div>
+		<!--中奖提示-->
+		  <div class="popup1 popup" style="display:none;">
+		  	<div class="popup-box">
+		    	<div class="pop-content">
+		        	<h2>中奖提示</h2>
+		            <p>恭喜您中奖！奖品为<font>0.8元现金</font>，稍后可在账户中心查收！</p>
+		            <div class="btn_cont">
+		            	<button type="button" class="mui-btn mui-btn-yellow">确定</button>
+		            	<button type="button" class="confirm_lottery confirm_lottery02 mui-btn mui-btn-yellow">继续抽奖</button>
+		            </div>
+		        </div>
+		        <span class="btn_x mui-icon mui-icon-closeempty"></span>
+		    </div>
+		  </div>
+		  <!--中奖提示-iphone 6s-->
+		  <div class="popup2 popup" style="display:none;">
+		  	<div class="popup-box">
+		    	<div class="pop-content">
+		        	<h2>中奖提示</h2>
+		            <p>恭喜您中奖！奖品为iphone 6s，请填写收货地址！我们会尽快联系您哦~！</p>
+		            <div class="btn_cont2 only-btn">
+		                <button type="button" class="mui-btn mui-btn-yellow">填写收货地址</button>
+		            </div>
+		        </div>
+		        <span class="btn_x mui-icon mui-icon-closeempty"></span>
+		    </div>
+		  </div>
+		  <!--温馨提示-信息填写-->
+		  <div class="popup3 popup" style="display:none;">
+		  	<div class="popup-box">
+		    	<div class="pop-content">
+		        	<h2>信息填写</h2>
+		        	<form class="mui-input-group">
+				
+						<div class="mui-input-row">
+							<label>姓名</label>
+							<input type="text" placeholder="请输入收件人姓名">
+						</div>
+						<div class="mui-input-row">
+							<label>电话</label>
+							<input type="text" placeholder="请输入收件人电话">
+						</div>
+						<div class="mui-input-row">
+							<label>地址</label>
+							<input type="text" placeholder="请输入收件人地址">
+						</div>
+						<div class="mui-input-row">
+							<label>邮编</label>
+							<input type="text" placeholder="请输入邮编地址">
+						</div>
+					
+				</form>
+				<p>注：请填写真实有效信息，如因填写信息错误导致无法收货，责任由用户承担。</p>
+		            <div class="btn_cont only-btn">
+		                <button type="button" class="mui-btn mui-btn-yellow">确定</button>
+		            </div>
+		        </div>
+		        <span class="btn_x mui-icon mui-icon-closeempty"></span>
+		    </div>
+		  </div>
+		  
+		  <!--温馨提示-积分不足-->
+		  <div class="popup7 popup" style="display:none;">
+		  	<div class="popup-box">
+		    	<div class="pop-content">
+		        	<h2>温馨提示</h2>
+		            <p>您的积分不足进行下一次抽奖~！</p>
+		            <div class="btn_cont">
+		            	<button type="button" class="mui-btn mui-btn-yellow">确定</button>
+		            	<button id="but_width" type="button" class="mui-btn mui-btn-yellow">获得积分</button>
+		            </div>
+		        </div>
+		        <span class="btn_x mui-icon mui-icon-closeempty"></span>
+		    </div>
+		  </div>
+		  <!--温馨提示-信息提交成功-->
+		  <div class="popup5 popup" style="display:none;">
+		  	<div class="popup-box">
+		    	<div class="pop-content">
+		        	<h2>温馨提示</h2>
+		            <p>信息提交成功！请保持电话通畅，挖福利会尽快与您取得联系！</p>
+		            <div class="btn_cont">
+		            	<button type="button" class="mui-btn mui-btn-yellow">确定</button>
+		            	<button type="button" class="confirm_lottery mui-btn mui-btn-yellow">继续抽奖</button>
+		            </div>
+		        </div>
+		        <span class="btn_x mui-icon mui-icon-closeempty"></span>		        
+		    </div>
+		  </div>
+		</div>  
+		  
+		
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/rotate-app.js"></script>
+		<script type="text/javascript" charset="utf-8">
+		     mui.init();
+		</script>
+	</body>
+</html>

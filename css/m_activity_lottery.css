@@ -2,7 +2,6 @@ body {
 	background: #fef9e0;
 }
 .mui-content {
-
 }
 .mui-action-back {
 	position: absolute;
@@ -32,28 +31,24 @@ body {
 	height: 26rem;
 	margin: 0 auto;
 	background-size: 100% auto;
-	/*-webkit-transform: rotate(180deg) !important;
-	-moz-transform: rotate(180deg) !important;
-	-ms-transform: rotate(180deg) !important;
-	-0-transform: rotate(180deg) !important;
-	transform: rotate(180deg) !important;*/
+	transition: all 6s cubic-bezier(.2,.54,0,1);
 }
 .dial .rotate img {
 	width: 26rem;
 	height: 26rem;
 }
-.dial .rotate {
+/*.dial .rotate {
 	-webkit-transition: -webkit-transform 3000ms ease-out;
 	-webkit-transform: rotate(0deg);
 	-moz-transition:-moz-transform 3000ms ease-out;
 	-moz-transform: rotate(0deg);
-	-o-transition:-moz-transform 3000ms ease-out;
+	-o-transition:-moz-transform 3000ms ease-out; 
 	-o-transform: rotate(0deg);
 	-ms-transition:-moz-transform 3000ms ease-out;
 	-ms-transform: rotate(0deg);
 	transition: transform 3000ms ease-out;
-	transform: rotate(0deg);
-}
+	transform: rotate(0deg);	
+}*/
 .dial .pointer {
 	position: absolute;
 	left: 8.5rem;
@@ -88,14 +83,14 @@ body {
      0% {
        	right: -4rem;
        	opacity: 0;
-     }
+     } 
      60% {
      	right: 3rem;
         opacity: 1;
-     }
+     }     
      70% {
         -webkit-transform: rotateZ(-30deg);
-     }
+     }      
      100% {
         right: 3rem;
         opacity: 1;
@@ -114,14 +109,7 @@ body {
 	width: 5rem;
 }
 
-.mui-content .middle {
-	/*width: 100%;*/
-	height: 28rem;
-	background-color: red;
-	background: url(../images/choujiang-middle.jpg) top center no-repeat;
-	background-size: 100% auto;
-	background-color: #fef9e0;
-}
+
 
 .mui-content .bottom {
 	/*width: 100%;*/
@@ -131,7 +119,7 @@ body {
 	background-size: 100% auto;
 	background-color: #fef9e0;
 }
-/*婊氬姩鏂囧瓧閮ㄥ垎*/
+
 
 #textBox {
 	position: relative;
@@ -165,7 +153,7 @@ body {
 	line-height: 1.2rem;
 }
 
-/*鎶藉寮瑰嚭鎻愮ず閮ㄥ垎*/
+/*抽奖弹出提示部分*/
 .popup {
 	position: fixed;
 	top: 0;
@@ -173,7 +161,7 @@ body {
 	height: 100%;
 	background:  rgba(0,0,0,0.5);
 	z-index: 1000;
-
+	
 }
 .popup .popup-box {
 	position: relative;

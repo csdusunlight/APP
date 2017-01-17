@@ -174,34 +174,34 @@
 					"prerendered": true, /*应用图标是否已经高亮处理，在iOS6及以下设备上有效*/
 					"auto": "", /*应用图标，分辨率：512x512，用于自动生成各种尺寸程序图标*/
 					"iphone": {
-						"normal": "",/*iPhone普通屏幕程序图标，分辨率：57x57*/
-						"retina": "",/*iPhone高分屏程序图标，分辨率：114x114*/
-						"retina7": "",/*iPhone iOS7高分屏程序图标，分辨率：120x120*/
-						"spotlight-normal": "", /*iPhone Spotlight搜索程序图标，分辨率：29x29*/
-						"spotlight-retina": "", /*iPhone高分屏Spotlight搜索程序图标，分辨率：58x58*/
-						"spotlight-retina7": "",/*iPhone iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
-						"settings-normal": "", /*iPhone设置页面程序图标，分辨率：29x29*/
-						"settings-retina": ""
+						"normal": "unpackage/res/icons/57x57.png",/*iPhone普通屏幕程序图标，分辨率：57x57*/
+						"retina": "unpackage/res/icons/114x114.png",/*iPhone高分屏程序图标，分辨率：114x114*/
+						"retina7": "unpackage/res/icons/120x120.png",/*iPhone iOS7高分屏程序图标，分辨率：120x120*/
+						"spotlight-normal": "unpackage/res/icons/29x29.png", /*iPhone Spotlight搜索程序图标，分辨率：29x29*/
+						"spotlight-retina": "unpackage/res/icons/58x58.png", /*iPhone高分屏Spotlight搜索程序图标，分辨率：58x58*/
+						"spotlight-retina7": "unpackage/res/icons/80x80.png",/*iPhone iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
+						"settings-normal": "unpackage/res/icons/29x29.png", /*iPhone设置页面程序图标，分辨率：29x29*/
+						"settings-retina": "unpackage/res/icons/58x58.png","retina8":"unpackage/res/icons/180x180.png","settings-retina8":"unpackage/res/icons/87x87.png"
 					},
 					"ipad": {
-						"normal": "", /*iPad普通屏幕程序图标，分辨率：72x72*/
-						"retina": "", /*iPad高分屏程序图标，分辨率：144x144*/
-						"normal7": "", /*iPad iOS7程序图标，分辨率：76x76*/
-						"retina7": "", /*iPad iOS7高分屏程序图标，分辨率：152x152*/
-						"spotlight-normal": "", /*iPad Spotlight搜索程序图标，分辨率：50x50*/
-						"spotlight-retina": "", /*iPad高分屏Spotlight搜索程序图标，分辨率：100x100*/
-						"spotlight-normal7": "",/*iPad iOS7 Spotlight搜索程序图标，分辨率：40x40*/
-						"spotlight-retina7": "",/*iPad iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
-						"settings-normal": "",/*iPad设置页面程序图标，分辨率：29x29*/
-						"settings-retina": ""
+						"normal": "unpackage/res/icons/72x72.png", /*iPad普通屏幕程序图标，分辨率：72x72*/
+						"retina": "unpackage/res/icons/144x144.png", /*iPad高分屏程序图标，分辨率：144x144*/
+						"normal7": "unpackage/res/icons/76x76.png", /*iPad iOS7程序图标，分辨率：76x76*/
+						"retina7": "unpackage/res/icons/152x152.png", /*iPad iOS7高分屏程序图标，分辨率：152x152*/
+						"spotlight-normal": "unpackage/res/icons/50x50.png", /*iPad Spotlight搜索程序图标，分辨率：50x50*/
+						"spotlight-retina": "unpackage/res/icons/100x100.png", /*iPad高分屏Spotlight搜索程序图标，分辨率：100x100*/
+						"spotlight-normal7": "unpackage/res/icons/40x40.png",/*iPad iOS7 Spotlight搜索程序图标，分辨率：40x40*/
+						"spotlight-retina7": "unpackage/res/icons/80x80.png",/*iPad iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
+						"settings-normal": "unpackage/res/icons/29x29.png",/*iPad设置页面程序图标，分辨率：29x29*/
+						"settings-retina": "unpackage/res/icons/58x58.png"
 					}
 				},
 				"android": {
-					"mdpi": "", /*普通屏程序图标，分辨率：48x48*/
-					"ldpi": "", /*大屏程序图标，分辨率：48x48*/
-					"hdpi": "", /*高分屏程序图标，分辨率：72x72*/
-					"xhdpi": "",/*720P高分屏程序图标，分辨率：96x96*/
-					"xxhdpi": ""
+					"mdpi": "unpackage/res/icons/48x48.png", /*普通屏程序图标，分辨率：48x48*/
+					"ldpi": "unpackage/res/icons/48x48.png", /*大屏程序图标，分辨率：48x48*/
+					"hdpi": "unpackage/res/icons/72x72.png", /*高分屏程序图标，分辨率：72x72*/
+					"xhdpi": "unpackage/res/icons/96x96.png",/*720P高分屏程序图标，分辨率：96x96*/
+					"xxhdpi": "unpackage/res/icons/144x144.png"
 				}
 			},
 			"splashscreen": {
@@ -224,8 +224,8 @@
 				},
 				"android": {
 					"mdpi": "", /*普通屏启动图片，分辨率：240x282*/
-					"ldpi": "", /*大屏启动图片，分辨率：320x442*/
-					"hdpi": ""
+					"ldpi": "C:/Users/lch/Desktop/挖福利/splash/320x442.png", /*大屏启动图片，分辨率：320x442*/
+					"hdpi": "C:/Users/lch/Desktop/挖福利/splash/480x762.png","xhdpi":"C:/Users/lch/Desktop/挖福利/splash/720x1242.png","xxhdpi":"C:/Users/lch/Desktop/挖福利/splash/1080x1883 png-8.png"
 				}
 			},
 			"debug": false
@@ -372,7 +372,10 @@
 					"account/m_account_invite.html",
 					"html/m_information.html",
 					"html/m_detail_information.html",
-					"html/m_baoyou.html"
+					"html/m_baoyou.html",
+					"html/m_hongbao.html",
+					"html/m_youhuiquan.html",
+					"html/m_activity_lottery.html"
 				],
 				"priority": 0
 			},
@@ -959,7 +962,9 @@
 					"js/share.js",
 					"fonts/wafuli-iconfont.woff",
 					"images/make-money-zhongfuli.jpg",
-					"css/m_common.css"
+					"css/m_common.css",
+					"images/make-money-zhongfuli.png",
+					"js/mui.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -1063,6 +1068,60 @@
 				],
 				"refer": [],
 				"priority": 0
+			},
+			"html/m_hongbao.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/m_hongbao.css",
+					"js/mui.pullToRefresh.js",
+					"js/UserInfo.js",
+					"js/mui.pullToRefresh.material.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/template.js",
+					"fonts/wafuli-iconfont.woff",
+					"css/m_common.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/m_youhuiquan.html": {
+				"resources": [
+					"html/%7B%static%20\u0027css/mui.min.css\u0027%%7D",
+					"html/%7B%static%20\u0027js/mui.pullToRefresh.material.js\u0027%%7D",
+					"html/%7B%static%20\u0027js/mui.min.js\u0027%%7D",
+					"html/%7B%static%20\u0027css/m_youhuiquan.css\u0027%%7D",
+					"html/%7B%static%20\u0027js/mui.pullToRefresh.js\u0027%%7D",
+					"html/%7B%static%20\u0027css/m_common.css\u0027%%7D",
+					"js/mui.min.js",
+					"css/m_youhuiquan.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"fonts/wafuli-iconfont.woff",
+					"css/m_common.css",
+					"js/template.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/m_activity_lottery.html": {
+				"resources": [
+					"css/m_activity_lottery.css",
+					"images/choujiang-top.jpg",
+					"images/choujiang-bottom-02.jpg",
+					"js/mui.min.js",
+					"fonts/mui.ttf",
+					"js/rotate-app.js",
+					"images/choujiang-zhuanpan.png",
+					"images/choujiang-zhizhen.png",
+					"images/share-friend.png",
+					"css/mui.min.css",
+					"css/m_common.css"
+				],
+				"refer": [
+					"a_login.html"
+				],
+				"priority": 0
 			}
 		},
 		"idle": {
@@ -1078,9 +1137,7 @@
 				"images/btn_x.png",
 				"images/re-img.png",
 				"css/default.css",
-				"css/m_activity_lottery.css",
 				"images/invited-reg-bg.png",
-				"images/choujiang-zhuanpan.png",
 				"css/activity.css",
 				"images/news-left-icon.png",
 				"css/welfare.css",
@@ -1101,7 +1158,6 @@
 				"images/热（合并）.png",
 				"js/ZeroClipboard.js",
 				"images/task-02.png",
-				"images/choujiang-top.jpg",
 				"css/money.css",
 				"images/share-friend-row.png",
 				"images/fenge.png",
@@ -1211,7 +1267,6 @@
 				"images/news-right-icon.png",
 				"images/picin.png",
 				"js/classie.js",
-				"images/choujiang-bottom-02.jpg",
 				"images/top.png",
 				"images/pic_11.png",
 				"images/in-01.png",
@@ -1262,7 +1317,6 @@
 				"images/newico1.png",
 				"images/logo-7.png",
 				"css/page.css",
-				"css/m_hongbao.css",
 				"images/pic4.png",
 				"images/qq.png",
 				"fonts/DroidSansFallback.ttf",
@@ -1284,7 +1338,6 @@
 				"images/cback2.jpg",
 				"images/login-icon-invite.png",
 				"images/c.png",
-				"css/m_youhuiquan.css",
 				"images/logo.jpg",
 				"js/page.js",
 				"images/submit.png",
@@ -1402,7 +1455,6 @@
 				"images/i_logo4.png",
 				"css/everyday.css",
 				"images/zp.png",
-				"images/choujiang-zhizhen.png",
 				"images/left-icon4.png",
 				"images/sin-picon-03.png",
 				"fonts/浪漫雅圆.ttf",

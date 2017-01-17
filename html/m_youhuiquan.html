@@ -3,15 +3,10 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-	<script src="{%static 'js/mui.min.js'%}"></script>
-	<script src="{%static 'js/mui.pullToRefresh.js'%}"></script>
-	<script src="{%static 'js/mui.pullToRefresh.material.js'%}"></script>
-	<link href="{%static 'css/mui.min.css'%}" rel="stylesheet" />
-	<link rel="stylesheet" type="text/css" href="{%static 'css/m_common.css'%}" />
-	<link rel="stylesheet" type="text/css" href="{%static 'css/m_youhuiquan.css'%}" />
-
+	<link href="../css/mui.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="../css/m_common.css" />
+	<link rel="stylesheet" type="text/css" href="../css/m_youhuiquan.css" />
 </head>
-
 	<body>
 		<header id="header" class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
@@ -25,88 +20,96 @@
 
 			</div>
 		</div>
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/template.js"></script>
 		<script>
-		mui.init({
-			pullRefresh: {
-				container: '#pullrefresh',
-				up: {
-					auto:true,
-					contentrefresh: '正在加载...',
-					contentnomore:'没有更多数据了',//可选，请求完毕若没有更多数据时显示的提醒内容；
-					callback: pullupRefresh
-				}
-			}
-		});
-
-	/**
-	 * 上拉加载具体业务实现
-	 */
-		var count = 0;
-		var get_youhuiquan_url = "{% url 'youhuiquan_json' %}"
-		function get_wel_list(n){
-			mui.ajax(get_youhuiquan_url,{
-				data:{
-					count:n,
-				},
-				dataType:'json',//服务器返回json格式数据
-				type:'get',//HTTP请求类型
-				timeout:10000,//超时时间设置为10秒；
-	//			headers:{'Content-Type':'application/json'},
-				success:function(data){
-					if (!data.length){
-						mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+			var host = "http://test.wafuli.cn";
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					up: {
+						auto:true,
+						contentrefresh: '正在加载...',
+						contentnomore:'没有更多数据了',//可选，请求完毕若没有更多数据时显示的提醒内容；
+						callback: pullupRefresh
 					}
-					else {
-						mui('#pullrefresh').pullRefresh().endPullupToRefresh(false); //参数为true代表没有更多数据了。
-						var table = document.body.querySelector('.mui-table-view');
-	//					var cells = document.body.querySelectorAll('.mui-table-view-cell');
-						for (var i in data) {
-							var wel = data[i];
-							var li = document.createElement('li');
-							li.className = 'mui-table-view-cell';
-							str_block = '<a class="clearfix" href="' + wel.url + '"><img src="'+
-											wel.picurl +
-											'" /><div class="li-info"><h6 class="after-new">'+
-											wel.title +
-											'</h6><p class="first">';
-							marks = wel.marks;
-							for (var j in marks){
-								str_block += '<span>' + marks[j] + '</span>';
-							}
-							str_block += '</p><p><span class="s1 icon-renzhengshangjia">'+wel.provider+'</span></p>'+
-											'<p><span class="s3 icon-time">'+wel.time_limit+'</span><span class="s2 icon-yanjing">'+
-											wel.view_count +'</span></p></div></a>';
-							li.innerHTML = str_block;
-							table.appendChild(li);
-						}
-					}
-
-				},
-				error:function(xhr,type,errorThrown){
-					alert(type);
 				}
 			});
-		}
-		function pullupRefresh() {
-			get_wel_list(count++);
-		}
-		mui('.mui-content').on('tap', 'a', function() {
-	        var id = this.getAttribute('href');
-	        mui.openWindow({
-	            url: this.href,
-	            styles: {
-	                top: 0,
-	                bottom: 0
-	            },
-	            show: {
-	                aniShow: 'slide-in-right',
-	            },
-	            waiting: {
-	                autoShow: false, //自动显示等待框
-	                title: '正在加载...', //等待对话框上显示的提示内容
-	            }
-	        });
-	    });
+	
+		/**
+		 * 上拉加载具体业务实现
+		 */
+			var count = 0;
+			var get_youhuiquan_url = "http://test.wafuli.cn/youhuiquan_json/";
+			function get_wel_list(n){
+				mui.ajax(get_youhuiquan_url,{
+					data:{
+						count:n,
+					},
+					dataType:'json',//服务器返回json格式数据
+					type:'get',//HTTP请求类型
+					timeout:10000,//超时时间设置为10秒；
+		//			headers:{'Content-Type':'application/json'},
+					success:function(data){
+						if (!data.length){
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+						}
+						else {
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(false); //参数为true代表没有更多数据了。
+							var table = document.body.querySelector('.mui-table-view');
+		//					var cells = document.body.querySelectorAll('.mui-table-view-cell');
+							for (var i in data) {
+								var wel = data[i];
+								var li = document.createElement('li');
+								li.className = 'mui-table-view-cell';
+								str_block = '<a class="clearfix" data_id="' + wel.id + '" href="' + wel.url + '"><img src="'+
+												host + wel.picurl +
+												'" /><div class="li-info"><h6 class="after-new">'+
+												wel.title +
+												'</h6><p class="first">';
+								marks = wel.marks;
+								for (var j in marks){
+									str_block += '<span>' + marks[j] + '</span>';
+								}
+								str_block += '</p><p><span class="s1 icon-renzhengshangjia">'+wel.provider+'</span></p>'+
+												'<p><span class="s3 icon-time">'+wel.time_limit+'</span><span class="s2 icon-yanjing">'+
+												wel.view_count +'</span></p></div></a>';
+								li.innerHTML = str_block;
+								table.appendChild(li);
+							}
+						}
+	
+					},
+					error:function(xhr,type,errorThrown){
+						alert(type);
+					}
+				});
+			}
+			function pullupRefresh() {
+				get_wel_list(count++);
+			}
+			mui('.mui-table-view').on('tap', 'a', function() {
+				var title = this.querySelector('h6').innerText;
+				var img = this.querySelector('img').src;
+				open_welfare_detail(this.getAttribute('data_id'),"youhuiquan",title,img);
+			});
+			function open_welfare_detail(id,type,title,img) {
+				var template = getTemplate('welfare','template.html',"html/m_detail_welfare.html");
+				if (!template){
+					mui.alert("系统错误！");
+				}
+				detailMainWebview = template.header;
+				detailWebview = template.content;
+				mui.fire(detailMainWebview, 'updateHeader', {
+					title: title
+				});
+				//触发子窗口变更新闻详情
+				mui.fire(detailWebview, 'display', {
+					id: id,
+					type: type,
+					img: img,
+				});
+			};
 		</script>
 	</body>
 
