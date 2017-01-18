@@ -237,6 +237,30 @@
 //		            },
 //		        });
 			});
+			mui('#slider').on('tap', '.slider2', function() {
+				tempview.loadURL("html/m_activity_lottery.html");
+				plus.nativeUI.showWaiting();
+				tempview.addEventListener('loaded',function(){
+					plus.nativeUI.closeWaiting();
+					tempview.show("pop-in",350);
+				});
+			});
+			mui('#slider').on('tap', '.slider3', function() {
+				tempview.loadURL("html/m_freshman_award.html");
+				plus.nativeUI.showWaiting();
+				tempview.addEventListener('loaded',function(){
+					plus.nativeUI.closeWaiting();
+					tempview.show("pop-in",350);
+				});
+			});
+			mui('#slider').on('tap', '.slider2', function() {
+				tempview.loadURL("html/m_activity_lottery.html");
+				plus.nativeUI.showWaiting();
+				tempview.addEventListener('loaded',function(){
+					plus.nativeUI.closeWaiting();
+					tempview.show("pop-in",350);
+				});
+			});
 			var weixin_btn = document.getElementById("weixin_btn"),
             close_01 = document.getElementById("close_01"),
             weixin_bg = document.getElementById("weixin_bg"),

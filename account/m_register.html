@@ -49,10 +49,8 @@
 		</div>
 		<script src="../js/mui.js"></script>
 		<script src="../js/accounts/user-validate.js"></script>
-		<script type="text/javascript" charset="utf-8">
-	      	mui.init({
-				swipeBack:true //启用右滑关闭功能
-			});
+		<script type="text/javascript">
+	      	mui.init();
 	      	var countdown=60;
 			var coderefresh_url = "http://test.wafuli.cn/captcha/refresh/";
 			var sendtelcode_url = "http://test.wafuli.cn/account/phoneImageV/";
@@ -96,7 +94,9 @@
 					timeout : 3000,
 					success : function(data) {
 						if (data.code == '0') {
-							window.location.href = index_url;
+							mui.alert("恭喜，注册成功！",callback=function(){
+								mui.back();
+							});
 						}
 						else {
 							mui.alert(data.msg);

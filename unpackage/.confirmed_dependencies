@@ -50,7 +50,9 @@
       "html/m_hongbao.html",
       "html/m_youhuiquan.html",
       "html/m_activity_lottery.html",
-      "account/m_account_score.html"
+      "account/m_account_score.html",
+      "html/m_freshman_award.html",
+      "account/m_account_settings.html"
     ]
   },
   "m_task_junior.html": {
@@ -633,7 +635,8 @@
       "css/m_common.css",
       "css/m_password_reset.css",
       "js/mui.js",
-      "js/accounts/user-validate.js"
+      "js/accounts/user-validate.js",
+      "fonts/wafuli-iconfont.woff"
     ],
     "refer": [],
     "priority": 0
@@ -644,7 +647,11 @@
       "css/mui.min.css",
       "css/m_style.css",
       "css/m_common.css",
-      "css/m_register.css"
+      "css/m_register.css",
+      "js/accounts/user-validate.js",
+      "js/mui.js",
+      "fonts/mui.ttf",
+      "fonts/wafuli-iconfont.woff"
     ],
     "refer": [],
     "priority": 0
@@ -694,5 +701,26 @@
     ],
     "refer": [],
     "priority": 0
+  },
+  "html/m_freshman_award.html": {
+    "resources": [
+      "images/activity_invite_top.png",
+      "images/activity_invite_text03.png",
+      "images/activity_invite_text01.png",
+      "js/mui.min.js",
+      "images/activity_invite_bottom.png",
+      "css/m_freshman_award.css",
+      "images/activity_invite_text02.png",
+      "js/UserInfo.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "fonts/wafuli-iconfont.woff",
+      "css/m_common.css"
+    ],
+    "refer": [
+      "account/m_register.html",
+      "a_login.html",
+      "account/m_account_invite.html"
+    ]
   }
 }

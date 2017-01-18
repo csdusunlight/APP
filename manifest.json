@@ -391,7 +391,8 @@
 					"html/m_baoyou.html",
 					"html/m_hongbao.html",
 					"html/m_youhuiquan.html",
-					"html/m_activity_lottery.html"
+					"html/m_activity_lottery.html",
+					"html/m_freshman_award.html"
 				],
 				"priority": 0
 			},
@@ -617,8 +618,7 @@
 					"js/mui.js"
 				],
 				"refer": [
-					"account/m_password_reset.html",
-					"account/m_register.html"
+					"account/m_password_reset.html"
 				],
 				"priority": 0
 			},
@@ -790,7 +790,8 @@
 					"fonts/wafuli-iconfont.ttf",
 					"fonts/wafuli-iconfont.svg",
 					"images/share-guide-top.png",
-					"images/share-guide-bottom.png"
+					"images/share-guide-bottom.png",
+					"js/mui.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -1410,6 +1411,28 @@
 				],
 				"priority": 4,
 				"refer": []
+			},
+			"html/m_freshman_award.html": {
+				"resources": [
+					"images/activity_invite_top.png",
+					"images/activity_invite_text03.png",
+					"images/activity_invite_text01.png",
+					"js/mui.min.js",
+					"images/activity_invite_bottom.png",
+					"css/m_freshman_award.css",
+					"images/activity_invite_text02.png",
+					"js/UserInfo.js",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"fonts/wafuli-iconfont.woff",
+					"css/m_common.css"
+				],
+				"refer": [
+					"account/m_register.html",
+					"a_login.html",
+					"account/m_account_invite.html"
+				],
+				"priority": 0
 			}
 		},
 		"idle": {
@@ -1449,10 +1472,8 @@
 				"images/task-02.png",
 				"css/m_activity_recom_rank.css",
 				"images/logo-9.png",
-				"images/activity_invite_text01.png",
 				"images/pict_57.png",
 				"images/share-friend-row.png",
-				"css/m_freshman_award.css",
 				"images/logo-3.png",
 				"images/fenge.png",
 				"images/newbox.png",
@@ -1594,7 +1615,6 @@
 				"images/nav-1.png",
 				"images/t3.png",
 				"images/top.png",
-				"images/activity_invite_text02.png",
 				"js/accounts/send.js",
 				"images/pic_11.png",
 				"images/jf3.png",
@@ -1617,7 +1637,6 @@
 				"images/none.png",
 				"images/logo-1.png",
 				"images/logo-again.png",
-				"images/activity_invite_top.png",
 				"images/rt.png",
 				"registration/m_login.html",
 				"images/signin.png",
@@ -1642,7 +1661,6 @@
 				"images/top-3.png",
 				"images/nr2.png",
 				"images/jf1.png",
-				"images/activity_invite_text03.png",
 				"images/hone9.png",
 				"css/mui.css",
 				"images/pict_60.png",
@@ -1691,7 +1709,6 @@
 				"fonts/fangzheng.ttf",
 				"images/new5.png",
 				"images/newico3.png",
-				"images/activity_invite_bottom.png",
 				"images/newico2.png",
 				"images/new4.png",
 				"js/json2.js"
@@ -1714,11 +1731,6 @@
 	  "images/Sign.png",
 	  "images/abg.png",
 	  "images/action.png",
-	  "images/activity_invite_bottom.png",
-	  "images/activity_invite_text01.png",
-	  "images/activity_invite_text02.png",
-	  "images/activity_invite_text03.png",
-	  "images/activity_invite_top.png",
 	  "images/back_to_top.png",
 	  "images/bg-logo.png",
 	  "images/bg-money.png",
