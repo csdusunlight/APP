@@ -1,7 +1,8 @@
 var wa = [];
 var SLIDER_URL = 'http://test.wafuli.cn/app/slider/';
 var RECOM_URL = 'http://test.wafuli.cn/app/recom/';
-var NEWS_URL = 'http://test.wafuli.cn/app/news/'; 
+var NEWS_URL = 'http://test.wafuli.cn/app/news/';
+var TODAY_NUM_URL = 'http://test.wafuli.cn/app/get_today_num/'; 
 (function($, wa, websql) {
 
 	var DB_VERSION_NUMBER = '1.0';
@@ -28,7 +29,7 @@ var NEWS_URL = 'http://test.wafuli.cn/app/news/';
 	var SQL_TABLE = 'DROP TABLE IF EXISTS wa_news;DROP TABLE IF EXISTS wa_slider;DROP TABLE IF EXISTS wa_recom;' + 
 		'CREATE TABLE wa_news (id INTEGER PRIMARY KEY, title TEXT,mark1 TEXT,mark2 TEXT,mark3 TEXT,image TEXT,pubDate INTEGER,source TEXT, time TEXT, view INTEGER, type TEXT);' + 
 		'CREATE TABLE wa_slider (id INTEGER PRIMARY KEY, image TEXT,priority INTEGER, pubDate INTEGER);' +
-		'CREATE TABLE wa_recom (id INTEGER PRIMARY KEY, image TEXT, type TEXT, wel_id INTEGER, location INTEGER UNIQUE);' + 
+		'CREATE TABLE wa_recom (id INTEGER PRIMARY KEY, image TEXT, type TEXT, wel_id INTEGER, location INTEGER UNIQUE, title TEXT);' + 
 		'CREATE TABLE wa_task (id INTEGER PRIMARY KEY, title TEXT, image TEXT,pubDate INTEGER,source TEXT, time TEXT, view INTEGER, type TEXT);';
 	var SQL_SELECT_NEWS= 'SELECT id,title,mark1,mark2,mark3,pubDate,image,source,time,view,type FROM wa_news WHERE pubDate < ? ORDER BY pubDate DESC LIMIT ?;';
 	var SQL_INSERT_NEWS = 'INSERT INTO wa_news(id,title,mark1,mark2,mark3,pubDate,image,source,time,view,type) VALUES(?,?,?,?,?,?,?,?,?,?,?);';
@@ -42,8 +43,8 @@ var NEWS_URL = 'http://test.wafuli.cn/app/news/';
 	var SQL_UPDATE_SLIDER = 'UPDATE wa_slider SET image = ? WHERE id = ?';
 	var SQL_DELETE_SLIDER = 'DELETE FROM wa_slider';
 	
-	var SQL_SELECT_RECOM = 'SELECT id,image,type,wel_id,location FROM wa_recom ORDER BY location LIMIT 3;';
-	var SQL_INSERT_RECOM = 'INSERT INTO wa_recom(id,image,type,wel_id,location) VALUES(?,?,?,?,?);';
+	var SQL_SELECT_RECOM = 'SELECT id,image,type,wel_id,location,title FROM wa_recom ORDER BY location LIMIT 3;';
+	var SQL_INSERT_RECOM = 'INSERT INTO wa_recom(id,image,type,wel_id,location,title) VALUES(?,?,?,?,?,?);';
 	var SQL_SELECT_RECOM_DETAIL = 'SELECT * FROM wa_recom WHERE id = ? LIMIT 1;';
 	var SQL_UPDATE_RECOM = 'UPDATE wa_recom SET image = ? WHERE id = ?';
 	var SQL_DELETE_RECOM = 'DELETE FROM wa_recom';
@@ -241,7 +242,7 @@ var NEWS_URL = 'http://test.wafuli.cn/app/news/';
 //			if (items) {
 				var news = [];
 				$.each(items, function(index, item) {
-					news.push([item.id, item.image, item.type, item.wel_id, item.location]);
+					news.push([item.id, item.image, item.type, item.wel_id, item.location, item.title]);
 				});
 				wa.deleteRecom();
 				wa.addRecom(news, function() {

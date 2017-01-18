@@ -29,7 +29,7 @@
 					return error();
 				}
 				if(response.code!=0){
-					mui.alert(response.message)
+					mui.alert(response.msg)
 				}
 				else{
 					success(parseNews(response.data));
@@ -65,7 +65,7 @@
 					return error();
 				}
 				if(response.code!=0){
-					mui.alert(response.message)
+					mui.alert(response.msg)
 				}
 				else{
 					success(parseSlider(response.data));
@@ -83,6 +83,8 @@
 				type: srcItem.type,
 				wel_id: srcItem.wel_id,
 				location: srcItem.location,
+				title: srcItem.title,
+				
 			});
 		});
 		return items;
@@ -98,10 +100,28 @@
 					return error();
 				}
 				if(response.code!=0){
-					mui.alert(response.message)
+					mui.alert(response.msg)
 				}
 				else{
 					success(parseRecom(response.data));
+				}
+			},
+			error:function(xhr,type,errorThrown){
+				console.log(type);
+			}
+		});
+	};
+	$.getTodayNum = function(url, success) {
+		$.ajax({
+			type: "get",
+			url: url,
+			dataType: 'json',
+			success: function(response) {
+				if(response.code!=0){
+					mui.alert(response.msg);
+				}
+				else{
+					success(response);
 				}
 			},
 			error:function(xhr,type,errorThrown){

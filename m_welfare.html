@@ -18,8 +18,36 @@
 			<div class="mui-scroll">
 				<div id="slider" class="mui-slider" >
 					<div class="mui-slider-group mui-slider-loop">
+						<div class="mui-slider-item mui-slider-item-duplicate">
+					      <a class="slider3">
+					        <img src="images/slider3.jpg">
+					      </a>
+					    </div>
+					    <div class="mui-slider-item">
+					      <a class="slider1">
+					        <img src="images/slider1.jpg">
+					      </a>
+					    </div>
+					    <div class="mui-slider-item">
+					      <a class="slider2">
+					        <img src="images/slider2.jpg">
+					      </a>
+					    </div>
+					    <div class="mui-slider-item">
+					      <a class="slider3">
+					        <img src="images/slider3.jpg">
+					      </a>
+					    </div>
+					    <div class="mui-slider-item mui-slider-item-duplicate">
+					      <a class="slider1">
+					        <img src="images/slider1.jpg">
+					      </a>
+					    </div>
 					</div>
 					<div class="mui-slider-indicator">
+						<div class="mui-indicator mui-active"></div>
+						<div class="mui-indicator"></div>
+						<div class="mui-indicator"></div>
 					</div>
 				</div>
 				<!--提示消息部分-->
@@ -149,9 +177,9 @@
 							news_group.innerHTML = '';
 							add_doms_news(news, false);
 						}, throwGetNewsError);
-						wa.getSlider(function(sliders) {
-							add_doms_slider(sliders, false);
-						}, throwGetNewsError);
+//						wa.getSlider(function(sliders) {
+//							add_doms_slider(sliders, false);
+//						}, throwGetNewsError);
 						wa.getRecom(function(recoms) {
 							add_doms_recom(recoms, false);
 						}, throwGetNewsError);
@@ -164,6 +192,10 @@
 						getTemplate("browser","browser.html","");
 					},400);
 				});
+				mui.getTodayNum(TODAY_NUM_URL, function(ret){
+					document.getElementById("new_num").innerText = ret.new_num;
+					document.getElementById("all_num").innerText = ret.all_num;
+				});
 				tempview = mui.preload({url:"", id:"temp",styles: {	hardwareAccelerated: true}});
 	      		tempview.addEventListener('hide',function(){
 	      			tempview.clear();
@@ -175,6 +207,11 @@
 			 //点击新闻列表，打开新闻详情
 			mui('#hot').on('tap', 'a', function() {
 				var title = this.querySelector('h6').innerText;
+				var img = this.querySelector('img').src;
+				open_welfare_detail(this.getAttribute('data_id'),this.getAttribute('data_type'),title,img);
+			});
+			mui('#today').on('tap', 'a', function() {
+				var title = this.getAttribute("title");
 				var img = this.querySelector('img').src;
 				open_welfare_detail(this.getAttribute('data_id'),this.getAttribute('data_type'),title,img);
 			});
@@ -265,18 +302,18 @@
 					wa.getNews(Number.MAX_VALUE, 10,function(news) {
 						news_group.innerHTML = '';
 						add_doms_news(news, true);
-						processNews(news, 'news_img_')
+						processNews(news, 'news_img_', 'news');
 					}, throwGetNewsError);
-					wa.getSlider(function(sliders) {
-						slide_group.innerHTML = '';
-						slide_indicator.innerHTML = '';
-						add_doms_slider(sliders, true);
-						processNews(sliders, 'slider_img_')
-					}, throwGetNewsError);
+//					wa.getSlider(function(sliders) {
+//						slide_group.innerHTML = '';
+//						slide_indicator.innerHTML = '';
+//						add_doms_slider(sliders, true);
+//						processNews(sliders, 'slider_img_', 'slider');
+//					}, throwGetNewsError);
 					wa.getRecom(function(recoms) {
 						recom_group.innerHTML = '';
 						add_doms_recom(recoms, true);
-						processNews(recoms, 'recom_img_')
+						processNews(recoms, 'recom_img_','recom');
 					}, throwGetNewsError);
 					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 				}, function() {
@@ -318,7 +355,7 @@
 						callback(download.filepath); //直接回调
 					}
 				} else { //新增download
-					//					console.log('新增download::::' + id + '::::' + url);
+//										console.log('新增download::::' + id + '::::' + url);
 					var download = {
 						callbacks: [callback],
 						finished: false,
@@ -342,7 +379,7 @@
 				}
 			}
 
-			function processNews(news, prefix) {
+			function processNews(news, prefix, type) {
 //				var news = mui.extend({}, news); //需要clone出来一个新对象，旧对象无法赋值修改
 //				news.id = news.id; //.substring(news.id.lastIndexOf('/') + 1, news.id.length - 5);
 //				news.humanize = wa.humanize(Date.now() - news.pubDate);
@@ -350,17 +387,20 @@
 				for (var i = 0; i<length; i++){
 					item = news[i];
 					if (item.image) {
-						(function(n,img){
+						(function(n,img,type){
 							var selector = prefix + n;
 							wa.isDownloadImageAsync(function(yes) {
 								if (!yes) return;
-								addDownloadImage(selector, img, function(src) {
-//									console.log(img);
+								var name = selector + Date.parse(new Date());
+								addDownloadImage(name, img, function(src) {
 									if (src == null) return;
-									wa.updateNews(n, src); //更新数据库
+									if (type=="recom"){
+										wa.updateRecom(n, src); //更新数据库
+									}
+									else if(type=="news"){
+										wa.updateNews(n, src); //更新数据库
+									}
 									var img_ele = document.getElementById(selector);
-//									console.log("img#" + prefix + n);
-//									console.log(img_ele.src);
 									img_ele.src = src;
 									var duplicate_ele = document.getElementById(selector+"s");
 									if (duplicate_ele){
@@ -370,7 +410,7 @@
 									img_ele.setAttribute('data-loaded', 'true');
 								});
 							});
-						})(item.id,item.image);
+						})(item.id,item.image,type);
 					}
 					else {
 						item.image = 'images/blank.jpg';
@@ -487,10 +527,10 @@
 					else if (i==2){
 						a.className = "ti-right ti-03 fr";
 					}
-					a.href = recom.image;
-					a.setAttribute("data_id",recom.id);
-					a.innerHTML = '<img id="recom_img_' + recom.id + '" src="' + recom.image + '" type="' + 
-						recom.type + '" wel_id="' + recom.wel_id + '"/>';
+					a.setAttribute("data_id",recom.wel_id);
+					a.setAttribute("data_type",recom.type);
+					a.setAttribute("title",recom.title);
+					a.innerHTML = '<img id="recom_img_' + recom.id + '" src="' + recom.image  + '"/>';
 					recom_group.appendChild(a);
 				}
 			}
