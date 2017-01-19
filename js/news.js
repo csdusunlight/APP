@@ -57,7 +57,7 @@ var TODAY_NUM_URL = 'http://test.wafuli.cn/app/get_today_num/';
 		return date.getFullYear() + '/' + _format(date.getMonth() + 1) + '/' + _format(date.getDay()) + '-' + _format(date.getHours()) + ':' + _format(date.getMinutes());
 	};
 	wa.dbReady = function(successCallback, errorCallback) {
-		html5sql.openDatabase("wafuli", "wafuli", 5 * 1024 * 1024);
+		html5sql.openDatabase("wafuli2", "wafuli2", 5 * 1024 * 1024);
 		if (html5sql.database.version === '') {
 			html5sql.changeVersion('', DB_VERSION_NUMBER, SQL_TABLE, function() {
 				successCallback && successCallback(true);

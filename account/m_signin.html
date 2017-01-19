@@ -93,8 +93,10 @@
 	<script>
 		mui.init();
 		var self = null;
+		var tempview = null;
 		mui.plusReady(function(){
 			self = plus.webview.currentWebview();
+			tempview = plus.webview.getWebviewById("temp2");
 			if(UserInfo.has_login()){
 				var user = UserInfo.userinfo();
 				var img = "../images/user-0" + user.userimg + ".png";
@@ -103,23 +105,18 @@
 				signin();
 			}
 			else{
-				mui.openWindow({
-		            url: "../a_login.html",
-		            id:"login",
-		            styles: {
-		                top: 0,
-		                bottom: 0
-		            },
-		            show: {
-		                aniShow: 'slide-in-right',
-		            },
-		            extras:{
-		            	backid:self.id
-		            }
-		        });
+				setTimeout(function(){tologin();},500);
 			}
 		});
-		
+		function tologin(){
+			plus.nativeUI.showWaiting();
+			localStorage.setItem('login-backid',self.id);
+			tempview.loadURL("../a_login.html");
+			tempview.addEventListener('loaded',function(){
+				plus.nativeUI.closeWaiting();
+				tempview.show("pop-in",350);
+			});
+		}
 		var close = document.getElementById("close"),
 			login = document.getElementById("login");
   		window.addEventListener('login-refresh',function(){
@@ -139,20 +136,7 @@
 						login.style.display="block";
 					}
 					else if (ret.code<0){
-						mui.openWindow({
-				            url: "../a_login.html",
-				            id:"login",
-				            styles: {
-				                top: 0,
-				                bottom: 0
-				            },
-				            show: {
-				                aniShow: 'slide-in-right',
-				            },
-				            extras:{
-				            	backid:self.id
-				            }
-				        });
+						tologin();
 					}
 					else{
 						mui.alert(ret.msg);

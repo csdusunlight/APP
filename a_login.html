@@ -141,9 +141,12 @@
 //						main_loaded_flag = true;
 //					});
 					var toMain = function() {
-						var backid = self.backid;
-						if(backid){
-							mui.fire(self.opener(), 'login-refresh');
+						var backid = localStorage.getItem("login-backid");
+						if (backid){
+							var backview = plus.webview.getWebviewById(backid);
+							if (backview){
+								mui.fire(backview, 'login-refresh');
+							}
 						}
 						mui.back();
 					};

@@ -4,9 +4,6 @@
 		<meta charset="utf-8">
 		<title>首页</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black">
-
 		<link rel="stylesheet" href="css/mui.min.css">
 		<link rel="stylesheet" type="text/css" href="css/m_common.css"/>
     	<link rel="stylesheet" type="text/css" href="css/m_index.css"/>
@@ -173,6 +170,9 @@
 					if (!isFirst) {
 						//非第一次，直接从本地数据库中读取
 						//加载初始化数据
+						wa.getRecom(function(recoms) {
+							add_doms_recom(recoms, false);
+						}, throwGetNewsError);
 						wa.getNews(Number.MAX_VALUE, 10,function(news) {
 							news_group.innerHTML = '';
 							add_doms_news(news, false);
@@ -180,13 +180,10 @@
 //						wa.getSlider(function(sliders) {
 //							add_doms_slider(sliders, false);
 //						}, throwGetNewsError);
-						wa.getRecom(function(recoms) {
-							add_doms_recom(recoms, false);
-						}, throwGetNewsError);
 					}
-//					setTimeout(function(){
-//						mui('#pullrefresh').pullRefresh().pulldownLoading();
-//					},1000);
+					else{
+						mui('#pullrefresh').pullRefresh().pulldownLoading();
+					}
 					setTimeout(function(){
 						getTemplate('welfare','template.html',"html/m_detail_welfare.html");
 						getTemplate("browser","browser.html","");
@@ -200,6 +197,13 @@
 	      		tempview.addEventListener('hide',function(){
 	      			tempview.clear();
 	      		});
+	      		tempview2 = mui.preload({url:"", id:"temp2",styles: {	hardwareAccelerated: true}});
+	      		tempview2.addEventListener('hide',function(){
+	      			tempview2.clear();
+	      		});
+//	      		setTimeout(function(){
+//	      			plus.navigator.closeSplashscreen();
+//	      		},500);
 			});
 			function throwGetNewsError() {
 				mui.toast("获取新闻时发生了异常");
@@ -237,8 +241,8 @@
 //		            },
 //		        });
 			});
-			mui('#slider').on('tap', '.slider2', function() {
-				tempview.loadURL("html/m_activity_lottery.html");
+			mui('#slider').on('tap', '.slider1', function() {
+				tempview.loadURL("html/m_activity_recommend.html");
 				plus.nativeUI.showWaiting();
 				tempview.addEventListener('loaded',function(){
 					plus.nativeUI.closeWaiting();
@@ -276,11 +280,12 @@
                 weixin_box.setAttribute("class","weixin-box-02");
             });
             erweima_img.addEventListener("longtap",function () {
-            	plus.barcode.scan('_www/images/gongzhong.jpg', function (type,result) {
-					alert( "Scan success:("+type+")"+result );
-				}, function (error) {
-					alert( error.message );
-				});
+//          	plus.barcode.scan('_www/images/gongzhong.jpg', function (type,result) {
+//					alert( "Scan success:("+type+")"+result );
+//				}, function (error) {
+//					alert( error.message );
+//				});
+//				mui.alert("请");
 			});
 			var detailMainWebview = null; //详情页面父webview
 			var detailWebview = null; //详情页面子webview
@@ -323,6 +328,11 @@
 				}
 				wa.getFeed(function(hasNew) {
 					//显示列表数据
+					wa.getRecom(function(recoms) {
+						recom_group.innerHTML = '';
+						add_doms_recom(recoms, true);
+						processNews(recoms, 'recom_img_','recom');
+					}, throwGetNewsError);
 					wa.getNews(Number.MAX_VALUE, 10,function(news) {
 						news_group.innerHTML = '';
 						add_doms_news(news, true);
@@ -334,11 +344,6 @@
 //						add_doms_slider(sliders, true);
 //						processNews(sliders, 'slider_img_', 'slider');
 //					}, throwGetNewsError);
-					wa.getRecom(function(recoms) {
-						recom_group.innerHTML = '';
-						add_doms_recom(recoms, true);
-						processNews(recoms, 'recom_img_','recom');
-					}, throwGetNewsError);
 					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 				}, function() {
 					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();

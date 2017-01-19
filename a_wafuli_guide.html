@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head lang="en">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/m_common.css" />
+		<link rel="stylesheet" type="text/css" href="css/a_wafuli_guide.css" />
+	</head>
+
+	<body>
+		<div id="slider" class="mui-slider mui-fullscreen" style="background-color: black;">
+			<div class="mui-slider-group">
+				<div class="mui-slider-item">
+					<div class="item-guide guide-index">
+						<img src="images/guide-index.png" />
+						<h1>挖福利特点</h1>
+						<h4>全面&nbsp;简单&nbsp;严谨&nbsp;大气</h4>
+					</div>
+				</div>
+				<div class="mui-slider-item">
+					<div class="item-guide guide-free">
+						<img src="images/guide-free.png" />
+						<h1>免费福利</h1>
+						<h4>话费VIP&nbsp;一网打尽</h4>
+					</div>
+				</div>
+				<div class="mui-slider-item">
+					<div class="item-guide guide-task">
+						<img src="images/guide-task.png" />
+						<h1>体验福利</h1>
+						<h4>下载注册&nbsp;轻松赚钱</h4>
+					</div>
+				</div>
+				<div class="mui-slider-item">
+					<div class="item-guide guide-finance">
+						<img src="images/guide-finance.png" />
+						<h1>理财福利</h1>
+						<h4>三重考核&nbsp;优质产品</h4>
+						<button id='to_index' class="mui-btn mui-btn-block mui-btn-warning mui-btn-outlined to-index">立即体验</button>
+					</div>
+				</div>
+			</div>
+			<div class="mui-slider-indicator">
+				<div class="mui-indicator mui-active"></div>
+				<div class="mui-indicator"></div>
+				<div class="mui-indicator"></div>
+				<div class="mui-indicator"></div>
+			</div>
+		</div>
+		<script src="js/mui.min.js"></script>
+		<script>
+			mui.init();
+			to_index.addEventListener('tap',function(){
+				mui.back();
+			});
+//			var gallery = mui('#slider');
+//			gallery.slider({
+//				interval: 4000 //自动轮播周期，若为0则不自动播放，默认为0；
+//			});	
+		</script>
+	</body>
+</html>

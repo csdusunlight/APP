@@ -44,8 +44,31 @@
 		
 		var aniShow = {};
 	
+		
 		//创建子页面，首个选项卡页面显示，其它均隐藏；
 		mui.plusReady(function() {
+			var launchFlag = plus.storage.getItem("launchFlag");
+			if(!launchFlag) {
+			    var guideview = mui.openWindow({
+			        url: "a_wafuli_guide.html",
+			        id: "guide",
+			        styles: {
+	                    hardwareAccelerated:true,
+	                },
+	                show: {
+	                	autoShow:true,
+	                    aniShow: 'none',
+	                },
+	                waiting: {
+						autoShow: false,
+					},
+			    });
+//			    guideview.show("none");
+			    guideview.addEventListener('loaded',function(){
+			    	plus.navigator.closeSplashscreen();
+			    });
+			    plus.storage.setItem("launchFlag","launched");
+			}
 			preload();
 		});
 		function preload(){

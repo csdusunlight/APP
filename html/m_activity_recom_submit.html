@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <link href="../css/mui.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="../css/m_common.css" />
+	<link rel="stylesheet" type="text/css" href="../css/m_activity_recom_submit.css" />
+
+</head>
+	<body>	
+		<header id="header" class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">提交福利信息</h1>
+			<!--<a class="mui-icon mui-icon-paperplane mui-pull-right"></a>-->
+		</header>
+		<div class="mui-content">
+			<form class="mui-input-group">
+					<div class="mui-input-row">
+						<label>活动主题</label>
+						<input id="title" type="text" placeholder="必填项，活动主题">
+					</div>
+					<div class="mui-input-row">
+						<label>活动链接</label>
+						<input id="url" type="text" placeholder="必填项，活动网址">
+					</div>
+					<div class="mui-input-row">
+						<label>推荐理由</label>
+						<input id="reason" type="text" placeholder="选填项，提高审核通过几率">
+					</div>
+					
+					
+				</form>
+				<button id="submit_btn" type="button" class="bottom mui-btn mui-btn-blue mui-btn-block">确定</button>
+				
+		</div>
+		
+		<script src="../js/mui.min.js"></script>
+		<script src="../js/UserInfo.js"></script>
+		<script type="text/javascript" charset="utf-8">
+	      	mui.init({
+				swipeBack:true //启用右滑关闭功能
+			});
+			document.getElementById("submit_btn").addEventListener('tap', function() {
+				var title = document.getElementById('title').value;
+				var url = document.getElementById('url').value;
+				var reason = document.getElementById('reason').value;
+				mui.ajax({
+					url:"http://test.wafuli.cn/app/activity/recom_submit/",
+					type:'post',
+					data:{
+						title: title,
+						url: url,
+						reason: reason,
+						token:UserInfo.token(),
+					},
+					dataType:"json",
+					success:function(ret){
+						if(ret.code==0){
+							mui.alert('提交成功！');
+						}
+						else{
+							mui.alert(ret.msg);
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						alert(type);
+					}
+				});
+			});
+		</script>
+	</body>
+
+</html>

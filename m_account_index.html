@@ -87,6 +87,7 @@
       	var tempview = null;
       	mui.plusReady(function() {
       		self = plus.webview.currentWebview();
+      		tempview = plus.webview.getWebviewById("temp");
       		self.addEventListener('show',function(){
       			if (!UserInfo.has_login()){
       				tologin();
@@ -126,9 +127,6 @@
       				tologin();
       			}
       			else{
-      				if (!tempview){
-      					tempview = plus.webview.getWebviewById("temp");
-      				}
       				var targetTab = this.getAttribute('href');
       				tempview.loadURL(targetTab);
       				setTimeout(function(){
@@ -184,20 +182,13 @@
       			}
 			});
 			function tologin(){
-				mui.openWindow({
-		            url: "a_login.html",
-		            id:"login",
-		            styles: {
-		                top: 0,
-		                bottom: 0
-		            },
-		            show: {
-		                aniShow: 'slide-in-right',
-		            },
-		            extras:{
-		            	backid:self.id
-		            }
-		        });
+				plus.nativeUI.showWaiting();
+				localStorage.setItem('login-backid',self.id);
+				tempview.loadURL("a_login.html");
+				tempview.addEventListener('loaded',function(){
+					plus.nativeUI.closeWaiting();
+					tempview.show("pop-in",350);
+				});
 			}
 			function refresh_userinfo(){
 				mui.ajax({
@@ -214,20 +205,7 @@
 							UserInfo.userinfo(info);
 	    				}
 	    				else if(ret.code<0){
-	    					mui.openWindow({
-					            url: "a_login.html",
-					            id:"login",
-					            styles: {
-					                top: 0,
-					                bottom: 0,
-					            },
-					            show: {
-					                aniShow: 'slide-in-right',
-					            },
-					            extras:{
-					            	backid:self.id
-					            }
-					        });
+	    					tologin();
 					        return;
 	    				}
 	    				else{

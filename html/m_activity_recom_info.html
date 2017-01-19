@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <link href="../css/mui.min.css" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="../css/m_common.css" />
+	<link rel="stylesheet" type="text/css" href="../css/m_activity_recom_info.css" />
+</head>
+<body>
+	<header id="header" class="mui-bar mui-bar-nav">
+		<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+		<h1 class="mui-title">我提交的福利</h1>
+	</header>
+
+	<div class="head clearfix">
+        <span class="">提交时间</span>
+        <span class="">活动主题</span>
+        <span class="">审核结果</span>
+    </div>
+
+
+<div id="pullrefresh" class="mui-scroll-wrapper">
+<div class="mui-content">
+    <!--选项卡部分-->
+        <ul class="list-box mui-table-view">
+
+	        <li class="list clearfix">
+	            <span class=""><number>2016-07-13-12:30</number></span>
+	            <span>滴滴打车</span>
+	            <span>审核通过</span>
+	        </li>
+	        <li class="list clearfix">
+	            <span><number>2016-07-13-12:30</number></span>
+	            <span>滴滴打车</span>
+	            <span>审核通过</span>
+	        </li>
+	        <li class="list clearfix">
+	            <span><number>2016-07-13-12:30</number></span>
+	            <span>滴滴打车</span>
+	            <span>审核通过</span>
+	        </li>
+
+        </ul>
+
+</div>
+    <!--测试-->
+
+</div>
+    <script src="../js/mui.min.js"></script>
+    <script src="../js/UserInfo.js"></script>
+    <script type="text/javascript" charset="utf-8">
+	    mui.init({
+			pullRefresh: {
+				container: '#pullrefresh',
+				up: {
+					auto:true,
+					contentrefresh: '正在加载...',
+		//			contentnomore:'没有更多数据了',//可选，请求完毕若没有更多数据时显示的提醒内容；
+					callback: pullupRefresh
+				}
+			}
+		});
+		var count = 0;
+		function get_record_list(n){
+			mui.ajax({
+				url:"http://test.wafuli.cn/app/activity/recom_info/",
+				data:{
+					count:n,
+					token:UserInfo.token(),
+				},
+				dataType:'json',//服务器返回json格式数据
+				type:'get',//HTTP请求类型
+				timeout:3000,//超时时间设置为10秒；
+		//		headers:{'Content-Type':'application/json'},
+				success:function(data){
+					if (!data.length){
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+					}
+					else {
+						mui('#pullrefresh').pullRefresh().endPullupToRefresh(false); //参数为true代表没有更多数据了。
+						var table = document.body.querySelector('.mui-table-view');
+		//				var cells = document.body.querySelectorAll('.mui-table-view-cell');
+						for (var i in data) {
+							var record = data[i];
+							var li = document.createElement('li');
+							li.className = 'list clearfix';
+							str_block = '<span><number>' + record.time + '</number></span><span>' +
+								record.title + '</span><span>' + record.state + '</span>';
+							li.innerHTML = str_block;
+							table.appendChild(li);
+						}
+					}
+
+				},
+				error:function(xhr,type,errorThrown){
+					alert(type);
+				}
+			});
+		}
+		function pullupRefresh() {
+			get_record_list(count++);
+		}
+    </script>
+</body>
+</html>

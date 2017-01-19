@@ -32,7 +32,8 @@
       "images/gongzhong.jpg",
       "images/slider1.jpg",
       "images/slider3.jpg",
-      "images/slider2.jpg"
+      "images/slider2.jpg",
+      "fonts/mui.ttf"
     ],
     "refer": [
       "browser.html",
@@ -52,7 +53,14 @@
       "html/m_activity_lottery.html",
       "account/m_account_score.html",
       "html/m_freshman_award.html",
-      "account/m_account_settings.html"
+      "account/m_account_settings.html",
+      "html/m_activity_recommend.html",
+      "a_login.html",
+      "html/m_activity_recom_rank.html",
+      "html/m_activity_recom_submit.html",
+      "html/m_activity_recom_info.html",
+      "account/m_account_welfare.html",
+      "account/m_account_coupon.html"
     ]
   },
   "m_task_junior.html": {
@@ -123,7 +131,8 @@
       "m_welfare.html",
       "m_account_index.html",
       "m_task.html",
-      "m_finance.html"
+      "m_finance.html",
+      "a_wafuli_guide.html"
     ]
   },
   "template.html": {
@@ -280,7 +289,8 @@
     ],
     "refer": [
       "account/m_account_exchange.html",
-      "account/m_account_charge.html"
+      "account/m_account_charge.html",
+      "html/m_activity_lottery.html"
     ]
   },
   "account/m_account_exchange.html": {
@@ -427,7 +437,8 @@
       "css/mui.min.css",
       "css/m_common.css",
       "js/mui.js",
-      "js/UserInfo.js"
+      "js/UserInfo.js",
+      "js/user-validate.js"
     ],
     "refer": [
       "account/m_account_settings.html"
@@ -486,7 +497,8 @@
       "css/mui.min.css",
       "css/m_common.css",
       "js/mui.js",
-      "js/UserInfo.js"
+      "js/UserInfo.js",
+      "fonts/wafuli-iconfont.woff"
     ],
     "refer": [
       "html/m_expsubmit_task.html",
@@ -636,7 +648,8 @@
       "css/m_password_reset.css",
       "js/mui.js",
       "js/accounts/user-validate.js",
-      "fonts/wafuli-iconfont.woff"
+      "fonts/wafuli-iconfont.woff",
+      "js/user-validate.js"
     ],
     "refer": [],
     "priority": 0
@@ -722,5 +735,67 @@
       "a_login.html",
       "account/m_account_invite.html"
     ]
+  },
+  "html/m_activity_recommend.html": {
+    "resources": [
+      "js/mui.min.js",
+      "images/action.png",
+      "css/m_activity_recommend.css",
+      "fonts/wafuli-iconfont.woff",
+      "js/UserInfo.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/m_common.css"
+    ],
+    "refer": [
+      "a_login.html",
+      "html/m_activity_recom_submit.html",
+      "html/m_activity_recom_info.html",
+      "html/m_activity_recom_rank.html"
+    ]
+  },
+  "html/m_activity_recom_rank.html": {
+    "resources": [
+      "css/m_activity_recom_rank.css",
+      "html/%7B%static%20\u0027js/mui.min.js\u0027%%7D",
+      "css/mui.min.css",
+      "css/m_common.css",
+      "js/mui.min.js"
+    ],
+    "refer": []
+  },
+  "html/m_activity_recom_submit.html": {
+    "resources": [
+      "css/m_activity_recom_submit.css",
+      "js/UserInfo.js",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "css/m_common.css"
+    ],
+    "refer": []
+  },
+  "html/m_activity_recom_info.html": {
+    "resources": [
+      "css/m_activity_recom_info.css",
+      "css/mui.min.css",
+      "css/m_common.css",
+      "js/mui.min.js",
+      "js/UserInfo.js"
+    ],
+    "refer": []
+  },
+  "a_wafuli_guide.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/m_common.css",
+      "images/guide-finance.png",
+      "images/guide-free.png",
+      "images/guide-task.png",
+      "css/a_wafuli_guide.css",
+      "images/guide-index.png"
+    ],
+    "refer": []
   }
 }

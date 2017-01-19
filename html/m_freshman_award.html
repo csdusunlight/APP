@@ -60,49 +60,45 @@
     <script src="../js/UserInfo.js"></script>
     <script type="text/javascript" charset="utf-8">
       	mui.init();
+      	var tempview = null;
 		var btn_01 = document.getElementById("btn_01"),
 			btn_02 = document.getElementById("btn_02");
-		btn_01.addEventListener('tap', function(){
-			mui.openWindow({
-				url: '../account/m_register.html',
-				id: 'register',
-				show: {
-					aniShow: 'slide-in-right',
-				},
-				styles: {
-					popGesture: 'hide'
-				},
-				waiting: {
-					autoShow: true
-				}
+		mui.plusReady(function(){
+	  		tempview = plus.webview.getWebviewById("temp2");
+	  	});
+	  	function tologin(){
+			plus.nativeUI.showWaiting();
+			tempview.loadURL("../a_login.html");
+			tempview.addEventListener('loaded',function(){
+				plus.nativeUI.closeWaiting();
+				tempview.show("pop-in",350);
 			});
+		}
+	  	function toreg(){
+			plus.nativeUI.showWaiting();
+			tempview.loadURL("../account/m_register.html");
+			tempview.addEventListener('loaded',function(){
+				plus.nativeUI.closeWaiting();
+				tempview.show("pop-in",350);
+			});
+		}
+	  	function toinvite(){
+			plus.nativeUI.showWaiting();
+			tempview.loadURL("../account/m_account_invite.html");
+			tempview.addEventListener('loaded',function(){
+				plus.nativeUI.closeWaiting();
+				tempview.show("pop-in",350);
+			});
+		}
+		btn_01.addEventListener('tap', function(){
+			toreg();
 		});
 		btn_02.addEventListener('tap', function(){
 			if(UserInfo.has_login()){
-				mui.openWindow({
-		            url: "../account/m_account_invite.html",
-		            id:"account/m_account_invite.html",
-		            styles: {
-		                top: 0,
-		                bottom: 0
-		            },
-		            show: {
-		                aniShow: 'slide-in-right',
-		            },
-		        });
+				toinvite();
 			}
 			else{
-				mui.openWindow({
-		            url: "../a_login.html",
-		            id:"login",
-		            styles: {
-		                top: 0,
-		                bottom: 0
-		            },
-		            show: {
-		                aniShow: 'slide-in-right',
-		            },
-		        });
+				tologin();
 			}
 		});
 	  	window.onscroll = function(){

@@ -62,9 +62,20 @@
 			var url_accept_task = "http://test.wafuli.cn/app/accept_task/";
 			var url_get_accepted = "http://test.wafuli.cn/app/get_user_task_state/";
 			var self = null;
+			var tempview = null;
 			mui.plusReady(function(){
 		  		self = plus.webview.currentWebview();
+		  		tempview = plus.webview.getWebviewById("temp2");
 		  	});
+		  	function tologin(){
+				plus.nativeUI.showWaiting();
+				localStorage.setItem('login-backid',self.id);
+				tempview.loadURL("../a_login.html");
+				tempview.addEventListener('loaded',function(){
+					plus.nativeUI.closeWaiting();
+					tempview.show("pop-in",350);
+				});
+			}
 			window.addEventListener('display',function(event){
 			  //获得事件参数
 			  	id = event.detail.id;
@@ -121,20 +132,7 @@
 			});
 			exp_btn.addEventListener('tap', function() {
 				if (!UserInfo.has_login()){
-					mui.openWindow({
-			            url: "../a_login.html",
-			            id:"login",
-			            styles: {
-			                top: 0,
-			                bottom: 0
-			            },
-			            show: {
-			                aniShow: 'slide-in-right',
-			            },
-			            extras:{
-			            	backid:self.id
-			            }
-			        });
+					tologin();
 				}
 				else{
 					if (accepted){
@@ -164,20 +162,7 @@
 									},
 									success:function(ret){
 										if(ret.code<0){
-											mui.openWindow({
-									            url: "../a_login.html",
-									            id:"login",
-									            styles: {
-									                top: 0,
-									                bottom: 0
-									            },
-									            show: {
-									                aniShow: 'slide-in-right',
-									            },
-									            extras:{
-									            	backid:self.id
-									            }
-									        });
+											tologin();
 										}
 										else if(ret.code!=0){
 											mui.alert(ret.msg);

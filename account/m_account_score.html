@@ -216,7 +216,7 @@
 			});
 			document.getElementById('lottery_btn').addEventListener("tap",function(){
 				mui.openWindow({
-		            url: "m_activity_lottery",
+		            url: "../html/m_activity_lottery.html",
 		            id: "lottery",
 		            styles: {
 		                top: 0,
@@ -226,7 +226,7 @@
 		                aniShow: 'slide-in-right',
 		            },
 		            waiting: {
-		                autoShow: false, //自动显示等待框
+		                autoShow: true, //自动显示等待框
 		                title: '正在加载...', //等待对话框上显示的提示内容
 		            }
 		        });

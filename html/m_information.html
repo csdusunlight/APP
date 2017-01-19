@@ -74,8 +74,10 @@
 			var self = null;
 			//阻尼系数
 			var deceleration = mui.os.ios?0.003:0.0009;
+			var tempview = null;
 			mui.plusReady(function(){
 				self = plus.webview.currentWebview();
+				tempview = plus.webview.getWebviewById("temp2");
 			});
 			mui('.mui-scroll-wrapper').scroll({
 				bounce: true,
@@ -138,22 +140,11 @@
 				var title = this.querySelector('h6').innerText;
 				localStorage.setItem('temp_info_id', this.getAttribute('data_id')); 
 				localStorage.setItem('temp_info_title', title);
-				self.loadURL("m_detail_information.html");
-//				win = mui.openWindow({
-//					id:"m_detail_information.html",
-//					url:"m_detail_information.html",
-//					show:{
-//				      autoShow:false,//页面loaded事件发生后自动显示，默认为true
-//				      aniShow: 'slide-in-right'
-//				    },
-//		            waiting: {
-//						autoShow: true,
-//					},
-//				});
-//				setTimeout(function(){
-//					plus.nativeUI.closeWaiting();
-//					win.show();
-//				},400);
+				tempview.loadURL("m_detail_information.html");
+				tempview.addEventListener('loaded',function(){
+					plus.nativeUI.closeWaiting();
+					tempview.show("pop-in",350);
+				});
 			});
 		</script>
 </body>

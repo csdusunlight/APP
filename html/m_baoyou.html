@@ -43,6 +43,18 @@
 	 */
 		var count = 0;
 		var get_baoyou_url = "http://test.wafuli.cn/baoyou_json/";
+		var tempview = null;
+		mui.plusReady(function(){
+			tempview = plus.webview.getWebviewById("temp2");
+		});
+		function tologin(){
+			plus.nativeUI.showWaiting();
+			tempview.loadURL("../a_login.html");
+			tempview.addEventListener('loaded',function(){
+				plus.nativeUI.closeWaiting();
+				tempview.show("pop-in",350);
+			});
+		}
 		function get_wel_list(n){
 			mui.ajax(get_baoyou_url,{
 				data:{
@@ -92,17 +104,7 @@
 				browserMainWebview.show('slide-in-right', 200);
 			}
 			else{
-				mui.openWindow({
-		            url: "../a_login.html",
-		            id:"login",
-		            styles: {
-		                top: 0,
-		                bottom: 0
-		            },
-		            show: {
-		                aniShow: 'slide-in-right',
-		            },
-		        });
+				tologin();
 			}
 	    });
 		</script>

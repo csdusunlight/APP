@@ -61,9 +61,19 @@
 			var ismobile = false;
 			var exp_url = '';
 			var self = null;
+			var tempview = null;
 			mui.plusReady(function(){
 		  		self = plus.webview.currentWebview();
+		  		tempview = plus.webview.getWebviewById("temp2");
 		  	});
+		  	function tologin(){
+				plus.nativeUI.showWaiting();
+				tempview.loadURL("../a_login.html");
+				tempview.addEventListener('loaded',function(){
+					plus.nativeUI.closeWaiting();
+					tempview.show("pop-in",350);
+				});
+			}
 			window.addEventListener('display',function(event){
 			  //获得事件参数
 			  	id = event.detail.id;
@@ -114,17 +124,7 @@
 			});
 			exp_btn.addEventListener('tap', function() {
 				if (!UserInfo.has_login()){
-					mui.openWindow({
-			            url: "../a_login.html",
-			            id:"login",
-			            styles: {
-			                top: 0,
-			                bottom: 0
-			            },
-			            show: {
-			                aniShow: 'slide-in-right',
-			            },
-			        });
+					tologin();
 				}
 				else{
 					var browserMainWebview = plus.webview.getWebviewById('browser_main');
