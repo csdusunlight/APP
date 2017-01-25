@@ -60,7 +60,8 @@
 			"html/m_activity_recom_submit.html",
 			"html/m_activity_recom_info.html",
 			"account/m_account_welfare.html",
-			"account/m_account_coupon.html"
+			"account/m_account_coupon.html",
+			"account/m_account_exchange.html"
 		]
 	},
 	"m_task_junior.html": {

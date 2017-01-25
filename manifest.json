@@ -358,7 +358,8 @@
 					"a_login.html",
 					"html/m_activity_recom_rank.html",
 					"html/m_activity_recom_submit.html",
-					"html/m_activity_recom_info.html"
+					"html/m_activity_recom_info.html",
+					"account/m_account_exchange.html"
 				],
 				"priority": 0
 			},
@@ -584,8 +585,7 @@
 					"js/mui.js"
 				],
 				"refer": [
-					"account/m_password_reset.html",
-					"account/m_register.html"
+					"account/m_password_reset.html"
 				],
 				"priority": 0
 			},
