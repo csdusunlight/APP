@@ -16,16 +16,16 @@
 			<a id="share" class="share iconfont icon-fenxiang"></a>
 		</header>
 		<div class="mui-content">
-	        <ul class="list-box">
+	        <ul id="list_box" class="list-box">
 		        <li class="li-zhongfuli list">
-		            <a href="/activity/recommend/">
+		            <a class="recommend">
 		            	<img src="../images/make-money-zhongfuli.png"/>
 		            	<p>独福利不如众福利<br />
 		            	提供福利赚现金</p>
 		            </a>
 		        </li>
 		        <li class="li-new list">
-		        	<a href="/freshman/award/">
+		        	<a class="award">
 		        		<img src="../images/make-money-new-user.png"/>
 		        		<p>新人注册送现金<br />
 		        		推荐更有大礼</p>
@@ -36,6 +36,23 @@
 		<script src="../js/mui.js"></script>
 		<script type="text/javascript">
 			mui.init()
+			
+			mui('#list_box').on('tap', '.recommend', function() {
+				tempview.loadURL("m_activity_recommend.html");
+				plus.nativeUI.showWaiting();
+				tempview.addEventListener('loaded',function(){
+					plus.nativeUI.closeWaiting();
+					tempview.show("pop-in",350);
+				});
+			});
+			mui('#list_box').on('tap', '.award', function() {
+				tempview.loadURL("m_freshman_award.html");
+				plus.nativeUI.showWaiting();
+				tempview.addEventListener('loaded',function(){
+					plus.nativeUI.closeWaiting();
+					tempview.show("pop-in",350);
+				});
+			});
 		</script>
 	</body>
 </html>

@@ -21,8 +21,8 @@
 		"url": "http://www.dcloud.io"
 	},
 	"permissions": {
-		
-		
+
+
 		"Cache": {
 			"description": "管理应用缓存"
 		},
@@ -50,13 +50,13 @@
 		"Gallery": {
 			"description": "访问系统相册"
 		},
-		
+
 		"Invocation": {
 			"description": "使用Native.js能力"
 		},
 
-		
-		
+
+
 		"Storage": {
 			"description": "管理应用本地数据"
 		},
@@ -70,12 +70,12 @@
 		"XMLHttpRequest": {
 			"description": "跨域网络访问"
 		},
-		
+
 		"Barcode": {
 			"description": "管理二维码扫描插件"
 		},
-		
-		
+
+
 		"Webview": {
 			"description": "窗口管理"
 		},
@@ -208,7 +208,9 @@
 					"js/app.js",
 					"m_welfare_main.html",
 					null,
-					"js/mui.js"
+					"js/mui.js",
+					"fonts/wafuli-iconfont.woff",
+					"css/m_common.css"
 				],
 				"refer": [
 					"m_task.html",
@@ -356,7 +358,8 @@
 					"a_login.html",
 					"html/m_activity_recom_rank.html",
 					"html/m_activity_recom_submit.html",
-					"html/m_activity_recom_info.html"
+					"html/m_activity_recom_info.html",
+					"account/m_account_exchange.html"
 				],
 				"priority": 0
 			},
@@ -582,8 +585,7 @@
 					"js/mui.js"
 				],
 				"refer": [
-					"account/m_password_reset.html",
-					"account/m_register.html"
+					"account/m_password_reset.html"
 				],
 				"priority": 0
 			},
@@ -1336,7 +1338,8 @@
 					"fonts/wafuli-iconfont.ttf",
 					"fonts/wafuli-iconfont.svg",
 					"images/share-guide-top.png",
-					"images/share-guide-bottom.png"
+					"images/share-guide-bottom.png",
+					"js/share.js"
 				],
 				"refer": [
 					"a_login.html"

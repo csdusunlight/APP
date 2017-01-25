@@ -159,9 +159,24 @@
 		
 		<script src="../js/mui.min.js"></script>
 		<script src="../js/UserInfo.js"></script>
+		<script src="../js/share.js"></script>
 		<script src="../js/rotate-app.js"></script>
 		<script type="text/javascript" charset="utf-8">
 		     mui.init();
+		    var share_href = 'http://test.wafuli.cn/activity/lottery/';
+			document.getElementById("share").addEventListener('tap',function(){
+		    	share_msg = {};
+				share_msg.title = '豪礼大放送！';
+				share_msg.content = '积分抽奖领iPhone，赚福币，得积分，一切尽在挖福利！';
+				share_msg.href = share_href;
+				share_msg.pictures = ['../images/share_logo.jpg'];
+				console.log(JSON.stringify(share_msg));
+				window.share.open(share_msg,function(ret){
+					console.log(ret);
+				});
+			});
+	
+	    //    点击分享按钮弹出弹窗
 		</script>
 	</body>
 </html>
