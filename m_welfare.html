@@ -540,10 +540,10 @@
 				if (!recoms || recoms.length === 0){
 					return;
 				}
+				console.log(recoms.length);
 				var length = recoms.length;
 				for (var i = 0; i < length; i++){
 					recom = recoms[i];
-					console.log(JSON.stringify(recom));
 					if(delay){
 						recom.image = 'images/blank.jpg';
 					}
