@@ -186,7 +186,7 @@
 					"hdpi": "C:/Users/lch/Desktop/挖福利/splash/480x762.png","xhdpi":"C:/Users/lch/Desktop/挖福利/splash/720x1242.png","xxhdpi":"C:/Users/lch/Desktop/挖福利/splash/1080x1883 png-8.png"
 				}
 			},
-			"debug": false
+			"debug": true
 		}
 	},
 	"dependencies": {
