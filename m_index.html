@@ -5,28 +5,55 @@
 	    <title>挖福利</title>
 	    <script src="js/mui.js"></script>
 	    <link href="css/mui.min.css" rel="stylesheet"/>
+	    <link href="css/m_common.css" rel="stylesheet"/>
+	    <style type="text/css">
+	    	nav .iconfont {
+				font-size: 2.4rem;
+				line-height: 3rem;
+				color: #8f8f8f;
+			}
+			nav a:first-child .iconfont {
+				position: relative;
+				font-size: 2.2rem;
+				top: 0.2rem;
+			}
+			nav a:last-child .iconfont {
+				position: relative;
+				top: 0.2rem;
+				font-size: 2.8rem;
+			}
+			.mui-active .iconfont {
+				color: #f08519;
+			}
+			nav a span {
+				display: block;
+				font-size: 1rem;
+				color: #4d4d4d;
+				margin-bottom: 3px;
+				margin-top: 3px;
+			}
+			nav a.mui-active span {
+				color: #f08519;
+			}
+	    </style>
 	</head>
 	<body>
-		<!--<header class="mui-bar mui-bar-nav">
-			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 id="title" class="mui-title">免费</h1>
-		</header>-->
 		<nav class="mui-bar mui-bar-tab">
 			<a id="defaultTab" class="mui-tab-item mui-active" href="m_welfare.html">
-				<span class="mui-icon mui-icon-home"></span>
-				<span class="mui-tab-label">免费</span>
+				<i class="icon iconfont">&#xe649;</i>
+            	<span>免费福利</span>
 			</a>
 			<a class="mui-tab-item" href="m_task.html">
-				<span class="mui-icon mui-icon-email"></span>
-				<span class="mui-tab-label">任务</span>
+				<i class="icon iconfont">&#xe641;</i>
+            	<span>体验福利</span>
 			</a>
 			<a class="mui-tab-item" href="m_finance.html">
-				<span class="mui-icon mui-icon-contact"></span>
-				<span class="mui-tab-label">理财</span>
+				<i class="icon iconfont">&#xe63f;</i>
+            	<span>理财福利</span>
 			</a>
 			<a class="mui-tab-item" href="m_account_index.html">
-				<span class="mui-icon mui-icon-gear"><span class="mui-badge">9</span></span>
-				<span class="mui-tab-label">我的</span>
+				<i class="icon iconfont">&#xe652;</i>
+            	<span>个人中心</span>
 			</a>
 		</nav>
 	</body>

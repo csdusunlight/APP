@@ -208,7 +208,9 @@
 					"js/app.js",
 					"m_welfare_main.html",
 					null,
-					"js/mui.js"
+					"js/mui.js",
+					"fonts/wafuli-iconfont.woff",
+					"css/m_common.css"
 				],
 				"refer": [
 					"m_task.html",
@@ -1114,16 +1116,12 @@
 					"images/make-money-zhongfuli.jpg",
 					"css/m_common.css",
 					"images/make-money-zhongfuli.png",
-<<<<<<< Updated upstream
 					"js/mui.js",
 					"fonts/wafuli-iconfont.eot",
 					"fonts/wafuli-iconfont.ttf",
 					"fonts/wafuli-iconfont.svg",
 					"images/share-guide-top.png",
 					"images/share-guide-bottom.png"
-=======
-					"js/mui.js"
->>>>>>> Stashed changes
 				],
 				"refer": [],
 				"priority": 0
@@ -1340,7 +1338,8 @@
 					"fonts/wafuli-iconfont.ttf",
 					"fonts/wafuli-iconfont.svg",
 					"images/share-guide-top.png",
-					"images/share-guide-bottom.png"
+					"images/share-guide-bottom.png",
+					"js/share.js"
 				],
 				"refer": [
 					"a_login.html"
@@ -1491,7 +1490,6 @@
 				"refer": [],
 				"priority": 0
 			},
-<<<<<<< Updated upstream
 			"a_wafuli_guide.html": {
 				"resources": [
 					"js/mui.min.js",
@@ -1502,28 +1500,6 @@
 					"images/guide-task.png",
 					"css/a_wafuli_guide.css",
 					"images/guide-index.png"
-=======
-			"html/m_youhuiquan.html": {
-				"resources": [
-					"html/%7B%static%20\u0027css/mui.min.css\u0027%%7D",
-					"html/%7B%static%20\u0027js/mui.pullToRefresh.material.js\u0027%%7D",
-					"html/%7B%static%20\u0027js/mui.min.js\u0027%%7D",
-					"html/%7B%static%20\u0027css/m_youhuiquan.css\u0027%%7D",
-					"html/%7B%static%20\u0027js/mui.pullToRefresh.js\u0027%%7D",
-					"html/%7B%static%20\u0027css/m_common.css\u0027%%7D"
-				],
-				"refer": [],
-				"priority": 0
-			},
-			"html/m_hongbao.html": {
-				"resources": [
-					"html/%7B%static%20\u0027css/m_hongbao.css\u0027%%7D",
-					"html/%7B%static%20\u0027css/mui.min.css\u0027%%7D",
-					"html/%7B%static%20\u0027js/mui.pullToRefresh.material.js\u0027%%7D",
-					"html/%7B%static%20\u0027js/mui.min.js\u0027%%7D",
-					"html/%7B%static%20\u0027js/mui.pullToRefresh.js\u0027%%7D",
-					"html/%7B%static%20\u0027css/m_common.css\u0027%%7D"
->>>>>>> Stashed changes
 				],
 				"refer": [],
 				"priority": 0

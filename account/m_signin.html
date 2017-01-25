@@ -13,21 +13,21 @@
 			<h1 class="mui-title">每日签到</h1>
 		</header>
 		<footer>
-			<ul class="clearfix tc">
+			<ul id="nav_box" class="clearfix tc">
 		    	<li>
-		        	<a >
+		        	<a class="lottery">
 		            <i class="icon iconfont">&#xe619;</i>
 		        	<span>积分抽奖</span>
 		            </a>
 		        </li>
 		    	<li>
-		        	<a >
+		        	<a class="exchange">
 		            <i class="icon iconfont">&#xe629;</i>
 		        	<span>积分兑换</span>
 		            </a>
 		        </li>
 		    	<li>
-		        	<a >
+		        	<a class="more-exchange">
 		            <i class="icon iconfont ic-03">&#xe618;</i>
 		        	<span>更多积分</span>
 		            </a>
@@ -161,6 +161,31 @@
 			  	login.style.display="none";
 			});
 		}
+		
+		mui('#nav_box').on('tap', '.lottery', function() {
+				tempview.loadURL("../html/m_activity_lottery.html");
+				plus.nativeUI.showWaiting();
+				tempview.addEventListener('loaded',function(){
+					plus.nativeUI.closeWaiting();
+					tempview.show("pop-in",350);
+				});
+			});
+		mui('#nav_box').on('tap', '.exchange', function() {
+			tempview.loadURL("m_account_exchange.html");
+			plus.nativeUI.showWaiting();
+			tempview.addEventListener('loaded',function(){
+				plus.nativeUI.closeWaiting();
+				tempview.show("pop-in",350);
+			});
+		});
+		mui('#nav_box').on('tap', '.more-exchange', function() {
+			tempview.loadURL("html/m_activity_lottery.html");
+			plus.nativeUI.showWaiting();
+			tempview.addEventListener('loaded',function(){
+				plus.nativeUI.closeWaiting();
+				tempview.show("pop-in",350);
+			});
+		});
 	</script>
 	</body>
 
