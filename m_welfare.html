@@ -280,11 +280,11 @@
                 weixin_box.setAttribute("class","weixin-box-02");
             });
             erweima_img.addEventListener("longtap",function () {
-//          	plus.barcode.scan('_www/images/gongzhong.jpg', function (type,result) {
-//					alert( "Scan success:("+type+")"+result );
-//				}, function (error) {
-//					alert( error.message );
-//				});
+            	plus.barcode.scan('_www/images/gongzhong.jpg', function (type,result) {
+					console.log( "Scan success:("+type+")"+result );
+				}, function (error) {
+					console.log( error.code );
+				});
 //				mui.alert("请");
 			});
 			var detailMainWebview = null; //详情页面父webview
@@ -333,25 +333,20 @@
 						add_doms_recom(recoms, true);
 						processNews(recoms, 'recom_img_','recom');
 					}, throwGetNewsError);
+				},function(hasNew) {
 					wa.getNews(Number.MAX_VALUE, 10,function(news) {
 						news_group.innerHTML = '';
 						add_doms_news(news, true);
 						processNews(news, 'news_img_', 'news');
 					}, throwGetNewsError);
-//					wa.getSlider(function(sliders) {
-//						slide_group.innerHTML = '';
-//						slide_indicator.innerHTML = '';
-//						add_doms_slider(sliders, true);
-//						processNews(sliders, 'slider_img_', 'slider');
-//					}, throwGetNewsError);
 					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 				}, function() {
 					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 				});
-				var wvs=plus.webview.all();
-				for(var i=0;i<wvs.length;i++){
-					console.log("webview"+i+": "+wvs[i].id);
-				}
+//				var wvs=plus.webview.all();
+//				for(var i=0;i<wvs.length;i++){
+//					console.log("webview"+i+": "+wvs[i].id);
+//				}
 			};
 	
 			function clearNewsList() {
@@ -372,6 +367,7 @@
 					}
 				},function(){
 					mui('#pullrefresh').pullRefresh().endPullupToRefresh();
+					mui.toast("请检查网络状况！");
 				});
 			}
 			var downloads = {};
@@ -540,7 +536,6 @@
 				if (!recoms || recoms.length === 0){
 					return;
 				}
-				console.log(recoms.length);
 				var length = recoms.length;
 				for (var i = 0; i < length; i++){
 					recom = recoms[i];

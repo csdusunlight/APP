@@ -13,7 +13,7 @@
 		<header id="header" class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">要赚现金</h1>
-			<a id="share" class="share iconfont icon-fenxiang"></a>
+			<!--<a id="share" class="share iconfont icon-fenxiang"></a>-->
 		</header>
 		<div class="mui-content">
 	        <ul id="list_box" class="list-box">
@@ -36,7 +36,10 @@
 		<script src="../js/mui.js"></script>
 		<script type="text/javascript">
 			mui.init()
-			
+			var tempview = null;
+			mui.plusReady(function(){
+				tempview = plus.webview.getWebviewById("temp2");
+			});
 			mui('#list_box').on('tap', '.recommend', function() {
 				tempview.loadURL("m_activity_recommend.html");
 				plus.nativeUI.showWaiting();

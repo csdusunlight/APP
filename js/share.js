@@ -95,7 +95,10 @@
 		openSysShare: function(message, callback) {
 			var intent = new Intent(Intent.ACTION_SEND);
 			intent.setType("text/plain");
+//			intent.setType("image/*");
+//			intent.putExtra(Intent.EXTRA_STREAM,uri);
 			intent.putExtra(Intent.EXTRA_TEXT, message.content);
+			intent.putExtra(Intent.EXTRA_SUBJECT,"挖福利");
 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			main.startActivity(Intent.createChooser(intent, "系统分享"));
 			callback && callback(true);

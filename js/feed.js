@@ -90,7 +90,6 @@
 		return items;
 	};
 	$.getRecom = function(url, success, error) {
-		error = error || $.noop;
 		$.ajax({
 			type: "get",
 			url: url,
@@ -106,12 +105,10 @@
 					success(parseRecom(response.data));
 				}
 			},
-			error:function(xhr,type,errorThrown){
-				console.log(type);
-			}
+			error:error
 		});
 	};
-	$.getTodayNum = function(url, success) {
+	$.getTodayNum = function(url, success, error) {
 		$.ajax({
 			type: "get",
 			url: url,
@@ -124,9 +121,7 @@
 					success(response);
 				}
 			},
-			error:function(xhr,type,errorThrown){
-				console.log(type);
-			}
+			error:error
 		});
 	};
 })(mui);

@@ -12,7 +12,7 @@
 		<header id="header" class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title" id="htitle"></h1>
-			<a id="share" class="share iconfont icon-fenxiang"></a>
+			<!--<a id="share" class="share iconfont icon-fenxiang"></a>-->
 		</header>
 		<div id="content" class="mui-content">
 		</div>
@@ -37,7 +37,7 @@
 						document.getElementById("content").innerHTML = ret.content;
 					},
 					error:function(xhr,type,errorThrown){
-						mui.alert(type);
+						mui.toast("请检查网络状况！");
 					}
 				});
 			});
