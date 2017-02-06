@@ -60,7 +60,14 @@
 			"html/m_activity_recom_submit.html",
 			"html/m_activity_recom_info.html",
 			"account/m_account_welfare.html",
+<<<<<<< HEAD
 			"account/m_account_coupon.html"
+=======
+			"account/m_account_coupon.html",
+			"account/m_account_exchange.html",
+			"account/m_exchange_morescore.html",
+			"account/m_strategy.html"
+>>>>>>> f4d21a070e5fd529a1ecaea41e12f3f4d23717ea
 		]
 	},
 	"m_task_junior.html": {
@@ -385,11 +392,21 @@
 			"css/mui.min.css",
 			"fonts/wafuli-iconfont.woff",
 			"css/m_common.css",
+<<<<<<< HEAD
 			"js/mui.js"
 		],
 		"refer": [
 			"account/m_account_charge.html",
 			"account/m_detail_press.html"
+=======
+			"js/mui.js",
+			"account/%7B%url%20\u0027aboutus_contactus\u0027%%7D"
+		],
+		"refer": [
+			"account/m_account_charge.html",
+			"account/m_detail_press.html",
+			"account/%7B%url%20\u0027aboutus_contactus\u0027%%7D"
+>>>>>>> f4d21a070e5fd529a1ecaea41e12f3f4d23717ea
 		]
 	},
 	"account/m_account_withdraw.html": {
@@ -572,7 +589,12 @@
 			"css/mui.min.css",
 			"css/m_common.css",
 			"js/mui.js",
+<<<<<<< HEAD
 			"js/UserInfo.js"
+=======
+			"js/UserInfo.js",
+			"fonts/wafuli-iconfont.woff"
+>>>>>>> f4d21a070e5fd529a1ecaea41e12f3f4d23717ea
 		],
 		"refer": [
 			"html/m_expsubmit_finance.html",
@@ -625,10 +647,19 @@
 			"images/share-friend.png",
 			"css/mui.min.css",
 			"css/m_common.css",
+<<<<<<< HEAD
 			"js/UserInfo.js"
 		],
 		"refer": [
 			"a_login.html"
+=======
+			"js/UserInfo.js",
+			"js/share.js"
+		],
+		"refer": [
+			"a_login.html",
+			"account/m_exchange_morescore.html"
+>>>>>>> f4d21a070e5fd529a1ecaea41e12f3f4d23717ea
 		]
 	},
 	"html/m_expsubmit_task.html": {
@@ -692,7 +723,13 @@
 			"css/m_common.css",
 			"css/m_detail_press.css",
 			"js/mui.js",
+<<<<<<< HEAD
 			"js/share.js"
+=======
+			"js/share.js",
+			"fonts/mui.ttf",
+			"fonts/wafuli-iconfont.woff"
+>>>>>>> f4d21a070e5fd529a1ecaea41e12f3f4d23717ea
 		],
 		"refer": [],
 		"priority": 0
@@ -748,7 +785,12 @@
 			"js/UserInfo.js",
 			"fonts/mui.ttf",
 			"css/mui.min.css",
+<<<<<<< HEAD
 			"css/m_common.css"
+=======
+			"css/m_common.css",
+			"js/share.js"
+>>>>>>> f4d21a070e5fd529a1ecaea41e12f3f4d23717ea
 		],
 		"refer": [
 			"a_login.html",
@@ -800,5 +842,13 @@
 			"images/guide-index.png"
 		],
 		"refer": []
+<<<<<<< HEAD
+=======
+	},
+	"account/m_exchange_morescore.html": {
+		"resources": [
+			"css/m_common_text.css"
+		]
+>>>>>>> f4d21a070e5fd529a1ecaea41e12f3f4d23717ea
 	}
 }

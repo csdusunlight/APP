@@ -6,7 +6,8 @@ var TODAY_NUM_URL = 'http://test.wafuli.cn/app/get_today_num/';
 (function($, wa, websql) {
 
 	var DB_VERSION_NUMBER = '1.0';
-	var TIME_UPDATE = 'TIME_UPDATE';
+	var TIME_UPDATE_NEWS = 'TIME_UPDATE_NEWS';
+	var TIME_UPDATE_RECOM = 'TIME_UPDATE_RECOM';
 	var TIME_PUBDATE = 'TIME_PUBDATE';
 	var TIME_UPDATE_SLIDER = 'TIME_UPDATE_SLIDER';
 	var LAST_PUBDATE = "LAST_PUBDATE";
@@ -122,7 +123,7 @@ var TODAY_NUM_URL = 'http://test.wafuli.cn/app/get_today_num/';
 			plus.nativeUI.closeWaiting();
 		});
 		//通知首页重新拉取最新
-		localStorage.removeItem(TIME_UPDATE); //移除上次更新时间
+//		localStorage.removeItem(TIME_UPDATE); //移除上次更新时间
 		localStorage.removeItem(LAST_PUBDATE);
 //			plus.webview.getWebviewById("news").evalJS('getFeed("true")');
 	};
@@ -143,12 +144,10 @@ var TODAY_NUM_URL = 'http://test.wafuli.cn/app/get_today_num/';
 	 * @param {Function} successCallback
 	 * @param {Function} errorCallback
 	 */
-	wa.getFeed = function(successCallback, errorCallback) {
+	wa.getFeed = function(func1, func2, errorCallback) {
 		//若没有网络，则显示之前缓存数据，并给与提示
 		if (plus.networkinfo.getCurrentType() === plus.networkinfo.CONNECTION_NONE) {
-			plus.nativeUI.toast('似乎已断开与互联网的连接', {
-				verticalAlign: 'top'
-			});
+			mui.toast('似乎已断开与互联网的连接');
 			errorCallback(false);
 			return;
 		}
@@ -159,120 +158,85 @@ var TODAY_NUM_URL = 'http://test.wafuli.cn/app/get_today_num/';
 		//			return;
 		//		}
 		wa.clearCache();
-		var comp1 = false, comp2 = false, comp3 = false, ret = true;
+		var reg=false;
 		$.getNews(NEWS_URL + '?lastDate=' + latestPubDate, function(items) {
-			if (items && items.length>0) {
-				var news = [];
-				$.each(items, function(index, item) {
-					news.push([item.id, item.title, item.mark1, item.mark2, item.mark3, item.pubDate,
-						item.image, item.source, item.time, item.view, item.type]);
-				});
-				wa.deleteNews();
-				wa.addNews(news, function() {
-					comp1 = true;
-					console.log("获得初始信息完成1");
-					if ( comp1 && comp2 &&comp3){
-						console.log("获得初始信息完成1");
-						if (ret){
-							localStorage.setItem(TIME_UPDATE, Date.parse(new Date()) + ''); //本地更新时间
-							successCallback(false);
-						}else{
-							errorCallback();
-						}
-					}
-				}, function() {
-					console.log("获得初始信息失败11");
-					ret = false;
-					comp1 = true;
-					if ( comp1 && comp2 &&comp3){
-						console.log("获得初始信息失败11");
-						errorCallback();
-					}			
-				});
-				
-			}
+			var news = [];
+			$.each(items, function(index, item) {
+				news.push([item.id, item.title, item.mark1, item.mark2, item.mark3, item.pubDate,
+					item.image, item.source, item.time, item.view, item.type]);
+			});
+			wa.deleteNews();
+			wa.addNews(news, function() {
+				console.log("获得初始信息完成1");
+				localStorage.setItem(TIME_UPDATE_NEWS, Date.parse(new Date()) + ''); //本地更新时间
+				func2(false);
+			}, function() {
+				console.log("获得初始信息失败11");
+				mui.alert("数据库写入失败！");
+			});
 		}, function(xhr) {
-			ret = false;
-			comp1 = true;
-			console.log("获得初始信息失败12");
-			if ( comp1 && comp2 &&comp3){
-				console.log("获得初始信息失败12");
+			console.log("获得初始信息失败1");
+			if(!reg){
+				reg = true;
 				errorCallback();
 			}
 		});
-		$.getSlider(SLIDER_URL, function(items) {
-			if (items) {
-				var news = [];
-				$.each(items, function(index, item) {
-					news.push([item.id, item.image, item.priority, item.pubDate]);
-				});
-				wa.deleteSlider();
-				wa.addSlider(news, function() {
-					comp2 = true;
-					console.log("获得初始信息完成2");
-					if ( comp1 && comp2 &&comp3){
-						console.log("获得初始信息完成2");
-						if (ret){
-							localStorage.setItem(TIME_UPDATE, Date.parse(new Date()) + ''); //本地更新时间
-							successCallback(false);
-						}else{
-							errorCallback();
-						}
-					}
-				}, function() {
-					console.log("获得初始信息失败21");
-					ret = false;
-					comp2 = true;
-					if ( comp1 && comp2 &&comp3){
-						console.log("获得初始信息失败21");
-						errorCallback();
-					}			
-				});
-			}
-		}, function(xhr) {
-			ret = false;
-			comp2 = true;
-			console.log("获得初始信息失败22");
-			if ( comp1 && comp2 &&comp3){
-				console.log("获得初始信息失败22");
-				errorCallback();
-			}
-		});
-		$.getRecom(RECOM_URL, function(items) {
+//		$.getSlider(SLIDER_URL, function(items) {
 //			if (items) {
-				var news = [];
-				$.each(items, function(index, item) {
-					news.push([item.id, item.image, item.type, item.wel_id, item.location, item.title]);
-				});
-				wa.deleteRecom();
-				wa.addRecom(news, function() {
-					comp3 = true;
-					console.log("获得初始信息完成3");
-					if ( comp1 && comp2 &&comp3){
-						console.log("获得初始信息完成3");
-						if (ret){
-							localStorage.setItem(TIME_UPDATE, Date.parse(new Date()) + ''); //本地更新时间
-							successCallback(false);
-						}else{
-							errorCallback();
-						}
-					}
-				}, function() {
-					console.log("获得初始信息失败31");
-					ret = false;
-					comp3 = true;
-					if ( comp1 && comp2 &&comp3){
-						console.log("获得初始信息失败31");
-						errorCallback();
-					}			
-				});
+//				var news = [];
+//				$.each(items, function(index, item) {
+//					news.push([item.id, item.image, item.priority, item.pubDate]);
+//				});
+//				wa.deleteSlider();
+//				wa.addSlider(news, function() {
+//					comp2 = true;
+//					console.log("获得初始信息完成2");
+//					if ( comp1 && comp2 &&comp3){
+//						console.log("获得初始信息完成2");
+//						if (ret){
+//							localStorage.setItem(TIME_UPDATE, Date.parse(new Date()) + ''); //本地更新时间
+//							successCallback(false);
+//						}else{
+//							errorCallback();
+//						}
+//					}
+//				}, function() {
+//					console.log("获得初始信息失败21");
+//					ret = false;
+//					comp2 = true;
+//					if ( comp1 && comp2 &&comp3){
+//						console.log("获得初始信息失败21");
+//						errorCallback();
+//					}			
+//				});
 //			}
+//		}, function(xhr) {
+//			ret = false;
+//			comp2 = true;
+//			console.log("获得初始信息失败22");
+//			if ( comp1 && comp2 &&comp3){
+//				console.log("获得初始信息失败22");
+//				errorCallback();
+//			}
+//		});
+		$.getRecom(RECOM_URL, function(items) {
+			var news = [];
+			$.each(items, function(index, item) {
+				news.push([item.id, item.image, item.type, item.wel_id, item.location, item.title]);
+			});
+			wa.deleteRecom();
+			wa.addRecom(news, function() {
+		  		console.log("获得初始信息完成3");
+				localStorage.setItem(TIME_UPDATE_RECOM, Date.parse(new Date()) + ''); //本地更新时间
+				func1(false);
+			}, function() {
+				console.log("获得初始信息失败31");
+				mui.alert("数据库写入失败！");		
+			});
 		}, function(xhr) {
-			ret = false;
-			comp3 = true;
 			console.log("获得初始信息失败32");
-			if ( comp1 && comp2 &&comp3){
-				console.log("获得初始信息失败32");
+			if(!reg){
+				reg = true;
 				errorCallback();
 			}
 		});

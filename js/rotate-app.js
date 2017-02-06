@@ -108,7 +108,7 @@ mui('.btn_cont').on('tap', '.confirm_lottery', function() {
 				lottery(itemid);
 			}
 			else if(ret.code==-2){
-				$(".popup7").css("display","block");
+				mui(".popup7")[0].style.display = "block";
 				bRotate = false;
 			}
 			else{

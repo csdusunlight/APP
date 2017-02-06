@@ -359,7 +359,8 @@
 					"html/m_activity_recom_rank.html",
 					"html/m_activity_recom_submit.html",
 					"html/m_activity_recom_info.html",
-					"account/m_account_exchange.html"
+					"account/m_account_exchange.html",
+					"account/m_exchange_morescore.html"
 				],
 				"priority": 0
 			},
@@ -876,8 +877,7 @@
 					"js/mui.js"
 				],
 				"refer": [
-					"account/m_account_bind_zhifubao.html",
-					"account/m_account_change_zhifubao.html"
+					"account/m_account_bind_zhifubao.html"
 				],
 				"priority": 0
 			},
@@ -1042,7 +1042,8 @@
 					"fonts/wafuli-iconfont.svg",
 					"images/share-guide-top.png",
 					"images/share-guide-bottom.png",
-					"js/mui.js"
+					"js/mui.js",
+					"account/%7B%url%20\u0027aboutus_contactus\u0027%%7D"
 				],
 				"refer": [
 					"account/m_detail_press.html"
@@ -1342,7 +1343,8 @@
 					"js/share.js"
 				],
 				"refer": [
-					"a_login.html"
+					"a_login.html",
+					"account/m_exchange_morescore.html"
 				],
 				"priority": 0
 			},
@@ -1426,7 +1428,8 @@
 					"fonts/wafuli-iconfont.ttf",
 					"fonts/wafuli-iconfont.svg",
 					"images/share-guide-top.png",
-					"images/share-guide-bottom.png"
+					"images/share-guide-bottom.png",
+					"js/share.js"
 				],
 				"refer": [
 					"a_login.html",
@@ -1500,6 +1503,13 @@
 					"images/guide-task.png",
 					"css/a_wafuli_guide.css",
 					"images/guide-index.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/m_exchange_morescore.html": {
+				"resources": [
+					"css/m_common_text.css"
 				],
 				"refer": [],
 				"priority": 0
@@ -1734,7 +1744,6 @@
 				"fonts/DroidSansFallback.ttf",
 				"images/invited-reg-btn.png",
 				"images/newimg2.png",
-				"css/m_common_text.css",
 				"images/tab-li-img-01.jpg",
 				"css/m_login.css",
 				"images/pwd.jpg",
@@ -2006,6 +2015,12 @@
 	  "js/rotate.js",
 	  "css/m_detail_task.css",
 	  "css/m_freshman_introduction.css",
-	  "css/mui.css"
+	  "css/mui.css",
+	  "css/m_expsubmit_finance.css",
+	  "css/m_invite_accept.css",
+	  "css/m_login.css",
+	  "css/m_task_introduction.css",
+	  "images/user-00.png",
+	  "images/back_to_top.png"
 	]
 }

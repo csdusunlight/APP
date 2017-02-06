@@ -162,7 +162,7 @@
 		<script src="../js/share.js"></script>
 		<script src="../js/rotate-app.js"></script>
 		<script type="text/javascript" charset="utf-8">
-		     mui.init();
+		    mui.init();
 		    var share_href = 'http://test.wafuli.cn/activity/lottery/';
 			document.getElementById("share").addEventListener('tap',function(){
 		    	share_msg = {};
@@ -174,6 +174,12 @@
 				window.share.open(share_msg,function(ret){
 					console.log(ret);
 				});
+			});
+			document.getElementById("but_width").addEventListener('tap',function(){
+		    	mui.openWindow({
+		    		url:"../account/m_exchange_morescore.html",
+		    		id:"m_exchange_morescore.html"
+		    	});
 			});
 	
 	    //    点击分享按钮弹出弹窗

@@ -15,19 +15,19 @@
 		<footer>
 			<ul id="nav_box" class="clearfix tc">
 		    	<li>
-		        	<a class="lottery">
+		        	<a id="../html/m_activity_lottery.html" class="lottery">
 		            <i class="icon iconfont">&#xe619;</i>
 		        	<span>积分抽奖</span>
 		            </a>
 		        </li>
 		    	<li>
-		        	<a class="exchange">
+		        	<a id="m_account_exchange.html" class="exchange">
 		            <i class="icon iconfont">&#xe629;</i>
 		        	<span>积分兑换</span>
 		            </a>
 		        </li>
 		    	<li>
-		        	<a class="more-exchange">
+		        	<a id="m_exchange_morescore.html" class="more-exchange">
 		            <i class="icon iconfont ic-03">&#xe618;</i>
 		        	<span>更多积分</span>
 		            </a>
@@ -151,7 +151,7 @@
 					}
 				},
 				error:function(xhr,type,errorThrown){
-					mui.alert(type);
+					mui.toast("请检查网络状况！");
 				}
 			});
   		}
@@ -162,24 +162,8 @@
 			});
 		}
 		
-		mui('#nav_box').on('tap', '.lottery', function() {
-				tempview.loadURL("../html/m_activity_lottery.html");
-				plus.nativeUI.showWaiting();
-				tempview.addEventListener('loaded',function(){
-					plus.nativeUI.closeWaiting();
-					tempview.show("pop-in",350);
-				});
-			});
-		mui('#nav_box').on('tap', '.exchange', function() {
-			tempview.loadURL("m_account_exchange.html");
-			plus.nativeUI.showWaiting();
-			tempview.addEventListener('loaded',function(){
-				plus.nativeUI.closeWaiting();
-				tempview.show("pop-in",350);
-			});
-		});
-		mui('#nav_box').on('tap', '.more-exchange', function() {
-			tempview.loadURL("html/m_activity_lottery.html");
+		mui('#nav_box').on('tap', 'a', function() {
+			tempview.loadURL(this.id);
 			plus.nativeUI.showWaiting();
 			tempview.addEventListener('loaded',function(){
 				plus.nativeUI.closeWaiting();
