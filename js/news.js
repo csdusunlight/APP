@@ -374,7 +374,7 @@ var TODAY_NUM_URL = 'http://test.wafuli.cn/app/get_today_num/';
 			errorCallback && errorCallback(error, failingQuery);
 		});
 	};
-	wa.getRecom = function(successCallback, errorCallback) {
+	wa.getRecom = function(successCallback, errorCallback) {						
 		websql.process(SQL_SELECT_RECOM, function(tx, results) {
 			successCallback(results.rows);
 		}, function(error, failingQuery) {
