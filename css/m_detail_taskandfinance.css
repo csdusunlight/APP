@@ -121,10 +121,11 @@ p a {
 	border-right: none;
 }
 .mui-popup-title {
-	display: block;
+	display: block !important;
+	color: red !important;
 }
-.mui-popup-title+.mui-popup-text {
-	text-align: left;
+.mui-popup-title + .mui-popup-text {
+	text-align: center !important;
 }
 /*上传样式设置*/
 p {

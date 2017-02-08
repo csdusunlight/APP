@@ -1,5 +1,5 @@
 .mui-content {
-	padding: 0 1.875% 2rem;
+	padding: 0 1.875% 3rem;
 	background: #fff;
 }
 .mui-content div {
@@ -31,7 +31,6 @@ p.prompt {
 	bottom: 0;
 	width: 100%;
 	background: #fff;
-	box-shadow: 0 -1px 3px #a2b5fc;
 }
 .mui-row button {
 	width: 100%;
@@ -40,4 +39,7 @@ p.prompt {
 }
 .mui-row button:nth-of-type(2) {
 	border: 0 !important;
+}
+.mui-btn-primary, .mui-btn-blue {
+	border-color: #e4e4e4;
 }
