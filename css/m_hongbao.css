@@ -81,7 +81,7 @@ body {
 	border-bottom: 2px solid #008FD7 !important;
 }
 
-/*ÁÐ±íÑùÊ½²¿·Ö*/
+/*ï¿½Ð±ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½*/
 .mui-table-view {
 	padding: 0 1.875%;
 }
@@ -114,7 +114,7 @@ body {
 	height: auto;
 }
 .li-info h6 {
-	margin-top: 0.4rem;
+	padding-top: 0.4rem;
 	font-size: 1.2rem;
 	color: #222;
 	white-space: nowrap;

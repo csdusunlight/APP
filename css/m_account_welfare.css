@@ -59,9 +59,10 @@ li .li-02 {width: 25%;}
 li .li-03 {width: 25%;}
 li .li-04 {width: 20%;}
 .li-01 b {
-	display: inline-block;
-	line-height: 1.2;
-	vertical-align: middle;
+	display: block;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 li.head {
 	background-color: #00d6b3;

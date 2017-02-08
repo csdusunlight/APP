@@ -156,3 +156,6 @@ footer li.on span {
 .mui-table-view {
 	background-color: #f2f2f2;
 }
+.mui-table-view:before {
+	height: 0;
+}
