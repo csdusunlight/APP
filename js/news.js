@@ -377,6 +377,9 @@ var TODAY_NUM_URL = 'http://test.wafuli.cn/app/get_today_num/';
 	wa.getRecom = function(successCallback, errorCallback) {
 		websql.process(SQL_SELECT_RECOM, function(tx, results,arr) {
 			successCallback(arr);
+//			for(var i=0;i<arr.length;i++){
+//				console.log(JSON.stringify(arr[i]));
+//			}
 		}, function(error, failingQuery) {
 			console.log(error.message);
 			errorCallback && errorCallback(error, failingQuery);

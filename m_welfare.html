@@ -531,15 +531,16 @@
 				}
 			}
 			function add_doms_recom(recoms, delay){
-				var recoms = mui.extend({}, recoms); 	//jzy
+//				var recoms = mui.extend([],recoms_array,false);
 				if (!recoms || recoms.length === 0){
 					return;
 				}
 				var length = recoms.length;
 				for (var i = 0; i < length; i++){
 					recom = recoms[i];
+					var image = recom.image;
 					if(delay){
-						recom.image = 'images/blank.jpg';
+						image = 'images/blank.jpg';
 					}
 					var a = document.createElement('a');
 					if (i==0){
@@ -554,7 +555,7 @@
 					a.setAttribute("data_id",recom.wel_id);
 					a.setAttribute("data_type",recom.type);
 					a.setAttribute("title",recom.title);
-					a.innerHTML = '<img id="recom_img_' + recom.id + '" src="' + recom.image  + '"/>';
+					a.innerHTML = '<img id="recom_img_' + recom.id + '" src="' + image  + '"/>';
 					recom_group.appendChild(a);
 				}
 			}
