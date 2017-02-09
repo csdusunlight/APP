@@ -267,8 +267,8 @@ var TODAY_NUM_URL = 'http://test.wafuli.cn/app/get_today_num/';
 		websql.process([{
 			"sql": SQL_SELECT_NEWS,
 			"data": [latestId, pageSize]
-		}], function(tx, results) {
-			successCallback(results.rows);
+		}], function(tx, results, arr) {
+			successCallback(arr);
 		}, function(error, failingQuery) {
 			errorCallback && errorCallback(error, failingQuery);
 		});
@@ -375,8 +375,8 @@ var TODAY_NUM_URL = 'http://test.wafuli.cn/app/get_today_num/';
 		});
 	};
 	wa.getRecom = function(successCallback, errorCallback) {
-		websql.process(SQL_SELECT_RECOM, function(tx, results) {
-			successCallback(results.rows);
+		websql.process(SQL_SELECT_RECOM, function(tx, results,arr) {
+			successCallback(arr);
 		}, function(error, failingQuery) {
 			console.log(error.message);
 			errorCallback && errorCallback(error, failingQuery);
@@ -394,7 +394,7 @@ var TODAY_NUM_URL = 'http://test.wafuli.cn/app/get_today_num/';
 			successCallback(false);
 			return;
 		}
-		websql.process(sqls, function(tx, results) {
+		websql.process(sqls, function(tx, results, arr) {
 			successCallback(true);
 		}, function(error, failingQuery) {
 			errorCallback && errorCallback(error, failingQuery);

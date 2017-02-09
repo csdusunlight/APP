@@ -136,7 +136,6 @@
 		<script type="text/javascript" charset="UTF-8" src="js/mui.js"></script>
 		<script type="text/javascript" charset="UTF-8" src="js/feed.js"></script>
 		<script type="text/javascript" charset="UTF-8" src="js/html5sql.js"></script>
-		<script type="text/javascript" charset="UTF-8" src="js/app.js"></script>
 		<script type="text/javascript" charset="UTF-8" src="js/news.js"></script>
 		<script type="text/javascript" charset="UTF-8" src="js/template.js"></script>
 		<script>
@@ -177,9 +176,9 @@
 							news_group.innerHTML = '';
 							add_doms_news(news, false);
 						}, throwGetNewsError);
-//						wa.getSlider(function(sliders) {
-//							add_doms_slider(sliders, false);
-//						}, throwGetNewsError);
+						wa.getSlider(function(sliders) {
+							add_doms_slider(sliders, false);
+						}, throwGetNewsError);
 					}
 					else{
 						mui('#pullrefresh').pullRefresh().pulldownLoading();
@@ -343,10 +342,10 @@
 				}, function() {
 					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
 				});
-//				var wvs=plus.webview.all();
-//				for(var i=0;i<wvs.length;i++){
-//					console.log("webview"+i+": "+wvs[i].id);
-//				}
+				var wvs=plus.webview.all();
+				for(var i=0;i<wvs.length;i++){
+					console.log("webview"+i+": "+wvs[i].id);
+				}
 			};
 	
 			function clearNewsList() {

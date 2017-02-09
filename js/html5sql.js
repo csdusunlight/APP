@@ -153,7 +153,7 @@ var html5sql = (function() {
 		};
 	return {
 		database: null,
-		logInfo: true,
+		logInfo: false,
 		logErrors: true,
 		defaultFailureCallback: doNothing,
 		putSelectResultsInArray: true,
