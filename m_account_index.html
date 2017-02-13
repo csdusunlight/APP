@@ -184,6 +184,9 @@
 			function tologin(){
 				plus.nativeUI.showWaiting();
 				localStorage.setItem('login-backid',self.id);
+				if (!tempview){
+  					return;
+  				}
 				tempview.loadURL("a_login.html");
 				tempview.addEventListener('loaded',function(){
 					plus.nativeUI.closeWaiting();
@@ -206,6 +209,7 @@
 	    				}
 	    				else if(ret.code<0){
 	    					tologin();
+	    					UserInfo.clear();
 					        return;
 	    				}
 	    				else{

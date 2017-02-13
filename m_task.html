@@ -2,25 +2,7 @@
 <html>
 	<head lang="en">
 		<meta charset="UTF-8">
-		<!-- 优先使用 IE 最新版本和 Chrome -->
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-		<!-- 为移动设备添加 viewport -->
 		<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-		<!-- 添加到主屏后的标题（iOS 6 新增） -->
-		<meta name="apple-mobile-web-app-title" content="">
-		<!-- 是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏 -->
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<!-- 设置苹果工具栏颜色 -->
-		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-		<!-- 添加智能 App 广告条 Smart App Banner（iOS 6+ Safari） -->
-		<meta name="apple-itunes-app" content="app-id=myAppStoreID, affiliate-data=myAffiliateData, app-argument=myURL">
-		<!-- 忽略页面中的数字识别为电话，忽略email识别 -->
-		<meta name="format-detection" content="telphone=no, email=no" />
-		<!--下面三个是清除缓存 微信浏览器缓存严重又无刷新；这个方法调试的时候很方便-->
-		<meta http-equiv="Pragma" content="no-cache">
-		<meta http-equiv="Cache-Control" content="no-cache">
-		<meta http-equiv="Expires" content="0">
-		<title>体验福利</title>
 		<link href="css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="css/m_common.css" />
 		<link rel="stylesheet" type="text/css" href="css/m_task.css" />
@@ -28,74 +10,159 @@
 
 	<body>
 		<div class="mui-content">
-			<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
-					<a class="mui-control-item mui-active" href="m_task_junior.html">新手入门</a>
-					<a class="mui-control-item" href="m_task_middle.html">进阶体验</a>
-					<a class="mui-control-item" href="m_task_senior.html">高手专区</a>
+			<!--选项卡部分-->
+			<div id="task_slider" class="mui-slider mui-fullscreen">
+				<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
+					<a class="mui-control-item" href="#item1">新手入门</a>
+		      <a class="mui-control-item" href="#item2">进阶体验</a>
+		      <a class="mui-control-item" href="#item3">高手专区</a>
+				</div>
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
+				<div class="mui-slider-group">
+					<div id="item1" class="mui-slider-item mui-control-content mui-active">
+						<div id="scroll1" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view">
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item2" class="mui-slider-item mui-control-content">
+						<div id="scroll1" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view">
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id="item3" class="mui-slider-item mui-control-content">
+						<div id="scroll1" class="mui-scroll-wrapper">
+							<div class="mui-scroll">
+								<ul class="mui-table-view">
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+
 			</div>
+
 		</div>
-		<script type="text/javascript" charset="UTF-8" src="js/mui.js"></script>
-		<script src="js/template.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="js/mui.min.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="js/mui.pullToRefresh.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="js/mui.pullToRefresh.material.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="js/template.js"></script>
 		<script>
+			var table = document.body.querySelector('.mui-table-view');
+			var get_task_url = "http://test.wafuli.cn/task_json";
+			var host = "http://test.wafuli.cn";
+			var count = 0;
+			var template = null;
 			mui.init();
-			var subpages = ['m_task_junior.html','m_task_middle.html','m_task_senior.html'];
-			var subpage_style = {
-				top: '40px',
-				bottom: '0px',
-				hardwareAccelerated:true,
-				dock:"top",
-			};
-		
-			var aniShow = {};
-			var flag = null;
-			var self = null;
-			//创建子页面，首个选项卡页面显示，其它均隐藏；
-			mui.plusReady(function() {
-				setTimeout(function(){
-					preload();
-				},500);
-				self = plus.webview.currentWebview();
+			mui.plusReady(function(){
+				template = getTemplate('task','template.html',"html/m_detail_task.html");
 			});
-			function preload(){
-				for(var i = 0; i < 3; i++) {
-					var temp = {};
-					var sub = plus.webview.create(subpages[i], subpages[i], subpage_style);
-					if(i > 0) {
-						sub.hide();
-					} else {
-						temp[subpages[i]] = "true";
-						mui.extend(aniShow, temp);
-					}
-					self.append(sub);
+			//阻尼系数
+			var deceleration = mui.os.ios?0.003:0.0009;
+			mui('.mui-scroll-wrapper').scroll({
+				bounce: true,
+				indicators: true, //是否显示滚动条
+				deceleration:deceleration
+			});
+			mui.ready(function() {
+				//循环初始化所有上拉加载
+				mui.each(document.querySelectorAll('.mui-slider-group .mui-scroll'), function(index, pullRefreshEl) {
+					var count = 0;
+					mui(pullRefreshEl).pullToRefresh({
+						up: {
+							auto:true,
+							callback: function() {
+								var self = this;
+								var ul = self.element.querySelector('.mui-table-view');
+								get_task_list(this,ul,count++,index);
+							//		ul.appendChild(createFragment(ul, index, 5));
+								//	self.endPullUpToRefresh(true);
+							}
+						}
+					});
+				});
+
+				function get_task_list(obj,ul,n,index){
+					mui.ajax(get_task_url,{
+						data:{
+							count:n,
+							type:index+1,
+						},
+						dataType:'json',//服务器返回json格式数据
+						type:'get',//HTTP请求类型
+						timeout:3000,//超时时间设置为10秒；
+//							headers:{'Content-Type':'application/json'},
+						success:function(data){
+							if (!data.length){
+								obj.endPullUpToRefresh(true);
+							}
+							else {
+								obj.endPullUpToRefresh(false);//参数为true代表没有更多数据了。
+								for (var i in data) {
+									var wel = data[i];
+									var li = document.createElement('li');
+									li.className = 'mui-table-view-cell';
+									str_html = '<a class="clearfix" data_id="' + wel.id + '" href="' + wel.url + '"><div class="img-box"><img src="'+
+			                    	host + wel.picurl + '" /></div><p class="info-right';
+									if (wel.state=='2'){
+				                    	str_html += ' task-end';
+				                    }
+				                    str_html += '"><span>';
+				                    if(wel.money>0)
+				                    	str_html += '<b>+<number>' + wel.money + '</number>福币</b>';
+				                    if(wel.score>0)
+				                    	str_html += '<b>+<number>' + wel.score + '</number>积分</b>';
+				                    str_html += '</span></p><div class="info-middle">'+
+				                    	'<h6>' + wel.title + '</h6>';
+				                    if (wel.state=='2'){
+				                    	str_html += '<p>抢光啦</p>';
+				                    }
+				                    else if(wel.is_forbidden){
+				                    	str_html += '<p>已暂停（数据审核中...）</p>'
+				                    }
+				                    else{
+				                    	str_html += '<p>剩&nbsp;<number>'+wel.num+'</number>&nbsp;份</p>';
+				                    }
+				                    str_html += '</div></a>';
+				                    li.innerHTML = str_html;
+									ul.appendChild(li);
+								}
+							}
+						},
+						error:function(xhr,type,errorThrown){
+							if(n>0){
+								mui.toast("请检查网络状况！");
+							}
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(false);
+						}
+					});
 				}
-				flag = getTemplate('task','template.html',"html/m_detail_task.html");
-			}
-			//当前激活选项
-			var activeTab = subpages[0];
-			var title = document.getElementById("title");
-			//选项卡点击事件
-			mui('.mui-slider-indicator').on('tap', 'a', function(e) {
-				var targetTab = this.getAttribute('href');
-				if(targetTab == activeTab) {
-					return;
+			});
+			var detailMainWebview = null; //详情页面父webview
+			var detailWebview = null; //详情页面子webview
+			function open_welfare_detail(id,title,img) {
+				if (!template){
+					mui.alert("页面还在加载，稍等~");
 				}
-				//更换标题
-	//			title.innerHTML = this.querySelector('.mui-tab-label').innerHTML;
-				//显示目标选项卡
-				//若为iOS平台或非首次显示，则直接显示
-				if(mui.os.ios || aniShow[targetTab]) {
-					plus.webview.show(targetTab);
-				} else {
-					//否则，使用fade-in动画，且保存变量
-					var temp = {};
-					temp[targetTab] = "true";
-					mui.extend(aniShow, temp);
-					plus.webview.show(targetTab, "fade-in", 300);
-				}
-				//隐藏当前;
-				plus.webview.hide(activeTab);
-				//更改当前活跃的选项卡
-				activeTab = targetTab;
+				detailMainWebview = template.header;
+				detailWebview = template.content;
+				mui.fire(detailMainWebview, 'updateHeader', {
+					title: title
+				});
+				mui.fire(detailWebview, 'display', {
+					id: id,
+					img: img,
+				});
+			};
+			mui('.mui-table-view').on('tap', 'a', function() {
+				var title = this.querySelector('h6').innerText;
+				var img = this.querySelector('img').src;
+				open_welfare_detail(this.getAttribute('data_id'),title,img);
 			});
 		</script>
 	</body>
