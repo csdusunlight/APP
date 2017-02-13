@@ -1,5 +1,5 @@
 .mui-content {
-	padding-bottom: 6rem;
+	padding-bottom: 2rem;
 	overflow: hidden;
 }
 .mui-content .top {
@@ -82,7 +82,7 @@
      }
 }
 .row-middle {
-	padding-top: 7rem;
+	padding-top: 2rem;
 	padding-bottom: 2rem;
 	background: #fff;
 	box-shadow: 0 1px 3px #e4e4e4;
@@ -130,7 +130,7 @@
 }
 .icon-url i{
 	display: block;
-	color: #777;
+	color: #7a7d82;
 	font-size: 3rem;
 	text-align: center;
 }
@@ -139,7 +139,7 @@
 	text-align: center;
 	font-size: 1.2rem;
 	line-height: 1;
-	color: #777;
+	color: #8f8f8f;
 }
 .icon-11 {
 	font-weight: bold;
