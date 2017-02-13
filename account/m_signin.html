@@ -105,7 +105,7 @@
 				signin();
 			}
 			else{
-				setTimeout(function(){tologin();},500);
+				setTimeout(function(){tologin();},700);
 			}
 		});
 		function tologin(){
@@ -137,16 +137,17 @@
 					}
 					else if (ret.code<0){
 						tologin();
+						UserInfo.clear();
 					}
 					else{
 						mui.alert(ret.msg);
-					}
-					var arr = document.getElementById("calendar").getElementsByTagName("number");
-					for (var ele in arr){
-						var i = arr[ele].innerHTML;
-						i = parseInt(i);
-						if ( ret.records.indexOf(i) != -1 ){
-							arr[ele].parentNode.className = "yes";
+						var arr = document.getElementById("calendar").getElementsByTagName("number");
+						for (var e = 0; e<arr.length; e++){
+							var i = arr[e].innerHTML;
+							i = parseInt(i);
+							if ( ret.records.indexOf(i) != -1 ){
+								arr[e].parentNode.className = "yes";
+							}
 						}
 					}
 				},
