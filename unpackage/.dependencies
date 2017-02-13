@@ -1,89 +1,38 @@
 {
   "account/m_password_reset.html": {
     "href": "account/m_password_reset.html",
-    "resources": [
-      "js/user-validate.js"
-    ],
+    "resources": [],
     "priority": 1
   },
   "account/m_account_change_password.html": {
     "href": "account/m_account_change_password.html",
-    "resources": [
-      "js/user-validate.js"
-    ],
+    "resources": [],
     "priority": 3
   },
   "html/m_activity_recom_submit.html": {
     "href": "html/m_activity_recom_submit.html",
-    "resources": [
-      "fonts/wafuli-iconfont.eot",
-      "fonts/wafuli-iconfont.woff",
-      "fonts/wafuli-iconfont.ttf",
-      "fonts/wafuli-iconfont.svg",
-      "images/share-guide-top.png",
-      "images/share-guide-bottom.png"
-    ],
+    "resources": [],
     "priority": 4
   },
   "html/m_activity_recom_info.html": {
     "href": "html/m_activity_recom_info.html",
-    "resources": [
-      "css/mui.min.css",
-      "fonts/mui.ttf",
-      "css/m_common.css",
-      "fonts/wafuli-iconfont.eot",
-      "fonts/wafuli-iconfont.woff",
-      "fonts/wafuli-iconfont.ttf",
-      "fonts/wafuli-iconfont.svg",
-      "images/share-guide-top.png",
-      "images/share-guide-bottom.png",
-      "js/mui.min.js",
-      "js/UserInfo.js"
-    ],
+    "resources": [],
     "priority": 5
   },
   "html/m_activity_recom_rank.html": {
     "href": "html/m_activity_recom_rank.html",
-    "resources": [
-      "css/mui.min.css",
-      "fonts/mui.ttf",
-      "css/m_common.css",
-      "fonts/wafuli-iconfont.eot",
-      "fonts/wafuli-iconfont.woff",
-      "fonts/wafuli-iconfont.ttf",
-      "fonts/wafuli-iconfont.svg",
-      "images/share-guide-top.png",
-      "images/share-guide-bottom.png",
-      "js/mui.min.js"
-    ],
+    "resources": [],
     "priority": 6
   },
   "html/m_activity_recommend.html": {
     "href": "html/m_activity_recommend.html",
-    "resources": [
-      "fonts/wafuli-iconfont.eot",
-      "fonts/wafuli-iconfont.ttf",
-      "fonts/wafuli-iconfont.svg",
-      "images/share-guide-top.png",
-      "images/share-guide-bottom.png"
-    ],
-    "refer": [
-      "a_login.html",
-      "html/m_activity_recom_submit.html",
-      "html/m_activity_recom_info.html",
-      "html/m_activity_recom_rank.html"
-    ],
+    "resources": [],
+    "refer": [],
     "priority": 3
   },
   "html/m_freshman_award.html": {
     "href": "html/m_freshman_award.html",
-    "resources": [
-      "fonts/wafuli-iconfont.eot",
-      "fonts/wafuli-iconfont.ttf",
-      "fonts/wafuli-iconfont.svg",
-      "images/share-guide-top.png",
-      "images/share-guide-bottom.png"
-    ],
+    "resources": [],
     "refer": [],
     "priority": 7
   }
