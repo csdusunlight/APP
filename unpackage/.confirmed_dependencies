@@ -87,7 +87,8 @@
 			"css/mui.min.css",
 			"js/mui.js",
 			"fonts/wafuli-iconfont.woff",
-			"css/m_common.css"
+			"css/m_common.css",
+			"fonts/mui.ttf"
 		],
 		"refer": [
 			"m_welfare.html",
@@ -104,7 +105,8 @@
 			"css/mui.min.css",
 			"js/share.js",
 			"js/mui.js",
-			"fonts/wafuli-iconfont.woff"
+			"fonts/wafuli-iconfont.woff",
+			"html/m_detail_finance.html"
 		],
 		"refer": [
 			"html/m_detail_finance.html",
@@ -158,13 +160,18 @@
 			"css/m_common.css",
 			"js/UserInfo.js",
 			"css/mui.min.css",
-			"js/mui.js"
+			"js/mui.js",
+			"fonts/wafuli-iconfont.woff"
 		]
 	},
 	"a_login.html": {
 		"resources": [
 			"css/style.css",
-			"js/mui.enterfocus.js"
+			"js/mui.enterfocus.js",
+			"js/UserInfo.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/mui.js"
 		]
 	},
 	"account/m_account_settings.html": {
@@ -228,7 +235,10 @@
 			"js/mui.js",
 			"images/youhuiquan-bg.png",
 			"js/mui.pullToRefresh.js",
-			"js/mui.pullToRefresh.material.js"
+			"js/mui.pullToRefresh.material.js",
+			"js/UserInfo.js",
+			"css/mui.min.css",
+			"css/m_common.css"
 		]
 	},
 	"account/m_account_score.html": {
@@ -237,7 +247,9 @@
 			"css/m_account_score.css",
 			"js/UserInfo.js",
 			"js/mui.pullToRefresh.material.js",
-			"css/m_common.css"
+			"css/m_common.css",
+			"css/mui.min.css",
+			"js/mui.js"
 		]
 	},
 	"account/m_account_welfare.html": {
@@ -260,7 +272,20 @@
 			"images/gongzhong.jpg",
 			"css/mui.min.css",
 			"js/mui.js",
-			"css/m_common.css"
+			"css/m_common.css",
+			"fonts/mui.ttf",
+			"fonts/wafuli-iconfont.woff",
+			"account/%7B%url%20\u0027aboutus_cooperation\u0027%%7D",
+			"account/m_aboutus_contactus.html",
+			"account/m_aboutus_statement.html",
+			"account/m_aboutus_cooperation.html"
+		],
+		"refer": [
+			"account/%7B%url%20\u0027aboutus_cooperation\u0027%%7D",
+			"account/m_detail_press.html",
+			"account/m_aboutus_contactus.html",
+			"account/m_aboutus_statement.html",
+			"account/m_aboutus_cooperation.html"
 		]
 	},
 	"account/m_account_bind_zhifubao.html": {
@@ -277,19 +302,29 @@
 	"html/m_baoyou.html": {
 		"resources": [
 			"js/mui.min.js",
-			"css/m_baoyou.css"
+			"css/m_baoyou.css",
+			"js/UserInfo.js"
 		]
 	},
 	"html/m_hongbao.html": {
 		"resources": [
 			"css/m_hongbao.css",
-			"js/template.js"
+			"js/template.js",
+			"js/mui.pullToRefresh.js",
+			"js/UserInfo.js",
+			"js/mui.min.js",
+			"js/mui.pullToRefresh.material.js",
+			"css/mui.min.css",
+			"css/m_common.css"
 		]
 	},
 	"html/m_youhuiquan.html": {
 		"resources": [
 			"js/mui.min.js",
-			"css/m_youhuiquan.css"
+			"css/m_youhuiquan.css",
+			"css/mui.min.css",
+			"js/template.js",
+			"css/m_common.css"
 		]
 	},
 	"account/m_signin.html": {
@@ -300,7 +335,11 @@
 			"js/mui.js",
 			"js/calendar.js",
 			"css/mui.min.css",
-			"images/bg-yes.png"
+			"images/bg-yes.png",
+			"js/UserInfo.js",
+			"css/m_common.css",
+			"images/user-03.png",
+			"images/user.png"
 		]
 	},
 	"html/m_activity_lottery.html": {
@@ -386,7 +425,72 @@
 		"resources": [
 			"css/m_information.css",
 			"js/mui.pullToRefresh.js",
-			"js/mui.pullToRefresh.material.js"
+			"js/mui.pullToRefresh.material.js",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/m_common.css"
+		]
+	},
+	"account/%7B%url%20\u0027aboutus_cooperation\u0027%%7D": {
+		"resources": [
+			"account/m_strategy.html"
+		],
+		"refer": [
+			"account/m_strategy.html"
+		]
+	},
+	"account/m_detail_press.html": {
+		"resources": [
+			"css/m_detail_press.css",
+			"js/share.js",
+			"css/mui.min.css",
+			"js/mui.js",
+			"css/m_common.css"
+		]
+	},
+	"account/m_aboutus_contactus.html": {
+		"resources": [
+			"account/%7B%%20static%20\u0027css/mui.min.css\u0027%20%%7D",
+			"account/%7B%%20static%20\u0027css/m_aboutus.css\u0027%20%%7D",
+			"account/%7B%%20static%20\u0027js/mui.min.js\u0027%20%%7D",
+			"account/%7B%%20static%20\u0027css/m_common.css\u0027%20%%7D",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"account/m_strategy.html",
+			"css/m_aboutus.css",
+			"fonts/mui.ttf",
+			"css/m_common.css",
+			"css/m_about.css"
+		],
+		"refer": [
+			"account/m_strategy.html"
+		]
+	},
+	"account/m_aboutus_statement.html": {
+		"resources": [
+			"js/mui.min.js",
+			"account/m_strategy.html",
+			"css/mui.min.css",
+			"css/m_common_text.css",
+			"fonts/mui.ttf",
+			"css/m_common.css",
+			"css/m_common_texts.css"
+		],
+		"refer": [
+			"account/m_strategy.html"
+		]
+	},
+	"account/m_aboutus_cooperation.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/m_aboutus.css",
+			"account/m_strategy.html",
+			"fonts/mui.ttf",
+			"css/m_common.css"
+		],
+		"refer": [
+			"account/m_strategy.html"
 		]
 	}
 }

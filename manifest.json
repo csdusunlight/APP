@@ -1047,7 +1047,11 @@
 					"images/share-guide-top.png",
 					"images/share-guide-bottom.png",
 					"js/mui.js",
-					"account/%7B%url%20\u0027aboutus_contactus\u0027%%7D"
+					"account/%7B%url%20\u0027aboutus_contactus\u0027%%7D",
+					"account/%7B%url%20\u0027aboutus_cooperation\u0027%%7D",
+					"account/m_aboutus_contactus.html",
+					"account/m_aboutus_statement.html",
+					"account/m_aboutus_cooperation.html"
 				],
 				"refer": [
 					"account/m_detail_press.html"
@@ -1520,6 +1524,55 @@
 				],
 				"refer": [],
 				"priority": 0
+			},
+			"account/%7B%url%20\u0027aboutus_cooperation\u0027%%7D": {
+				"resources": [
+					"account/m_strategy.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/m_aboutus_contactus.html": {
+				"resources": [
+					"account/%7B%%20static%20\u0027css/mui.min.css\u0027%20%%7D",
+					"account/%7B%%20static%20\u0027css/m_aboutus.css\u0027%20%%7D",
+					"account/%7B%%20static%20\u0027js/mui.min.js\u0027%20%%7D",
+					"account/%7B%%20static%20\u0027css/m_common.css\u0027%20%%7D",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"account/m_strategy.html",
+					"css/m_aboutus.css",
+					"fonts/mui.ttf",
+					"css/m_common.css",
+					"css/m_about.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/m_aboutus_statement.html": {
+				"resources": [
+					"js/mui.min.js",
+					"account/m_strategy.html",
+					"css/mui.min.css",
+					"css/m_common_text.css",
+					"fonts/mui.ttf",
+					"css/m_common.css",
+					"css/m_common_texts.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/m_aboutus_cooperation.html": {
+				"resources": [
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/m_aboutus.css",
+					"account/m_strategy.html",
+					"fonts/mui.ttf",
+					"css/m_common.css"
+				],
+				"refer": [],
+				"priority": 0
 			}
 		},
 		"idle": {
@@ -1549,7 +1602,6 @@
 				"images/line-1.gif",
 				"images/logo-4.png",
 				"images/understand-finacing-btn.png",
-				"css/m_aboutus.css",
 				"images/newtitle2.png",
 				"images/new-1.png",
 				"images/user.jpg",

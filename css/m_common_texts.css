@@ -1,0 +1,75 @@
+.mui-content {
+	background: #fff;
+}
+.mui-content .top {
+	font-size: 1.4rem;
+	line-height: 2.4rem;
+}
+.mui-content h3 {
+	margin-top: 3rem;
+	margin-bottom: 2rem;
+	font-size: 1.4rem;
+	line-height: 0;
+	color: #0a0a0a;
+}
+.mui-content p {
+	margin-top: 1rem;
+	background: #fff;
+	padding: 0 1.875%;
+}
+.mui-content h5 {
+	font-size: 1.2rem;
+	text-align: center;
+	width: 100%;
+	font-weight: bold;
+	line-height: 2rem;
+	margin:2rem auto 0;
+	/*color: #ff6767;*/
+}
+.mui-content h5:before {
+	content: "";
+	display: inline-block;
+	width: 34%;
+	height: 2px;
+	background: #e4e4e4;
+	position: relative;
+	bottom: 0.3rem;
+	/*margin-left: 2rem;*/
+}
+.mui-content h5:after {
+	content: "";
+	display: inline-block;
+	width: 34%;
+	height: 2px;
+	background: #e4e4e4;
+	position: relative;
+	bottom: 0.3rem;
+	/*margin-right:2rem*/
+}
+.mui-content p.notice {
+	padding: 0;
+	margin-top: 0.4rem;
+	text-align: center;
+	font-size: 1rem;
+	background: transparent;
+}
+/*上传样式设置*/
+p {
+	font-family: "微软雅黑";
+	font-size: 16px !important;
+	line-height: 2;
+	color: #333;
+}
+strong {
+	font-weight: bold !important;
+}
+p img {
+	width: 100% !important;
+}
+table {
+	border-color: #b3b3b3 !important;
+}
+td {
+	font-size: 16px;
+	color: #333;
+}
