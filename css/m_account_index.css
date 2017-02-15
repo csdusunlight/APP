@@ -12,6 +12,7 @@
 	z-index: 100 !important;
 }
 .person-bg {
+	margin-top: -1px;
 	background-color: #fff;
 }
 .top .diannao {
@@ -85,7 +86,7 @@
 	padding-top: 2rem;
 	padding-bottom: 2rem;
 	background: #fff;
-	box-shadow: 0 1px 3px #e4e4e4;
+	box-shadow: 0 2px 2px #e4e4e4;
 }
 .row-middle li a {
 	text-align: center;
