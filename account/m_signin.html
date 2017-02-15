@@ -120,7 +120,11 @@
 		var close = document.getElementById("close"),
 			login = document.getElementById("login");
   		window.addEventListener('login-refresh',function(){
-  			signin();
+  			var user = UserInfo.userinfo();
+			var img = "../images/user-0" + user.userimg + ".png";
+			document.getElementById('userimg').src = img;
+			document.getElementById('scores').innerText = user.scores;
+			signin();
   		});
   		function signin(){
   			var url = "http://test.wafuli.cn/app/signin/";
