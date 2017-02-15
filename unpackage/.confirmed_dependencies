@@ -20,7 +20,11 @@
 			"js/feed.js",
 			"images/gongzhong.jpg",
 			"images/slider2.jpg",
-			"images/blank.jpg"
+			"images/blank.jpg",
+			"css/mui.min.css",
+			"js/mui.js",
+			"fonts/wafuli-iconfont.woff",
+			"css/m_common.css"
 		],
 		"refer": [
 			"browser.html",

@@ -177,9 +177,6 @@
 							news_group.innerHTML = '';
 							add_doms_news(news, false);
 						}, throwGetNewsError);
-						wa.getSlider(function(sliders) {
-							add_doms_slider(sliders, false);
-						}, throwGetNewsError);
 					}
 					else{
 						mui('#pullrefresh').pullRefresh().pulldownLoading();
