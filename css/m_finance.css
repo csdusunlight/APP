@@ -76,7 +76,6 @@ header a img {
 	width: 12rem !important;
 	max-height: 8rem;
 	float: left;
-	background: url(../images/business-logo.png) center center no-repeat;
 	border: 1px solid #ececec;
 }
 
@@ -158,8 +157,3 @@ footer li.on span {
 	margin: 0;
 	padding: 11px 15px;
 }
-
-#finance_slider{
-	bottom:20px;
-}
-

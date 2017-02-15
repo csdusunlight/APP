@@ -282,7 +282,9 @@
 					"fonts/wafuli-iconfont.ttf",
 					"fonts/wafuli-iconfont.svg",
 					"images/share-guide-top.png",
-					"images/share-guide-bottom.png"
+					"images/share-guide-bottom.png",
+					"js/mui.pullToRefresh.js",
+					"js/mui.pullToRefresh.material.js"
 				],
 				"refer": [
 					"m_finance_sub3.html",
@@ -358,7 +360,8 @@
 					"html/m_activity_recom_submit.html",
 					"html/m_activity_recom_info.html",
 					"account/m_account_exchange.html",
-					"account/m_exchange_morescore.html"
+					"account/m_exchange_morescore.html",
+					"account/m_account_bind_zhifubao.html"
 				],
 				"priority": 0
 			},
@@ -438,15 +441,16 @@
 					"fonts/wafuli-iconfont.ttf",
 					"fonts/wafuli-iconfont.svg",
 					"images/share-guide-top.png",
-					"images/share-guide-bottom.png"
+					"images/share-guide-bottom.png",
+					"images/person-bg.png",
+					"account/m_account_charge.html",
+					"account/m_account_invite.html"
 				],
 				"refer": [
 					"a_login.html",
-					"account/m_account_charge.html",
 					"account/m_account_score.html",
 					"account/m_account_welfare.html",
 					"account/m_account_coupon.html",
-					"account/m_account_invite.html",
 					"account/m_strategy.html",
 					"account/m_account_withdraw.html",
 					"account/m_account_change_password.html",
@@ -1450,7 +1454,8 @@
 					"fonts/wafuli-iconfont.svg",
 					"images/share-guide-top.png",
 					"images/share-guide-bottom.png",
-					"js/mui.min.js"
+					"js/mui.min.js",
+					"html/m_activity_recommend.html"
 				],
 				"refer": [],
 				"priority": 0
@@ -1468,7 +1473,8 @@
 					"fonts/wafuli-iconfont.ttf",
 					"fonts/wafuli-iconfont.svg",
 					"images/share-guide-top.png",
-					"images/share-guide-bottom.png"
+					"images/share-guide-bottom.png",
+					"html/m_activity_recommend.html"
 				],
 				"refer": [],
 				"priority": 0
@@ -1486,7 +1492,8 @@
 					"images/share-guide-top.png",
 					"images/share-guide-bottom.png",
 					"js/mui.min.js",
-					"js/UserInfo.js"
+					"js/UserInfo.js",
+					"html/m_activity_recommend.html"
 				],
 				"refer": [],
 				"priority": 0
