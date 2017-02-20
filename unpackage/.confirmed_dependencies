@@ -51,7 +51,9 @@
 			"html/m_activity_recom_rank.html",
 			"html/m_activity_recom_info.html",
 			"html/m_activity_recom_submit.html",
-			"html/m_information.html"
+			"html/m_information.html",
+			"account/m_exchange_morescore.html",
+			"account/m_account_exchange.html"
 		]
 	},
 	"html/m_detail_finance.html": {
@@ -62,7 +64,12 @@
 			"js/mui.js",
 			"css/m_common.css",
 			"fonts/wafuli-iconfont.woff",
-			"images/blank.jpg"
+			"images/blank.jpg",
+			"css/m_detail_finance.css",
+			"fonts/mui.ttf"
+		],
+		"refer": [
+			"html/m_expsubmit_finance.html"
 		]
 	},
 	"m_account_index.html": {
@@ -230,7 +237,8 @@
 	"browser.html": {
 		"resources": [
 			"css/mui.min.css",
-			"js/mui.js"
+			"js/mui.js",
+			"fonts/mui.ttf"
 		]
 	},
 	"account/m_account_coupon.html": {
@@ -307,7 +315,9 @@
 		"resources": [
 			"js/mui.min.js",
 			"css/m_baoyou.css",
-			"js/UserInfo.js"
+			"js/UserInfo.js",
+			"fonts/wafuli-iconfont.woff",
+			"css/m_common.css"
 		]
 	},
 	"html/m_hongbao.html": {
@@ -343,7 +353,9 @@
 			"js/UserInfo.js",
 			"css/m_common.css",
 			"images/user-03.png",
-			"images/user.png"
+			"images/user.png",
+			"fonts/mui.ttf",
+			"fonts/wafuli-iconfont.woff"
 		]
 	},
 	"html/m_activity_lottery.html": {
@@ -377,7 +389,9 @@
 			"css/m_activity_recommend.css",
 			"js/share.js",
 			"css/mui.min.css",
-			"css/m_common.css"
+			"css/m_common.css",
+			"fonts/mui.ttf",
+			"fonts/wafuli-iconfont.woff"
 		]
 	},
 	"html/m_freshman_award.html": {
@@ -449,7 +463,8 @@
 			"js/share.js",
 			"css/mui.min.css",
 			"js/mui.js",
-			"css/m_common.css"
+			"css/m_common.css",
+			"fonts/mui.ttf"
 		]
 	},
 	"account/m_aboutus_contactus.html": {
@@ -491,10 +506,35 @@
 			"css/m_aboutus.css",
 			"account/m_strategy.html",
 			"fonts/mui.ttf",
-			"css/m_common.css"
+			"css/m_common.css",
+			"css/m_about.css"
 		],
 		"refer": [
 			"account/m_strategy.html"
+		]
+	},
+	"html/m_expsubmit_finance.html": {
+		"resources": [
+			"js/UserInfo.js",
+			"css/m_expsubmit_finances.css",
+			"css/mui.min.css",
+			"js/mui.js",
+			"css/m_common.css",
+			"fonts/mui.ttf"
+		]
+	},
+	"account/m_exchange_morescore.html": {
+		"resources": [
+			"js/mui.min.js"
+		]
+	},
+	"account/m_account_exchange.html": {
+		"resources": [
+			"css/m_account_exchange.css",
+			"account/m_exchange_morescore.html"
+		],
+		"refer": [
+			"account/m_exchange_morescore.html"
 		]
 	}
 }

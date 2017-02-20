@@ -852,7 +852,8 @@
 					"fonts/wafuli-iconfont.svg",
 					"images/share-guide-top.png",
 					"images/share-guide-bottom.png",
-					"js/mui.js"
+					"js/mui.js",
+					"account/m_exchange_morescore.html"
 				],
 				"refer": [],
 				"priority": 0
@@ -1211,7 +1212,8 @@
 					"fonts/wafuli-iconfont.ttf",
 					"fonts/wafuli-iconfont.svg",
 					"images/share-guide-top.png",
-					"images/share-guide-bottom.png"
+					"images/share-guide-bottom.png",
+					"css/m_detail_finance.css"
 				],
 				"refer": [
 					"html/m_expsubmit_finance.html",
@@ -1388,7 +1390,8 @@
 					"images/share-guide-bottom.png",
 					"css/m_expsubmit_task.css",
 					"js/mui.js",
-					"js/UserInfo.js"
+					"js/UserInfo.js",
+					"css/m_expsubmit_finances.css"
 				],
 				"priority": 4,
 				"refer": []
@@ -1518,7 +1521,8 @@
 			},
 			"account/m_exchange_morescore.html": {
 				"resources": [
-					"css/m_common_text.css"
+					"css/m_common_text.css",
+					"js/mui.min.js"
 				],
 				"refer": [],
 				"priority": 0
@@ -1567,7 +1571,8 @@
 					"css/m_aboutus.css",
 					"account/m_strategy.html",
 					"fonts/mui.ttf",
-					"css/m_common.css"
+					"css/m_common.css",
+					"css/m_about.css"
 				],
 				"refer": [],
 				"priority": 0

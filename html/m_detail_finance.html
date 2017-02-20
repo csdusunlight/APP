@@ -1,29 +1,53 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-    <link href="../css/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="../css/m_common.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/m_detail_taskandfinance.css"/>
-</head>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/m_common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/m_detail_finance.css" />
+	</head>
 
 	<body>
 		<div class="mui-content">
-			<div class="ad">
+			<!--<div class="ad">
 				<img id="picture" src="../images/blank.jpg">
+			</div>-->
+			<div class="top">
+				<img id="picture" src="../images/blank.jpg">
+				<div class="top-content">
+					<p class="finance-mark"><span>小标签</span><span>小标签</span><span>小标签</span></p>
+					<div id="text_box" class="text-box">
+						<p id="intro" class="introduction">介绍这里是产品简单介绍介绍这里是产品简单介绍介绍这里简单介绍介介绍这里是产品简单介绍介绍这里是产品简单介绍介绍这里简单介绍介介绍这里是产品简单介绍介绍这里是产品简单介绍介绍这里简单介绍介介绍这里是产品简单介绍介绍这里是产品简单介绍介绍这里简单介绍介介绍这里是产品简单介绍介绍这里是产品简单介绍介绍这里简单介绍介绍这里是产品简单介绍介绍这里是产品简单介绍介绍这里简单介绍</p>
+					</div>
+				</div>
+			</div>
+			<div class="info">
+				<p><span>平台背景</span><span>民营系</span></p>
+				<p><span>注册资本</span><span>1000万</span></p>
+				<p><span>上线时间</span><span>2017-01-12</span></p>
+				<p><span>是否银行存管</span><span>是</span></p>
+				<p><span>ICP号</span><span>12345678</span></p>
+			</div>
+			<div class="taste">
+				<p>此处为上传表格位置</p>
 			</div>
 			<!--体验步骤部分-->
-			<div class="taste">
-				<h3 class="reward"><i class="iconfont">&#xe613;</i>奖励规则</h3>
-				<div id="rules" class="detail-html"></div>
-			</div>
 			<div class="taste-02">
 				<h3><i class="iconfont">&#xe61c;</i>体验步骤</h3>
 				<div id="strategy" class="detail-html"></div>
 			</div>
+			<div class="taste nav-contact">
+				<a class="contact" target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=34f2461e64f2fb28ac36d1eab0d303760c68cdff632c46f62bd8abda313e30dc">加入QQ群</a>
+				<a class="contact" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=122142551&site=qq&menu=yes">联系客服</a>
+			</div>
+			<div class="taste">
+				<h3 class="reward"><i class="iconfont">&#xe613;</i>奖励规则</h3>
+				<div id="rules" class="detail-html"></div>
+			</div>
 			<!--温馨提示部分-->
-			<div class="prompt">
+			<!--<div class="prompt">
 				<h3><i class="iconfont">&#xe60b;</i>温馨提示</h3>
 				<p><number>1、</number>为了让您畅快的享受福利，请您务必按照体验步骤详情操作，并在完成后返回本页面<span style="color:#ff6767">提交相关数据</span>，以便工作人员进行数据审核，发放相应福利；</p>
 				<p><number>2、</number>用户提交数据后，挖福利工作人员将在48小时内完成审核，并发放相应奖励至用户账户；</p>
@@ -31,24 +55,24 @@
 				<p><number>4、</number>投资有风险，入市需谨慎；挖福利尽最大可能的提供最优质的理财渠道、筛选有诚信的合作平台，但是挖福利不对合作平台提供任何的风险担保；</p>
 				<p><number>5、</number>挖福利对福利数据的审核具有最终解释权。</p>
 				<p class="contact">如有疑问请联系<strong>在线客服</strong>或拨打 <strong>服务热线：0734-8344414</strong></p>
-			</div>
+			</div>-->
 			<!--立即体验部分-->
 			<div class="mui-row">
-		        <div class="left-btn mui-col-sm-6 mui-col-xs-6">
-		            <button id="reg_btn" type="button" class="mui-btn mui-btn-blue mui-btn-outlined">信息登记</button>
-		        </div>
-		        <div class=" mui-col-sm-6 mui-col-xs-6">
-		            <button id="exp_btn" type="button" class="right mui-btn mui-btn-blue mui-btn-outlined">立即体验</button>
-		        </div>
-		    </div>
+				<div class="left-btn mui-col-sm-6 mui-col-xs-6">
+					<button id="reg_btn" type="button" class="mui-btn mui-btn-blue mui-btn-outlined">信息登记</button>
+				</div>
+				<div class=" mui-col-sm-6 mui-col-xs-6">
+					<button id="exp_btn" type="button" class="right mui-btn mui-btn-blue mui-btn-outlined">立即体验</button>
+				</div>
+			</div>
 
 		</div>
 		<!--弹出二维码部分-->
-		<div id="ding_yue" class="er-wei-ma">
+		<div id="ding_yue" class="er-wei-ma weixin-box-00">
 			<div class="box">
 				<span id="close_01" class="mui-icon mui-icon-close"></span>
 				<p>长安识别图中二维码</p>
-				<img id="erweima_img"/>
+				<img id="erweima_img" />
 				<p id="erweima_title"></p>
 			</div>
 		</div>
@@ -62,71 +86,70 @@
 			var exp_url = '';
 			var self = null;
 			var tempview = null;
-			mui.plusReady(function(){
-		  		self = plus.webview.currentWebview();
-		  		tempview = plus.webview.getWebviewById("temp2");
-		  	});
-		  	function tologin(){
+			mui.plusReady(function() {
+				self = plus.webview.currentWebview();
+				tempview = plus.webview.getWebviewById("temp2");
+			});
+
+			function tologin() {
 				plus.nativeUI.showWaiting();
 				tempview.loadURL("../a_login.html");
-				tempview.addEventListener('loaded',function(){
+				tempview.addEventListener('loaded', function() {
 					plus.nativeUI.closeWaiting();
-					tempview.show("pop-in",350);
+					tempview.show("pop-in", 350);
 				});
 			}
-			window.addEventListener('display',function(event){
-			  //获得事件参数
-			  	id = event.detail.id;
-			  	img = event.detail.img;
-			  	document.getElementById('picture').src = img;
-			  //根据id向服务器请求新闻详情
-		  		var url_get_content= "http://test.wafuli.cn/app/detail/finance/";
-		  		mui.ajax({
-					url:url_get_content,
-					dataType:"json",
+			window.addEventListener('display', function(event) {
+				//获得事件参数
+				id = event.detail.id;
+				img = event.detail.img;
+				document.getElementById('picture').src = img;
+				//根据id向服务器请求新闻详情
+				var url_get_content = "http://test.wafuli.cn/app/detail/finance/";
+				mui.ajax({
+					url: url_get_content,
+					dataType: "json",
 					data: {
-						token:UserInfo.token(),
-						id:id,
+						token: UserInfo.token(),
+						id: id,
 					},
-					success:function(ret){
-						if(ret.code!=0){
+					success: function(ret) {
+						if(ret.code != 0) {
 							mui.alert(ret.msg);
-						}
-						else{
+						} else {
 							var info = ret.financeinfo;
 							ismobile = info.ismobile;
 							document.getElementById('strategy').innerHTML = info.strategy;
 							document.getElementById('rules').innerHTML = info.rules;
-							if(ismobile){
+							if(ismobile) {
 								document.getElementById('erweima_img').src = info.url;
 								document.getElementById('erweima_title').src = info.title;
-							}
-							else {
+							} else {
 								exp_url = info.url;
 							}
-							if(info.state=='1'){
+							if(info.state == '1') {
 								exp_btn.disabled = false;
-							}
-							else {
+							} else {
 								reg_btn.disabled = true;
 							}
 						}
-						
+
 					},
-					error:function(xhr,type,errorThrown){
+					error: function(xhr, type, errorThrown) {
 						mui.toast("请检查网络状况！");
 					}
 				});
 				window.scrollTo(0, 0);
-				setTimeout(function(){self.show();},100);
-			  	var sss='share_msg.pictures=["' + img + '",];share_msg.thumbs=["' + img + '",];share_msg.href = "http://test.wafuli.cn/task/' + id + '/";';
+				setTimeout(function() {
+					self.show();
+				}, 100);
+				var sss = 'share_msg.pictures=["' + img + '",];share_msg.thumbs=["' + img + '",];share_msg.href = "http://test.wafuli.cn/task/' + id + '/";';
 				self.parent().evalJS(sss);
 			});
 			exp_btn.addEventListener('tap', function() {
-				if (!UserInfo.has_login()){
+				if(!UserInfo.has_login()) {
 					tologin();
-				}
-				else{
+				} else {
 					var browserMainWebview = plus.webview.getWebviewById('browser_main');
 					var browserWebview = plus.webview.getWebviewById('browser_sub');
 					mui.fire(browserMainWebview, 'mui.view.beforeshow');
@@ -135,28 +158,47 @@
 				}
 			});
 			document.getElementById("close_01").addEventListener('tap', function() {
-				document.getElementById("ding_yue").style.display="none";
+				document.getElementById("ding_yue").style.display = "none";
 			});
 			reg_btn.addEventListener('tap', function() {
 				var sub_url = "m_expsubmit_finance.html";
 				mui.openWindow({
-		            url: sub_url,
-		            styles: {
-		                top: 0,
-		                bottom: 0
-		            },
-		            show: {
-		                aniShow: 'slide-in-right',
-		            },
-		            waiting: {
-		                autoShow: false, //自动显示等待框
-		                title: '正在加载...', //等待对话框上显示的提示内容
-		            },
-		            extras:{
-		            	sub_id:id,
-		            }
-		        });
+					url: sub_url,
+					styles: {
+						top: 0,
+						bottom: 0
+					},
+					show: {
+						aniShow: 'slide-in-right',
+					},
+					waiting: {
+						autoShow: false, //自动显示等待框
+						title: '正在加载...', //等待对话框上显示的提示内容
+					},
+					extras: {
+						sub_id: id,
+					}
+				});
 			});
+
+			//			联系客服
+			mui('.nav-contact').on('tap', 'a', function() {
+				if(UserInfo.has_login()) {
+					var browserMainWebview = plus.webview.getWebviewById('browser_main');
+					var browserWebview = plus.webview.getWebviewById('browser_sub');
+					mui.fire(browserMainWebview, 'mui.view.beforeshow');
+					browserWebview.loadURL(this.href);
+					browserMainWebview.show('slide-in-right', 200);
+				} else {
+					tologin();
+				}
+			});
+			var text_box = document.getElementById("text_box"),
+				intro = document.getElementById("intro");
+			var box_height = text_box.offsetHeight - intro.offsetHeight;
+			if(box_height < 0) {
+				text_box.setAttribute("class", "text-box toolong");
+			}
 		</script>
 	</body>
 

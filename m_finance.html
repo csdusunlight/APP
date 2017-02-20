@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 	<head lang="en">
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
@@ -61,15 +62,15 @@
 			var count = 0;
 			var template = null;
 			mui.init();
-			mui.plusReady(function(){
-				template = getTemplate('finance','template.html',"html/m_detail_finance.html");
+			mui.plusReady(function() {
+				template = getTemplate('finance', 'template.html', "html/m_detail_finance.html");
 			});
 			//阻尼系数
-			var deceleration = mui.os.ios?0.003:0.0009;
+			var deceleration = mui.os.ios ? 0.003 : 0.0009;
 			mui('.mui-scroll-wrapper').scroll({
 				bounce: true,
 				indicators: true, //是否显示滚动条
-				deceleration:deceleration
+				deceleration: deceleration
 			});
 			mui.ready(function() {
 				//循环初始化所有上拉加载
@@ -77,52 +78,52 @@
 					var count = 0;
 					mui(pullRefreshEl).pullToRefresh({
 						up: {
-							auto:true,
+							auto: true,
 							callback: function() {
 								var self = this;
 								var ul = self.element.querySelector('.mui-table-view');
-								get_finance_list(this,ul,count++,index);
-							//		ul.appendChild(createFragment(ul, index, 5));
+								get_finance_list(this, ul, count++, index);
+								//		ul.appendChild(createFragment(ul, index, 5));
 								//	self.endPullUpToRefresh(true);
 							}
 						}
 					});
 				});
 
-				function get_finance_list(obj,ul,n,index){
-					mui.ajax(get_finance_url,{
-						data:{
-							count:n,
-							type:index,
+				function get_finance_list(obj, ul, n, index) {
+					mui.ajax(get_finance_url, {
+						data: {
+							count: n,
+							type: index,
 						},
-						dataType:'json',//服务器返回json格式数据
-						type:'get',//HTTP请求类型
-						timeout:10000,//超时时间设置为10秒；
-//							headers:{'Content-Type':'application/json'},
-						success:function(data){
-							if (!data.length){
+						dataType: 'json', //服务器返回json格式数据
+						type: 'get', //HTTP请求类型
+						timeout: 10000, //超时时间设置为10秒；
+						//							headers:{'Content-Type':'application/json'},
+						success: function(data) {
+							if(!data.length) {
 								obj.endPullUpToRefresh(true);
-							}
-							else {
-								obj.endPullUpToRefresh(false);//参数为true代表没有更多数据了。
+							} else {
+								obj.endPullUpToRefresh(false); //参数为true代表没有更多数据了。
 								var table = document.body.querySelector('.mui-table-view');
-//									var cells = document.body.querySelectorAll('.mui-table-view-cell');
-								for (var i in data) {
+								//									var cells = document.body.querySelectorAll('.mui-table-view-cell');
+								for(var i in data) {
 									var wel = data[i];
 									var li = document.createElement('li');
 									li.className = 'mui-table-view-cell';
-									li.innerHTML = '<a class="clearfix" data_id="' + wel.id + '" href="' + wel.url + '"><div class="title"><strong>'+ wel.title +
-										'</strong><span>官网利息：<font>' + wel.interest + '</font></span></div>'+
-										'<div class="container clearfix">'+
-										'<div><img src="' + host + wel.picurl + '" /><span>' + wel.category + '</span>'+
-										'</div><div class="inc2"><p>补贴收益：<number>+' + wel.benefit +
+									li.innerHTML = '<a class="clearfix" data_id="' + wel.id + '" href="' + wel.url + '"><div class="title"><strong>' + wel.title +
+										'</strong><span>官网利息：<font>' + wel.interest + '</font></span></div>' +
+										'<div class="container clearfix">' +
+										'<div><img src="' + host + wel.picurl + '" /><span class="mark">' + wel.category + '</span>' +
+										'</div><div class="inc2"><p>官网利息：<number>' + wel.interest + '</number></p>' +
+										'<p>补贴收益：<number>+' + wel.benefit +
 										'</number></p><p>起投金额：' + wel.amount +
 										'</p><p>标期长度：' + wel.time + '</p></div></div></a>';
 									ul.appendChild(li);
 								}
 							}
 						},
-						error:function(xhr,type,errorThrown){
+						error: function(xhr, type, errorThrown) {
 							alert(type);
 						}
 					});
@@ -130,8 +131,8 @@
 			});
 			var detailMainWebview = null; //详情页面父webview
 			var detailWebview = null; //详情页面子webview
-			function open_welfare_detail(id,title,img) {
-				if (!template){
+			function open_welfare_detail(id, title, img) {
+				if(!template) {
 					mui.alert("页面还在加载，稍等~");
 				}
 				detailMainWebview = template.header;
@@ -147,7 +148,7 @@
 			mui('.mui-table-view').on('tap', 'a', function() {
 				var title = this.querySelector('strong').innerText;
 				var img = this.querySelector('img').src;
-				open_welfare_detail(this.getAttribute('data_id'),title,img);
+				open_welfare_detail(this.getAttribute('data_id'), title, img);
 			});
 		</script>
 	</body>
