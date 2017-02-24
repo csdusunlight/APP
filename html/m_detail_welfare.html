@@ -44,7 +44,6 @@
 			mui.init();
 			var id = '';
 			var type ='';
-			var ismobile = false;
 			var self = null;
 		  	var num_desc_ele = document.getElementById("num_desc");
 		  	var exp_btn_ele = document.getElementById("exp_btn");
@@ -89,18 +88,11 @@
 								mui.alert("后台连接错误，请联系客服");
 							}
 							else{
-								ismobile = ret.ismobile;
 								var strategy = ret.strategy;
 								document.getElementById('strategy').innerHTML = ret.strategy;
 								document.getElementById('number_display').innerText = ret.num;
 								document.getElementById('time_display').innerText = ret.time;
-								if(ismobile){
-									document.getElementById('erweima_img').src = ret.url;
-									document.getElementById('erweima_title').src = ret.title;
-								}
-								else {
-									exp_url = ret.url;
-								}
+								exp_url = ret.url;
 							}
 							
 						},
@@ -148,16 +140,11 @@
 			        return;
 				}
 				if (type==="hongbao"){
-					if(ismobile){
-						document.getElementById("ding_yue").style.display="block";
-					}
-					else {
-						var browserMainWebview = plus.webview.getWebviewById('browser_main');
-						var browserWebview = plus.webview.getWebviewById('browser_sub');
-						mui.fire(browserMainWebview, 'mui.view.beforeshow');
-						browserWebview.loadURL(exp_url);
-						browserMainWebview.show('slide-in-right', 200);
-					}
+					var browserMainWebview = plus.webview.getWebviewById('browser_main');
+					var browserWebview = plus.webview.getWebviewById('browser_sub');
+					mui.fire(browserMainWebview, 'mui.view.beforeshow');
+					browserWebview.loadURL(exp_url);
+					browserMainWebview.show('slide-in-right', 200);
 				}
 				else if (type==="youhuiquan"){
 					var obtain_coupon_url = "http://test.wafuli.cn/app/obtain_youhuiquan/";
@@ -203,9 +190,6 @@
 						}
 		    		});
 				}
-			});
-			document.getElementById("close_01").addEventListener('tap', function() {
-				document.getElementById("ding_yue").style.display="none";
 			});
 		</script>
 	</body>

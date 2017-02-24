@@ -14,31 +14,22 @@
 			<div class="top">
 				<img id="picture" src="../images/blank.jpg">
 				<div class="top-content">
-					<p class="finance-mark"><span>小标签</span><span>小标签</span><span>小标签</span></p>
+					<p id="marks" class="finance-mark"></p>
 					<div id="text_box" class="text-box">
-						<p id="intro" class="introduction">介绍这里是产品简单介绍介绍这里是产品简单介绍介绍这里简单介绍介介绍这里是产品简单介绍介绍这里是产品简单介绍介绍这里简单介绍介介绍这里是产品简单介绍介绍这里是产品简单介绍介绍这里简单介绍介介绍这里是产品简单介绍介绍这里是产品简单介绍介绍这里简单介绍介介绍这里是产品简单介绍介绍这里是产品简单介绍介绍这里简单介绍介绍这里是产品简单介绍介绍这里是产品简单介绍介绍这里简单介绍</p>
+						<p id="intro" class="introduction"></p>
 					</div>
 				</div>
 			</div>
 			<div class="info">
-				<p><span>平台背景</span><span>民营系</span></p>
-				<p><span>注册资本</span><span>1000万</span></p>
-				<p><span>上线时间</span><span>2017-01-12</span></p>
-				<p><span>是否银行存管</span><span>是</span></p>
-				<p><span>ICP号</span><span>12345678</span></p>
+				<p><span>平台背景</span><span id="background"></span></p>
+				<p><span>注册资本</span><span id="regcap"></span></p>
+				<p><span>上线时间</span><span id="onlinedate"></span></p>
+				<p><span>是否银行存管</span><span id='depository'></span></p>
+				<p><span>ICP号</span><span id="ICP"></span></p>
 			</div>
-			<div class="taste finance-table">
+			<div id="scheme_table" class="taste finance-table">
 				<div class="table-head">
 					<span>投资金融</span><span>投资期限</span><span>挖福利返现</span><span>综合年化收益</span>
-				</div>
-				<div class="table-list">
-					<span>一万及以上</span><span>30天</span><span>投资金额*1.05%</span><span>25.00%</span>
-				</div>
-				<div class="table-list">
-					<span>二万及以上</span><span>30天</span><span>投资金额*1.05%</span><span>25.00%</span>
-				</div>
-				<div class="table-list">
-					<span>三万及以上</span><span>30天</span><span>投资金额*1.05%</span><span>25.00%</span>
 				</div>
 			</div>
 			<!--体验步骤部分-->
@@ -66,13 +57,11 @@
 
 		</div>
 
-
 		<script src="../js/mui.js"></script>
 		<script src="../js/UserInfo.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
 			var id = '';
-			var ismobile = false;
 			var exp_url = '';
 			var self = null;
 			var tempview = null;
@@ -108,14 +97,34 @@
 							mui.alert(ret.msg);
 						} else {
 							var info = ret.financeinfo;
-							ismobile = info.ismobile;
+							document.getElementById('intro').innerText = info.introduction;
+							document.getElementById('background').innerText = info.background;
+							document.getElementById('regcap').innerText = info.regcap;
+							document.getElementById('onlinedate').innerText = info.onlinedate;
+							document.getElementById('depository').innerText = info.depository;
+							document.getElementById('ICP').innerText = info.ICP;
 							document.getElementById('strategy').innerHTML = info.strategy;
 							document.getElementById('rules').innerHTML = info.rules;
-							if(ismobile) {
-								document.getElementById('erweima_img').src = info.url;
-								document.getElementById('erweima_title').src = info.title;
-							} else {
-								exp_url = info.url;
+							exp_url = info.url;
+							var mark_cont = document.getElementById("marks");
+							var mark_list = info.marks;
+							for (var i=0;i<mark_list.length;i++){
+								var li = document.createElement('span');
+								li.innerText = mark_list[i];
+								mark_cont.appendChild(li);
+							}
+							var scheme = info.scheme;
+							var table = document.getElementById("scheme_table");
+							for (var i=0;i<scheme.length;i++){
+								var item = scheme[i];
+								var str_html = '';
+								var li = document.createElement('div');
+								li.className = 'table-list';
+								for(var j=0;j<item.length;j++){
+									str_html += '<span>' + item[j] + '</span>';
+								}
+								li.innerHTML = str_html;
+								table.appendChild(li);
 							}
 							if(info.state == '1') {
 								exp_btn.disabled = false;
@@ -146,9 +155,6 @@
 					browserWebview.loadURL(exp_url);
 					browserMainWebview.show('pop-in', 200);
 				}
-			});
-			document.getElementById("close_01").addEventListener('tap', function() {
-				document.getElementById("ding_yue").style.display = "none";
 			});
 			reg_btn.addEventListener('tap', function() {
 				var sub_url = "m_expsubmit_finance.html";
