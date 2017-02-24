@@ -111,14 +111,19 @@
 									var wel = data[i];
 									var li = document.createElement('li');
 									li.className = 'mui-table-view-cell';
-									li.innerHTML = '<a class="clearfix" data_id="' + wel.id + '" href="' + wel.url + '"><div class="title"><strong>' + wel.title +
-										'</strong><span>标签</span><span>小标签</span></div>' +
-										'<div class="container clearfix">' +
-										'<div><img src="' + host + wel.picurl + '" /><span class="mark">' + wel.category + '</span>' +
-										'</div><div class="inc2"><p>官网利息：<number>' + wel.interest + '</number></p>' +
-										'<p>补贴收益：<number>+' + wel.benefit +
-										'</number></p><p>起投金额：' + wel.amount +
-										'</p><p>标期长度：' + wel.time + '</p></div></div></a>';
+									var str_block = '<a class="clearfix" data_id="' + wel.id + '" href="' + wel.url + '"><div class="title"><strong>' + wel.title + '</strong>';
+									var marks = wel.marks;
+									for (var j in marks){
+										str_block += '<span>' + marks[j] + '</span>';
+									}
+									str_block += '</div><div class="container clearfix">'+
+											'<div><img src="' + wel.picurl + '" /><span class="mark">' + wel.category + '</span>'+
+											'</div><div class="inc2">'+
+						                    '<p>官网利息：<number>'+wel.interest+'</number></p>'+
+						                    '<p>补贴收益：<number>+' + wel.benefit +
+											'</number></p><p>起投金额：' + wel.amount +
+											'</p><p>标期长度：' + wel.time + '</p></div></div></a>';
+									li.innerHTML = str_block;
 									ul.appendChild(li);
 								}
 							}

@@ -41,22 +41,12 @@
 		    </div>
 
 		</div>
-		<!--弹出二维码部分-->
-		<div id="ding_yue" class="er-wei-ma">
-			<div class="box">
-				<span id="close_01" class="mui-icon mui-icon-close"></span>
-				<p>长安识别图中二维码</p>
-				<img id="erweima_img"/>
-				<p id="erweima_title"></p>
-			</div>
-		</div>
 
 		<script src="../js/mui.js"></script>
 		<script src="../js/UserInfo.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
 			var id = '';
-			var ismobile = false;
 			var exp_url = '';
 			var accepted = null;
 			var url_accept_task = "http://test.wafuli.cn/app/accept_task/";
@@ -96,16 +86,9 @@
 						}
 						else{
 							var info = ret.taskinfo;
-							ismobile = info.ismobile;
 							document.getElementById('strategy').innerHTML = info.strategy;
 							document.getElementById('rules').innerHTML = info.rules;
-							if(ismobile){
-								document.getElementById('erweima_img').src = info.url;
-								document.getElementById('erweima_title').src = info.title;
-							}
-							else {
-								exp_url = info.url;
-							}
+							exp_url = info.url;
 							if(ret.accepted==1){
 								accepted = 1;
 								exp_btn.innerText="立即体验";
@@ -136,16 +119,11 @@
 				}
 				else{
 					if (accepted){
-						if(ismobile){
-							document.getElementById("ding_yue").style.display="block";
-						}
-						else {
-							var browserMainWebview = plus.webview.getWebviewById('browser_main');
-							var browserWebview = plus.webview.getWebviewById('browser_sub');
-							mui.fire(browserMainWebview, 'mui.view.beforeshow');
-							browserWebview.loadURL(exp_url);
-							browserMainWebview.show('pop-in', 200);
-						}
+						var browserMainWebview = plus.webview.getWebviewById('browser_main');
+						var browserWebview = plus.webview.getWebviewById('browser_sub');
+						mui.fire(browserMainWebview, 'mui.view.beforeshow');
+						browserWebview.loadURL(exp_url);
+						browserMainWebview.show('pop-in', 200);
 					}
 					else{
 						var btnArray = ['取消', '确认领取'];
@@ -215,9 +193,6 @@
 						mui.toast("请检查网络状况！");
 					}
 				});
-			});
-			document.getElementById("close_01").addEventListener('tap', function() {
-				document.getElementById("ding_yue").style.display="none";
 			});
 			reg_btn.addEventListener('tap', function() {
 				var sub_url = "m_expsubmit_task.html";
