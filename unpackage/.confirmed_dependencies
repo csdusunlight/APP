@@ -84,11 +84,13 @@
 			"css/mui.min.css",
 			"js/mui.js",
 			"fonts/wafuli-iconfont.woff",
-			"css/m_common.css"
+			"css/m_common.css",
+			"account/m_account_withdraw.html"
 		],
 		"refer": [
 			"account/m_account_charge.html",
-			"account/m_account_invite.html"
+			"account/m_account_invite.html",
+			"account/m_account_withdraw.html"
 		]
 	},
 	"m_index.html": {
@@ -219,7 +221,8 @@
 			"js/mui.pullToRefresh.material.js",
 			"css/mui.min.css",
 			"js/mui.js",
-			"css/m_common.css"
+			"css/m_common.css",
+			"fonts/mui.ttf"
 		]
 	},
 	"account/m_account_invite.html": {
@@ -231,7 +234,8 @@
 			"js/UserInfo.js",
 			"js/share.js",
 			"css/mui.min.css",
-			"css/m_common.css"
+			"css/m_common.css",
+			"fonts/mui.ttf"
 		]
 	},
 	"browser.html": {

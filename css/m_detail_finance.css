@@ -19,13 +19,13 @@
 	height: 1.6rem;
 	display: inline-block;
 	padding: 0 4px;
-	color: #ff6767;
+	color: #fff;
 	margin-left: 8px;
 	font-size: 1rem;
 	line-height: 1.6rem;
 	text-align: center;
-	border: 1px solid #fb3456;
-	border-radius: 4px;
+	background: #f08519;
+	border-radius: 2px;
 }
 .text-box {
 	margin-top: 0.6rem;
@@ -74,16 +74,16 @@
 .finance-table span{
 	display: inline-block;
 	line-height: 3;
-	border-bottom: 1px solid#e4e4e4;
-	
 }
 .table-head span {
 	font-size: 1.2rem;
 	color: #333;
+	border-bottom: 1px solid #ebebeb;
 }
 .table-list  span {
 	font-size: 1rem;
 	color: #777;
+	border-bottom: 1px solid #efefef;
 }
 .table-head span:nth-child(1),
 .table-list span:nth-child(1){
@@ -100,24 +100,6 @@
 .table-head span:nth-child(4),
 .table-list span:nth-child(4){
 	width: 27%;
-}
-.contact-qq {
-	display: inline-block;
-	margin: 2rem 1rem;
-	padding: 0 1rem;
-	font-size: 1.2rem;
-	line-height: 2.4;
-	color: #fff;
-	border-radius: 4px;
-	background-color: #52c5ff;
-}
-.contact-qq:active {
-	color: #fff;
-	background-color: #00a0ea;
-}
-.contact-qq:active {
-	color: #fff;
-	background-color: #00a0ea;
 }
 .taste h3, 
 .taste-02 h3,

@@ -444,7 +444,8 @@
 					"images/share-guide-bottom.png",
 					"images/person-bg.png",
 					"account/m_account_charge.html",
-					"account/m_account_invite.html"
+					"account/m_account_invite.html",
+					"account/m_account_withdraw.html"
 				],
 				"refer": [
 					"a_login.html",
@@ -452,7 +453,6 @@
 					"account/m_account_welfare.html",
 					"account/m_account_coupon.html",
 					"account/m_strategy.html",
-					"account/m_account_withdraw.html",
 					"account/m_account_change_password.html",
 					"account/m_account_change_zhifubao.html"
 				],
