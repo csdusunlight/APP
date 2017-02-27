@@ -265,7 +265,8 @@
 			"js/mui.pullToRefresh.material.js",
 			"css/m_common.css",
 			"css/mui.min.css",
-			"js/mui.js"
+			"js/mui.js",
+			"images/user.png"
 		]
 	},
 	"account/m_account_welfare.html": {
