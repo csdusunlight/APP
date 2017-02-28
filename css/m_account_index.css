@@ -121,7 +121,11 @@
 }
 .mui-table-view-cell>a:not(.mui-btn) {
 	display: block;
-	padding: 16px;
+	padding: 16px 0;
+}
+.mui-table-view-cell>div {
+	margin: -11px -15px;
+	padding: 16px 0;
 }
 .mui-table-view-cell:after {
 	height: 0;
