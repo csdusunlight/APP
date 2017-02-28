@@ -91,16 +91,16 @@
 					</a>
 				</li>
 				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
-					<button class="icon-url" target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=34f2461e64f2fb28ac36d1eab0d303760c68cdff632c46f62bd8abda313e30dc">
+					<div class="icon-url" id="joinqq">
 						<i class="icon iconfont" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=122142551&site=qq&menu=yes">&#xe62e;</i>
 						<p>加入QQ群</p>
-					</button>
+					</div>
 				</li>
 				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
-					<a class="icon-url" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=122142551&site=qq&menu=yes">
+					<div class="icon-url" id="talkqq">
 						<i class="icon iconfont">&#xe643;</i>
 						<p>QQ客服</p>
-					</a>
+					</div>
 				</li>
 
 			</ul>
@@ -251,19 +251,27 @@
 						}
 					});
 				}
-				function aa(){
+				document.getElementById("joinqq").addEventListener("tap",function(){
 					var key = 'sUJKIC0x0EDpNqUEZ_0c0woYDXmwVBYL';
-					
-					var uri = Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26k%3D" + key);
-					var intent = new Intent(uri);
+					var intent = new Intent();
+					// 获取主Activity对象的实例
 					var main = plus.android.runtimeMainActivity();
-					try{
-						main.startActivity(intent);
-					}catch(e){
-						mui.toast("未安装手Q或安装的版本不支持");
-					}
+					// 创建Intent
+					var uri = Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26k%3D" + key);
+					intent.setData(uri);
+					// 调用startActivity方法拨打电话
+					main.startActivity( intent );
 					
-				}
+				});
+				document.getElementById("talkqq").addEventListener("tap",function(){
+					var intent = new Intent();
+					var main = plus.android.runtimeMainActivity();
+					var qqUrl = "mqqwpa://im/chat?chat_type=wpa&uin=249558317&version=1"; 
+//					startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(qqUrl)));
+					var uri = Uri.parse(qqUrl);
+					intent.setData(uri);
+					main.startActivity( intent );
+				});
 			});
 			var qiandao_btn = document.getElementById("qiandao"),
 				add_jifen = document.getElementById("add_jifen");
