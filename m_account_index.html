@@ -91,10 +91,10 @@
 					</a>
 				</li>
 				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
-					<a class="icon-url" target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=34f2461e64f2fb28ac36d1eab0d303760c68cdff632c46f62bd8abda313e30dc">
+					<button class="icon-url" target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=34f2461e64f2fb28ac36d1eab0d303760c68cdff632c46f62bd8abda313e30dc">
 						<i class="icon iconfont" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=122142551&site=qq&menu=yes">&#xe62e;</i>
 						<p>加入QQ群</p>
-					</a>
+					</button>
 				</li>
 				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
 					<a class="icon-url" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=122142551&site=qq&menu=yes">
@@ -114,8 +114,12 @@
 			var get_userinfo_url = "http://test.wafuli.cn/app/user/";
 			var self = null;
 			var tempview = null;
+			var Intent = null;
+			var Uri = null;
 			mui.plusReady(function() {
 				self = plus.webview.currentWebview();
+				Intent = plus.android.importClass("android.content.Intent");
+				Uri = plus.android.importClass("android.net.Uri");
 				tempview = plus.webview.getWebviewById("temp");
 				self.addEventListener('show', function() {
 					if(!UserInfo.has_login()) {
@@ -247,9 +251,20 @@
 						}
 					});
 				}
+				function aa(){
+					var key = 'sUJKIC0x0EDpNqUEZ_0c0woYDXmwVBYL';
+					
+					var uri = Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26k%3D" + key);
+					var intent = new Intent(uri);
+					var main = plus.android.runtimeMainActivity();
+					try{
+						main.startActivity(intent);
+					}catch(e){
+						mui.toast("未安装手Q或安装的版本不支持");
+					}
+					
+				}
 			});
-		</script>
-		<script type="text/javascript">
 			var qiandao_btn = document.getElementById("qiandao"),
 				add_jifen = document.getElementById("add_jifen");
 			qiandao_btn.addEventListener("tap", function() {
