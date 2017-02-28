@@ -91,7 +91,7 @@
 				img = event.detail.img;
 				document.getElementById('picture').src = img;
 				//根据id向服务器请求新闻详情
-				var url_get_content = "http://test.wafuli.cn/app/detail/finance/";
+				var url_get_content = "http://m.wafuli.cn/app/detail/finance/";
 				mui.ajax({
 					url: url_get_content,
 					dataType: "json",
@@ -149,7 +149,7 @@
 				setTimeout(function() {
 					self.show();
 				}, 100);
-				var sss = 'share_msg.pictures=["' + img + '",];share_msg.thumbs=["' + img + '",];share_msg.href = "http://test.wafuli.cn/task/' + id + '/";';
+				var sss = 'share_msg.pictures=["' + img + '",];share_msg.thumbs=["' + img + '",];share_msg.href = "http://m.wafuli.cn/task/' + id + '/";';
 				self.parent().evalJS(sss);
 			});
 			exp_btn.addEventListener('tap', function() {

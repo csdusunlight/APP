@@ -81,7 +81,7 @@ pointer.addEventListener("tap", function() {
 mui('.btn_cont').on('tap', '.confirm_lottery', function() {
 	bRotate = true;
 	mui.ajax({
-		url: "http://test.wafuli.cn/activity/lottery/get_lottery/",
+		url: "http://m.wafuli.cn/activity/lottery/get_lottery/",
 		dataType:"json",
 		type:"post",
 		data:{

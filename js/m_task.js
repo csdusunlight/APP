@@ -1,5 +1,5 @@
 var task = [];
-var TASK_URL = 'http://test.wafuli.cn/app/Task/'; 
+var TASK_URL = 'http://m.wafuli.cn/app/Task/'; 
 (function($, task, websql) {
 //	var TIME_UPDATE = 'TIME_UPDATE';
 //	var TIME_PUBDATE = 'TIME_PUBDATE';

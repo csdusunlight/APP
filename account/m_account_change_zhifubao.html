@@ -41,7 +41,7 @@
 		<script src="../js/mui.js"></script>
 	    <script src="../js/UserInfo.js"></script>
 	    <script>
-	    	var sendtelcode_url = "http://test.wafuli.cn/account/phoneImageV/";
+	    	var sendtelcode_url = "http://m.wafuli.cn/account/phoneImageV/";
 		    mui.init({
 				swipeBack:true //启用右滑关闭功能
 			});
@@ -84,7 +84,7 @@
 				}
 				var csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
 				mui.ajax({
-					url: 'http://test.wafuli.cn/app/change_zhifubao/',
+					url: 'http://m.wafuli.cn/app/change_zhifubao/',
 					dataType:"json",
 					type:'POST',
 					data : {

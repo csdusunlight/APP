@@ -76,7 +76,7 @@
 			  //根据id向服务器请求新闻详情
 			  	if (type==="hongbao"){
 			  		exp_btn_ele.innerText="立即体验";
-			  		var url_get_content= "http://test.wafuli.cn/app/detail/hongbao/";
+			  		var url_get_content= "http://m.wafuli.cn/app/detail/hongbao/";
 			  		mui.ajax({
 						url:url_get_content,
 						dataType:"json",
@@ -103,7 +103,7 @@
 			  	}
 			  	else if (type==="youhuiquan"){
 			  		exp_btn_ele.innerText="立即领取";
-			  		var url_get_content= "http://test.wafuli.cn/app/detail/youhuiquan/";
+			  		var url_get_content= "http://m.wafuli.cn/app/detail/youhuiquan/";
 			  		mui.ajax({
 						url:url_get_content + "?id=" + id,
 						dataType:"json",
@@ -131,7 +131,7 @@
 			  	}
 			  	window.scrollTo(0, 0);
 				setTimeout(function(){self.show();},100);
-			  	var sss='share_msg.pictures=["' + img + '",];share_msg.thumbs=["' + img + '",];share_msg.href = "http://test.wafuli.cn/welfare/' + id + '/";';
+			  	var sss='share_msg.pictures=["' + img + '",];share_msg.thumbs=["' + img + '",];share_msg.href = "http://m.wafuli.cn/welfare/' + id + '/";';
 				self.parent().evalJS(sss);
 			});
 			exp_btn_ele.addEventListener('tap', function() {
@@ -147,7 +147,7 @@
 					browserMainWebview.show('slide-in-right', 200);
 				}
 				else if (type==="youhuiquan"){
-					var obtain_coupon_url = "http://test.wafuli.cn/app/obtain_youhuiquan/";
+					var obtain_coupon_url = "http://m.wafuli.cn/app/obtain_youhuiquan/";
 					mui.ajax({
 		    			url:obtain_coupon_url,
 		    			dataType:"json",
