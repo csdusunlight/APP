@@ -43,10 +43,10 @@
     <script type="text/javascript" charset="utf-8">
       	mui.init();
       	user = UserInfo.userinfo();
-      	var share_href = 'http://test.wafuli.cn/invite_accept?icode=' + user.invite_code;
+      	var share_href = 'http://m.wafuli.cn/invite_accept?icode=' + user.invite_code;
 		document.getElementById('share_link').innerText = share_href;
       	mui.ajax({
-			url: "http://test.wafuli.cn/app/get_invite_info/",
+			url: "http://m.wafuli.cn/app/get_invite_info/",
 			dataType:"json",
 			type:'POST',
 			data:{
@@ -70,7 +70,7 @@
 		});
       	document.getElementById("transfer_btn").addEventListener('tap', function() {
 			mui.ajax({
-				url: "http://test.wafuli.cn/app/invite_to_balance/",
+				url: "http://m.wafuli.cn/app/invite_to_balance/",
 				dataType:"json",
 				type:'POST',
 				data:{

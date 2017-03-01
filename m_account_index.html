@@ -29,12 +29,12 @@
 			<ul id="middle" class="mui-row row-middle">
 				<li class="first mui-table-view-cell mui-col-sm-4 mui-col-xs-4">
 					<a>
-						累计收益（元）<br /><br /><span><number id="accu_income"></number></span>
+						累计收益(福币)<br /><br /><span><number id="accu_income"></number></span>
 					</a>
 				</li>
 				<li class="mui-table-view-cell mui-col-sm-4 mui-col-xs-4">
 					<a>
-						现金余额（元）<br /><br /><span><number id="balance"></number></span>
+						剩余福币<br /><br /><span><number id="balance"></number></span>
 					</a>
 				</li>
 				<li class="mui-table-view-cell mui-col-sm-4 mui-col-xs-4">
@@ -45,58 +45,64 @@
 			</ul>
 
 			<ul class="mui-row row-bottom">
-				<li class="mui-table-view-cell mui-col-sm-4 mui-col-xs-4">
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
 					<a class="icon-url" href="account/m_account_withdraw.html">
 						<i class="icon iconfont">&#xe627;</i>
 						<p>提现</p>
 					</a>
 				</li>
 
-				<li class="mui-table-view-cell mui-col-sm-4 mui-col-xs-4">
-					<a class="icon-url" href="account/m_account_bind_zhifubao.html">
-						<i class="icon iconfont">&#xe635;</i>
-						<p>支付宝绑定</p>
-					</a>
-				</li>
-
-				<li class="mui-table-view-cell mui-col-sm-4 mui-col-xs-4">
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
 					<a class="icon-url" href="account/m_account_charge.html">
 						<i class="icon iconfont">&#xe632;</i>
 						<p>福币管理</p>
 					</a>
 				</li>
-				<li class="mui-table-view-cell mui-col-sm-4 mui-col-xs-4">
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
 					<a class="icon-url" href="account/m_account_score.html">
 						<i class="icon iconfont">&#xe60c;</i>
 						<p>积分管理</p>
 					</a>
 				</li>
 
-				<li class="mui-table-view-cell mui-col-sm-4 mui-col-xs-4">
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
 					<a class="icon-url" href="account/m_account_welfare.html">
 						<i class="icon iconfont">&#xe651;</i>
 						<p>福利管理</p>
 					</a>
 				</li>
-				<li class="mui-table-view-cell mui-col-sm-4 mui-col-xs-4">
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
 					<a class="icon-url" href="account/m_account_coupon.html">
 						<i class="icon iconfont">&#xe611;</i>
 						<p>优惠券管理</p>
 					</a>
 				</li>
 
-				<li class="mui-table-view-cell mui-col-sm-4 mui-col-xs-4">
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
 					<a class="icon-url" href="account/m_strategy.html">
 						<i class="icon iconfont">&#xe630;</i>
 						<p>挖福利攻略</p>
 					</a>
 				</li>
-				<li class="mui-table-view-cell mui-col-sm-4 mui-col-xs-4">
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
 					<a class="icon-url" href="account/m_account_invite.html">
 						<i class="icon iconfont">&#xe664;</i>
 						<p>邀请好友</p>
 					</a>
 				</li>
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
+					<div class="icon-url" id="joinqq">
+						<i class="icon iconfont" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=122142551&site=qq&menu=yes">&#xe62e;</i>
+						<p>加入QQ群</p>
+					</div>
+				</li>
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
+					<div class="icon-url" id="talkqq">
+						<i class="icon iconfont">&#xe643;</i>
+						<p>QQ客服</p>
+					</div>
+				</li>
+				
 
 			</ul>
 
@@ -106,11 +112,15 @@
 		<script type="text/javascript" charset="UTF-8" src="js/UserInfo.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
-			var get_userinfo_url = "http://test.wafuli.cn/app/user/";
+			var get_userinfo_url = "http://m.wafuli.cn/app/user/";
 			var self = null;
 			var tempview = null;
+			var Intent = null;
+			var Uri = null;
 			mui.plusReady(function() {
 				self = plus.webview.currentWebview();
+				Intent = plus.android.importClass("android.content.Intent");
+				Uri = plus.android.importClass("android.net.Uri");
 				tempview = plus.webview.getWebviewById("temp");
 				self.addEventListener('show', function() {
 					if(!UserInfo.has_login()) {
@@ -126,132 +136,186 @@
 				window.addEventListener('logoff-refresh', function() {
 					display_userinfo();
 				});
-
-				function display_userinfo(dict) {
-					if(!dict) {
-						document.getElementById('userimg').src = "images/user.png";
-						document.getElementById('mobile').innerText = "";
-						document.getElementById('scores').innerText = "";
-						document.getElementById('accu_income').innerHTML = "";
-						document.getElementById('balance').innerText = "";
-						document.getElementById('scores').innerText = "";
-					} else {
-						var img = "images/user-0" + dict.userimg + ".png";
-						document.getElementById('userimg').src = img;
-						document.getElementById('mobile').innerText = dict.mobile;
-						document.getElementById('scores').innerText = dict.scores;
-						document.getElementById('accu_income').innerHTML = dict.accu_income;
-						document.getElementById('balance').innerText = dict.balance
-						document.getElementById('scores').innerText = dict.scores;
+			});
+			function display_userinfo(dict) {
+				if(!dict) {
+					document.getElementById('userimg').src = "images/user.png";
+					document.getElementById('mobile').innerText = "";
+					document.getElementById('scores').innerText = "";
+					document.getElementById('accu_income').innerHTML = "";
+					document.getElementById('balance').innerText = "";
+					document.getElementById('scores').innerText = "";
+				} else {
+					var img = "images/user-0" + dict.userimg + ".png";
+					document.getElementById('userimg').src = img;
+					document.getElementById('mobile').innerText = dict.mobile;
+					document.getElementById('scores').innerText = dict.scores;
+					document.getElementById('accu_income').innerHTML = dict.accu_income;
+					document.getElementById('balance').innerText = dict.balance
+					document.getElementById('scores').innerText = dict.scores;
+					var isSigned = dict.isSigned;
+					if(isSigned=='1'){
+						qiandao_btn.innerHTML = "今日已签到";
+						qiandao_btn.disabled = "disabled";
 					}
 				}
-				mui('.row-bottom').on('tap', 'a', function(e) {
-					if(!UserInfo.has_login()) {
-						tologin();
-					} else {
-						var targetTab = this.getAttribute('href');
-						tempview.loadURL(targetTab);
-						setTimeout(function() {
-							tempview.show('pop-in');
-						}, 10);
-						//    				console.log(tempview.id);
-						//					mui.openWindow({
-						//			            url: targetTab,
-						//			            id: targetTab,
-						//			            styles: {
-						//			                top: 0,
-						//			                bottom: 0,
-						//			                hardwareAccelerated:true
-						//			            },
-						//			            show:{
-						//					      autoShow:false,//页面loaded事件发生后自动显示，默认为true
-						//					      aniShow: 'slide-in-right'
-						//					    },
-						//			            waiting: {
-						//							autoShow: true,
-						//						},
-						//			        });
-					}
-				});
-				document.getElementById("settings").addEventListener("tap", function(e) {
-					if(!UserInfo.has_login()) {
-						tologin();
-					} else {
-						if(!tempview) {
-							tempview = plus.webview.getWebviewById("temp");
-						}
-						tempview.loadURL("account/m_account_settings.html");
-						tempview.addEventListener('loaded', function() {
-							tempview.show('pop-in');
-						});
-						//					mui.openWindow({
-						//			            url: "account/m_account_settings.html",
-						//			            id: "account/m_account_settings.html",
-						//			            styles: {
-						//			                top: 0,
-						//			                bottom: 0,
-						//			                hardwareAccelerated:true
-						//			            },
-						//			            show:{
-						//					      autoShow:false,//页面loaded事件发生后自动显示，默认为true
-						//					      aniShow: 'slide-in-right'
-						//					    },
-						//			            waiting: {
-						//							autoShow: true,
-						//						},
-						//			        });
-					}
-				});
-
-				function tologin() {
-					plus.nativeUI.showWaiting();
-					localStorage.setItem('login-backid', self.id);
-					if(!tempview) {
-						return;
-					}
-					tempview.loadURL("a_login.html");
-					tempview.addEventListener('loaded', function() {
-						plus.nativeUI.closeWaiting();
-						tempview.show("pop-in", 350);
-					});
-				}
-
-				function refresh_userinfo() {
-					mui.ajax({
-						type: "post",
-						url: get_userinfo_url,
-						dataType: 'json',
-						data: {
-							token: UserInfo.token()
-						},
-						success: function(ret) {
-							if(ret.code == 0) {
-								var info = ret.info;
-								display_userinfo(info);
-								UserInfo.userinfo(info);
-							} else if(ret.code < 0) {
-								tologin();
-								UserInfo.clear();
-								return;
-							} else {
-								mui.alert(ret.msg);
-							}
-						},
-						error: function(xhr, type, errorThrown) {
-							mui.toast("请检查网络状况！");
-						}
-					});
+			}
+			mui('.row-bottom').on('tap', 'a', function(e) {
+				if(!UserInfo.has_login()) {
+					tologin();
+				} else {
+					var targetTab = this.getAttribute('href');
+					tempview.loadURL(targetTab);
+					setTimeout(function() {
+						tempview.show('pop-in');
+					}, 10);
+					//    				console.log(tempview.id);
+					//					mui.openWindow({
+					//			            url: targetTab,
+					//			            id: targetTab,
+					//			            styles: {
+					//			                top: 0,
+					//			                bottom: 0,
+					//			                hardwareAccelerated:true
+					//			            },
+					//			            show:{
+					//					      autoShow:false,//页面loaded事件发生后自动显示，默认为true
+					//					      aniShow: 'slide-in-right'
+					//					    },
+					//			            waiting: {
+					//							autoShow: true,
+					//						},
+					//			        });
 				}
 			});
-		</script>
-		<script type="text/javascript">
+			document.getElementById("settings").addEventListener("tap", function(e) {
+				if(!UserInfo.has_login()) {
+					tologin();
+				} else {
+					if(!tempview) {
+						tempview = plus.webview.getWebviewById("temp");
+					}
+					tempview.loadURL("account/m_account_settings.html");
+					tempview.addEventListener('loaded', function() {
+						tempview.show('pop-in');
+					});
+					//					mui.openWindow({
+					//			            url: "account/m_account_settings.html",
+					//			            id: "account/m_account_settings.html",
+					//			            styles: {
+					//			                top: 0,
+					//			                bottom: 0,
+					//			                hardwareAccelerated:true
+					//			            },
+					//			            show:{
+					//					      autoShow:false,//页面loaded事件发生后自动显示，默认为true
+					//					      aniShow: 'slide-in-right'
+					//					    },
+					//			            waiting: {
+					//							autoShow: true,
+					//						},
+					//			        });
+				}
+			});
+
+			function tologin() {
+				plus.nativeUI.showWaiting();
+				localStorage.setItem('login-backid', self.id);
+				if(!tempview) {
+					return;
+				}
+				tempview.loadURL("a_login.html");
+				tempview.addEventListener('loaded', function() {
+					plus.nativeUI.closeWaiting();
+					tempview.show("pop-in", 350);
+				});
+				UserInfo.clear();
+			}
+
+			function refresh_userinfo() {
+				mui.ajax({
+					type: "post",
+					url: get_userinfo_url,
+					dataType: 'json',
+					data: {
+						token: UserInfo.token()
+					},
+					success: function(ret) {
+						if(ret.code == 0) {
+							var info = ret.info;
+							display_userinfo(info);
+							UserInfo.userinfo(info);
+						} else if(ret.code < 0) {
+							tologin();
+							UserInfo.clear();
+							return;
+						} else {
+							mui.alert(ret.msg);
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						mui.toast("请检查网络状况！");
+					}
+				});
+			}
+			document.getElementById("joinqq").addEventListener("tap",function(){
+				var key = 'sUJKIC0x0EDpNqUEZ_0c0woYDXmwVBYL';
+				var intent = new Intent();
+				// 获取主Activity对象的实例
+				var main = plus.android.runtimeMainActivity();
+				// 创建Intent
+				var uri = Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26k%3D" + key);
+				intent.setData(uri);
+				// 调用startActivity方法拨打电话
+				main.startActivity( intent );
+				
+			});
+			document.getElementById("talkqq").addEventListener("tap",function(){
+				var intent = new Intent();
+				var main = plus.android.runtimeMainActivity();
+				var qqUrl = "mqqwpa://im/chat?chat_type=wpa&uin=122142551&version=1"; 
+				var uri = Uri.parse(qqUrl);
+				intent.setData(uri);
+				main.startActivity( intent );
+			});
+			
 			var qiandao_btn = document.getElementById("qiandao"),
 				add_jifen = document.getElementById("add_jifen");
 			qiandao_btn.addEventListener("tap", function() {
-				add_jifen.style.display = "block";
-				qiandao_btn.innerHTML = "今日已签到";
-				qiandao_btn.disabled = "disabled";
+				if(!UserInfo.has_login()) {
+					tologin();
+				}
+				else{
+					signin();
+				}
 			});
+			function signin(){
+	  			var url = "http://m.wafuli.cn/signin/";
+				mui.ajax({
+					type: "get",
+					url: url,
+					dataType: 'json',
+					data:{
+		    			token:UserInfo.token()
+		    		},
+					success: function(ret) {
+						if(ret.code==0){
+							add_jifen.style.display = "block";
+							qiandao_btn.innerHTML = "今日已签到";
+							qiandao_btn.disabled = "disabled";
+						}
+						else if (ret.code<0){
+							tologin();
+						}
+						else{
+							mui.alert(ret.msg);
+						}
+					},
+					error:function(xhr,type,errorThrown){
+						mui.toast("请检查网络状况！");
+					}
+				});
+	  		}
 		</script>
 	</body>
 

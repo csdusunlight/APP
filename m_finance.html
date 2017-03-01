@@ -55,8 +55,8 @@
 		<script type="text/javascript" charset="UTF-8" src="js/template.js"></script>
 		<script>
 			var table = document.body.querySelector('.mui-table-view');
-			var get_finance_url = "http://test.wafuli.cn/finance_json";
-			var host = "http://test.wafuli.cn";
+			var get_finance_url = "http://m.wafuli.cn/finance_json";
+			var host = "http://m.wafuli.cn";
 			var count = 0;
 			var template = null;
 			mui.init();
@@ -115,7 +115,11 @@
 										str_block += '<span>' + marks[j] + '</span>';
 									}
 									str_block += '</div><div class="container clearfix">'+
+<<<<<<< HEAD
 											'<div><img src="' + host + wel.picurl + '" /><span class="mark">' + wel.category + '</span>'+
+=======
+											'<div><img src="' + host + wel.picurl + '" />'+
+>>>>>>> 524db25773fb81347052485e73ef0d8850f9dff9
 											'</div><div class="inc2">'+
 						                    '<p>官网利息：<number>'+wel.interest+'</number></p>'+
 						                    '<p>补贴收益：<number>+' + wel.benefit +

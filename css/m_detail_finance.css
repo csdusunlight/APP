@@ -19,13 +19,13 @@
 	height: 1.6rem;
 	display: inline-block;
 	padding: 0 4px;
-	color: #ff6767;
-	margin-left: 8px;
+	color: #fff;
+	margin-right: 8px;
 	font-size: 1rem;
 	line-height: 1.6rem;
 	text-align: center;
-	border: 1px solid #fb3456;
-	border-radius: 4px;
+	background: #66cccc;
+	border-radius: 2px;
 }
 .text-box {
 	margin-top: 0.6rem;
@@ -51,19 +51,36 @@
 }
 
 .info {
+	padding: 1rem 0;
 	margin-top: 1rem;
 	background-color: #fff;
+}
+.info p {
+	margin-top: 0.8rem;
+}
+.info p:first-child {
+	margin-top: 0;
+}
+.info span {
+	color: #333;
+	font-size: 1.2rem;
+	line-height: 2.4rem;
 }
 .info p span:first-child {
 	display: inline-block;
 	width: 140px;
 	margin-left: 20px;
 }
+.info p span:last-child {
+	display: inline-block;
+	padding: 0 1rem;
+	border-radius: 1.2rem;
+	background: #e4e4e4;
+}
 
 .taste,
 .taste-02,
-.taste-03,
-.prompt {
+.taste-03 {
 	margin-top: 1rem;
 	padding: 0 1.875% 0;
 	background: #fff;
@@ -74,16 +91,16 @@
 .finance-table span{
 	display: inline-block;
 	line-height: 3;
-	border-bottom: 1px solid#e4e4e4;
-	
 }
 .table-head span {
 	font-size: 1.2rem;
 	color: #333;
+	border-bottom: 1px solid #ebebeb;
 }
 .table-list  span {
-	font-size: 1rem;
+	font-size: 1.2rem;
 	color: #777;
+	border-bottom: 1px solid #efefef;
 }
 .table-head span:nth-child(1),
 .table-list span:nth-child(1){
@@ -101,27 +118,8 @@
 .table-list span:nth-child(4){
 	width: 27%;
 }
-.contact-qq {
-	display: inline-block;
-	margin: 2rem 1rem;
-	padding: 0 1rem;
-	font-size: 1.2rem;
-	line-height: 2.4;
-	color: #fff;
-	border-radius: 4px;
-	background-color: #52c5ff;
-}
-.contact-qq:active {
-	color: #fff;
-	background-color: #00a0ea;
-}
-.contact-qq:active {
-	color: #fff;
-	background-color: #00a0ea;
-}
 .taste h3, 
-.taste-02 h3,
-.prompt h3 {
+.taste-02 h3 {
 	padding-top: 1rem;
 	padding-bottom: 1rem;
 	color: #222;
@@ -142,13 +140,57 @@
 p a {
 	color: #008FD7;
 }
-.prompt{
-	color: #FB3456 !important;
+/*温馨提示部分*/
+.kind-prompt {
+	width: 100%;
+	margin-top: 1.4rem;
+	padding: 0 1.875% 0;
 }
-.prompt .contact strong {
+.kind-prompt h5 {
+	font-size: 1.4rem;
+	text-align: center;
+	line-height: 2rem;
+	color: #8f8f8f;
+}
+.kind-prompt h5:before {
+	content: "";
+	float: left;
+	width: 34%;
+	height: 2px;
+	margin-top: 1.2rem;
+	background: #e4e4e4;
+	position: relative;
+	bottom: 0.3rem;
+}
+.kind-prompt h5:after {
+	content: "";
+	float: right;
+	width: 34%;
+	height: 2px;
+	margin-top: 1.2rem;
+	background: #e4e4e4;
+	position: relative;
+	bottom: 0.3rem;
+}
+.prompt-text {
+	padding: 0.6rem;
+	margin: 0.8rem 0;
+	border: 1px solid #bbb;
+	border-radius: 10px;
+}
+.prompt-text p {
 	font-size: 1.2rem;
-	color: #f29840;
-	line-height: 2rem;;
+	line-height: 1.8rem;
+	margin-bottom: 0.6rem;
+	color: #bbb;
+}
+.prompt-text p:last-child {
+	margin-bottom: 0;
+}
+.kind-prompt>p {
+		font-size: 1rem ;
+	line-height: 1.4rem;
+	color: #bbb;
 }
 /*立即体验部分*/
 .mui-row {
@@ -169,75 +211,7 @@ p a {
 }
 .right{
 }
-/*弹出层部分*/
-@-webkit-keyframes weixin {
-     0% {
-        -webkit-transform: scale(0) rotate(180deg);
-        transform: scale(0) rotate(180deg);
-        opacity: 0;
-     }          
-     100% {
-        -webkit-transform: scale(1) rotate(360deg);
-        transform: scale(1) rotate(360deg);
-        opacity: 1;
-     }
-}
-.er-wei-ma-bg {
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	width: 100%;
-	height: 100%;
-	display: none;
-	background-color: rgba(0,0,0,0.5);
-	z-index: 1000;
-}
-.weixin-box-00 {
-	display: none;
-	position: fixed;
-	width: 90% !important;
-	padding: 10% 0;
-	top: 20%;
-	margin-left: 5%;
-	background: #fff;
-	overflow: hidden;
-	z-index: 1001;
-}
-.weixin-box-01 {
-	position: fixed;
-	width: 90% !important;
-	padding: 10% 0;
-	top: 20%;
-	margin-left: 5%;
-	background: #fff;
-	overflow: hidden;
-	z-index: 1001;
-	animation: weixin 1s linear;
-	-webkit-animation: weixin 1s linear;
-}
-.weixin-box-02 {
-	display: none;
 
-}
-.weixin-box p {
-	font-size: 1.6rem;
-	color: #333;
-	text-align: center;
-}
-.weixin-box img {
-	text-align: center;
-	width: 90%;
-	margin-left: 5%;
-}
-.weixin-box span {
-	position: absolute;
-	left: 0.4rem;
-	top: 0.4rem;
-	font-size: 3rem;
-}
-.weixin-box span:active {
-	color: #ff6767;
-}
 /*样式替换*/
 .mui-btn-blue {
 	color: #fff;

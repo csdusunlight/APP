@@ -1,8 +1,8 @@
 var wa = [];
-var SLIDER_URL = 'http://test.wafuli.cn/app/slider/';
-var RECOM_URL = 'http://test.wafuli.cn/app/recom/';
-var NEWS_URL = 'http://test.wafuli.cn/app/news/';
-var TODAY_NUM_URL = 'http://test.wafuli.cn/app/get_today_num/'; 
+var SLIDER_URL = 'http://m.wafuli.cn/app/slider/';
+var RECOM_URL = 'http://m.wafuli.cn/app/recom/';
+var NEWS_URL = 'http://m.wafuli.cn/app/news/';
+var TODAY_NUM_URL = 'http://m.wafuli.cn/app/get_today_num/'; 
 (function($, wa, websql) {
 
 	var DB_VERSION_NUMBER = '1.0';

@@ -1,15 +1,13 @@
 .mui-content {
-	padding-bottom: 2rem;
+	padding-bottom: 5rem;
 	overflow: hidden;
 }
 .mui-content .top {
 	position: relative;
-	padding: 3rem 0 0rem;
+	padding: 2rem 0 0rem;
 	width: 100%;
-	height: 18rem;
+	height: 13rem;
 	background-color: #52c5ff;
-	background-size: auto 100%;
-	z-index: 100 !important;
 }
 .person-bg {
 	margin-top: -1px;
@@ -27,7 +25,7 @@
 }
 .top img {
 	display: block;
-	width: 28%;
+	width: 22%;
 	margin: 0 auto;
 	border: 2px solid #fff;
 	border-radius: 50%;
@@ -36,7 +34,7 @@
 	display: block;
 	text-align: center;
 	font-size: 1.4rem;
-	margin-top: 25px;
+	margin-top: 1.4rem;
 	color: #fff;	
 }
 .top number {
@@ -47,14 +45,13 @@
 	display: block;
 	width: 11rem;
 	height: 3rem;
-	margin: 30px auto 0;
+	margin: 1.4rem auto 0;
 	border-radius: 1.5rem;
 	color: #a0a0a0;
 }
 .qiandao:enabled:active,
 .qiandao.mui-active:enabled {
 	color: #a0a0a0;
-	/*border: 1px solid #00bd9d;*/
 	background-color: #fff;
 	transform: scale(1.2);
 }
@@ -62,7 +59,7 @@
 	display: none;
 	width: 100%;
 	position: absolute;
-	top: 16rem;
+	top: 13rem;
 	font-size: 2rem;
 	text-align: center;
 	color: #f08519;
@@ -83,8 +80,8 @@
      }
 }
 .row-middle {
-	padding-top: 2rem;
-	padding-bottom: 2rem;
+	padding-top: 1rem;
+	padding-bottom: 1rem;
 	background: #fff;
 	box-shadow: 0 2px 2px #e4e4e4;
 }
@@ -124,15 +121,19 @@
 }
 .mui-table-view-cell>a:not(.mui-btn) {
 	display: block;
-	padding: 16px;
+	padding: 16px 0;
+}
+.mui-table-view-cell>div {
+	margin: -11px -15px;
+	padding: 16px 0;
 }
 .mui-table-view-cell:after {
 	height: 0;
 }
 .icon-url i{
 	display: block;
-	color: #7a7d82;
-	font-size: 3rem;
+	color: #8f8f8f;
+	font-size: 2.6rem;
 	text-align: center;
 }
 .icon-url p {
