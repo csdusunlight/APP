@@ -188,23 +188,11 @@
 
 			document.getElementById('Btn').addEventListener("tap",function(){
 				plus.webview.currentWebview().loadURL("m_account_withdraw.html");
-//				mui.openWindow({
-//		            url: "m_account_withdraw.html",
-//		            id: "withdraw",
-//		            styles: {
-//		                top: 0,
-//		                bottom: 0
-//		            },
-//		            show: {
-//		            	autoShow:false,
-//		                aniShow: 'slide-in-right',
-//		            },
-//		            waiting: {
-//		                autoShow: false, //自动显示等待框
-//		                title: '正在加载...', //等待对话框上显示的提示内容
-//		            },
-//		        });
 			});
+			// 审核拒绝原因弹窗
+		    mui('.mui-table-view').on('tap','.review-refuse',function(){
+		        mui.alert('支付宝绑定不正确','审未通过原因','确定');
+		    });
 		</script>
 	</body>
 
