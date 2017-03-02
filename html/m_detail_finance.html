@@ -114,6 +114,7 @@
 							document.getElementById('rules').innerHTML = info.rules;
 							exp_url = info.url;
 							var mark_cont = document.getElementById("marks");
+							mark_cont.innerHTML="";
 							var mark_list = info.marks;
 							for (var i=0;i<mark_list.length;i++){
 								var li = document.createElement('span');
