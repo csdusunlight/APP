@@ -32,6 +32,7 @@
 	position:relative;
 	line-height:20px;
 	height: 6.8rem;
+	margin-right: 10px;
 	overflow: hidden;
 }
 .introduction {
@@ -100,11 +101,22 @@
 .table-list  span {
 	font-size: 1.2rem;
 	color: #777;
+	float: left;
+}
+.table-list {
+	overflow: hidden;
+	height: 3.6rem;
 	border-bottom: 1px solid #efefef;
+}
+.table-list span:nth-child(1){
+	line-height: 1.4rem;
+	margin-top: 1.8rem;
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
 }
 .table-head span:nth-child(1),
 .table-list span:nth-child(1){
-	width: 23%;
+	width: 30%;
 }
 .table-head span:nth-child(2),
 .table-list span:nth-child(2){
@@ -116,7 +128,7 @@
 }
 .table-head span:nth-child(4),
 .table-list span:nth-child(4){
-	width: 27%;
+	width: 20%;
 }
 .taste h3, 
 .taste-02 h3 {

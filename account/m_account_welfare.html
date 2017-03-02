@@ -33,7 +33,7 @@
 						</div>
 	                </li>
 	                <li class="list clearfix head">
-	                	<span class="li-01">项目</span>
+	                	<span id="Btn" class="li-01 Btn">项目</span>
 			            <span class="li-02">提交手机号</span>
 			            <span class="li-03">提交时间</span>
 			            <span class="li-04">状态</span>
@@ -158,6 +158,12 @@
 				}
 			});
 		})(mui);
+	</script>
+	<script type="text/javascript">
+		// 审核拒绝原因弹窗
+		mui('.mui-table-view').on('tap','.review-refuse',function(){
+			mui.alert('支付宝绑定不正确','审未通过原因','确定');
+		});
 	</script>
 </body>
 </html>
