@@ -154,12 +154,8 @@ button[disabled] {
 }
 .mui-table-view-cell {padding: 1rem 1.2rem;}
 .mui-segmented-control-inverted {
-	/*padding: 0 1.875% 0;*/
 	background-color: #fff;
 }
-/*.mui-slider-indicator a:not(:last-child) {
-	border-right: 1px solid #e4e4e4 !important;
-}*/
 .mui-slider .mui-segmented-control.mui-segmented-control-inverted~.mui-slider-group .mui-slider-item {
 	border: none;
 }
@@ -173,4 +169,15 @@ button[disabled] {
 .mui-pull-bottom-pocket {
 	position: absolute;
 	bottom: -40px;
+}
+/*样式覆盖*/
+.mui-popup-title {
+	display: block;
+}
+.review-refuse {
+	color: #ff6767;
+	text-decoration: underline;
+}
+.review-pass {
+	color: #00d6b3;
 }
