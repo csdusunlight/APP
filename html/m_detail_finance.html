@@ -123,6 +123,10 @@
 							}
 							var scheme = info.scheme;
 							var table = document.getElementById("scheme_table");
+							var childs = table.childNodes;
+							for(var i = childs.length-1;i>=1;i--){
+								table.removeChild(childs[i]);
+							}
 							for (var i=0;i<scheme.length;i++){
 								var item = scheme[i];
 								var str_html = '';
