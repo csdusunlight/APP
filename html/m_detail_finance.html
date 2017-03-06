@@ -123,8 +123,8 @@
 							}
 							var scheme = info.scheme;
 							var table = document.getElementById("scheme_table");
-							var childs = table.childNodes;
-							for(var i = childs.length-1;i>=1;i--){
+							var childs = table.getElementsByClassName("table-list");
+							for(var i = childs.length-1;i>=0;i--){
 								table.removeChild(childs[i]);
 							}
 							for (var i=0;i<scheme.length;i++){
