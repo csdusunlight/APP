@@ -7,7 +7,7 @@
 	"id": "H5139D07C",/*应用的标识，创建应用时自动生成，勿手动修改*/
 	"name": "挖福利",/*应用名称，程序桌面图标名称*/
 	"version": {
-		"name": "0.1",/*应用版本名称*/
+		"name": "0.2",/*应用版本名称*/
 		"code": "83"
 	},
 	"description": "",/*应用描述信息*/
@@ -92,7 +92,7 @@
 		"splashscreen": {
 			"autoclose": true,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
 			"waiting": true,
-			"delay": "2000"
+			"delay": "3000"
 		},
 		"runmode": "liberate",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
 		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保留给应用签名，暂不使用*/
@@ -184,7 +184,7 @@
 					"hdpi": "C:/Users/lch/Desktop/挖福利/splash/480x762.png","xhdpi":"C:/Users/lch/Desktop/挖福利/splash/720x1242.png","xxhdpi":"C:/Users/lch/Desktop/挖福利/splash/1080x1883 png-8.png"
 				}
 			},
-			"debug": true
+			"debug": false
 		}
 	},
 	"dependencies": {
@@ -208,7 +208,11 @@
 					null,
 					"js/mui.js",
 					"fonts/wafuli-iconfont.woff",
-					"css/m_common.css"
+					"css/m_common.css",
+					"fonts/wafuli-iconfont.eot",
+					"fonts/wafuli-iconfont.ttf",
+					"images/share-guide-top.png",
+					"images/share-guide-bottom.png"
 				],
 				"refer": [
 					"m_task.html",
@@ -243,7 +247,12 @@
 					"m_task_junior.html",
 					"js/mui.js",
 					"js/template.js",
-					"fonts/mui.ttf"
+					"fonts/mui.ttf",
+					"fonts/wafuli-iconfont.eot",
+					"fonts/wafuli-iconfont.woff",
+					"fonts/wafuli-iconfont.ttf",
+					"images/share-guide-top.png",
+					"images/share-guide-bottom.png"
 				],
 				"refer": [
 					"m_task_middle.html",
@@ -588,7 +597,8 @@
 					"js/mui.js"
 				],
 				"refer": [
-					"account/m_password_reset.html"
+					"account/m_password_reset.html",
+					"account/m_register.html"
 				],
 				"priority": 0
 			},
@@ -880,7 +890,8 @@
 					"js/mui.js"
 				],
 				"refer": [
-					"account/m_account_bind_zhifubao.html"
+					"account/m_account_bind_zhifubao.html",
+					"account/m_account_change_zhifubao.html"
 				],
 				"priority": 0
 			},
@@ -1053,7 +1064,10 @@
 					"account/m_aboutus_cooperation.html"
 				],
 				"refer": [
-					"account/m_detail_press.html"
+					"account/m_detail_press.html",
+					"account/m_aboutus_contactus.html",
+					"account/m_aboutus_statement.html",
+					"account/m_aboutus_cooperation.html"
 				],
 				"priority": 0
 			},
@@ -1102,7 +1116,10 @@
 					"images/bg-no.png"
 				],
 				"refer": [
-					"a_login.html"
+					"a_login.html",
+					"html/m_activity_lottery.html",
+					"account/m_account_exchange.html",
+					"account/m_exchange_morescore.html"
 				],
 				"priority": 0
 			},
@@ -1131,7 +1148,10 @@
 					"images/share-guide-top.png",
 					"images/share-guide-bottom.png"
 				],
-				"refer": [],
+				"refer": [
+					"html/m_activity_recommend.html",
+					"html/m_freshman_award.html"
+				],
 				"priority": 0
 			},
 			"html/m_detail_welfare.html": {
@@ -1348,7 +1368,8 @@
 					"fonts/wafuli-iconfont.svg",
 					"images/share-guide-top.png",
 					"images/share-guide-bottom.png",
-					"js/share.js"
+					"js/share.js",
+					"images/share_logo.jpg"
 				],
 				"refer": [
 					"a_login.html",
@@ -1438,7 +1459,8 @@
 					"fonts/wafuli-iconfont.svg",
 					"images/share-guide-top.png",
 					"images/share-guide-bottom.png",
-					"js/share.js"
+					"js/share.js",
+					"images/share_logo.jpg"
 				],
 				"refer": [
 					"a_login.html",
@@ -1522,7 +1544,15 @@
 			"account/m_exchange_morescore.html": {
 				"resources": [
 					"css/m_common_text.css",
-					"js/mui.min.js"
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"fonts/mui.ttf",
+					"css/m_common.css",
+					"fonts/wafuli-iconfont.eot",
+					"fonts/wafuli-iconfont.woff",
+					"fonts/wafuli-iconfont.ttf",
+					"images/share-guide-top.png",
+					"images/share-guide-bottom.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -1546,7 +1576,12 @@
 					"css/m_aboutus.css",
 					"fonts/mui.ttf",
 					"css/m_common.css",
-					"css/m_about.css"
+					"css/m_about.css",
+					"fonts/wafuli-iconfont.eot",
+					"fonts/wafuli-iconfont.woff",
+					"fonts/wafuli-iconfont.ttf",
+					"images/share-guide-top.png",
+					"images/share-guide-bottom.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -1559,7 +1594,12 @@
 					"css/m_common_text.css",
 					"fonts/mui.ttf",
 					"css/m_common.css",
-					"css/m_common_texts.css"
+					"css/m_common_texts.css",
+					"fonts/wafuli-iconfont.eot",
+					"fonts/wafuli-iconfont.woff",
+					"fonts/wafuli-iconfont.ttf",
+					"images/share-guide-top.png",
+					"images/share-guide-bottom.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -1572,7 +1612,12 @@
 					"account/m_strategy.html",
 					"fonts/mui.ttf",
 					"css/m_common.css",
-					"css/m_about.css"
+					"css/m_about.css",
+					"fonts/wafuli-iconfont.eot",
+					"fonts/wafuli-iconfont.woff",
+					"fonts/wafuli-iconfont.ttf",
+					"images/share-guide-top.png",
+					"images/share-guide-bottom.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -1584,7 +1629,6 @@
 				"images/task-jietu_04.png",
 				"images/login-icon-password.png",
 				"images/login-icon-invite.png",
-				"fonts/方正中等线简体.ttf",
 				"images/turntable-bg.jpg",
 				"images/logo.jpg",
 				"images/nav-5.png",
@@ -1608,7 +1652,6 @@
 				"images/newtitle2.png",
 				"images/new-1.png",
 				"images/user.jpg",
-				"images/热（合并）.png",
 				"images/pic_14.png",
 				"images/task-02.png",
 				"images/logo-9.png",
@@ -1695,7 +1738,6 @@
 				"images/newimg1.png",
 				"images/jf-out-02.png",
 				"images/pict_51.png",
-				"fonts/华康少女体 .ttf",
 				"images/my_pic2.png",
 				"images/nav1s.png",
 				"images/task-03.png",
@@ -1709,7 +1751,6 @@
 				"images/today-02.jpg",
 				"images/lottery.png",
 				"images/contpic1.png",
-				"css/m_expsubmit_finance.css",
 				"images/btn-1.png",
 				"images/pop.png",
 				"images/shape.png",
@@ -1724,24 +1765,22 @@
 				"images/zp.png",
 				"images/sin-picon-03.png",
 				"images/left-icon4.png",
-				"fonts/浪漫雅圆.ttf",
-				"images/left-step1.png",
 				"css/m_freshman_introduction.css",
 				"images/left-icon1.png",
-				"images/图层 4.png",
+				"images/left-step1.png",
 				"js/index.js",
 				"images/pic7.png",
 				"images/news-right-icon.png",
-				"images/task-01.jpg",
 				"images/picin.png",
-				"images/go-pc.png",
+				"images/task-01.jpg",
 				"images/t2.png",
+				"images/go-pc.png",
 				"images/login_banner.jpg",
 				"images/task-process-top.png",
 				"images/abg.png",
-				"images/nav-1.png",
-				"images/t3.png",
 				"images/top.png",
+				"images/t3.png",
+				"images/nav-1.png",
 				"images/pic_11.png",
 				"images/jf3.png",
 				"images/pic_08.png",
@@ -1769,8 +1808,8 @@
 				"images/out-02.png",
 				"images/task-jietu_03.png",
 				"images/jf4.png",
-				"images/share-qq.png",
 				"images/jf-in-02.png",
+				"images/share-qq.png",
 				"images/flow.png",
 				"images/left-step2.png",
 				"images/Sign.png",
@@ -1785,7 +1824,6 @@
 				"images/hone9.png",
 				"css/mui.css",
 				"images/pict_60.png",
-				"images/图层 227.png",
 				"images/pic2.png",
 				"images/numberg3.png",
 				"images/jf-in-01.png",
@@ -1820,7 +1858,6 @@
 				"images/headinfo.png",
 				"images/x-botin.png",
 				"images/numberg2.png",
-				"images/首页.jpg",
 				"images/numberg1.png",
 				"fonts/Helvetica.Ttf",
 				"css/m_activity_Christmas.css",
@@ -2082,6 +2119,11 @@
 	  "css/m_invite_accept.css",
 	  "css/m_login.css",
 	  "css/m_task_introduction.css",
-	  "images/back_to_top.png"
+	  "images/back_to_top.png",
+	  "a_wafuli_guide.html",
+	  "images/guide-index.png",
+	  "images/guide-free.png",
+	  "images/guide-task.png",
+	  "images/guide-finance.png"
 	]
 }
