@@ -123,6 +123,10 @@
 							}
 							var scheme = info.scheme;
 							var table = document.getElementById("scheme_table");
+							var childs = table.getElementsByClassName("table-list");
+							for(var i = childs.length-1;i>=0;i--){
+								table.removeChild(childs[i]);
+							}
 							for (var i=0;i<scheme.length;i++){
 								var item = scheme[i];
 								var str_html = '';
@@ -154,6 +158,10 @@
 				self.parent().evalJS(sss);
 			});
 			exp_btn.addEventListener('tap', function() {
+				if(!exp_url){
+					mui.alert("本项目仅限电脑端体验，请前往电脑端。","抱歉");
+					return;
+				}
 				if(!UserInfo.has_login()) {
 					tologin();
 				} else {
