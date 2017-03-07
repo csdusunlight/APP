@@ -114,6 +114,10 @@
 				self.parent().evalJS(sss);
 			});
 			exp_btn.addEventListener('tap', function() {
+				if(!exp_url){
+					mui.alert("本项目仅限电脑端体验，请前往电脑端。","抱歉");
+					return;
+				}
 				if (!UserInfo.has_login()){
 					tologin();
 				}
