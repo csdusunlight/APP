@@ -167,7 +167,6 @@
 		    plus.runtime.getProperty(plus.runtime.appid,function(inf){
 		        wgtVer=inf.version;
 		        checkUrl += "?version="+wgtVer;
-		        console.log("当前应用版本："+wgtVer);
 		        checkUpdate();
 		    });
 		}
@@ -179,7 +178,7 @@
 		
 		
 		function checkUpdate(){
-		    plus.nativeUI.showWaiting("检测更新...");
+//		    plus.nativeUI.showWaiting("检测更新...");
 		    var xhr=new XMLHttpRequest();
 		    xhr.onreadystatechange=function(){
 		        switch(xhr.readyState){
@@ -198,10 +197,11 @@
 				    				}
 				    			});
 			                }else{
-			                    plus.nativeUI.alert("无新版本可更新！");
+			                	return;
+//			                    plus.nativeUI.alert("无新版本可更新！");
 			                }
 			            }else{
-			                console.log("检测更新失败！");
+//			                console.log("检测更新失败！");
 			                plus.nativeUI.alert("检测更新失败！");
 			            }
 		            	break;
