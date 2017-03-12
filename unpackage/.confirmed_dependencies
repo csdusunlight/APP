@@ -6,7 +6,8 @@
       "js/UserInfo.js",
       "css/m_common.css",
       "css/mui.min.css",
-      "js/mui.js"
+      "js/mui.js",
+      "fonts/wafuli-iconfont.woff"
     ],
     "refer": [
       "html/m_expsubmit_task.html",
