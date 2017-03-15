@@ -40,8 +40,11 @@
 		<!--弹窗部分-->
 		<script type="text/javascript" charset="utf-8">
 			var id = '';
-			var self = '';
+//			var self = '';
 	      	mui.init();
+	      	mui.plusReady(function(){
+	      		id = plus.webview.currentWebview().sub_id;
+	      	});
 			document.getElementById("submit_btn").addEventListener('tap', function() {
 				var telnum = document.getElementById('telnum').value;
 				var remark = document.getElementById('remark').value;
@@ -65,7 +68,6 @@
 					url:"http://m.wafuli.cn/app/submit_finance/",
 					type:'post',
 					data:{
-						'type':type,
 						'id':id,
 						'amount':amount,
 						'term':term,
