@@ -370,7 +370,9 @@
 					"html/m_activity_recom_info.html",
 					"account/m_account_exchange.html",
 					"account/m_exchange_morescore.html",
-					"account/m_account_bind_zhifubao.html"
+					"account/m_account_bind_zhifubao.html",
+					"account/m_joinQQGroup.html",
+					"account/m_custom_service.html"
 				],
 				"priority": 0
 			},
@@ -597,8 +599,7 @@
 					"js/mui.js"
 				],
 				"refer": [
-					"account/m_password_reset.html",
-					"account/m_register.html"
+					"account/m_password_reset.html"
 				],
 				"priority": 0
 			},
@@ -1618,6 +1619,18 @@
 					"fonts/wafuli-iconfont.ttf",
 					"images/share-guide-top.png",
 					"images/share-guide-bottom.png"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/m_joinQQGroup.html": {
+				"resources": [
+					"css/m_detail_press.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/mui.js",
+					"fonts/wafuli-iconfont.woff",
+					"css/m_common.css"
 				],
 				"refer": [],
 				"priority": 0
