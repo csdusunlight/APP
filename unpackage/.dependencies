@@ -1,19 +1,49 @@
 {
-  "m_task.html": {
-    "href": "m_task.html",
+  "account/m_joinQQGroup.html": {
+    "href": "account/m_joinQQGroup.html",
     "resources": [
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "css/m_common.css",
       "fonts/wafuli-iconfont.eot",
       "fonts/wafuli-iconfont.woff",
       "fonts/wafuli-iconfont.ttf",
       "images/share-guide-top.png",
-      "images/share-guide-bottom.png"
+      "images/share-guide-bottom.png",
+      "css/m_detail_press.css",
+      "js/mui.js"
     ],
-    "refer": [],
+    "priority": 9
+  },
+  "account/m_custom_service.html": {
+    "href": "account/m_custom_service.html",
+    "resources": [
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "css/m_common.css",
+      "fonts/wafuli-iconfont.eot",
+      "fonts/wafuli-iconfont.woff",
+      "fonts/wafuli-iconfont.ttf",
+      "images/share-guide-top.png",
+      "images/share-guide-bottom.png",
+      "js/mui.js"
+    ],
+    "priority": 10
+  },
+  "m_account_index.html": {
+    "href": "m_account_index.html",
+    "resources": [],
+    "refer": [
+      "account/m_joinQQGroup.html",
+      "account/m_custom_service.html"
+    ],
     "priority": 0
   },
-  "account/m_exchange_morescore.html": {
-    "href": "account/m_exchange_morescore.html",
+  "m_index.html": {
+    "href": "m_index.html",
     "resources": [
+      "js/mui.min.js",
+      "js/mui.js",
       "css/mui.min.css",
       "fonts/mui.ttf",
       "css/m_common.css",
@@ -23,85 +53,12 @@
       "images/share-guide-top.png",
       "images/share-guide-bottom.png"
     ],
-    "priority": 6
-  },
-  "html/m_activity_lottery.html": {
-    "href": "html/m_activity_lottery.html",
-    "resources": [
-      "images/share_logo.jpg"
-    ],
-    "refer": [],
-    "priority": 5
-  },
-  "account/m_aboutus_contactus.html": {
-    "href": "account/m_aboutus_contactus.html",
-    "resources": [
-      "fonts/wafuli-iconfont.eot",
-      "fonts/wafuli-iconfont.woff",
-      "fonts/wafuli-iconfont.ttf",
-      "images/share-guide-top.png",
-      "images/share-guide-bottom.png"
-    ],
-    "priority": 9
-  },
-  "account/m_aboutus_statement.html": {
-    "href": "account/m_aboutus_statement.html",
-    "resources": [
-      "fonts/wafuli-iconfont.eot",
-      "fonts/wafuli-iconfont.woff",
-      "fonts/wafuli-iconfont.ttf",
-      "images/share-guide-top.png",
-      "images/share-guide-bottom.png"
-    ],
-    "priority": 10
-  },
-  "account/m_aboutus_cooperation.html": {
-    "href": "account/m_aboutus_cooperation.html",
-    "resources": [
-      "fonts/wafuli-iconfont.eot",
-      "fonts/wafuli-iconfont.woff",
-      "fonts/wafuli-iconfont.ttf",
-      "images/share-guide-top.png",
-      "images/share-guide-bottom.png"
-    ],
-    "priority": 11
-  },
-  "html/m_activity_recommend.html": {
-    "href": "html/m_activity_recommend.html",
-    "resources": [
-      "images/share_logo.jpg"
-    ],
-    "refer": [],
-    "priority": 3
-  },
-  "account/m_signin.html": {
-    "href": "account/m_signin.html",
-    "resources": [],
     "refer": [
-      "html/m_activity_lottery.html",
-      "account/m_account_exchange.html",
-      "account/m_exchange_morescore.html"
+      "m_account_index.html",
+      "m_task.html",
+      "m_welfare.html",
+      "m_finance.html"
     ],
-    "priority": 8
-  },
-  "html/m_activity.html": {
-    "href": "html/m_activity.html",
-    "resources": [],
-    "refer": [
-      "html/m_activity_recommend.html",
-      "html/m_freshman_award.html"
-    ],
-    "priority": 9
-  },
-  "m_index.html": {
-    "href": "m_index.html",
-    "resources": [
-      "fonts/wafuli-iconfont.eot",
-      "fonts/wafuli-iconfont.ttf",
-      "images/share-guide-top.png",
-      "images/share-guide-bottom.png"
-    ],
-    "refer": [],
     "priority": 0
   }
 }
