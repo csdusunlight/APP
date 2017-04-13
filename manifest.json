@@ -1634,6 +1634,17 @@
 				],
 				"refer": [],
 				"priority": 0
+			},
+			"account/m_custom_service.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/mui.js",
+					"fonts/wafuli-iconfont.woff",
+					"css/m_common.css"
+				],
+				"refer": [],
+				"priority": 0
 			}
 		},
 		"idle": {

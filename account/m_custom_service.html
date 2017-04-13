@@ -49,18 +49,49 @@
 		</header>
 		<div class="mui-content qq-detail">
 			<p><i class="icon iconfont">&#xe643;</i>
-				<a class="qq-free" href="http://wpa.qq.com/msgrd?v=3&uin=2339019773&site=qq&menu=yes">免费福利客服</a>
+				<a id="qq_free" class="qq-free">免费福利客服</a>
 			</p>
 			<p><i class="icon iconfont">&#xe643;</i>
-				<a class="qq-task" href="http://wpa.qq.com/msgrd?v=3&uin=3327058376&site=qq&menu=yes">体验福利客服</a>
+				<a id="qq_task" class="qq-task">体验福利客服</a>
 			</p>
 			<p><i class="icon iconfont">&#xe643;</i>
-				<a class="qq-finance" href="http://wpa.qq.com/msgrd?v=3&uin=2468016671&site=qq&menu=yes">理财福利客服</a>
+				<a id="qq_finance" class="qq-finance">理财福利客服</a>
 			</p>
 		</div>
 		<script src="../js/mui.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
+			var Intent = null;
+			var Uri = null;
+			mui.plusReady(function() {
+				Intent = plus.android.importClass("android.content.Intent");
+				Uri = plus.android.importClass("android.net.Uri");
+			});
+			
+			document.getElementById("qq_free").addEventListener("tap",function(){
+				var intent = new Intent();
+				var main = plus.android.runtimeMainActivity();
+				var qqUrl = "mqqwpa://im/chat?chat_type=wpa&uin=2339019773&version=1"; 
+				var uri = Uri.parse(qqUrl);
+				intent.setData(uri);
+				main.startActivity( intent );
+			});
+			document.getElementById("qq_task").addEventListener("tap",function(){
+				var intent = new Intent();
+				var main = plus.android.runtimeMainActivity();
+				var qqUrl = "mqqwpa://im/chat?chat_type=wpa&uin=3327058376&version=1"; 
+				var uri = Uri.parse(qqUrl);
+				intent.setData(uri);
+				main.startActivity( intent );
+			});
+			document.getElementById("qq_finance").addEventListener("tap",function(){
+				var intent = new Intent();
+				var main = plus.android.runtimeMainActivity();
+				var qqUrl = "mqqwpa://im/chat?chat_type=wpa&uin=2468016671&version=1"; 
+				var uri = Uri.parse(qqUrl);
+				intent.setData(uri);
+				main.startActivity( intent );
+			});
 		</script>
 	</body>
 

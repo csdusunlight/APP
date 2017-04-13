@@ -50,19 +50,49 @@
 		</header>
 		<div class="mui-content qq-detail">
 			<p><i class="icon iconfont">&#xe62e;</i>
-				<a class="qq-free" href="http://shang.qq.com/wpa/qunwpa?idkey=ede716c292b3169b840ddd58778f17bc124efce83022365731f7c29ce2d22e7f">免费福利群</a>
+				<a id="qq_free" class="qq-free">免费福利群</a>
 			</p>
 			<p><i class="icon iconfont">&#xe62e;</i>
-				<a class="qq-task" href="http://shang.qq.com/wpa/qunwpa?idkey=3835251b8bc58f6277bcdfce3a12538586542df8a432cf799ed7c67bd56fdc9f">体验福利群</a>
+				<a id="qq_task" class="qq-task">体验福利群</a>
 			</p>
 			<p><i class="icon iconfont">&#xe62e;</i>
-				<a class="qq-finance" href="http://shang.qq.com/wpa/qunwpa?idkey=bb1d17133b125893edd6e1467ef1ff9dd5edd0355ad6b525f208ebbe48fffce5">理财福利群</a>
+				<a id="qq_finance" class="qq-finance">理财福利群</a>
 			</p>
 		</div>
 		<script src="../js/mui.js"></script>
-		<script type="text/javascript" charset="UTF-8" src="js/UserInfo.js"></script>
 		<script type="text/javascript" charset="utf-8">
 			mui.init();
+			var Intent = null;
+			var Uri = null;
+			mui.plusReady(function() {
+				Intent = plus.android.importClass("android.content.Intent");
+				Uri = plus.android.importClass("android.net.Uri");
+			});
+			
+				document.getElementById("qq_free").addEventListener("tap",function(){
+					var key = 'fKoxQYwKEmCn8cdR3M4Il4nlnvAGaBjw';
+					var intent = new Intent();
+					var main = plus.android.runtimeMainActivity();
+					var uri = Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26k%3D" + key);
+					intent.setData(uri);
+					main.startActivity( intent );					
+				});
+				document.getElementById("qq_task").addEventListener("tap",function(){
+					var key = '0xOibzcgKTRuL0dYGmCZ30bAduJ5XYso';
+					var intent = new Intent();
+					var main = plus.android.runtimeMainActivity();
+					var uri = Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26k%3D" + key);
+					intent.setData(uri);
+					main.startActivity( intent );					
+				});
+				document.getElementById("qq_finance").addEventListener("tap",function(){
+					var key = '26liICOOlTeOOJBv4fO8GhRwV_FenXa7';
+					var intent = new Intent();
+					var main = plus.android.runtimeMainActivity();
+					var uri = Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26k%3D" + key);
+					intent.setData(uri);
+					main.startActivity( intent );					
+				});
 		</script>
 	</body>
 

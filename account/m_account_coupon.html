@@ -82,7 +82,15 @@
 				
 				<div class="mui-input-row">
 					<label>账号</label>
-					<input id="telnum" type="text" placeholder="请输入投资账号">
+					<input id="telnum" type="text" placeholder="请输入投资手机号">
+				</div>
+				<div class="mui-input-row">
+					<label>金额</label>
+					<input id="amount" type="text" placeholder="请输入投资金额">
+				</div>
+				<div class="mui-input-row">
+					<label>标期</label>
+					<input id="term" type="text" placeholder="请输入投资标期">
 				</div>
 				<div class="mui-input-row">
 					<label>备注</label>
@@ -291,22 +299,17 @@
 				return;
 			}
 			amount = parseFloat(amount);
-			var csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
 			mui.ajax({
 				url:use_coupon_url,
 				dataType:"json",
 				type:"POST",
 				data : {
-//					id: coupon_id,
-//					telnum: telnum,
-//					remark: remark,
-//					token:UserInfo.token()
 					id: coupon_id,
 					telnum: telnum,
 					remark: remark,
 					amount: amount,
 					term: term,
-					csrfmiddlewaretoken:csrfmiddlewaretoken
+					token:UserInfo.token()
 				},
 				success:function(ret){
 					mui.alert(ret.msg);
