@@ -1,57 +1,106 @@
 {
   "m_task.html": {
     "href": "m_task.html",
-    "resources": [],
+    "resources": [
+      "fonts/wafuli-iconfont.eot",
+      "fonts/wafuli-iconfont.woff",
+      "fonts/wafuli-iconfont.ttf",
+      "images/share-guide-top.png",
+      "images/share-guide-bottom.png"
+    ],
     "refer": [],
     "priority": 0
   },
   "account/m_exchange_morescore.html": {
     "href": "account/m_exchange_morescore.html",
-    "resources": [],
+    "resources": [
+      "css/mui.min.css",
+      "fonts/mui.ttf",
+      "css/m_common.css",
+      "fonts/wafuli-iconfont.eot",
+      "fonts/wafuli-iconfont.woff",
+      "fonts/wafuli-iconfont.ttf",
+      "images/share-guide-top.png",
+      "images/share-guide-bottom.png"
+    ],
     "priority": 6
   },
   "html/m_activity_lottery.html": {
     "href": "html/m_activity_lottery.html",
-    "resources": [],
+    "resources": [
+      "images/share_logo.jpg"
+    ],
     "refer": [],
     "priority": 5
   },
   "account/m_aboutus_contactus.html": {
     "href": "account/m_aboutus_contactus.html",
-    "resources": [],
+    "resources": [
+      "fonts/wafuli-iconfont.eot",
+      "fonts/wafuli-iconfont.woff",
+      "fonts/wafuli-iconfont.ttf",
+      "images/share-guide-top.png",
+      "images/share-guide-bottom.png"
+    ],
     "priority": 9
   },
   "account/m_aboutus_statement.html": {
     "href": "account/m_aboutus_statement.html",
-    "resources": [],
+    "resources": [
+      "fonts/wafuli-iconfont.eot",
+      "fonts/wafuli-iconfont.woff",
+      "fonts/wafuli-iconfont.ttf",
+      "images/share-guide-top.png",
+      "images/share-guide-bottom.png"
+    ],
     "priority": 10
   },
   "account/m_aboutus_cooperation.html": {
     "href": "account/m_aboutus_cooperation.html",
-    "resources": [],
+    "resources": [
+      "fonts/wafuli-iconfont.eot",
+      "fonts/wafuli-iconfont.woff",
+      "fonts/wafuli-iconfont.ttf",
+      "images/share-guide-top.png",
+      "images/share-guide-bottom.png"
+    ],
     "priority": 11
   },
   "html/m_activity_recommend.html": {
     "href": "html/m_activity_recommend.html",
-    "resources": [],
+    "resources": [
+      "images/share_logo.jpg"
+    ],
     "refer": [],
     "priority": 3
   },
   "account/m_signin.html": {
     "href": "account/m_signin.html",
     "resources": [],
-    "refer": [],
+    "refer": [
+      "html/m_activity_lottery.html",
+      "account/m_account_exchange.html",
+      "account/m_exchange_morescore.html"
+    ],
     "priority": 8
   },
   "html/m_activity.html": {
     "href": "html/m_activity.html",
     "resources": [],
-    "refer": [],
+    "refer": [
+      "html/m_activity_recommend.html",
+      "html/m_freshman_award.html"
+    ],
     "priority": 9
   },
   "m_index.html": {
     "href": "m_index.html",
-    "resources": [],
+    "resources": [
+      "fonts/wafuli-iconfont.eot",
+      "fonts/wafuli-iconfont.ttf",
+      "images/share-guide-top.png",
+      "images/share-guide-bottom.png"
+    ],
     "refer": [],
     "priority": 0
   }
