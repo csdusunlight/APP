@@ -354,7 +354,8 @@
       "fonts/mui.ttf",
       "css/mui.min.css",
       "js/mui.js",
-      "css/m_common.css"
+      "css/m_common.css",
+      "account/m_account_withdraw.html"
     ],
     "refer": []
   },
@@ -683,7 +684,9 @@
       "css/m_account_zhifubao.css",
       "js/mui.js",
       "js/UserInfo.js",
-      "images/zhifubao.png"
+      "images/zhifubao.png",
+      "fonts/mui.ttf",
+      "account/m_account_withdraw.html"
     ],
     "refer": [],
     "priority": 0

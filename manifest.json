@@ -887,12 +887,10 @@
 					"fonts/wafuli-iconfont.svg",
 					"images/share-guide-top.png",
 					"images/share-guide-bottom.png",
-					"js/mui.js"
+					"js/mui.js",
+					"account/m_account_bind_zhifubao.html"
 				],
-				"refer": [
-					"account/m_account_bind_zhifubao.html",
-					"account/m_account_change_zhifubao.html"
-				],
+				"refer": [],
 				"priority": 0
 			},
 			"account/m_account_settings.html": {
@@ -1392,7 +1390,8 @@
 					"css/m_account_zhifubao.css",
 					"js/mui.js",
 					"js/UserInfo.js",
-					"images/zhifubao.png"
+					"images/zhifubao.png",
+					"account/m_account_withdraw.html"
 				],
 				"priority": 2,
 				"refer": []
