@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <link href="../css/mui.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" type="text/css" href="../css/m_common.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/m_detail_press.css"/>
+    <style>
+			body,.mui-content{background: #fff;}
+			.qq-detail {
+				margin-top: 20px;
+			}
+			
+			.qq-detail p {
+				line-height: 50px;
+			}
+			
+			.qq-detail a {
+				display: inline-block;
+				width: 80%;
+				border-bottom: 1px solid #e4e4e4;
+				line-height: 50px;
+				font-size: 16px;
+				color: #777;
+			}
+			
+			.qq-detail .iconfont {
+				display: inline-block;
+				width: 10%;
+				margin-left: 4%;
+				text-align: center;
+				font-size: 32px;
+				line-height: 50px;
+				color: #8f8f8f;
+				vertical-align: middle;
+			}
+			
+			
+			.on .iconfont {
+				color: #f08519;
+			}
+		</style>
+</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title" id="htitle">加入QQ群</h1>
+		</header>
+		<div class="mui-content qq-detail">
+			<p><i class="icon iconfont">&#xe62e;</i>
+				<a id="qq_free" class="qq-free">免费福利群</a>
+			</p>
+			<p><i class="icon iconfont">&#xe62e;</i>
+				<a id="qq_task" class="qq-task">体验福利群</a>
+			</p>
+			<p><i class="icon iconfont">&#xe62e;</i>
+				<a id="qq_finance" class="qq-finance">理财福利群</a>
+			</p>
+		</div>
+		<script src="../js/mui.js"></script>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			var Intent = null;
+			var Uri = null;
+			mui.plusReady(function() {
+				Intent = plus.android.importClass("android.content.Intent");
+				Uri = plus.android.importClass("android.net.Uri");
+			});
+			
+				document.getElementById("qq_free").addEventListener("tap",function(){
+					var key = 'fKoxQYwKEmCn8cdR3M4Il4nlnvAGaBjw';
+					var intent = new Intent();
+					var main = plus.android.runtimeMainActivity();
+					var uri = Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26k%3D" + key);
+					intent.setData(uri);
+					main.startActivity( intent );					
+				});
+				document.getElementById("qq_task").addEventListener("tap",function(){
+					var key = '0xOibzcgKTRuL0dYGmCZ30bAduJ5XYso';
+					var intent = new Intent();
+					var main = plus.android.runtimeMainActivity();
+					var uri = Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26k%3D" + key);
+					intent.setData(uri);
+					main.startActivity( intent );					
+				});
+				document.getElementById("qq_finance").addEventListener("tap",function(){
+					var key = '26liICOOlTeOOJBv4fO8GhRwV_FenXa7';
+					var intent = new Intent();
+					var main = plus.android.runtimeMainActivity();
+					var uri = Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26k%3D" + key);
+					intent.setData(uri);
+					main.startActivity( intent );					
+				});
+		</script>
+	</body>
+
+</html>

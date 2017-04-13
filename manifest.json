@@ -7,7 +7,7 @@
 	"id": "H5139D07C",/*应用的标识，创建应用时自动生成，勿手动修改*/
 	"name": "挖福利",/*应用名称，程序桌面图标名称*/
 	"version": {
-		"name": "1.3",/*应用版本名称*/
+		"name": "1.4",/*应用版本名称*/
 		"code": "83"
 	},
 	"description": "",/*应用描述信息*/
@@ -184,7 +184,7 @@
 					"hdpi": "unpackage/res/splash/480x762.png","xhdpi":"unpackage/res/splash/720x1242.png","xxhdpi":"unpackage/res/splash/1080x1882 png-24.png"
 				}
 			},
-			"debug": false
+			"debug": true
 		}
 	},
 	"dependencies": {
@@ -370,7 +370,9 @@
 					"html/m_activity_recom_info.html",
 					"account/m_account_exchange.html",
 					"account/m_exchange_morescore.html",
-					"account/m_account_bind_zhifubao.html"
+					"account/m_account_bind_zhifubao.html",
+					"account/m_joinQQGroup.html",
+					"account/m_custom_service.html"
 				],
 				"priority": 0
 			},
@@ -597,8 +599,7 @@
 					"js/mui.js"
 				],
 				"refer": [
-					"account/m_password_reset.html",
-					"account/m_register.html"
+					"account/m_password_reset.html"
 				],
 				"priority": 0
 			},
@@ -1620,6 +1621,29 @@
 				],
 				"refer": [],
 				"priority": 0
+			},
+			"account/m_joinQQGroup.html": {
+				"resources": [
+					"css/m_detail_press.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/mui.js",
+					"fonts/wafuli-iconfont.woff",
+					"css/m_common.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/m_custom_service.html": {
+				"resources": [
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/mui.js",
+					"fonts/wafuli-iconfont.woff",
+					"css/m_common.css"
+				],
+				"refer": [],
+				"priority": 0
 			}
 		},
 		"idle": {
@@ -2123,6 +2147,8 @@
 	  "images/guide-index.png",
 	  "images/guide-free.png",
 	  "images/guide-task.png",
-	  "images/guide-finance.png"
+	  "images/guide-finance.png",
+	  "images/user-00.png",
+	  "images/user-02.png"
 	]
 }

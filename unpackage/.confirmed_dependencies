@@ -58,7 +58,9 @@
       "html/m_activity_recom_submit.html",
       "html/m_information.html",
       "account/m_exchange_morescore.html",
-      "account/m_account_exchange.html"
+      "account/m_account_exchange.html",
+      "account/m_joinQQGroup.html",
+      "account/m_custom_service.html"
     ]
   },
   "html/m_detail_finance.html": {
@@ -289,7 +291,8 @@
       "js/mui.pullToRefresh.material.js",
       "js/UserInfo.js",
       "css/mui.min.css",
-      "css/m_common.css"
+      "css/m_common.css",
+      "fonts/mui.ttf"
     ],
     "refer": []
   },
@@ -716,5 +719,24 @@
     ],
     "refer": [],
     "priority": 0
+  },
+  "account/m_joinQQGroup.html": {
+    "resources": [
+      "css/m_detail_press.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/mui.js",
+      "fonts/wafuli-iconfont.woff",
+      "css/m_common.css"
+    ]
+  },
+  "account/m_custom_service.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/mui.js",
+      "fonts/wafuli-iconfont.woff",
+      "css/m_common.css"
+    ]
   }
 }

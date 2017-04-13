@@ -91,18 +91,17 @@
 					</a>
 				</li>
 				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
-					<div class="icon-url" id="joinqq">
-						<i class="icon iconfont" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=122142551&site=qq&menu=yes">&#xe62e;</i>
+					<a class="icon-url" href="account/m_joinQQGroup.html">
+						<i class="icon iconfont">&#xe62e;</i>
 						<p>加入QQ群</p>
-					</div>
+					</a>
 				</li>
 				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
-					<div class="icon-url" id="talkqq">
+					<a class="icon-url" href="account/m_custom_service.html">
 						<i class="icon iconfont">&#xe643;</i>
 						<p>QQ客服</p>
-					</div>
+					</a>
 				</li>
-				
 
 			</ul>
 
@@ -258,26 +257,6 @@
 					}
 				});
 			}
-			document.getElementById("joinqq").addEventListener("tap",function(){
-				var key = 'sUJKIC0x0EDpNqUEZ_0c0woYDXmwVBYL';
-				var intent = new Intent();
-				// 获取主Activity对象的实例
-				var main = plus.android.runtimeMainActivity();
-				// 创建Intent
-				var uri = Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26k%3D" + key);
-				intent.setData(uri);
-				// 调用startActivity方法拨打电话
-				main.startActivity( intent );
-				
-			});
-			document.getElementById("talkqq").addEventListener("tap",function(){
-				var intent = new Intent();
-				var main = plus.android.runtimeMainActivity();
-				var qqUrl = "mqqwpa://im/chat?chat_type=wpa&uin=122142551&version=1"; 
-				var uri = Uri.parse(qqUrl);
-				intent.setData(uri);
-				main.startActivity( intent );
-			});
 			
 			var qiandao_btn = document.getElementById("qiandao"),
 				add_jifen = document.getElementById("add_jifen");
