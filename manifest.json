@@ -184,7 +184,7 @@
 					"hdpi": "unpackage/res/splash/480x762.png","xhdpi":"unpackage/res/splash/720x1242.png","xxhdpi":"unpackage/res/splash/1080x1882 png-24.png"
 				}
 			},
-			"debug": true
+			"debug": false
 		}
 	},
 	"dependencies": {
