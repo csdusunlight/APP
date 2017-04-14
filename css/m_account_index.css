@@ -55,6 +55,7 @@
 	background-color: #fff;
 	transform: scale(1.2);
 }
+#open_login {display: block;}
 .add-jifen {
 	display: none;
 	width: 100%;
