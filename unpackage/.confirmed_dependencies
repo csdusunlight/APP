@@ -291,8 +291,7 @@
       "js/mui.pullToRefresh.material.js",
       "js/UserInfo.js",
       "css/mui.min.css",
-      "css/m_common.css",
-      "fonts/mui.ttf"
+      "css/m_common.css"
     ],
     "refer": []
   },
@@ -720,15 +719,6 @@
   "account/m_joinQQGroup.html": {
     "resources": [
       "css/m_detail_press.css",
-      "fonts/mui.ttf",
-      "css/mui.min.css",
-      "js/mui.js",
-      "fonts/wafuli-iconfont.woff",
-      "css/m_common.css"
-    ]
-  },
-  "account/m_custom_service.html": {
-    "resources": [
       "fonts/mui.ttf",
       "css/mui.min.css",
       "js/mui.js",
