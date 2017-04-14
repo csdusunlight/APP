@@ -58,9 +58,7 @@
       "html/m_activity_recom_submit.html",
       "html/m_information.html",
       "account/m_exchange_morescore.html",
-      "account/m_account_exchange.html",
-      "account/m_joinQQGroup.html",
-      "account/m_custom_service.html"
+      "account/m_account_exchange.html"
     ]
   },
   "html/m_detail_finance.html": {
@@ -103,7 +101,9 @@
       "account/m_account_score.html",
       "account/m_account_welfare.html",
       "account/m_account_coupon.html",
-      "account/m_strategy.html"
+      "account/m_strategy.html",
+      "account/m_joinQQGroup.html",
+      "account/m_custom_service.html"
     ]
   },
   "m_index.html": {
@@ -291,8 +291,7 @@
       "js/mui.pullToRefresh.material.js",
       "js/UserInfo.js",
       "css/mui.min.css",
-      "css/m_common.css",
-      "fonts/mui.ttf"
+      "css/m_common.css"
     ],
     "refer": []
   },
@@ -357,7 +356,8 @@
       "fonts/mui.ttf",
       "css/mui.min.css",
       "js/mui.js",
-      "css/m_common.css"
+      "css/m_common.css",
+      "account/m_account_withdraw.html"
     ],
     "refer": []
   },
@@ -686,7 +686,9 @@
       "css/m_account_zhifubao.css",
       "js/mui.js",
       "js/UserInfo.js",
-      "images/zhifubao.png"
+      "images/zhifubao.png",
+      "fonts/mui.ttf",
+      "account/m_account_withdraw.html"
     ],
     "refer": [],
     "priority": 0
@@ -718,22 +720,24 @@
     "priority": 0
   },
   "account/m_joinQQGroup.html": {
+    "href": "account/m_joinQQGroup.html",
     "resources": [
-      "css/m_detail_press.css",
-      "fonts/mui.ttf",
       "css/mui.min.css",
-      "js/mui.js",
-      "fonts/wafuli-iconfont.woff",
-      "css/m_common.css"
-    ]
+      "css/m_common.css",
+      "css/m_detail_press.css",
+      "js/mui.js"
+    ],
+    "refer": [],
+    "priority": 0
   },
   "account/m_custom_service.html": {
+    "href": "account/m_custom_service.html",
     "resources": [
-      "fonts/mui.ttf",
       "css/mui.min.css",
-      "js/mui.js",
-      "fonts/wafuli-iconfont.woff",
-      "css/m_common.css"
-    ]
+      "css/m_common.css",
+      "js/mui.js"
+    ],
+    "refer": [],
+    "priority": 0
   }
 }

@@ -82,7 +82,6 @@
 					mui.alert('您输入的手机验证码格式有误，请重新输入！', '提示');
 					return;
 				}
-				var csrfmiddlewaretoken = document.getElementsByName("csrfmiddlewaretoken")[0].value;
 				mui.ajax({
 					url: 'http://m.wafuli.cn/app/change_zhifubao/',
 					dataType:"json",
