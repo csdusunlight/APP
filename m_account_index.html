@@ -142,6 +142,7 @@
 					document.getElementById('userimg').src = "images/user.png";
 //					document.getElementById('mobile').innerText = "";   //jzy
 					document.getElementById('user_login').innerHTML = '<span id="open_login">登录/注册</span>';  //jzy
+					qiandao_btn.innerHTML = "签到+5积分";  //jzy
 					document.getElementById('scores').innerText = "";
 					document.getElementById('scores').innerText = "";
 					document.getElementById('accu_income').innerHTML = "";
@@ -151,7 +152,7 @@
 					var img = "images/user-0" + dict.userimg + ".png";
 					document.getElementById('userimg').src = img;
 //					document.getElementById('mobile').innerText = dict.mobile;	//jzy
-					document.getElementById('user_login').innerHTML = '<number id="mobile">12345678901</number>';  //jzy
+					document.getElementById('user_login').innerHTML = '<number id="mobile">' + dict.mobile + '</number>';  //jzy
 					document.getElementById('accu_income').innerHTML = dict.accu_income;
 					document.getElementById('balance').innerText = dict.balance
 					document.getElementById('scores').innerText = dict.scores;
