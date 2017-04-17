@@ -335,7 +335,9 @@
 					"account/m_account_exchange.html",
 					"account/m_exchange_morescore.html",
 					"account/m_account_bind_zhifubao.html",
-					"account/m_account_channel.html"
+					"account/m_account_channel.html",
+					"account/m_joinQQGroup.html",
+					"account/m_custom_service.html"
 				],
 				"priority": 0
 			},
@@ -561,11 +563,12 @@
 					"fonts/mui.ttf",
 					"js/UserInfo.js",
 					"account/m_register.html",
-					"js/mui.js"
+					"js/mui.js",
+					"fonts/wafuli-iconfont.woff",
+					"css/m_common.css"
 				],
 				"refer": [
-					"account/m_password_reset.html",
-					"account/m_register.html"
+					"account/m_password_reset.html"
 				],
 				"priority": 0
 			},
@@ -857,10 +860,7 @@
 					"js/mui.js",
 					"account/m_account_bind_zhifubao.html"
 				],
-				"refer": [
-					"account/m_account_change_zhifubao.html",
-					"account/m_account_bind_zhifubao.html"
-				],
+				"refer": [],
 				"priority": 0
 			},
 			"account/m_account_settings.html": {
@@ -885,8 +885,7 @@
 				],
 				"refer": [
 					"account/m_account_change_password.html",
-					"account/m_account_bind_zhifubao.html",
-					"account/m_account_change_zhifubao.html"
+					"account/m_account_bind_zhifubao.html"
 				],
 				"priority": 0
 			},
@@ -1381,7 +1380,8 @@
 					"css/m_expsubmit_task.css",
 					"js/mui.js",
 					"js/UserInfo.js",
-					"css/m_expsubmit_finance.css"
+					"css/m_expsubmit_finance.css",
+					"css/m_expsubmit_finances.css"
 				],
 				"priority": 4,
 				"refer": []
@@ -1605,7 +1605,8 @@
 					"css/m_detail_press.css",
 					"js/mui.js"
 				],
-				"priority": 9
+				"priority": 9,
+				"refer": []
 			},
 			"account/m_custom_service.html": {
 				"href": "account/m_custom_service.html",
@@ -1650,7 +1651,9 @@
 					"js/mui.min.js",
 					"css/mui.min.css",
 					"css/m_common.css",
-					"js/UserInfo.js"
+					"js/UserInfo.js",
+					"fonts/mui.ttf",
+					"css/m_expsubmit_finances.css"
 				],
 				"refer": [],
 				"priority": 0
