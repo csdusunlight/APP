@@ -108,6 +108,7 @@
 			            <p>渠道数据提交</p>
 			        </a>
 		        </li>
+		        
 			</ul>
 
 		</div>
@@ -144,14 +145,14 @@
 			function display_userinfo(dict) {
 				if(!dict) {
 					document.getElementById('userimg').src = "images/user.png";
-<<<<<<< HEAD
-//					document.getElementById('mobile').innerText = "";   //jzy
-					document.getElementById('user_login').innerHTML = '<span id="open_login">登录/注册</span>';  //jzy
-					qiandao_btn.innerHTML = "签到+5积分";  //jzy
-					document.getElementById('scores').innerText = "";
-=======
+//<<<<<<< HEAD
+////					document.getElementById('mobile').innerText = "";  //jzy
+//					document.getElementById('user_login').innerHTML = '<span id="open_login">登录/注册</span>';  //jzy
+//					qiandao_btn.innerHTML = "签到+5积分";  //jzy
+//					document.getElementById('scores').innerText = "";
+//=======
 					document.getElementById('mobile').innerText = "";
->>>>>>> d104872f87daa5ae003ff18fc9ee36173181acd7
+//>>>>>>> d104872f87daa5ae003ff18fc9ee36173181acd7
 					document.getElementById('scores').innerText = "";
 					document.getElementById('accu_income').innerHTML = "";
 					document.getElementById('balance').innerText = "";
@@ -159,13 +160,13 @@
 				} else {
 					var img = "images/user-0" + dict.userimg + ".png";
 					document.getElementById('userimg').src = img;
-<<<<<<< HEAD
+//<<<<<<< HEAD
 //					document.getElementById('mobile').innerText = dict.mobile;	//jzy
-					document.getElementById('user_login').innerHTML = '<number id="mobile">' + dict.mobile + '</number>';  //jzy
-=======
+//					document.getElementById('user_login').innerHTML = '<number id="mobile">' + dict.mobile + '</number>';  //jzy
+//=======
 					document.getElementById('mobile').innerText = dict.mobile;
 					document.getElementById('scores').innerText = dict.scores;
->>>>>>> d104872f87daa5ae003ff18fc9ee36173181acd7
+//>>>>>>> d104872f87daa5ae003ff18fc9ee36173181acd7
 					document.getElementById('accu_income').innerHTML = dict.accu_income;
 					document.getElementById('balance').innerText = dict.balance
 					document.getElementById('scores').innerText = dict.scores;
