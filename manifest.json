@@ -334,7 +334,8 @@
 					"html/m_activity_recom_info.html",
 					"account/m_account_exchange.html",
 					"account/m_exchange_morescore.html",
-					"account/m_account_bind_zhifubao.html"
+					"account/m_account_bind_zhifubao.html",
+					"account/m_account_channel.html"
 				],
 				"priority": 0
 			},
@@ -417,12 +418,12 @@
 					"images/share-guide-bottom.png",
 					"images/person-bg.png",
 					"account/m_account_charge.html",
-					"account/m_account_invite.html"
+					"account/m_account_invite.html",
+					"account/m_account_welfare.html"
 				],
 				"refer": [
 					"a_login.html",
 					"account/m_account_score.html",
-					"account/m_account_welfare.html",
 					"account/m_account_coupon.html",
 					"account/m_strategy.html",
 					"account/m_account_withdraw.html",
@@ -563,7 +564,8 @@
 					"js/mui.js"
 				],
 				"refer": [
-					"account/m_password_reset.html"
+					"account/m_password_reset.html",
+					"account/m_register.html"
 				],
 				"priority": 0
 			},
@@ -1379,7 +1381,7 @@
 					"css/m_expsubmit_task.css",
 					"js/mui.js",
 					"js/UserInfo.js",
-					"css/m_expsubmit_finances.css"
+					"css/m_expsubmit_finance.css"
 				],
 				"priority": 4,
 				"refer": []
@@ -1640,6 +1642,16 @@
 					"m_task.html",
 					"m_finance.html"
 				],
+				"priority": 0
+			},
+			"account/m_account_channel.html": {
+				"resources": [
+					"css/m_expsubmit_finance.css",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/m_common.css"
+				],
+				"refer": [],
 				"priority": 0
 			}
 		},

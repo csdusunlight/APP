@@ -15,9 +15,8 @@
 			<div class="top">
 				<a id="settings" class="diannao" href="#"><i class="icon iconfont">&#xe631;</i></a>
 				<img id="userimg" src="images/user.png" alt="用户头像" />
-				<a id="user_login" href="#">
-					<!--<number id="mobile">12345678901</number>-->
-					<span id="open_login">登录/注册</span>
+				<a href="#">
+					<number id="mobile">123456789</number>
 				</a>
 				<button id="qiandao" type="button" class="mui-btn qiandao">签到+5积分</button>
 			</div>
@@ -46,64 +45,69 @@
 			</ul>
 
 			<ul class="mui-row row-bottom">
-				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3 li-common">
 					<a class="icon-url" href="account/m_account_withdraw.html">
 						<i class="icon iconfont">&#xe627;</i>
 						<p>提现</p>
 					</a>
 				</li>
 
-				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3 li-common">
 					<a class="icon-url" href="account/m_account_charge.html">
 						<i class="icon iconfont">&#xe632;</i>
 						<p>福币管理</p>
 					</a>
 				</li>
-				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3 li-common">
 					<a class="icon-url" href="account/m_account_score.html">
 						<i class="icon iconfont">&#xe60c;</i>
 						<p>积分管理</p>
 					</a>
 				</li>
 
-				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3 li-common">
 					<a class="icon-url" href="account/m_account_welfare.html">
 						<i class="icon iconfont">&#xe651;</i>
 						<p>福利管理</p>
 					</a>
 				</li>
-				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3 li-common">
 					<a class="icon-url" href="account/m_account_coupon.html">
 						<i class="icon iconfont">&#xe611;</i>
 						<p>优惠券管理</p>
 					</a>
 				</li>
 
-				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3 li-common">
 					<a class="icon-url" href="account/m_strategy.html">
 						<i class="icon iconfont">&#xe630;</i>
 						<p>挖福利攻略</p>
 					</a>
 				</li>
-				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3 li-common">
 					<a class="icon-url" href="account/m_account_invite.html">
 						<i class="icon iconfont">&#xe664;</i>
 						<p>邀请好友</p>
 					</a>
 				</li>
-				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3 li-common">
 					<a class="icon-url" href="account/m_joinQQGroup.html">
 						<i class="icon iconfont">&#xe62e;</i>
 						<p>加入QQ群</p>
 					</a>
 				</li>
-				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3 li-common">
 					<a class="icon-url" href="account/m_custom_service.html">
 						<i class="icon iconfont">&#xe643;</i>
 						<p>QQ客服</p>
 					</a>
 				</li>
-
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3 li-channel">
+			        <a class="icon-url" href="account/m_account_channel.html">
+			        	<i class="icon iconfont">&#xe613;</i>
+			            <p>渠道数据提交</p>
+			        </a>
+		        </li>
 			</ul>
 
 		</div>
@@ -122,13 +126,13 @@
 				Intent = plus.android.importClass("android.content.Intent");
 				Uri = plus.android.importClass("android.net.Uri");
 				tempview = plus.webview.getWebviewById("temp");
-//				self.addEventListener('show', function() {
-//					if(!UserInfo.has_login()) {
-//						tologin();
-//					} else {
-//						refresh_userinfo();
-//					}
-//				});
+				self.addEventListener('show', function() {
+					if(!UserInfo.has_login()) {
+						tologin();
+					} else {
+						refresh_userinfo();
+					}
+				});
 				window.addEventListener('login-refresh', function() {
 					var info = UserInfo.userinfo();
 					display_userinfo(info);
@@ -140,10 +144,14 @@
 			function display_userinfo(dict) {
 				if(!dict) {
 					document.getElementById('userimg').src = "images/user.png";
+<<<<<<< HEAD
 //					document.getElementById('mobile').innerText = "";   //jzy
 					document.getElementById('user_login').innerHTML = '<span id="open_login">登录/注册</span>';  //jzy
 					qiandao_btn.innerHTML = "签到+5积分";  //jzy
 					document.getElementById('scores').innerText = "";
+=======
+					document.getElementById('mobile').innerText = "";
+>>>>>>> d104872f87daa5ae003ff18fc9ee36173181acd7
 					document.getElementById('scores').innerText = "";
 					document.getElementById('accu_income').innerHTML = "";
 					document.getElementById('balance').innerText = "";
@@ -151,8 +159,13 @@
 				} else {
 					var img = "images/user-0" + dict.userimg + ".png";
 					document.getElementById('userimg').src = img;
+<<<<<<< HEAD
 //					document.getElementById('mobile').innerText = dict.mobile;	//jzy
 					document.getElementById('user_login').innerHTML = '<number id="mobile">' + dict.mobile + '</number>';  //jzy
+=======
+					document.getElementById('mobile').innerText = dict.mobile;
+					document.getElementById('scores').innerText = dict.scores;
+>>>>>>> d104872f87daa5ae003ff18fc9ee36173181acd7
 					document.getElementById('accu_income').innerHTML = dict.accu_income;
 					document.getElementById('balance').innerText = dict.balance
 					document.getElementById('scores').innerText = dict.scores;
@@ -161,15 +174,49 @@
 						qiandao_btn.innerHTML = "今日已签到";
 						qiandao_btn.disabled = "disabled";
 					}
+					var isChannel = dict.isChannel;
+					eles = document.getElementsByClassName('li-channel');
+					if(isChannel=='1'){
+						for(var i=0;i<eles.length;i++){
+							eles[i].style.display = "block";
+						}
+					}
+					else{
+						for(var i=0;i<eles.length;i++){
+							eles[i].style.display = "none";
+						}
+					}
 				}
 			}
-			
-//			jzy	
-			document.getElementById("user_login").addEventListener("tap", function(e) {
-					tologin();
-			});
-			
-			mui('.row-bottom').on('tap', 'a', function(e) {
+//			mui('.li-common').on('tap', 'a', function(e) {
+//				if(!UserInfo.has_login()) {
+//					tologin();
+//				} else {
+//					var targetTab = this.getAttribute('href');
+//					tempview.loadURL(targetTab);
+//					setTimeout(function() {
+//						tempview.show('pop-in');
+//					}, 10);
+//					//    				console.log(tempview.id);
+//					//					mui.openWindow({
+//					//			            url: targetTab,
+//					//			            id: targetTab,
+//					//			            styles: {
+//					//			                top: 0,
+//					//			                bottom: 0,
+//					//			                hardwareAccelerated:true
+//					//			            },
+//					//			            show:{
+//					//					      autoShow:false,//页面loaded事件发生后自动显示，默认为true
+//					//					      aniShow: 'slide-in-right'
+//					//					    },
+//					//			            waiting: {
+//					//							autoShow: true,
+//					//						},
+//					//			        });
+//				}
+//			});
+			mui('.mui-row').on('tap', 'a', function(e) {
 				if(!UserInfo.has_login()) {
 					tologin();
 				} else {
@@ -178,25 +225,9 @@
 					setTimeout(function() {
 						tempview.show('pop-in');
 					}, 10);
-					//    				console.log(tempview.id);
-					//					mui.openWindow({
-					//			            url: targetTab,
-					//			            id: targetTab,
-					//			            styles: {
-					//			                top: 0,
-					//			                bottom: 0,
-					//			                hardwareAccelerated:true
-					//			            },
-					//			            show:{
-					//					      autoShow:false,//页面loaded事件发生后自动显示，默认为true
-					//					      aniShow: 'slide-in-right'
-					//					    },
-					//			            waiting: {
-					//							autoShow: true,
-					//						},
-					//			        });
 				}
 			});
+			
 			document.getElementById("settings").addEventListener("tap", function(e) {
 				if(!UserInfo.has_login()) {
 					tologin();
