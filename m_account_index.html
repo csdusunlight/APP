@@ -45,64 +45,69 @@
 			</ul>
 
 			<ul class="mui-row row-bottom">
-				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3 li-common">
 					<a class="icon-url" href="account/m_account_withdraw.html">
 						<i class="icon iconfont">&#xe627;</i>
 						<p>提现</p>
 					</a>
 				</li>
 
-				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3 li-common">
 					<a class="icon-url" href="account/m_account_charge.html">
 						<i class="icon iconfont">&#xe632;</i>
 						<p>福币管理</p>
 					</a>
 				</li>
-				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3 li-common">
 					<a class="icon-url" href="account/m_account_score.html">
 						<i class="icon iconfont">&#xe60c;</i>
 						<p>积分管理</p>
 					</a>
 				</li>
 
-				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3 li-common">
 					<a class="icon-url" href="account/m_account_welfare.html">
 						<i class="icon iconfont">&#xe651;</i>
 						<p>福利管理</p>
 					</a>
 				</li>
-				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3 li-common">
 					<a class="icon-url" href="account/m_account_coupon.html">
 						<i class="icon iconfont">&#xe611;</i>
 						<p>优惠券管理</p>
 					</a>
 				</li>
 
-				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3 li-common">
 					<a class="icon-url" href="account/m_strategy.html">
 						<i class="icon iconfont">&#xe630;</i>
 						<p>挖福利攻略</p>
 					</a>
 				</li>
-				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3 li-common">
 					<a class="icon-url" href="account/m_account_invite.html">
 						<i class="icon iconfont">&#xe664;</i>
 						<p>邀请好友</p>
 					</a>
 				</li>
-				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3 li-common">
 					<a class="icon-url" href="account/m_joinQQGroup.html">
 						<i class="icon iconfont">&#xe62e;</i>
 						<p>加入QQ群</p>
 					</a>
 				</li>
-				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3">
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3 li-common">
 					<a class="icon-url" href="account/m_custom_service.html">
 						<i class="icon iconfont">&#xe643;</i>
 						<p>QQ客服</p>
 					</a>
 				</li>
-
+				<li class="mui-table-view-cell mui-col-sm-3 mui-col-xs-3 li-channel">
+			        <a class="icon-url" href="account/m_account_channel.html">
+			        	<i class="icon iconfont">&#xe613;</i>
+			            <p>渠道数据提交</p>
+			        </a>
+		        </li>
 			</ul>
 
 		</div>
@@ -157,9 +162,21 @@
 						qiandao_btn.innerHTML = "今日已签到";
 						qiandao_btn.disabled = "disabled";
 					}
+					var isChannel = dict.isChannel;
+					eles = document.getElementsByClassName('li-channel');
+					if(isChannel=='1'){
+						for(var i=0;i<eles.length;i++){
+							eles[i].style.display = "block";
+						}
+					}
+					else{
+						for(var i=0;i<eles.length;i++){
+							eles[i].style.display = "none";
+						}
+					}
 				}
 			}
-			mui('.row-bottom').on('tap', 'a', function(e) {
+			mui('.li-common').on('tap', 'a', function(e) {
 				if(!UserInfo.has_login()) {
 					tologin();
 				} else {
@@ -187,6 +204,18 @@
 					//			        });
 				}
 			});
+			mui('.mui-row').on('tap', 'a', function(e) {
+				if(!UserInfo.has_login()) {
+					tologin();
+				} else {
+					var targetTab = this.getAttribute('href');
+					tempview.loadURL(targetTab);
+					setTimeout(function() {
+						tempview.show('pop-in');
+					}, 10);
+				}
+			});
+			
 			document.getElementById("settings").addEventListener("tap", function(e) {
 				if(!UserInfo.has_login()) {
 					tologin();

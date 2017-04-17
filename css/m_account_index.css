@@ -201,3 +201,6 @@ footer li.on span {
 /*样式覆盖*/
 .mui-row .mui-table-view-cell>a:not(.mui-btn):active {
 }
+.li-channel {
+	display: none;
+}
