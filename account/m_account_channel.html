@@ -52,9 +52,28 @@
 				<button id="submit_btn" type="button" class="mui-btn mui-btn-blue">确认提交</button>
 			</div>
 			<script src="../js/mui.min.js"></script>
+			<script src="../js/UserInfo.js"></script>
 			<!--弹窗部分-->
 			<script type="text/javascript" charset="utf-8">
 				mui.init();
+				mui.ready(function(){
+					mui.ajax({
+						url: "http://m.wafuli.cn/app/get_channel_project/",
+						type: 'get',
+						dataType: "json",
+						success: function(ret) {
+							for (var i=0;i<ret.length;i++){
+								var option_ele = document.createElement('option');
+								option_ele.value = ret[i].id;
+								option_ele.innerText = ret[i].title;
+								project_select.appendChild(option_ele);
+							}
+						},
+						error: function(xhr, type, errorThrown) {
+							alert(type);
+						}
+					});
+				});
 				document.getElementById("submit_btn").addEventListener('tap', function() {
 					var project = document.getElementById('project_select').value;
 					var time = document.getElementById('time').value;
@@ -86,7 +105,7 @@
 						return;
 					}
 					mui.ajax({
-						url: "http://m.wafuli.cn/account/channel/",
+						url: "http://m.wafuli.cn/app/channel/",
 						type: 'post',
 						data: {
 							'id': project,
@@ -96,9 +115,11 @@
 							'term': term,
 							'telnum': telnum,
 							'remark': remark,
+							'token': UserInfo.token(),
 						},
 						dataType: "json",
 						success: function(ret) {
+							console.log(JSON.stringify(ret));
 							if(ret.code==0){
 								mui.alert(ret.msg,callback=function(){
 									mui.back();

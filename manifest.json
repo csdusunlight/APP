@@ -1649,7 +1649,8 @@
 					"css/m_expsubmit_finance.css",
 					"js/mui.min.js",
 					"css/mui.min.css",
-					"css/m_common.css"
+					"css/m_common.css",
+					"js/UserInfo.js"
 				],
 				"refer": [],
 				"priority": 0
