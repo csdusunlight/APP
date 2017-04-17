@@ -15,9 +15,8 @@
 			<div class="top">
 				<a id="settings" class="diannao" href="#"><i class="icon iconfont">&#xe631;</i></a>
 				<img id="userimg" src="images/user.png" alt="用户头像" />
-				<a id="user_login" href="#">
-					<!--<number id="mobile">12345678901</number>-->
-					<span id="open_login">登录/注册</span>
+				<a href="#">
+					<number id="mobile">123456789</number>
 				</a>
 				<button id="qiandao" type="button" class="mui-btn qiandao">签到+5积分</button>
 			</div>
@@ -127,13 +126,13 @@
 				Intent = plus.android.importClass("android.content.Intent");
 				Uri = plus.android.importClass("android.net.Uri");
 				tempview = plus.webview.getWebviewById("temp");
-//				self.addEventListener('show', function() {
-//					if(!UserInfo.has_login()) {
-//						tologin();
-//					} else {
-//						refresh_userinfo();
-//					}
-//				});
+				self.addEventListener('show', function() {
+					if(!UserInfo.has_login()) {
+						tologin();
+					} else {
+						refresh_userinfo();
+					}
+				});
 				window.addEventListener('login-refresh', function() {
 					var info = UserInfo.userinfo();
 					display_userinfo(info);
@@ -145,9 +144,7 @@
 			function display_userinfo(dict) {
 				if(!dict) {
 					document.getElementById('userimg').src = "images/user.png";
-//					document.getElementById('mobile').innerText = "";   //jzy
-					document.getElementById('user_login').innerHTML = '<span id="open_login">登录/注册</span>';  //jzy
-					document.getElementById('scores').innerText = "";
+					document.getElementById('mobile').innerText = "";
 					document.getElementById('scores').innerText = "";
 					document.getElementById('accu_income').innerHTML = "";
 					document.getElementById('balance').innerText = "";
@@ -155,8 +152,8 @@
 				} else {
 					var img = "images/user-0" + dict.userimg + ".png";
 					document.getElementById('userimg').src = img;
-//					document.getElementById('mobile').innerText = dict.mobile;	//jzy
-					document.getElementById('user_login').innerHTML = '<number id="mobile">12345678901</number>';  //jzy
+					document.getElementById('mobile').innerText = dict.mobile;
+					document.getElementById('scores').innerText = dict.scores;
 					document.getElementById('accu_income').innerHTML = dict.accu_income;
 					document.getElementById('balance').innerText = dict.balance
 					document.getElementById('scores').innerText = dict.scores;
@@ -179,12 +176,34 @@
 					}
 				}
 			}
-
-			document.getElementById("user_login").addEventListener("tap", function(e) {
-					tologin();
-			});
-			
-			
+//			mui('.li-common').on('tap', 'a', function(e) {
+//				if(!UserInfo.has_login()) {
+//					tologin();
+//				} else {
+//					var targetTab = this.getAttribute('href');
+//					tempview.loadURL(targetTab);
+//					setTimeout(function() {
+//						tempview.show('pop-in');
+//					}, 10);
+//					//    				console.log(tempview.id);
+//					//					mui.openWindow({
+//					//			            url: targetTab,
+//					//			            id: targetTab,
+//					//			            styles: {
+//					//			                top: 0,
+//					//			                bottom: 0,
+//					//			                hardwareAccelerated:true
+//					//			            },
+//					//			            show:{
+//					//					      autoShow:false,//页面loaded事件发生后自动显示，默认为true
+//					//					      aniShow: 'slide-in-right'
+//					//					    },
+//					//			            waiting: {
+//					//							autoShow: true,
+//					//						},
+//					//			        });
+//				}
+//			});
 			mui('.mui-row').on('tap', 'a', function(e) {
 				if(!UserInfo.has_login()) {
 					tologin();

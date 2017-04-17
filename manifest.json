@@ -418,12 +418,12 @@
 					"images/share-guide-bottom.png",
 					"images/person-bg.png",
 					"account/m_account_charge.html",
-					"account/m_account_invite.html"
+					"account/m_account_invite.html",
+					"account/m_account_welfare.html"
 				],
 				"refer": [
 					"a_login.html",
 					"account/m_account_score.html",
-					"account/m_account_welfare.html",
 					"account/m_account_coupon.html",
 					"account/m_strategy.html",
 					"account/m_account_withdraw.html",
