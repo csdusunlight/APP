@@ -69,12 +69,25 @@
 			});
 			
 			document.getElementById("qq_free").addEventListener("tap",function(){
-				var intent = new Intent();
-				var main = plus.android.runtimeMainActivity();
-				var qqUrl = "mqqwpa://im/chat?chat_type=wpa&uin=2339019773&version=1"; 
-				var uri = Uri.parse(qqUrl);
-				intent.setData(uri);
-				main.startActivity( intent );
+				if (plus.os.name == "Android") {
+	                var intent = new Intent();
+					var main = plus.android.runtimeMainActivity();
+					var qqUrl = "mqqwpa://im/chat?chat_type=wpa&uin=2339019773&version=1"; 
+					var uri = Uri.parse(qqUrl);
+					intent.setData(uri);
+					main.startActivity( intent );
+                }
+                else if (plus.os.name == "iOS") {
+                    plus.runtime.launchApplication({
+                        action: "mqq://im/chat?chat_type=wpa&uin=2035152316&version=1&src_type=web"
+                    }, function(e) {
+                        plus.nativeUI.confirm("检查到您未安装qq，请先到appstore搜索下载？", function(i) {
+                            if (i.index == 0) {
+                                iosAppstore("itunes.apple.com/cn/app/mqq/");
+                            }
+                        });
+                    });
+                }
 			});
 			document.getElementById("qq_task").addEventListener("tap",function(){
 				var intent = new Intent();

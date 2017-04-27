@@ -4,10 +4,10 @@
 	var Share = {
 		shares: {},
 		init: function() {
-			if (mui.os.plus && mui.os.android) {
+			if (mui.os.plus) {
 				mui.plusReady(function() {
-					Intent = plus.android.importClass("android.content.Intent");
-					main = plus.android.runtimeMainActivity();
+//					Intent = plus.android.importClass("android.content.Intent");
+//					main = plus.android.runtimeMainActivity();
 					this.supportShare() && plus.share.getServices(function(services) {
 						this.shares = {};
 						mui.each(services, function(index, service) {
@@ -33,8 +33,6 @@
 						title: "微信消息"
 					}, {
 						title: "微信朋友圈"
-					}, {
-						title: "更多分享"
 					}]
 				}, function(e) {
 					var index = e.index;
@@ -54,14 +52,9 @@
 								}
 							}), callback);
 							break;
-						case 3: //更多分享
-							self.openSysShare(message, callback);
-							break;
 					}
 				});
-			} else { //低版本，系统分享
-				self.openSysShare(message, callback);
-			}
+			} 
 		},
 		share: function(id, message, callback) {
 			var self = this;
@@ -95,8 +88,8 @@
 		openSysShare: function(message, callback) {
 			var intent = new Intent(Intent.ACTION_SEND);
 			intent.setType("text/plain");
-//			intent.setType("image/*");
-//			intent.putExtra(Intent.EXTRA_STREAM,uri);
+			intent.setType("image/*");
+			intent.putExtra(Intent.EXTRA_STREAM,uri);
 			intent.putExtra(Intent.EXTRA_TEXT, message.content);
 			intent.putExtra(Intent.EXTRA_SUBJECT,"挖福利");
 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
