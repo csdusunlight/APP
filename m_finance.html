@@ -80,7 +80,9 @@
 							callback: function() {
 								var self = this;
 								var ul = self.element.querySelector('.mui-table-view');
-								get_finance_list(this, ul, count++, index+1);
+								get_finance_list(this, ul, count, index+1, function(){
+									count ++;
+								});
 								//		ul.appendChild(createFragment(ul, index, 5));
 								//	self.endPullUpToRefresh(true);
 							}
@@ -88,7 +90,7 @@
 					});
 				});
 
-				function get_finance_list(obj, ul, n, index) {
+				function get_finance_list(obj, ul, n, index, suc) {
 					mui.ajax(get_finance_url, {
 						data: {
 							count: n,
@@ -124,6 +126,7 @@
 									li.innerHTML = str_block;
 									ul.appendChild(li);
 								}
+								suc();
 							}
 						},
 						error: function(xhr, type, errorThrown) {

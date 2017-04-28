@@ -126,6 +126,7 @@
 						var browserMainWebview = plus.webview.getWebviewById('browser_main');
 						var browserWebview = plus.webview.getWebviewById('browser_sub');
 						mui.fire(browserMainWebview, 'mui.view.beforeshow');
+						console.log(exp_url);
 						browserWebview.loadURL(exp_url);
 						browserMainWebview.show('pop-in', 200);
 					}

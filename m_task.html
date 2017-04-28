@@ -79,7 +79,9 @@
 							callback: function() {
 								var self = this;
 								var ul = self.element.querySelector('.mui-table-view');
-								get_task_list(this,ul,count++,index);
+								get_task_list(this,ul,count, index+1, function(){
+									count ++;
+								});
 							//		ul.appendChild(createFragment(ul, index, 5));
 								//	self.endPullUpToRefresh(true);
 							}
@@ -87,11 +89,11 @@
 					});
 				});
 
-				function get_task_list(obj,ul,n,index){
+				function get_task_list(obj,ul,n,index,suc){
 					mui.ajax(get_task_url,{
 						data:{
 							count:n,
-							type:index+1,
+							type:index,
 						},
 						dataType:'json',//服务器返回json格式数据
 						type:'get',//HTTP请求类型
@@ -132,6 +134,7 @@
 				                    li.innerHTML = str_html;
 									ul.appendChild(li);
 								}
+								suc();
 							}
 						},
 						error:function(xhr,type,errorThrown){

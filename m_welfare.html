@@ -109,7 +109,7 @@
 					<div class="today-tittle">
 						<h3>今日推荐</h3>
 					</div>
-					<div class="today-img clearfix">
+					<div id="refresh_hint" class="today-img clearfix">
 		            </div>
 				</div>
 				<div id="hot" class="recent today">
@@ -117,7 +117,7 @@
 			        	<h3>福利精选</h3>
 			        </div>
 			        <ul class="mui-table-view">
-			        	<li>正在加载...</li>
+			        	<!--<li>正在加载...</li>-->
 			        </ul>
 				</div>
 			</div>
@@ -183,7 +183,10 @@
 					}
 					setTimeout(function(){
 						getTemplate('welfare','template.html',"html/m_detail_welfare.html");
-						getTemplate("browser","browser.html","");
+						browser = getTemplate("browser","browser.html","");
+						browser.header.addEventListener('show',function(){
+							browser.content.show('none');
+						});
 					},400);
 				});
 				mui.getTodayNum(TODAY_NUM_URL, function(ret){
@@ -204,6 +207,7 @@
 			});
 			function throwGetNewsError() {
 				mui.toast("获取新闻时发生了异常");
+//				document.getElementById("refresh_hint")
 			};
 			 //点击新闻列表，打开新闻详情
 			mui('#hot').on('tap', 'a', function() {
