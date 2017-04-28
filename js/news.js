@@ -167,7 +167,7 @@ var TODAY_NUM_URL = 'http://m.wafuli.cn/app/get_today_num/';
 			});
 			wa.deleteNews();
 			wa.addNews(news, function() {
-				console.log("获得初始信息完成1");
+//				console.log("获得初始信息完成1");
 				localStorage.setItem(TIME_UPDATE_NEWS, Date.parse(new Date()) + ''); //本地更新时间
 				func2(false);
 			}, function() {
@@ -226,7 +226,7 @@ var TODAY_NUM_URL = 'http://m.wafuli.cn/app/get_today_num/';
 			});
 			wa.deleteRecom();
 			wa.addRecom(news, function() {
-		  		console.log("获得初始信息完成3");
+//		  		console.log("获得初始信息完成3");
 				localStorage.setItem(TIME_UPDATE_RECOM, Date.parse(new Date()) + ''); //本地更新时间
 				func1(false);
 			}, function() {
