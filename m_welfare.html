@@ -209,7 +209,7 @@
 				mui.toast("获取新闻时发生了异常");
 				var refresh_hint = document.getElementById("refresh_hint");
 				img = 'images/error-loading-img.jpg';
-				refresh_hint.innerHTML= '<img id="error_loading_img" src="'+ img + '">';
+				refresh_hint.innerHTML= '<img id="error_loading_img" style="width: 100%;" src="'+ img + '">';
 			};
 			 //点击新闻列表，打开新闻详情
 			mui('#hot').on('tap', 'a', function() {
