@@ -129,8 +129,7 @@
 				self.addEventListener('show', function() {
 					if(!UserInfo.has_login()) {
 //						tologin();
-						document.getElementById('user_login').innerHTML = '<span id="open_login">登录/注册</span>';//jzy
-						qiandao_btn.innerHTML = "未登录";  //jzy
+						document.getElementById('user_login').innerHTML = '<span id="open_login">登录/注册</span>';	//jzy
 					} else {
 						refresh_userinfo();
 					}
@@ -147,7 +146,7 @@
 				if(!dict) {
 					document.getElementById('userimg').src = "images/user.png";
 					document.getElementById('user_login').innerHTML = '<span id="open_login">登录/注册</span>';  //jzy
-					qiandao_btn.innerHTML = "未登录";  //jzy
+					qiandao_btn.innerHTML = "签到+5积分";  //jzy
 					document.getElementById('scores').innerText = "";
 					document.getElementById('scores').innerText = "";
 					document.getElementById('accu_income').innerHTML = "";
