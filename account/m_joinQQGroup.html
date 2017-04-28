@@ -70,28 +70,70 @@
 			});
 			
 				document.getElementById("qq_free").addEventListener("tap",function(){
-					var key = 'fKoxQYwKEmCn8cdR3M4Il4nlnvAGaBjw';
-					var intent = new Intent();
-					var main = plus.android.runtimeMainActivity();
-					var uri = Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26k%3D" + key);
-					intent.setData(uri);
-					main.startActivity( intent );					
+					if (plus.os.name == "Android") {
+		                var key = '0xOibzcgKTRuL0dYGmCZ30bAduJ5XYso';
+						var intent = new Intent();
+						var main = plus.android.runtimeMainActivity();
+						var uri = Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26k%3D" + key);
+						intent.setData(uri);
+						main.startActivity( intent );	
+	                }
+	                else if (plus.os.name == "iOS") {
+	                	var qq_number = "62344227";
+	                	var key = "f79e2884f7aaf2fea9831170d9556ac48cfb0c8ab0b3d6848922bd6af987c51b";
+	                	var url = "mqqapi://card/show_pslcard?src_type=internal&version=1&uin=" + qq_number + "&key=" + key + "&card_type=group&source=external";
+						plus.runtime.openURL(url, function(){
+							plus.nativeUI.confirm("检查到您未安装qq，请先到appstore搜索下载？", function(i) {
+	                            if (i.index == 0) {
+	                                iosAppstore("itunes.apple.com/cn/app/mqq/");
+	                            }
+	                        });
+						});
+					}
 				});
 				document.getElementById("qq_task").addEventListener("tap",function(){
-					var key = '0xOibzcgKTRuL0dYGmCZ30bAduJ5XYso';
-					var intent = new Intent();
-					var main = plus.android.runtimeMainActivity();
-					var uri = Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26k%3D" + key);
-					intent.setData(uri);
-					main.startActivity( intent );					
+					if (plus.os.name == "Android") {
+		                var key = '0xOibzcgKTRuL0dYGmCZ30bAduJ5XYso';
+						var intent = new Intent();
+						var main = plus.android.runtimeMainActivity();
+						var uri = Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26k%3D" + key);
+						intent.setData(uri);
+						main.startActivity( intent );	
+	                }
+	                else if (plus.os.name == "iOS") {
+	                	var qq_number = "62344227";
+	                	var key = "f79e2884f7aaf2fea9831170d9556ac48cfb0c8ab0b3d6848922bd6af987c51b";
+	                	var url = "mqqapi://card/show_pslcard?src_type=internal&version=1&uin=" + qq_number + "&key=" + key + "&card_type=group&source=external";
+						plus.runtime.openURL(url, function(){
+							plus.nativeUI.confirm("检查到您未安装qq，请先到appstore搜索下载？", function(i) {
+	                            if (i.index == 0) {
+	                                iosAppstore("itunes.apple.com/cn/app/mqq/");
+	                            }
+	                        });
+						});
+					}
 				});
 				document.getElementById("qq_finance").addEventListener("tap",function(){
-					var key = '26liICOOlTeOOJBv4fO8GhRwV_FenXa7';
-					var intent = new Intent();
-					var main = plus.android.runtimeMainActivity();
-					var uri = Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26k%3D" + key);
-					intent.setData(uri);
-					main.startActivity( intent );					
+					if (plus.os.name == "Android") {
+		                var key = '26liICOOlTeOOJBv4fO8GhRwV_FenXa7';
+						var intent = new Intent();
+						var main = plus.android.runtimeMainActivity();
+						var uri = Uri.parse("mqqopensdkapi://bizAgent/qm/qr?url=http%3A%2F%2Fqm.qq.com%2Fcgi-bin%2Fqm%2Fqr%3Ffrom%3Dapp%26p%3Dandroid%26k%3D" + key);
+						intent.setData(uri);
+						main.startActivity( intent );
+	                }
+	                else if (plus.os.name == "iOS") {
+	                	var qq_number = "62344227";
+	                	var key = "f79e2884f7aaf2fea9831170d9556ac48cfb0c8ab0b3d6848922bd6af987c51b";
+	                	var url = "mqqapi://card/show_pslcard?src_type=internal&version=1&uin=" + qq_number + "&key=" + key + "&card_type=group&source=external";
+						plus.runtime.openURL(url, function(){
+							plus.nativeUI.confirm("检查到您未安装qq，请先到appstore搜索下载？", function(i) {
+	                            if (i.index == 0) {
+	                                iosAppstore("itunes.apple.com/cn/app/mqq/");
+	                            }
+	                        });
+						});
+					}
 				});
 		</script>
 	</body>
