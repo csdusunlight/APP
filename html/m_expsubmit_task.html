@@ -287,7 +287,7 @@
 						var ret = JSON.parse(xhr.responseText);
 						if(ret.code==0){
 							self.opener().evalJS('exp_btn.innerText="领取任务";reg_btn.innerText = "提交任务（未领取）";reg_btn.disabled = true;accepte=0;');
-							mui.alert("上传成功，奖励将于2个工作日内发放！","温馨提示",function(){
+							mui.alert("上传成功，请耐心等待工作人员审核！","温馨提示",function(){
 								mui.back();
 							});
 						}else{
