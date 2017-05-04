@@ -12,7 +12,6 @@
 	    		background-color: #fff;
 	    		-webkit-box-shadow: none;
 	    		box-shadow: none;
-	    		border-top: 1px solid #e4e4e4;
 	    	}
 	    	nav .iconfont {
 				font-size: 2.4rem;
@@ -41,6 +40,17 @@
 			}
 			nav a.mui-active span {
 				color: #f08519;
+			}
+			/*样式覆盖*/
+			.mui-bar-tab {
+				display: block;
+				border-top: 1px solid #e4e4e4;
+				font-size: 0;
+			}
+			.mui-bar-tab .mui-tab-item {
+				display: inline-block;
+				width: 25%;
+				margin-top: -4px;
 			}
 	    </style>
 	</head>
