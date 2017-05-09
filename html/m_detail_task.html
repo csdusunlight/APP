@@ -91,15 +91,29 @@
 							exp_url = info.url;
 							if(ret.accepted==1){
 								accepted = 1;
-								exp_btn.innerText="立即体验";
 								reg_btn.innerText = "提交任务";
 								reg_btn.disabled = false;
 							}
 							else {
 								accepted = 0;
-								exp_btn.innerText="领取任务";
 								reg_btn.innerText = "提交任务（未领取）";
 								reg_btn.disabled = true;
+							}
+							if(ret.accepted==1){
+								exp_btn.disabled = false;
+								exp_btn.innerText="立即体验";
+							}
+							else if(ret.state==1){
+								exp_btn.disabled = true;
+								exp_btn.innerText="已结束";
+							}
+							else if(ret.state==2){
+								exp_btn.disabled = true;
+								exp_btn.innerText="暂停领取";
+							}
+							else{
+								exp_btn.disabled = false;
+								exp_btn.innerText="领取任务";
 							}
 						}
 						
@@ -126,7 +140,7 @@
 						var browserMainWebview = plus.webview.getWebviewById('browser_main');
 						var browserWebview = plus.webview.getWebviewById('browser_sub');
 						mui.fire(browserMainWebview, 'mui.view.beforeshow');
-						console.log(exp_url);
+						exp_url = exp_url.replace(/\s+/g,'')
 						browserWebview.loadURL(exp_url);
 						browserMainWebview.show('pop-in', 200);
 					}

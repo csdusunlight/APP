@@ -43,10 +43,13 @@
 			(function($) {
 				$.plusReady(function() {
 					var browser = plus.webview.getWebviewById('browser_sub');
+					browser.addEventListener('hide', function() {
+						browser.clear();
+					});
 					mui.init({
-						beforeback: function() {
-							browser.clear();
-						}
+//						beforeback: function() {
+//							browser.clear();
+//						}
 					});
 					document.getElementById("historyBack").addEventListener('tap', function() {
 						browser.canBack(function(e) {
