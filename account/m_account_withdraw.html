@@ -72,8 +72,8 @@
 					mui.alert('提现数量必须为整数！');
 					return;
 				}
-				if (amount%1000 != 0) {
-					mui.alert('提现福币数量必须为1000的整数倍！');
+				if ((amount%100 != 0) || (amount < 1000)) {
+					mui.alert('提现福币数量至少为1000且为100的整数倍！');
 					return;
 				}
 				var btnArray = ['否', '是'];
