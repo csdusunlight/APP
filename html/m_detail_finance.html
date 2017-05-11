@@ -165,11 +165,8 @@
 				if(!UserInfo.has_login()) {
 					tologin();
 				} else {
-					var browserMainWebview = plus.webview.getWebviewById('browser_main');
-					var browserWebview = plus.webview.getWebviewById('browser_sub');
-					mui.fire(browserMainWebview, 'mui.view.beforeshow');
-					browserWebview.loadURL(exp_url);
-					browserMainWebview.show('pop-in', 200);
+					exp_url = exp_url.replace(/\s+/g,'');
+					plus.runtime.openURL(exp_url);
 				}
 			});
 			reg_btn.addEventListener('tap', function() {
@@ -193,18 +190,7 @@
 				});
 			});
 
-			//			联系客服
-			mui('.nav-contact').on('tap', 'a', function() {
-				if(UserInfo.has_login()) {
-					var browserMainWebview = plus.webview.getWebviewById('browser_main');
-					var browserWebview = plus.webview.getWebviewById('browser_sub');
-					mui.fire(browserMainWebview, 'mui.view.beforeshow');
-					browserWebview.loadURL(this.href);
-					browserMainWebview.show('slide-in-right', 200);
-				} else {
-					tologin();
-				}
-			});
+			
 			var text_box = document.getElementById("text_box"),
 				intro = document.getElementById("intro");
 			var box_height = text_box.offsetHeight - intro.offsetHeight;

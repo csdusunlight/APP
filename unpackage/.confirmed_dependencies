@@ -41,7 +41,9 @@
       "css/m_detail_finance.css",
       "images/blank.jpg",
       "js/UserInfo.js",
-      "css/m_common.css"
+      "css/m_common.css",
+      "css/mui.min.css",
+      "js/mui.js"
     ],
     "refer": [
       "html/m_expsubmit_finance.html"
@@ -171,7 +173,8 @@
       "js/mui.js",
       "images/bg-manage-02.png",
       "css/m_common.css"
-    ]
+    ],
+    "refer": []
   },
   "account/m_joinQQGroup.html": {
     "resources": [
@@ -179,6 +182,7 @@
       "css/mui.min.css",
       "js/mui.js",
       "css/m_common.css"
-    ]
+    ],
+    "refer": []
   }
 }

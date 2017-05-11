@@ -134,11 +134,8 @@
 		mui.plusReady(function(){
 			mui('.mui-slider-group').on('tap', 'a', function() {
 	            var exp_url = this.href;
-	            var browserMainWebview = plus.webview.getWebviewById('browser_main');
-				var browserWebview = plus.webview.getWebviewById('browser_sub');
-				mui.fire(browserMainWebview, 'mui.view.beforeshow');
-				browserWebview.loadURL(exp_url);
-				browserMainWebview.show('slide-in-bottom', 200);
+	            exp_url = exp_url.replace(/\s+/g,'');
+	            plus.runtime.openURL(exp_url);
 	        });
 		});
 		(function($) {

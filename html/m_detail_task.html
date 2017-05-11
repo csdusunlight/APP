@@ -137,12 +137,13 @@
 				}
 				else{
 					if (accepted){
-						var browserMainWebview = plus.webview.getWebviewById('browser_main');
-						var browserWebview = plus.webview.getWebviewById('browser_sub');
-						mui.fire(browserMainWebview, 'mui.view.beforeshow');
-						exp_url = exp_url.replace(/\s+/g,'')
-						browserWebview.loadURL(exp_url);
-						browserMainWebview.show('pop-in', 200);
+//						var browserMainWebview = plus.webview.getWebviewById('browser_main');
+//						var browserWebview = plus.webview.getWebviewById('browser_sub');
+//						mui.fire(browserMainWebview, 'mui.view.beforeshow');
+						exp_url = exp_url.replace(/\s+/g,'');
+//						browserWebview.loadURL(exp_url);
+//						browserMainWebview.show('pop-in', 200);
+						plus.runtime.openURL(exp_url);
 					}
 					else{
 						var btnArray = ['取消', '确认领取'];

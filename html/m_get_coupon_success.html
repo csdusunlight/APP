@@ -49,11 +49,8 @@
 		document.getElementById('exchange_code').innerText = self.exchange_code;
 		document.getElementById('time_limit').innerText = self.time_limit;
 		document.getElementById("useCoupon").addEventListener('tap',function(event){
-			var browserMainWebview = plus.webview.getWebviewById('browser_main');
-			var browserWebview = plus.webview.getWebviewById('browser_sub');
-			mui.fire(browserMainWebview, 'mui.view.beforeshow');
-			browserWebview.loadURL(self.exp_url);
-			browserMainWebview.show('slide-in-bottom', 200);
+			var exp_url = self.exp_url.replace(/\s+/g,'');
+			plus.runtime.openURL(exp_url);
 		});
     });
     

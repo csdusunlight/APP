@@ -140,11 +140,8 @@
 			        return;
 				}
 				if (type==="hongbao"){
-					var browserMainWebview = plus.webview.getWebviewById('browser_main');
-					var browserWebview = plus.webview.getWebviewById('browser_sub');
-					mui.fire(browserMainWebview, 'mui.view.beforeshow');
-					browserWebview.loadURL(exp_url);
-					browserMainWebview.show('slide-in-right', 200);
+					exp_url = exp_url.replace(/\s+/g,'');
+					plus.runtime.openURL(exp_url);
 				}
 				else if (type==="youhuiquan"){
 					var obtain_coupon_url = "http://m.wafuli.cn/app/obtain_youhuiquan/";

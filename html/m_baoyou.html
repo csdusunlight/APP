@@ -97,11 +97,7 @@
 		}
 		mui('.mui-table-view').on('tap', 'a', function() {
 			if(UserInfo.has_login()){
-				var browserMainWebview = plus.webview.getWebviewById('browser_main');
-				var browserWebview = plus.webview.getWebviewById('browser_sub');
-				mui.fire(browserMainWebview, 'mui.view.beforeshow');
-				browserWebview.loadURL(this.href);
-				browserMainWebview.show('slide-in-right', 200);
+				plus.runtime.openURL(this.href);
 			}
 			else{
 				tologin();
