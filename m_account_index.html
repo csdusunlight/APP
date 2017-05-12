@@ -135,9 +135,11 @@
 					}
 				});
 				window.addEventListener('login-refresh', function() {
-					console.log('treeee');
 					var info = UserInfo.userinfo();
 					display_userinfo(info);
+				});
+				window.addEventListener('refresh_userinfo', function() {
+					refresh_userinfo();
 				});
 				window.addEventListener('logoff-refresh', function() {
 					display_userinfo();

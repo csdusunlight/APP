@@ -91,7 +91,7 @@
         					success:function(ret){
         						mui.alert(ret.msg,function(){
         							view = plus.webview.getWebviewById("m_account_index.html");
-        							mui.fire(view, 'login-refresh');
+        							mui.fire(view, 'refresh_userinfo');
         							mui.back();
         						});
         					},
