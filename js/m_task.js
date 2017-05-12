@@ -74,13 +74,13 @@ var TASK_URL = 'http://m.wafuli.cn/app/Task/';
 	};
 
 	task.clearCache = function() {
-		plus.nativeUI.showtaskiting('正在删除缓存...');
+//		plus.nativeUI.showtaskiting('正在删除缓存...');
 		task.deleteTask();
 			//清除图片缓存
 		plus.io.resolveLocalFileSystemURL(DIR_IMAGE, function(entry) {
 			entry.removeRecursively(function() {
 				plus.nativeUI.closetaskiting();
-				plus.nativeUI.toast("缓存删除成功");
+//				plus.nativeUI.toast("缓存删除成功");
 			}, function() {
 				plus.nativeUI.closetaskiting();
 			});

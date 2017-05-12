@@ -107,7 +107,7 @@ var TODAY_NUM_URL = 'http://m.wafuli.cn/app/get_today_num/';
 	};
 
 	wa.clearCache = function() {
-		plus.nativeUI.showWaiting('正在删除缓存...');
+//		plus.nativeUI.showWaiting('正在删除缓存...');
 		wa.deleteSlider();
 		wa.deleteRecom();
 		wa.deleteNews();
@@ -115,7 +115,7 @@ var TODAY_NUM_URL = 'http://m.wafuli.cn/app/get_today_num/';
 		plus.io.resolveLocalFileSystemURL(DIR_IMAGE, function(entry) {
 			entry.removeRecursively(function() {
 				plus.nativeUI.closeWaiting();
-				plus.nativeUI.toast("缓存删除成功");
+//				plus.nativeUI.toast("缓存删除成功");
 			}, function() {
 				plus.nativeUI.closeWaiting();
 			});

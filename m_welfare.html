@@ -355,6 +355,7 @@
 						recom_group.innerHTML = '';
 						add_doms_recom(recoms, true);
 						processNews(recoms, 'recom_img_','recom');
+						plus.nativeUI.toast("刷新成功！");
 					}, throwGetNewsError);
 				},function(hasNew) {
 					wa.getNews(Number.MAX_VALUE, 10,function(news) {
