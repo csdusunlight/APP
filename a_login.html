@@ -138,6 +138,7 @@
 							if (backview){
 								mui.fire(backview, 'login-refresh');
 							}
+							localStorage.removeItem("login-backid");
 						}
 						mui.back();
 					};

@@ -138,6 +138,7 @@
 				success: function(ret) {
 					if(ret.code==0){
 						login.style.display="block";
+						dispaly(ret);
 					}
 					else if (ret.code<0){
 						tologin();
@@ -145,20 +146,23 @@
 					}
 					else{
 						mui.alert(ret.msg);
-						var arr = document.getElementById("calendar").getElementsByTagName("number");
-						for (var e = 0; e<arr.length; e++){
-							var i = arr[e].innerHTML;
-							i = parseInt(i);
-							if ( ret.records.indexOf(i) != -1 ){
-								arr[e].parentNode.className = "yes";
-							}
-						}
+						dispaly(ret);
 					}
 				},
 				error:function(xhr,type,errorThrown){
 					mui.toast("请检查网络状况！");
 				}
 			});
+  		}
+  		function dispaly(ret){
+  			var arr = document.getElementById("calendar").getElementsByTagName("number");
+			for (var e = 0; e<arr.length; e++){
+				var i = arr[e].innerHTML;
+				i = parseInt(i);
+				if ( ret.records.indexOf(i) != -1 ){
+					arr[e].parentNode.className = "yes";
+				}
+			}
   		}
 		//监听点击事件
 		if(close){
