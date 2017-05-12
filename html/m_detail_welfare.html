@@ -141,7 +141,9 @@
 				}
 				if (type==="hongbao"){
 					exp_url = exp_url.replace(/\s+/g,'');
-					plus.runtime.openURL(exp_url);
+					plus.runtime.openURL(exp_url,function(){
+						plus.nativeUI.confirm("检查到您未安装相应的客户端，请先到应用商店搜索下载");
+					});
 				}
 				else if (type==="youhuiquan"){
 					var obtain_coupon_url = "http://m.wafuli.cn/app/obtain_youhuiquan/";

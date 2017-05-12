@@ -166,7 +166,9 @@
 					tologin();
 				} else {
 					exp_url = exp_url.replace(/\s+/g,'');
-					plus.runtime.openURL(exp_url);
+					plus.runtime.openURL(exp_url,function(){
+						plus.nativeUI.confirm("检查到您未安装相应的客户端，请先到应用商店搜索下载");
+					});
 				}
 			});
 			reg_btn.addEventListener('tap', function() {
