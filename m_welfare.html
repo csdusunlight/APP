@@ -122,9 +122,9 @@
 				</div>
 			</div>
 		</div>
-		<!--弹出二维码部分-->
-	    <div id="weixin_bg" class="er-wei-ma-bg">
-	    </div>
+		<!--<!--弹出二维码部分-->
+	    <!--<div id="weixin_bg" class="er-wei-ma-bg">
+	    </div>-->-->
 	    <div id="weixin_box" class="weixin-box-00">
 	        <div class="weixin-box">
 	            <span id="close_01" class="mui-icon mui-icon-closeempty"></span>
@@ -273,18 +273,36 @@
 			});
 			var weixin_btn = document.getElementById("weixin_btn"),
             close_01 = document.getElementById("close_01"),
-            weixin_bg = document.getElementById("weixin_bg"),
+//          weixin_bg = document.getElementById("weixin_bg"),
             weixin_box = document.getElementById("weixin_box");
             //监听点击事件
             weixin_btn.addEventListener("tap",function () {
-                weixin_bg.style.display = "block";
-                weixin_box.setAttribute("class","weixin-box-01");
+                var btnArray = ['打开微信','取消'];
+                if (plus.os.name == "Android") {
+	                var Context = plus.android.importClass("android.content.Context");
+				    var main = plus.android.runtimeMainActivity();
+				    var clip = main.getSystemService(Context.CLIPBOARD_SERVICE);
+				    plus.android.invoke(clip,"setText","天天挖福利");
+                }
+                else if (plus.os.name == "iOS") {
+                	var UIPasteboard  = plus.ios.importClass("UIPasteboard");
+					var paste = new UIPasteboard();
+					var pasteboard = paste.generalPasteboard();
+					pastboard.string="天天挖福利";
+                }
+    			mui.confirm('需要您到微信客户端的添加朋友-公众号中添加', '公众号名称已复制到剪切板', btnArray, function(e) {
+    				if (e.index == 1) {
+    					return;
+    				} else {
+    					plus.runtime.openURL("weixin://");
+    				}
+    			});
             });
 
-            close_01.addEventListener("tap",function () {
-                weixin_bg.style.display = "none";
-                weixin_box.setAttribute("class","weixin-box-02");
-            });
+//          close_01.addEventListener("tap",function () {
+//              weixin_bg.style.display = "none";
+//              weixin_box.setAttribute("class","weixin-box-02");
+//          });
             erweima_img.addEventListener("longtap",function () {
             	plus.barcode.scan('_www/images/gongzhong.jpg', function (type,result) {
 					console.log( "Scan success:("+type+")"+result );

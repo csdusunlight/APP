@@ -582,9 +582,12 @@
 					"js/mui.min.js",
 					"fonts/mui.ttf",
 					"css/mui.min.css",
-					"css/m_common.css"
+					"css/m_common.css",
+					"js/mui.js"
 				],
-				"refer": [],
+				"refer": [
+					"account/m_account_coupon.html"
+				],
 				"priority": 0
 			},
 			"m_task_junior.html": {
@@ -1140,7 +1143,8 @@
 					"images/share-guide-bottom.png"
 				],
 				"refer": [
-					"a_login.html"
+					"a_login.html",
+					"html/m_get_coupon_success.html"
 				],
 				"priority": 0
 			},

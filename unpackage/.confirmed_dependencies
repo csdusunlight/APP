@@ -24,7 +24,8 @@
 			"images/slider2.jpg",
 			"css/m_common.css",
 			"js/mui.js",
-			"js/mui.min.js"
+			"js/mui.min.js",
+			"images/blank.jpg"
 		],
 		"refer": [
 			"browser.html",
@@ -38,7 +39,9 @@
 			"html/m_activity_lottery.html",
 			"account/m_signin.html",
 			"account/m_exchange_morescore.html",
-			"html/m_hongbao.html"
+			"html/m_hongbao.html",
+			"html/m_youhuiquan.html",
+			"account/m_account_withdraw.html"
 		]
 	},
 	"html/m_detail_finance.html": {
@@ -64,7 +67,8 @@
 			"css/m_common.css",
 			"images/user-03.png",
 			"js/mui.js",
-			"account/m_account_welfare.html"
+			"account/m_account_welfare.html",
+			"images/user-01.png"
 		],
 		"refer": []
 	},
@@ -77,7 +81,9 @@
 			"css/mui.min.css",
 			"js/mui.js"
 		],
-		"refer": []
+		"refer": [
+			"html/m_get_coupon_success.html"
+		]
 	},
 	"m_index.html": {
 		"resources": [
@@ -251,6 +257,69 @@
 			"css/m_hongbao.css",
 			"js/template.js",
 			"css/m_common.css"
+		]
+	},
+	"html/m_youhuiquan.html": {
+		"resources": [
+			"js/mui.min.js",
+			"css/m_youhuiquan.css",
+			"css/mui.min.css",
+			"js/template.js",
+			"css/m_common.css"
+		]
+	},
+	"html/m_get_coupon_success.html": {
+		"resources": [
+			"images/bg-youhuiquan.png",
+			"images/yes.png",
+			"css/m_get_coupon_success.css",
+			"css/mui.min.css",
+			"js/mui.js",
+			"css/m_common.css"
+		],
+		"refer": [
+			"account/m_account_coupon.html"
+		]
+	},
+	"account/m_account_coupon.html": {
+		"resources": [
+			"js/mui.pullToRefresh.js",
+			"js/UserInfo.js",
+			"js/mui.pullToRefresh.material.js",
+			"css/m_account_coupon.css",
+			"images/youhuiquan-bg.png",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/mui.js",
+			"css/m_common.css"
+		]
+	},
+	"account/m_account_withdraw.html": {
+		"resources": [
+			"images/user.png",
+			"js/UserInfo.js",
+			"fonts/mui.ttf",
+			"css/m_account_withdraw.css",
+			"css/mui.min.css",
+			"images/fubi.png",
+			"js/mui.js",
+			"css/m_common.css",
+			"account/m_account_bind_zhifubao.html"
+		],
+		"refer": [
+			"account/m_account_bind_zhifubao.html"
+		]
+	},
+	"account/m_account_bind_zhifubao.html": {
+		"resources": [
+			"css/mui.min.css",
+			"css/m_account_zhifubao.css",
+			"images/zhifubao.png",
+			"css/m_common.css",
+			"account/m_account_withdraw.html"
+		],
+		"refer": [
+			"account/m_account_withdraw.html"
 		]
 	}
 }

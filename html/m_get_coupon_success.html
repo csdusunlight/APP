@@ -52,6 +52,9 @@
 			var exp_url = self.exp_url.replace(/\s+/g,'');
 			plus.runtime.openURL(exp_url);
 		});
+		document.getElementById("seeCoupon").addEventListener('tap',function(event){
+			mui.openWindow('../account/m_account_coupon.html','account_coupon');
+		});
     });
     
     </script>

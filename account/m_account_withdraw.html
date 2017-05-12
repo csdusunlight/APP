@@ -89,7 +89,11 @@
         						token:UserInfo.token()
         					},
         					success:function(ret){
-        						mui.alert(ret.msg);
+        						mui.alert(ret.msg,function(){
+        							view = plus.webview.getWebviewById("m_account_index.html");
+        							mui.fire(view, 'login-refresh');
+        							mui.back();
+        						});
         					},
         					error:function(xhr,type,errorThrown){
 								mui.toast("请检查网络状况！");
