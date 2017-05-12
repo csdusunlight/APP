@@ -81,7 +81,11 @@
 						mui.alert(ret.msg);
 					}
 					else {
-						mui.alert("您的邀请奖励已成功转至账户余额！");
+						mui.alert("您的邀请奖励已成功转至账户余额！",function(){
+							document.getElementById('left_award').innerText = '0';
+							view = plus.webview.getWebviewById("m_account_index.html");
+        					mui.fire(view, 'refresh_userinfo');
+						});
 					}
 				},
 				error:function(xhr,type,errorThrown){

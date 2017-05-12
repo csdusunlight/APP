@@ -285,10 +285,9 @@
 				    plus.android.invoke(clip,"setText","天天挖福利");
                 }
                 else if (plus.os.name == "iOS") {
-                	var UIPasteboard  = plus.ios.importClass("UIPasteboard");
-					var paste = new UIPasteboard();
-					var pasteboard = paste.generalPasteboard();
-					pastboard.string="天天挖福利";
+					var UIPasteboard  = plus.ios.importClass("UIPasteboard");
+					var generalPasteboard = UIPasteboard.generalPasteboard();
+					generalPasteboard.setValueforPasteboardType("天天挖福利", "public.utf8-plain-text");
                 }
     			mui.confirm('需要您到微信客户端的添加朋友-公众号中添加', '公众号名称已复制到剪切板', btnArray, function(e) {
     				if (e.index == 1) {
