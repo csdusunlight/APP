@@ -25,7 +25,8 @@
 			"css/m_common.css",
 			"js/mui.js",
 			"js/mui.min.js",
-			"images/blank.jpg"
+			"images/blank.jpg",
+			"fonts/wafuli-iconfont.woff"
 		],
 		"refer": [
 			"browser.html",
@@ -134,7 +135,8 @@
 		"resources": [
 			"css/m_finance.css",
 			"js/mui.pullToRefresh.js",
-			"js/mui.pullToRefresh.material.js"
+			"js/mui.pullToRefresh.material.js",
+			"js/template.js"
 		],
 		"refer": [
 			"html/m_detail_finance.html",
