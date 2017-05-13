@@ -47,25 +47,6 @@
 			   </ul>
 		</div>
 
-		<!--弹出二维码部分-->
-		<div id="weixin_bg" class="er-wei-ma-bg">
-		</div>
-		<div id="weixin_box" class="weixin-box-00">
-			<div class="weixin-box">
-				<span id="close_01" class="mui-icon mui-icon-closeempty"></span>
-				<p>长安识别图中二维码</p>
-				<img src="../images/dingyuehao.jpg"/>
-				<p>挖福利订阅号</p>
-			</div>
-		</div>
-		<div id="weixin_box_02" class="weixin-box-00">
-			<div class="weixin-box">
-				<span id="close_02" class="mui-icon mui-icon-closeempty"></span>
-				<p>长安识别图中二维码</p>
-				<img src="../images/gongzhong.jpg"/>
-				<p>挖福利公众号</p>
-			</div>
-		</div>
 
 		<script src="../js/mui.js"></script>
 		<!--弹窗部分-->
@@ -101,7 +82,6 @@
 					}
 				});
 				mui(".open_window").on('tap', 'a', function(e) {
-					console.log('dsdsdd');
 					var sid = this.getAttribute('data_id');
 					var htitle = this.innerText;
 					if (!sid){
@@ -130,30 +110,44 @@
 				});
 			});
 			var gong_zhong_hao = document.getElementById("gong_zhong_hao"),
-				fu_wu_hao = document.getElementById("fu_wu_hao"),
-				close_01 = document.getElementById("close_01"),
-				close_02 = document.getElementById("close_02"),
-				weixin_bg = document.getElementById("weixin_bg"),
-				weixin_box = document.getElementById("weixin_box"),
-				weixin_box_02 = document.getElementById("weixin_box_02");
+				fu_wu_hao = document.getElementById("fu_wu_hao");
 				//监听点击事件
 			gong_zhong_hao.addEventListener("tap",function () {
-				weixin_bg.style.display = "block";
-			  	weixin_box.setAttribute("class","weixin-box-01");
+				toWeinxin("我要挖福利");
 			});
-			close_01.addEventListener("tap",function () {
-				weixin_bg.style.display = "none";
-			  	weixin_box.setAttribute("class","weixin-box-02");
-			});
-
 			fu_wu_hao.addEventListener("tap",function () {
-				weixin_bg.style.display = "block";
-			  	weixin_box_02.setAttribute("class","weixin-box-01");
+				toWeinxin("天天挖福利");
 			});
-			close_02.addEventListener("tap",function () {
-				weixin_bg.style.display = "none";
-			  	weixin_box_02.setAttribute("class","weixin-box-02");
-			});
+			function toWeinxin(copied){
+				var btnArray = ['打开微信','取消'];
+                if (plus.os.name == "Android") {
+	                var Context = plus.android.importClass("android.content.Context");
+				    var main = plus.android.runtimeMainActivity();
+				    var clip = main.getSystemService(Context.CLIPBOARD_SERVICE);
+				    plus.android.invoke(clip,"setText",copied);
+                }
+                else if (plus.os.name == "iOS") {
+					var UIPasteboard  = plus.ios.importClass("UIPasteboard");
+					var generalPasteboard = UIPasteboard.generalPasteboard();
+					generalPasteboard.setValueforPasteboardType(copied, "public.utf8-plain-text");
+                }
+    			mui.confirm('需要您到微信客户端的添加朋友-公众号中添加', '公众号名称已复制到剪切板', btnArray, function(e) {
+    				if (e.index == 1) {
+    					return;
+    				} else {
+    					plus.runtime.openURL("weixin://",function(){
+    						if (plus.os.name == "iOS") {
+    							plus.nativeUI.confirm("检查到您未安装微信客户端，是否到appstore下载？", function(i) {
+		                            if (i.index == 0) {
+		                                var url='itms-apps://itunes.apple.com/app/id414478124?mt=8';
+				    					plus.runtime.openURL(url);
+		                            }
+		                        });
+    						}
+						});
+    				}
+    			});
+			}
 		</script>
 	</body>
 

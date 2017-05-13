@@ -293,15 +293,16 @@
     				if (e.index == 1) {
     					return;
     				} else {
-//  					var url='itms-apps://itunes.apple.com/cn/app/';
-//  					plus.runtime.openURL(url);
-////  					plus.runtime.openURL("weixin://",function(){
-////							plus.nativeUI.confirm("检查到您未安装qq，请先到appstore搜索下载？", function(i) {
-////	                            if (i.index == 0) {
-////	                                iosAppstore("itunes.apple.com/cn/app/mqq/");
-////	                            }
-////	                        });
-////						});
+    					plus.runtime.openURL("weixin://",function(){
+    						if (plus.os.name == "iOS") {
+    							plus.nativeUI.confirm("检查到您未安装微信客户端，是否到appstore下载？", function(i) {
+		                            if (i.index == 0) {
+		                                var url='itms-apps://itunes.apple.com/app/id414478124?mt=8';
+				    					plus.runtime.openURL(url);
+		                            }
+		                        });
+    						}
+						});
     				}
     			});
             });

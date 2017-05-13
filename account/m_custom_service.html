@@ -78,15 +78,8 @@
 					main.startActivity( intent );
                 }
                 else if (plus.os.name == "iOS") {
-                    plus.runtime.launchApplication({
-                        action: "mqq://im/chat?chat_type=wpa&uin=2339019773&version=1&src_type=web"
-                    }, function(e) {
-                        plus.nativeUI.confirm("检查到您未安装qq，请先到appstore搜索下载？", function(i) {
-                            if (i.index == 0) {
-                                iosAppstore("itunes.apple.com/cn/app/mqq/");
-                            }
-                        });
-                    });
+                    var action = "mqq://im/chat?chat_type=wpa&uin=2339019773&version=1&src_type=web";
+                	ios_qq(action);
                 }
 			});
 			document.getElementById("qq_task").addEventListener("tap",function(){
@@ -99,15 +92,8 @@
 					main.startActivity( intent );
                 }
                 else if (plus.os.name == "iOS") {
-                    plus.runtime.launchApplication({
-                        action: "mqq://im/chat?chat_type=wpa&uin=3327058376&version=1&src_type=web"
-                    }, function(e) {
-                        plus.nativeUI.confirm("检查到您未安装qq，请先到appstore搜索下载？", function(i) {
-                            if (i.index == 0) {
-                                iosAppstore("itunes.apple.com/cn/app/mqq/");
-                            }
-                        });
-                    });
+                    var action = "mqq://im/chat?chat_type=wpa&uin=3327058376&version=1&src_type=web";
+                	ios_qq(action);
                 }
 			});
 			document.getElementById("qq_finance").addEventListener("tap",function(){
@@ -120,17 +106,22 @@
 					main.startActivity( intent );
                 }
                 else if (plus.os.name == "iOS") {
-                    plus.runtime.launchApplication({
-                        action: "mqq://im/chat?chat_type=wpa&uin=2468016671&version=1&src_type=web"
-                    }, function(e) {
-                        plus.nativeUI.confirm("检查到您未安装qq，请先到appstore搜索下载？", function(i) {
-                            if (i.index == 0) {
-                                iosAppstore("itunes.apple.com/cn/app/mqq/");
-                            }
-                        });
-                    });
+                	var action = "mqq://im/chat?chat_type=wpa&uin=2468016671&version=1&src_type=web";
+                	ios_qq(action);
                 }
 			});
+			function ios_qq(action){
+				plus.runtime.launchApplication({
+                    action: action
+                }, function(e) {
+                    plus.nativeUI.confirm("检查到您未安装QQ客户端，是否到appstore下载？", function(i) {
+                        if (i.index == 0) {
+                            var storeurl='itms-apps://itunes.apple.com/app/id444934666?mt=8';
+	    					plus.runtime.openURL(storeurl);
+                        }
+                    });
+                });
+			}
 		</script>
 	</body>
 
