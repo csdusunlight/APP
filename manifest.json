@@ -182,7 +182,7 @@
 				"android": {
 					"mdpi": "", /*普通屏启动图片，分辨率：240x282*/
 					"ldpi": "unpackage/res/splash/320x442.png", /*大屏启动图片，分辨率：320x442*/
-					"hdpi": "unpackage/res/splash/480x762.png","xhdpi":"unpackage/res/splash/720x1242.png","xxhdpi":"unpackage/res/splash/1080x1882 png-24.png"
+					"hdpi": "unpackage/res/splash/480x762.png","xhdpi":"unpackage/res/splash/720x1242.png","xxhdpi":"unpackage/res/splash/1080x1882.png"
 				}
 			},
 			"debug": false
