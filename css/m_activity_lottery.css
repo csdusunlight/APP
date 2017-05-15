@@ -32,6 +32,7 @@ body {
 	margin: 0 auto;
 	background-size: 100% auto;
 	transition: all 6s cubic-bezier(.2,.54,0,1);
+	overflow: hidden;
 }
 .dial .rotate img {
 	width: 26rem;
@@ -153,7 +154,7 @@ body {
 	line-height: 1.2rem;
 }
 
-/*³é½±µ¯³öÌáÊ¾²¿·Ö*/
+/*ï¿½é½±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½*/
 .popup {
 	position: fixed;
 	top: 0;
