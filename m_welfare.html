@@ -121,14 +121,14 @@
 				</div>
 			</div>
 		</div>
-	    <div id="weixin_box" class="weixin-box-00">
+	    <!--<div id="weixin_box" class="weixin-box-00">
 	        <div class="weixin-box">
 	            <span id="close_01" class="mui-icon mui-icon-closeempty"></span>
 	            <p>长按识别图中二维码</p>
 	            <img id="erweima_img" src="images/gongzhong.jpg"/>
 	            <p>微信公众号_天天挖福利</p>
 	        </div>
-	    </div>
+	    </div>-->
 		<script type="text/javascript" charset="UTF-8" src="js/mui.min.js"></script>
 		<script type="text/javascript" charset="UTF-8" src="js/feed.js"></script>
 		<script type="text/javascript" charset="UTF-8" src="js/html5sql.js"></script>
@@ -191,7 +191,7 @@
 				});
 				tempview = mui.preload({url:"", id:"temp",styles: {popGesture:'hide',hardwareAccelerated: true}});
 	      		tempview.addEventListener('hide',function(){
-	      			tempview.clear();
+	      			this.clear();
 	      		});
 	      		tempview2 = mui.preload({url:"", id:"temp2",styles: {popGesture:'hide',hardwareAccelerated: true}});
 	      		tempview2.addEventListener('hide',function(){
@@ -267,10 +267,8 @@
 					tempview.show("pop-in",350);
 				});
 			});
-			var weixin_btn = document.getElementById("weixin_btn"),
-            close_01 = document.getElementById("close_01"),
-//          weixin_bg = document.getElementById("weixin_bg"),
-            weixin_box = document.getElementById("weixin_box");
+			var weixin_btn = document.getElementById("weixin_btn");
+            var close_01 = document.getElementById("close_01");
             //监听点击事件
             weixin_btn.addEventListener("tap",function () {
                 var btnArray = ['打开微信','取消'];
@@ -307,14 +305,14 @@
 //              weixin_bg.style.display = "none";
 //              weixin_box.setAttribute("class","weixin-box-02");
 //          });
-            erweima_img.addEventListener("longtap",function () {
-            	plus.barcode.scan('_www/images/gongzhong.jpg', function (type,result) {
-					console.log( "Scan success:("+type+")"+result );
-				}, function (error) {
-					console.log( error.code );
-				});
-//				mui.alert("请");
-			});
+//          erweima_img.addEventListener("longtap",function () {
+//          	plus.barcode.scan('_www/images/gongzhong.jpg', function (type,result) {
+//					console.log( "Scan success:("+type+")"+result );
+//				}, function (error) {
+//					console.log( error.code );
+//				});
+////				mui.alert("请");
+//			});
 			var detailMainWebview = null; //详情页面父webview
 			var detailWebview = null; //详情页面子webview
 			function open_welfare_detail(id,type,title,img) {
@@ -350,10 +348,6 @@
 //			});
 			function pulldownRefresh() {
 				latestPubDate = Number.MAX_VALUE;
-				if (!hasMore) { //当清除缓存之前已上拉加载到底需要重置pullrefresh
-					mui('#pullrefresh').pullRefresh().refresh(true);
-					hasMore = true;
-				}
 				wa.getFeed(function(hasNew) {
 					//显示列表数据
 					wa.getRecom(function(recoms) {
@@ -368,17 +362,23 @@
 						add_doms_news(news, true);
 						processNews(news, 'news_img_', 'news');
 					}, throwGetNewsError);
-					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					complete_refresh();
 				}, function() {
-					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+					complete_refresh();
 					throwGetNewsError();
 				});
-				var wvs=plus.webview.all();
+//				var wvs=plus.webview.all();
 //				for(var i=0;i<wvs.length;i++){
 //					console.log("webview"+i+": "+wvs[i].id);
 //				}
 			};
-	
+			function complete_refresh(){
+				mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+				if (!hasMore) { //当清除缓存之前已上拉加载到底需要重置pullrefresh
+					mui('#pullrefresh').pullRefresh().refresh(true);
+					hasMore = true;
+				}
+			}
 			function clearNewsList() {
 				news_group.innerHTML = '';
 			};
