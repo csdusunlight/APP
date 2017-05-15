@@ -62,7 +62,8 @@ table,img {
 	border-top: 1px solid #e4e4e4;
 	border-bottom: 1px solid #e4e4e4;
 }
-.try span{
+.shuju>span{
+	padding-left: 4px;
 	display: block;
 	color: #8f8f8f;
 }

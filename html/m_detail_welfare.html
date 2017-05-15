@@ -30,7 +30,7 @@
 			<!--立即体验部分-->
 			<div class="try">
 				<div class="shuju">
-					<span id="num_desc">体验人数：</span><span></span><number id="number_display"></number></span>
+					<span><span id="num_desc">体验人数：</span><number id="number_display"></number></span>
 				    <span>活动日期：<number id="time_display"></number></span>
 				</div>
 				<button id="exp_btn" type="button" class="mui-btn mui-btn-blue mui-btn-block">立即体验</button>
@@ -76,7 +76,7 @@
 			  //根据id向服务器请求新闻详情
 			  	if (type==="hongbao"){
 			  		exp_btn_ele.innerText="立即体验";
-			  		num_desc_ele.innerText="体验人数";
+			  		num_desc_ele.innerText="体验人数：";
 			  		var url_get_content= "http://m.wafuli.cn/app/detail/hongbao/";
 			  		mui.ajax({
 						url:url_get_content,
@@ -104,7 +104,7 @@
 			  	}
 			  	else if (type==="youhuiquan"){
 			  		exp_btn_ele.innerText="立即领取";
-			  		num_desc_ele.innerText="剩余数量";
+			  		num_desc_ele.innerText="剩余数量：";
 			  		var url_get_content= "http://m.wafuli.cn/app/detail/youhuiquan/";
 			  		mui.ajax({
 						url:url_get_content + "?id=" + id,
