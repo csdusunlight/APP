@@ -166,9 +166,19 @@
 					tologin();
 				} else {
 					exp_url = exp_url.replace(/\s+/g,'');
-					plus.runtime.openURL(exp_url,function(){
-						plus.nativeUI.confirm("检查到您未安装相应的客户端，请先到应用商店搜索下载");
-					});
+					var httpStart = exp_url.indexOf("http");
+					if(httpStart==0){
+						var browserMainWebview = plus.webview.getWebviewById('browser_main');
+						var browserWebview = plus.webview.getWebviewById('browser_sub');
+						mui.fire(browserMainWebview, 'mui.view.beforeshow');
+						browserWebview.loadURL(exp_url);
+						browserMainWebview.show('pop-in', 200);
+					}
+					else{
+						plus.runtime.openURL(exp_url,function(){
+							plus.nativeUI.confirm("检查到您未安装相应的客户端，请先到应用商店搜索下载");
+						});
+					}
 				}
 			});
 			reg_btn.addEventListener('tap', function() {
