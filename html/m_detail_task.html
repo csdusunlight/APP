@@ -53,6 +53,7 @@
 			var url_get_accepted = "http://m.wafuli.cn/app/get_user_task_state/";
 			var self = null;
 			var tempview = null;
+			var title = '';
 			mui.plusReady(function(){
 		  		self = plus.webview.currentWebview();
 		  		tempview = plus.webview.getWebviewById("temp2");
@@ -88,6 +89,7 @@
 							var info = ret.taskinfo;
 							document.getElementById('strategy').innerHTML = info.strategy;
 							document.getElementById('rules').innerHTML = info.rules;
+							title = info.title;
 							exp_url = info.url;
 							if(ret.accepted==1){
 								accepted = 1;
@@ -142,7 +144,9 @@
 						if(httpStart==0){
 							var browserMainWebview = plus.webview.getWebviewById('browser_main');
 							var browserWebview = plus.webview.getWebviewById('browser_sub');
-							mui.fire(browserMainWebview, 'mui.view.beforeshow');
+							mui.fire(browserMainWebview, 'mui.view.beforeshow',{
+								title: title
+							});
 							browserWebview.loadURL(exp_url);
 							browserMainWebview.show('pop-in', 200);
 						}

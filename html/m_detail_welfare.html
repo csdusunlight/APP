@@ -94,6 +94,7 @@
 								document.getElementById('number_display').innerText = ret.num;
 								document.getElementById('time_display').innerText = ret.time;
 								exp_url = ret.url;
+								title = ret.title;
 							}
 							
 						},
@@ -147,7 +148,9 @@
 					if(httpStart==0){
 						var browserMainWebview = plus.webview.getWebviewById('browser_main');
 						var browserWebview = plus.webview.getWebviewById('browser_sub');
-						mui.fire(browserMainWebview, 'mui.view.beforeshow');
+						mui.fire(browserMainWebview, 'mui.view.beforeshow',{
+							title:title
+						});
 						browserWebview.loadURL(exp_url);
 						browserMainWebview.show('pop-in', 200);
 					}

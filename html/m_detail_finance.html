@@ -72,6 +72,7 @@
 			var exp_url = '';
 			var self = null;
 			var tempview = null;
+			var title = '';
 			mui.plusReady(function() {
 				self = plus.webview.currentWebview();
 				tempview = plus.webview.getWebviewById("temp2");
@@ -113,6 +114,7 @@
 							document.getElementById('strategy').innerHTML = info.strategy;
 							document.getElementById('rules').innerHTML = info.rules;
 							exp_url = info.url;
+							title = info.title;
 							var mark_cont = document.getElementById("marks");
 							mark_cont.innerHTML="";
 							var mark_list = info.marks;
@@ -170,7 +172,9 @@
 					if(httpStart==0){
 						var browserMainWebview = plus.webview.getWebviewById('browser_main');
 						var browserWebview = plus.webview.getWebviewById('browser_sub');
-						mui.fire(browserMainWebview, 'mui.view.beforeshow');
+						mui.fire(browserMainWebview, 'mui.view.beforeshow',{
+							title: title
+						});
 						browserWebview.loadURL(exp_url);
 						browserMainWebview.show('pop-in', 200);
 					}

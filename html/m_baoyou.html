@@ -97,7 +97,34 @@
 		}
 		mui('.mui-table-view').on('tap', 'a', function() {
 			if(UserInfo.has_login()){
-				plus.runtime.openURL(this.href);
+				exp_url = this.href;
+				exp_url = exp_url.replace(/\s+/g,'');
+				var httpStart = exp_url.indexOf("http");
+				if(httpStart==0){
+					var browserMainWebview = plus.webview.getWebviewById('browser_main');
+					var browserWebview = plus.webview.getWebviewById('browser_sub');
+					mui.fire(browserMainWebview, 'mui.view.beforeshow',{
+						title:this.getElementsByTagName("h6")[0].innerText
+					});
+					browserWebview.loadURL(exp_url);
+					browserMainWebview.show('pop-in', 200);
+				}
+				else{
+					plus.runtime.openURL(exp_url,function(){
+						if (plus.os.name == "Android") {
+			                plus.nativeUI.confirm("检查到您未安装相应的客户端，请先到应用商店搜索下载");
+		                }
+		                else if (plus.os.name == "iOS") {
+		                	var btnArray = ['取消','去App Store'];
+							mui.confirm("抢红包需要在客户端中操作，请先到App Store中下载","您尚未安装相应的客户端", btnArray, function(i) {
+	                            if (i.index == 1) {
+	                                var storeurl='itms-apps://';
+			    					plus.runtime.openURL(storeurl);
+	                            }
+	                        });
+						}
+					});
+				}
 			}
 			else{
 				tologin();
