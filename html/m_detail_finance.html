@@ -156,7 +156,8 @@
 				setTimeout(function() {
 					self.show();
 				}, 100);
-				var sss = 'share_msg.pictures=["' + img + '",];share_msg.thumbs=["' + img + '",];share_msg.href = "http://m.wafuli.cn/task/' + id + '/";';
+				var sss = 'share_msg.pictures=["' + img + '",];share_msg.thumbs=["' + img + '",];share_msg.href = "http://m.wafuli.cn/finance/' + id + '/";'+
+					'share_msg.content = "' + document.getElementById('intro').innerText  + '";';
 				self.parent().evalJS(sss);
 			});
 			exp_btn.addEventListener('tap', function() {
