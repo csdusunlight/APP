@@ -7,7 +7,7 @@
 	"id": "H5139D07C",/*应用的标识，创建应用时自动生成，勿手动修改*/
 	"name": "挖福利",/*应用名称，程序桌面图标名称*/
 	"version": {
-		"name": "1.7",/*应用版本名称*/
+		"name": "1.9",/*应用版本名称*/
 		"code": "83"
 	},
 	"description": "",/*应用描述信息*/
@@ -182,7 +182,7 @@
 				"android": {
 					"mdpi": "", /*普通屏启动图片，分辨率：240x282*/
 					"ldpi": "unpackage/res/splash/320x442.png", /*大屏启动图片，分辨率：320x442*/
-					"hdpi": "unpackage/res/splash/480x762.png","xhdpi":"unpackage/res/splash/720x1242.png","xxhdpi":"unpackage/res/splash/1080x1882.png"
+					"hdpi": "unpackage/res/splash/480x762.png","xhdpi":"unpackage/res/splash/720x1242.png","xxhdpi":"C:/Users/lch/Desktop/profiles/1080x1882.png"
 				}
 			},
 			"debug": false

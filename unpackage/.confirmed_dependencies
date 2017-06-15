@@ -224,7 +224,10 @@
       "images/choujiang-zhizhen.png",
       "images/share-friend.png",
       "js/share.js",
-      "js/rotate-app.js"
+      "js/rotate-app.js",
+      "js/UserInfo.js",
+      "css/mui.min.css",
+      "css/m_common.css"
     ],
     "refer": [
       "a_login.html"
@@ -346,6 +349,7 @@
       "css/mui.min.css",
       "css/m_baoyou.css",
       "css/m_common.css"
-    ]
+    ],
+    "refer": []
   }
 }
