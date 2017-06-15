@@ -1,131 +1,232 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-    <link href="../css/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="../css/m_common.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/m_account_zhifubao.css"/>
-</head>
-	<body>	
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/m_common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/m_account_zhifubao.css" />
+	</head>
+
+	<body>
 		<header id="header" class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">支付宝更改</h1>
-			<!--<a class="mui-icon mui-icon-paperplane mui-pull-right"></a>-->
 		</header>
 		<div class="mui-content">
-			<img src="../images/zhifubao.png" alt="支付宝图片" />
+			<!--<form class="mui-input-group">
+				<div class="mui-input-row">
+					<label>支付宝姓名</label>
+					<input id="zhifubao_name" type="text" placeholder="请输入支付宝绑定的真实姓名">
+				</div>
+				<div class="mui-input-row">
+					<label>支付宝帐号</label>
+					<input id="zhifubao" type="text" placeholder="请输入真实的支付宝账户">
+				</div>
+				<div class="mui-input-row">
+					<label>手机验证码</label>
+					<input id="telcode" type="text" placeholder="请输入验证码">
+					<button id="gettelcode" type="button" class=" huoqu mui-btn-blue mui-btn-outlined">获取验证码</button>
+				</div>
+			</form>-->
 			<form class="mui-input-group">
-					
-					<div class="mui-input-row">
-						<label>支付宝姓名</label>
-						<input id="zhifubao_name" type="text" placeholder="请输入支付宝绑定的真实姓名">
-					</div>
-					<div class="mui-input-row">
-						<label>支付宝帐号</label>
-						<input id="zhifubao" type="text" placeholder="请输入真实的支付宝账户">
-					</div>
-					<div class="mui-input-row">
-						<label>手机验证码</label>
-						<input id="telcode" type="text" placeholder="请输入验证码">
-						<button id="gettelcode" type="button" class=" huoqu mui-btn-blue mui-btn-outlined">获取验证码</button>
-					</div>
-					
-					
-				</form>
-				
-				<button id="Btn" type="button" class="bottom mui-btn mui-btn-blue mui-btn-block">立即绑定</button>
-				
+				<div class="mui-input-row">
+					<label>请选择银行</label>
+					<select id='bank'>
+					</select>
+				</div>
+				<div class="mui-input-row">
+					<label>请填写支行</label>
+					<input id="subbranch" type="text" placeholder="请输入银行卡支行">
+				</div>
+				<div class="mui-input-row">
+					<label>持卡人姓名</label>
+					<input id="real_name" type="text" placeholder="请输入银行卡绑定的真实姓名">
+				</div>
+				<div class="mui-input-row">
+					<label>请输入卡号</label>
+					<input id="card_number" maxlength="23" type="text" placeholder="请输入真实的银行卡帐号" onkeyup="this.value =this.value.replace(/\s/g,'').replace(/[^\d]/g,'').replace(/(\d{4})(?=\d)/g,'$1 ');">
+				</div>
+				<div class="mui-input-row">
+					<label>手机验证码</label>
+					<input id="telcode" type="text" placeholder="请输入验证码">
+					<button id="gettelcode" type="button" class=" huoqu mui-btn-blue mui-btn-outlined">获取验证码</button>
+				</div>
+			</form>
+			<button id="Btn" type="button" class="bottom mui-btn mui-btn-blue mui-btn-block">立即绑定</button>
+
 		</div>
-		
+
 		<script src="../js/mui.js"></script>
-	    <script src="../js/UserInfo.js"></script>
-	    <script>
-	    	var sendtelcode_url = "http://m.wafuli.cn/account/phoneImageV/";
-		    mui.init({
-				swipeBack:true //启用右滑关闭功能
+		<script src="../js/UserInfo.js"></script>
+		<script>
+			var sendtelcode_url = "http://m.wafuli.cn/account/phoneImageV/";
+			mui.init({
+				swipeBack: true //启用右滑关闭功能
 			});
-			var countdown=60;
+			mui.ready(function(){
+				var bank_name;
+				mui.ajax({
+					url: 'http://m.wafuli.cn/app/bank_name/',
+					dataType: "json",
+					type: 'GET',
+					success: function() {
+						bank_name = banks;
+						var select_box = document.getElementById("bank");
+						select_box.innerHTML = '<option value="0">请选择相应的开户行</option>';
+						for (var i=0; i<bank_name.length; i++){
+							var option_item = document.createElement('option');
+							option_item.innerHTML = '<option value="' + bank_name[i][0] + '">'+ bank_name[i][1] +'</option>';
+							select_box.appendChild(option_item);
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						alert(type);
+					}
+				});
+			})
+			
+			var countdown = 60;
+
 			function settime(val) {
-				if (countdown == 0) {
+				if(countdown == 0) {
 					val.removeAttribute("disabled");
-					val.innerText="获取验证码";
+					val.innerText = "获取验证码";
 					countdown = 60;
 					return;
-				} 
-				else {
+				} else {
 					val.setAttribute("disabled", true);
-					val.innerText="重新发送(" + countdown + ")";
+					val.innerText = "重新发送(" + countdown + ")";
 					countdown--;
 				}
 				setTimeout(function() {
 					settime(val)
-				},1000);
+				}, 1000);
 			}
 			document.getElementById("gettelcode").addEventListener('tap', function() {
 				sendTelVerifyCodeImageV();
 				settime(this);
 			});
+//			document.getElementById("Btn").addEventListener('tap', function() {
+//				var zhifubao = document.getElementById('zhifubao').value;
+//				var zhifubao_name = document.getElementById('zhifubao_name').value;
+//				var re_account = /^[\u2E80-\u9FFF]+$/;
+//				if(!re_account.test(zhifubao_name)) {
+//					mui.alert("请输入正确的支付宝绑定的真实姓名");
+//					return;
+//				}
+//				if(!zhifubao || !zhifubao_name) {
+//					mui.alert("支付宝账号或姓名不能为空！", '提示');
+//					return;
+//				}
+//				var telcode = document.getElementById("telcode").value;
+//				if(!telcode) {
+//					mui.alert('请输入手机验证码！', '提示');
+//					return;
+//				}
+//				if(telcode.length != 6) {
+//					mui.alert('您输入的手机验证码格式有误，请重新输入！', '提示');
+//					return;
+//				}
+//				mui.ajax({
+//					url: 'http://m.wafuli.cn/app/change_zhifubao/',
+//					dataType: "json",
+//					type: 'POST',
+//					data: {
+//						account: zhifubao,
+//						name: zhifubao_name,
+//						telcode: telcode,
+//						token: UserInfo.token()
+//					},
+//					success: function(ret) {
+//						mui.alert(ret.msg, callback = function() {
+//							if(ret.code == 0) {
+//								window.history.back();
+//							}
+//						});
+//					},
+//					error: function() {
+//						alert("请检查网络连接");
+//					}
+//				});
+//			});
 			document.getElementById("Btn").addEventListener('tap', function() {
-				var zhifubao = document.getElementById('zhifubao').value;
-				var zhifubao_name = document.getElementById('zhifubao_name').value;
-				var re_account=/^[\u2E80-\u9FFF]+$/;
-		        if(!re_account.test(zhifubao_name)){
-		          mui.alert("请输入正确的支付宝绑定的真实姓名");
-		          return;
-		        }
-				if (!zhifubao || !zhifubao_name){
-					mui.alert("支付宝账号或姓名不能为空！", '提示');
+				var subbranch = document.getElementById('subbranch').value;
+				var real_name = document.getElementById('real_name').value;
+				var card_number = document.getElementById('card_number').value;
+				var telcode = document.getElementById('telcode').value;
+				var bank = document.getElementById("bank").value;
+
+				var re_account = /^[\u2E80-\u9FFF]+$/; //验证中文
+				var re_number = /^[0-9]*$/; //验证数字
+				var re_card = /^[\d\s]+$/; //验证银行卡号
+
+				if(bank == 0) {
+					mui.alert("请选择相应的开户行");
 					return;
 				}
-				var telcode = document.getElementById("telcode").value;
-				if(!telcode) {
-					mui.alert('请输入手机验证码！', '提示');
+				if(!subbranch || !real_name || !card_number || !telcode) {
+					mui.alert("填写项不能为空！", '提示');
 					return;
 				}
-				if(telcode.length!=6) {
+				if(!re_account.test(subbranch)) {
+					mui.alert("请输入正确的支行名称");
+					return;
+				}
+				if(!re_account.test(real_name)) {
+					mui.alert("请输入正确的银行卡绑定的真实姓名");
+					return;
+				}
+				if(!re_card.test(card_number)) {
+					mui.alert("请输入正确格式的银行卡号");
+					return;
+				}
+				if(telcode.length != 6) {
 					mui.alert('您输入的手机验证码格式有误，请重新输入！', '提示');
 					return;
 				}
 				mui.ajax({
-					url: 'http://m.wafuli.cn/app/change_zhifubao/',
-					dataType:"json",
-					type:'POST',
-					data : {
-						account: zhifubao,
-						name: zhifubao_name,
+					url: 'http://m.wafuli.cn/app/change_bankcard/',
+					dataType: "json",
+					type: 'POST',
+					data: {
+						bank: bank,
+						subbranch: subbranch,
+						real_name: real_name,
+						card_number: card_number,
 						telcode: telcode,
-						token:UserInfo.token()
+						token: UserInfo.token()
 					},
-					success:function(ret){
-						mui.alert(ret.msg,callback=function(){
-							if (ret.code==0){
+					success: function(ret) {
+						mui.alert(ret.msg, callback = function() {
+							if(ret.code == 0) {
 								window.history.back();
 							}
 						});
 					},
-					error:function(){
+					error: function() {
 						alert("请检查网络连接");
 					}
 				});
 			});
 			var sendTelVerifyCodeImageV = function() {
 				mui.ajax({
-					url : sendtelcode_url,
-					data : {
-						action : 'change_zhifubao',
+					url: sendtelcode_url,
+					data: {
+						action: 'change_zhifubao',
 						token: UserInfo.token()
 					},
-					timeout : 3000,
-					success : function(data) {
-						if (data.code != 0) {
+					timeout: 3000,
+					success: function(data) {
+						if(data.code != 0) {
 							mui.alert(data.message);
 						}
-						if (data.code == 1){
+						if(data.code == 1) {
 							countdown = 0;
 						}
 					},
-					error:function(xhr,type,errorThrown){
+					error: function(xhr, type, errorThrown) {
 						mui.toast("请检查网络状况！");
 					}
 				});

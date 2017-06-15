@@ -15,7 +15,7 @@
 		</header>
 		<div class="mui-content">
 			<!--帐号部分-->
-			<div class="zhanghu">
+			<!--<div class="zhanghu">
 				<div class="msg clearfix">
 					<img id="userimg" src="../images/user.png" alt="用户图标" />
 					<div class="text">
@@ -25,6 +25,15 @@
 					</div>
 				</div>
 				<a id="change_zhifubao" class="right"></a>
+			</div>-->
+			<!--帐号部分-->
+			<div id="bind_card" class="zhanghu">
+				<div class="msg clearfix">
+						<img id="bank_icon" />
+						<div id="bank_card" class="text">
+						</div>
+				</div>
+
 			</div>
 			<!--提现部分-->
 			<form class="mui-input-group">
@@ -38,6 +47,20 @@
 				<span>提现福币数至少为<number>1000</number></span>
 			</p>
 			<button id="Btn" type="button" class="mui-btn mui-btn-blue mui-btn-block">确认提现</button>
+			
+			<div id="sheet1" class="mui-popover mui-popover-bottom mui-popover-action ">
+			    <!-- 可选择菜单 -->
+			    <ul class="mui-table-view">
+			      <li id="go_bank" class="mui-table-view-cell">
+			      </li>
+			    </ul>
+			    <!-- 取消菜单 -->
+			    <ul class="mui-table-view">
+			      <li class="mui-table-view-cell">
+			        <a href="#sheet1"><b>取消</b></a>
+			      </li>
+			    </ul>
+			</div>
 		</div>
 
 
@@ -53,16 +76,38 @@
 				document.getElementById('userimg').src = "../images/user-0" + user.userimg + ".png";
 				document.getElementById('mobile').innerText = user.mobile;
 				
-				if (user.zhifubao){
-					document.getElementById("zhifubao").innerHTML = "支付宝帐号：<number>" + user.zhifubao + "</number>";
-					document.getElementById("change_zhifubao").href = "m_account_change_zhifubao.html";
-					document.getElementById("change_zhifubao").innerText = "更换支付宝账号";
+//				if (user.zhifubao){
+//					document.getElementById("zhifubao").innerHTML = "支付宝帐号：<number>" + user.zhifubao + "</number>";
+//					document.getElementById("change_zhifubao").href = "m_account_change_zhifubao.html";
+//					document.getElementById("change_zhifubao").innerText = "更换支付宝账号";
+//				}
+//				else{
+//					document.getElementById("zhifubao").innerHTML = "支付宝帐号：未绑定";
+//					document.getElementById("change_zhifubao").href = "m_account_bind_zhifubao.html";
+//					document.getElementById("change_zhifubao").innerText = "绑定支付宝账号";
+//				}
+				if (card) {
+					document.getElementById("bank_icon").style.display = "block";
+					document.getElementById("bank_icon").src = "../images/" + card.bank + ".png";
+					
+					document.getElementById("bank_card").innerHTML = '<p><span>' + card.get_bank_display + '</span><br />' +
+																	'<span><a>' + card.card_number +'</a></span></p>';
+					document.getElementById("go_bank").innerHTML = '<a href="m_account_change_bankcard.html">更换银行卡</a>';
+				} else{
+					document.getElementById("bank_icon").style.display = "none";
+					document.getElementById("bank_card").innerHTML = '<p><span>请点此绑定银行卡，并刷新该页面</span></p>';
+					document.getElementById("go_bank").innerHTML = '<a href="m_account_bind_bankcard.html">绑定银行卡</a>';
 				}
-				else{
-					document.getElementById("zhifubao").innerHTML = "支付宝帐号：未绑定";
-					document.getElementById("change_zhifubao").href = "m_account_bind_zhifubao.html";
-					document.getElementById("change_zhifubao").innerText = "绑定支付宝账号";
-				}
+				
+				mui('.mui-table-view').on('tap', 'a', function(e) {
+					var targetTab = this.getAttribute('href');
+					if (targetTab){
+						plus.webview.currentWebview().loadURL(targetTab);
+					}
+				});
+				document.getElementById("bank_card").addEventListener('tap', function() {
+					mui('#sheet1').popover('toggle');
+				});
 			});
 			var withdraw_url = "http://m.wafuli.cn/app/withdraw/";
 			document.getElementById("Btn").addEventListener('tap', function() {
@@ -102,6 +147,8 @@
                     }
                 });
 			});
+			
+			
 		</script>
 	</body>
 

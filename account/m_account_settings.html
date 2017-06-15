@@ -23,7 +23,7 @@
 		            <a>手机绑定 （<number id="mobile2"></number>）</a>
 		        </li>
 		        <li class="mui-table-view-cell">
-		            <a class="mui-navigate-right" id="zhifubao"></a>
+		            <a class="mui-navigate-right" id="bankcard"></a>
 		        </li>
 		    </ul>
 			<ul class="mui-table-view">
@@ -43,13 +43,13 @@
 		document.getElementById('mobile').innerText = user.mobile;
 		document.getElementById('mobile2').innerText = user.mobile;
 		
-		if (user.zhifubao){
-			document.getElementById("zhifubao").innerHTML = "支付宝<number>（" + user.zhifubao + "）</number><span>更换</span>";
-			document.getElementById("zhifubao").href = "m_account_change_zhifubao.html";
+		if (card){
+			document.getElementById("bankcard").innerHTML = "银行卡<number>（" + card.card_number + "）</number><span>更换</span>";
+			document.getElementById("bankcard").href = "m_account_change_zhifubao.html";
 		}
 		else{
-			document.getElementById("zhifubao").innerHTML = "支付宝帐号：未绑定";
-			document.getElementById("zhifubao").href = "m_account_bind_zhifubao.html";
+			document.getElementById("bankcard").innerHTML = "银行卡号：未绑定";
+			document.getElementById("bankcard").href = "m_account_bind_zhifubao.html";
 		}
       	mui.ready(function(){
       		mui('.mui-table-view').on('tap', 'a', function(e) {
