@@ -43,7 +43,9 @@
       "html/m_hongbao.html",
       "html/m_youhuiquan.html",
       "account/m_account_withdraw.html",
-      "html/m_baoyou.html"
+      "html/m_baoyou.html",
+      "account/m_account_bind_bankcard.html",
+      "account/m_account_change_bankcard.html"
     ]
   },
   "html/m_detail_finance.html": {
@@ -349,6 +351,25 @@
       "css/mui.min.css",
       "css/m_baoyou.css",
       "css/m_common.css"
+    ],
+    "refer": []
+  },
+  "account/m_account_bind_bankcard.html": {
+    "resources": [
+      "css/m_account_bankcard.css",
+      "js/UserInfo.js",
+      "css/mui.min.css",
+      "js/mui.js",
+      "css/m_common.css",
+      "account/m_account_withdraw.html"
+    ],
+    "refer": []
+  },
+  "account/m_account_change_bankcard.html": {
+    "resources": [
+      "css/m_account_bankcard.css",
+      "js/mui.js",
+      "account/m_account_withdraw.html"
     ],
     "refer": []
   }

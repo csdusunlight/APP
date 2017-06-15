@@ -43,13 +43,13 @@
 		document.getElementById('mobile').innerText = user.mobile;
 		document.getElementById('mobile2').innerText = user.mobile;
 		
-		if (card){
-			document.getElementById("bankcard").innerHTML = "银行卡<number>（" + card.card_number + "）</number><span>更换</span>";
-			document.getElementById("bankcard").href = "m_account_change_zhifubao.html";
+		if (user.bank){
+			document.getElementById("bankcard").innerHTML = "银行卡<number>（" + user.card_number + "）</number><span>更换</span>";
+			document.getElementById("bankcard").href = "m_account_change_bankcard.html";
 		}
 		else{
 			document.getElementById("bankcard").innerHTML = "银行卡号：未绑定";
-			document.getElementById("bankcard").href = "m_account_bind_zhifubao.html";
+			document.getElementById("bankcard").href = "m_account_bind_bankcard.html";
 		}
       	mui.ready(function(){
       		mui('.mui-table-view').on('tap', 'a', function(e) {

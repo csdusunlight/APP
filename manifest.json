@@ -338,7 +338,9 @@
 					"account/m_account_bind_zhifubao.html",
 					"account/m_account_channel.html",
 					"account/m_joinQQGroup.html",
-					"account/m_custom_service.html"
+					"account/m_custom_service.html",
+					"account/m_account_bind_bankcard.html",
+					"account/m_account_change_bankcard.html"
 				],
 				"priority": 0
 			},
@@ -1659,6 +1661,27 @@
 					"js/UserInfo.js",
 					"fonts/mui.ttf",
 					"css/m_expsubmit_finances.css"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/m_account_bind_bankcard.html": {
+				"resources": [
+					"css/m_account_bankcard.css",
+					"js/UserInfo.js",
+					"css/mui.min.css",
+					"js/mui.js",
+					"css/m_common.css",
+					"account/m_account_withdraw.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/m_account_change_bankcard.html": {
+				"resources": [
+					"css/m_account_bankcard.css",
+					"js/mui.js",
+					"account/m_account_withdraw.html"
 				],
 				"refer": [],
 				"priority": 0

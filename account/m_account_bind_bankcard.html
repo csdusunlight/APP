@@ -7,7 +7,7 @@
 		<title>支付宝绑定</title>
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="../css/m_common.css" />
-		<link rel="stylesheet" type="text/css" href="../css/m_account_zhifubao.css" />
+		<link rel="stylesheet" type="text/css" href="../css/m_account_bankcard.css" />
 
 	</head>
 
@@ -62,13 +62,14 @@
 					url: 'http://m.wafuli.cn/app/bank_name/',
 					dataType: "json",
 					type: 'GET',
-					success: function() {
-						bank_name = banks;
+					success: function(ret) {
+						bank_name = ret;
 						var select_box = document.getElementById("bank");
 						select_box.innerHTML = '<option value="0">请选择相应的开户行</option>';
 						for (var i=0; i<bank_name.length; i++){
 							var option_item = document.createElement('option');
 							option_item.innerHTML = '<option value="' + bank_name[i][0] + '">'+ bank_name[i][1] +'</option>';
+							alert(bank_name[i][0]);
 							select_box.appendChild(option_item);
 						}
 					},
@@ -114,11 +115,10 @@
 				var card_number = document.getElementById('card_number').value;
 
 				var bank = document.getElementById("bank").value;
-				console.log("bank:" + bank);
 				var re_account = /^[\u2E80-\u9FFF]+$/; //验证中文
 				var re_number = /^[0-9]*$/; //验证数字
 				var re_card = /^[\d\s]+$/; //验证银行卡号
-
+				alert(bank);
 				if(bank == 0) {
 					mui.alert("请选择相应的开户行");
 					return;
@@ -152,6 +152,8 @@
 					},
 					success: function(ret) {
 						mui.alert(ret.msg, callback = function() {
+							view = plus.webview.getWebviewById("m_account_index.html");
+        					mui.fire(view, 'refresh_userinfo');
 							mui.back();
 						});
 					},

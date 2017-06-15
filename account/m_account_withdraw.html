@@ -73,8 +73,8 @@
 			mui.plusReady(function(){
 				user = UserInfo.userinfo();
 				document.getElementById("balance").innerText = user.balance;
-				document.getElementById('userimg').src = "../images/user-0" + user.userimg + ".png";
-				document.getElementById('mobile').innerText = user.mobile;
+//				document.getElementById('userimg').src = "../images/user-0" + user.userimg + ".png";
+//				document.getElementById('mobile').innerText = user.mobile;
 				
 //				if (user.zhifubao){
 //					document.getElementById("zhifubao").innerHTML = "支付宝帐号：<number>" + user.zhifubao + "</number>";
@@ -86,16 +86,20 @@
 //					document.getElementById("change_zhifubao").href = "m_account_bind_zhifubao.html";
 //					document.getElementById("change_zhifubao").innerText = "绑定支付宝账号";
 //				}
-				if (card) {
+				var bank = user.bank;
+				var card_number = user.card_number;
+				var bank_name = user.bank_name;
+				if (bank&&card_number) {
+					alert(bank);
 					document.getElementById("bank_icon").style.display = "block";
-					document.getElementById("bank_icon").src = "../images/" + card.bank + ".png";
+					document.getElementById("bank_icon").src = "../images/" + bank + ".png";
 					
-					document.getElementById("bank_card").innerHTML = '<p><span>' + card.get_bank_display + '</span><br />' +
-																	'<span><a>' + card.card_number +'</a></span></p>';
+					document.getElementById("bank_card").innerHTML = '<p><span>' + bank_name + '</span><br />' +
+																	'<span><a>' + card_number +'</a></span></p>';
 					document.getElementById("go_bank").innerHTML = '<a href="m_account_change_bankcard.html">更换银行卡</a>';
 				} else{
 					document.getElementById("bank_icon").style.display = "none";
-					document.getElementById("bank_card").innerHTML = '<p><span>请点此绑定银行卡，并刷新该页面</span></p>';
+					document.getElementById("bank_card").innerHTML = '<p><span>请点此绑定银行卡</span></p>';
 					document.getElementById("go_bank").innerHTML = '<a href="m_account_bind_bankcard.html">绑定银行卡</a>';
 				}
 				
@@ -105,7 +109,7 @@
 						plus.webview.currentWebview().loadURL(targetTab);
 					}
 				});
-				document.getElementById("bank_card").addEventListener('tap', function() {
+				document.getElementById("bind_card").addEventListener('tap', function() {
 					mui('#sheet1').popover('toggle');
 				});
 			});
