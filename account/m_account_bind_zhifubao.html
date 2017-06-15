@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-    <title>支付宝绑定</title>
-    <link href="../css/mui.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" type="text/css" href="../css/m_common.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/m_account_zhifubao.css"/>
 
-</head>
+	<head lang="en">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<title>支付宝绑定</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/m_common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/m_account_zhifubao.css" />
 
-	<body>	
+	</head>
+
+	<body>
 		<header id="header" class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
-			<h1 class="mui-title">支付宝绑定</h1>
+			<h1 class="mui-title">银行卡绑定</h1>
 			<!--<a class="mui-icon mui-icon-paperplane mui-pull-right"></a>-->
 		</header>
 		<div class="mui-content">
-			<img src="../images/zhifubao.png" alt="支付宝图片" />
-			<form class="mui-input-group">
+			<!--<form class="mui-input-group">
 				<div class="mui-input-row">
 					<label>支付宝姓名</label>
 					<input id="zhifubao_name" type="text" placeholder="请输入支付宝绑定的真实姓名">
@@ -27,47 +27,140 @@
 					<label>支付宝帐号</label>
 					<input id="zhifubao" type="text" placeholder="请输入真实的支付宝账户">
 				</div>
+			</form>-->
+			<form class="mui-input-group">
+				<div class="mui-input-row">
+					<label>请选择银行</label>
+					<select id='bank'>
+					</select>
+				</div>
+				<div class="mui-input-row">
+					<label>请填写支行</label>
+					<input id="subbranch" type="text" placeholder="请输入银行卡支行">
+				</div>
+				<div class="mui-input-row">
+					<label>持卡人姓名</label>
+					<input id="real_name" type="text" placeholder="请输入银行卡绑定的真实姓名">
+				</div>
+				<div class="mui-input-row">
+					<label>请输入卡号</label>
+					<input id="card_number" maxlength="23" type="text" placeholder="请输入真实的银行卡帐号" onkeyup="this.value =this.value.replace(/\s/g,'').replace(/[^\d]/g,'').replace(/(\d{4})(?=\d)/g,'$1 ');">
+				</div>
 			</form>
-			<p class="tishi">温馨提示：支付宝姓名和账号不正确者，将不予提现</p>
+			<p class="tishi">温馨提示：若银行卡信息有误，将提现失败</p>
 			<button id="Btn" type="button" class="bottom mui-btn mui-btn-blue mui-btn-block">立即绑定</button>
 		</div>
-		
+
 		<script src="../js/mui.js"></script>
 		<script src="../js/UserInfo.js"></script>
 		<!--弹窗部分-->
 		<script type="text/javascript" charset="utf-8">
-	      	mui.init();
+			mui.init();
+			mui.ready(function(){
+				var bank_name;
+				mui.ajax({
+					url: 'http://m.wafuli.cn/app/bank_name/',
+					dataType: "json",
+					type: 'GET',
+					success: function() {
+						bank_name = banks;
+						var select_box = document.getElementById("bank");
+						select_box.innerHTML = '<option value="0">请选择相应的开户行</option>';
+						for (var i=0; i<bank_name.length; i++){
+							var option_item = document.createElement('option');
+							option_item.innerHTML = '<option value="' + bank_name[i][0] + '">'+ bank_name[i][1] +'</option>';
+							select_box.appendChild(option_item);
+						}
+					},
+					error: function(xhr, type, errorThrown) {
+						alert(type);
+					}
+				});
+			})
+//			document.getElementById("Btn").addEventListener('tap', function() {
+//				var zhifubao = document.getElementById('zhifubao').value;
+//				var zhifubao_name = document.getElementById('zhifubao_name').value;
+//				var re_account = /^[\u2E80-\u9FFF]+$/;
+//				if(!re_account.test(zhifubao_name)) {
+//					mui.alert("请输入正确的支付宝绑定的真实姓名");
+//					return;
+//				}
+//				if(!zhifubao || !zhifubao_name) {
+//					mui.alert("支付宝账号或姓名不能为空！");
+//					return;
+//				}
+//				mui.ajax({
+//					url: 'http://m.wafuli.cn/app/bind_bankcard/',
+//					dataType: "json",
+//					type: 'POST',
+//					data: {
+//						account: zhifubao,
+//						name: zhifubao_name,
+//						token: UserInfo.token()
+//					},
+//					success: function(ret) {
+//						mui.alert(ret.msg, callback = function() {
+//							mui.back();
+//						});
+//					},
+//					error: function(xhr, type, errorThrown) {
+//						alert(type);
+//					}
+//				});
+//			});
 			document.getElementById("Btn").addEventListener('tap', function() {
-				var zhifubao = document.getElementById('zhifubao').value;
-				var zhifubao_name = document.getElementById('zhifubao_name').value;
-				var re_account=/^[\u2E80-\u9FFF]+$/;
-		        if(!re_account.test(zhifubao_name)){
-		          mui.alert("请输入正确的支付宝绑定的真实姓名");
-		          return;
-		        }
-				if (!zhifubao || !zhifubao_name){
-					mui.alert("支付宝账号或姓名不能为空！");
+				var subbranch = document.getElementById('subbranch').value;
+				var real_name = document.getElementById('real_name').value;
+				var card_number = document.getElementById('card_number').value;
+
+				var bank = document.getElementById("bank").value;
+				console.log("bank:" + bank);
+				var re_account = /^[\u2E80-\u9FFF]+$/; //验证中文
+				var re_number = /^[0-9]*$/; //验证数字
+				var re_card = /^[\d\s]+$/; //验证银行卡号
+
+				if(bank == 0) {
+					mui.alert("请选择相应的开户行");
+					return;
+				}
+				if(!subbranch || !real_name || !card_number) {
+					mui.alert("填写项不能为空！", '提示');
+					return;
+				}
+				if(!re_account.test(subbranch)) {
+					mui.alert("请输入正确的支行名称");
+					return;
+				}
+				if(!re_account.test(real_name)) {
+					mui.alert("请输入正确的银行卡绑定的真实姓名");
+					return;
+				}
+				if(!re_card.test(card_number)) {
+					mui.alert("请输入正确格式的银行卡号");
 					return;
 				}
 				mui.ajax({
-					url: 'http://m.wafuli.cn/app/bind_zhifubao/',
-					dataType:"json",
-					type:'POST',
-					data : {
-						account: zhifubao,
-						name: zhifubao_name,
-						token:UserInfo.token()
+					url: 'http://m.wafuli.cn/app/bind_bankcard/',
+					dataType: "json",
+					type: 'POST',
+					data: {
+						bank: bank,
+						subbranch: subbranch,
+						real_name: real_name,
+						card_number: card_number,
+						token: UserInfo.token()
 					},
-					success:function(ret){
-						mui.alert(ret.msg,callback=function(){
+					success: function(ret) {
+						mui.alert(ret.msg, callback = function() {
 							mui.back();
 						});
 					},
-					error:function(xhr,type,errorThrown){
-							alert(type);
+					error: function(xhr, type, errorThrown) {
+						alert(type);
 					}
 				});
 			});
 		</script>
 	</body>
+
 </html>
