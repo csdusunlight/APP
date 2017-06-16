@@ -71,13 +71,14 @@
 					url: 'http://m.wafuli.cn/app/bank_name/',
 					dataType: "json",
 					type: 'GET',
-					success: function() {
-						bank_name = banks;
+					success: function(ret) {
+						bank_name = ret;
 						var select_box = document.getElementById("bank");
 						select_box.innerHTML = '<option value="0">请选择相应的开户行</option>';
 						for (var i=0; i<bank_name.length; i++){
 							var option_item = document.createElement('option');
-							option_item.innerHTML = '<option value="' + bank_name[i][0] + '">'+ bank_name[i][1] +'</option>';
+							option_item.value = bank_name[i][0];
+							option_item.innerText = bank_name[i][1];
 							select_box.appendChild(option_item);
 						}
 					},
@@ -201,6 +202,8 @@
 					success: function(ret) {
 						mui.alert(ret.msg, callback = function() {
 							if(ret.code == 0) {
+								view = plus.webview.getWebviewById("m_account_index.html");
+        						mui.fire(view, 'refresh_userinfo');
 								window.history.back();
 							}
 						});
