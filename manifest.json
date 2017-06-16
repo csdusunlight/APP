@@ -864,7 +864,11 @@
 					"images/share-guide-top.png",
 					"images/share-guide-bottom.png",
 					"js/mui.js",
-					"account/m_account_bind_zhifubao.html"
+					"account/m_account_bind_zhifubao.html",
+					"images/jsyh.png",
+					"images/nyyh.png",
+					"images/payh.png",
+					"images/zxyh.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -1681,7 +1685,10 @@
 				"resources": [
 					"css/m_account_bankcard.css",
 					"js/mui.js",
-					"account/m_account_withdraw.html"
+					"account/m_account_withdraw.html",
+					"js/UserInfo.js",
+					"css/mui.min.css",
+					"css/m_common.css"
 				],
 				"refer": [],
 				"priority": 0
