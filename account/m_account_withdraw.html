@@ -95,14 +95,14 @@
 					
 					document.getElementById("bank_card").innerHTML = '<p><span>' + bank_name + '</span><br />' +
 																	'<span><a>' + card_number +'</a></span></p>';
-					document.getElementById("go_bank").innerHTML = '<a href="m_account_change_bankcard.html">更换银行卡</a>';
+					document.getElementById("go_bank").innerHTML = '<a class="gobank" href="m_account_change_bankcard.html">更换银行卡</a>';
 				} else{
 					document.getElementById("bank_icon").style.display = "none";
 					document.getElementById("bank_card").innerHTML = '<p><span>请点此绑定银行卡</span></p>';
-					document.getElementById("go_bank").innerHTML = '<a href="m_account_bind_bankcard.html">绑定银行卡</a>';
+					document.getElementById("go_bank").innerHTML = '<a class="gobank" href="m_account_bind_bankcard.html">绑定银行卡</a>';
 				}
 				
-				mui('.mui-table-view').on('tap', 'a', function(e) {
+				mui('.mui-table-view').on('tap', 'a.gobank', function(e) {
 					var targetTab = this.getAttribute('href');
 					if (targetTab){
 						plus.webview.currentWebview().loadURL(targetTab);

@@ -1676,7 +1676,9 @@
 					"css/mui.min.css",
 					"js/mui.js",
 					"css/m_common.css",
-					"account/m_account_withdraw.html"
+					"account/m_account_withdraw.html",
+					"account/m_account_settings.html",
+					"fonts/mui.ttf"
 				],
 				"refer": [],
 				"priority": 0
