@@ -47,7 +47,9 @@
 			"account/m_account_bind_bankcard.html",
 			"account/m_account_change_bankcard.html",
 			"account/m_account_coupon.html",
-			"account/m_account_score.html"
+			"account/m_account_score.html",
+			"account/m_account_charge.html",
+			"account/m_account_invite.html"
 		]
 	},
 	"html/m_detail_finance.html": {
@@ -201,7 +203,8 @@
 			"css/m_detail_press.css",
 			"css/mui.min.css",
 			"js/mui.js",
-			"css/m_common.css"
+			"css/m_common.css",
+			"fonts/wafuli-iconfont.woff"
 		],
 		"refer": []
 	},
@@ -397,6 +400,30 @@
 			"js/UserInfo.js",
 			"js/mui.pullToRefresh.material.js",
 			"css/mui.min.css",
+			"js/mui.js",
+			"css/m_common.css"
+		]
+	},
+	"account/m_account_charge.html": {
+		"resources": [
+			"js/mui.pullToRefresh.js",
+			"images/user.png",
+			"css/m_account_charge.css",
+			"js/UserInfo.js",
+			"js/mui.pullToRefresh.material.js",
+			"css/mui.min.css",
+			"js/mui.js",
+			"css/m_common.css"
+		]
+	},
+	"account/m_account_invite.html": {
+		"resources": [
+			"js/UserInfo.js",
+			"images/share-friend-bottom.png",
+			"images/share-friend.png",
+			"js/share.js",
+			"css/mui.min.css",
+			"css/m_account_invite.css",
 			"js/mui.js",
 			"css/m_common.css"
 		]
