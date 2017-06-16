@@ -325,7 +325,9 @@
 			"images/jsyh.png",
 			"images/nyyh.png",
 			"images/payh.png",
-			"images/zxyh.png"
+			"images/zxyh.png",
+			"images/xyyh.png",
+			"images/zgyh.png"
 		],
 		"refer": [
 			"account/m_account_bind_zhifubao.html"

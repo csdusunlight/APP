@@ -200,13 +200,16 @@
 						token: UserInfo.token()
 					},
 					success: function(ret) {
-						mui.alert(ret.msg, callback = function() {
-							if(ret.code == 0) {
-								view = plus.webview.getWebviewById("m_account_index.html");
-        						mui.fire(view, 'refresh_userinfo');
+						if(ret.code == 0) {
+							view = plus.webview.getWebviewById("m_account_index.html");
+							mui.fire(view, 'refresh_userinfo');
+							mui.alert(ret.msg, callback = function() {
 								window.history.back();
-							}
-						});
+							});
+						}
+						else{
+							mui.alert(ret.msg);
+						}
 					},
 					error: function() {
 						alert("请检查网络连接");
