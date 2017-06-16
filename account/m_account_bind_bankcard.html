@@ -154,9 +154,11 @@
 					},
 					success: function(ret) {
 						mui.alert(ret.msg, callback = function() {
-							view = plus.webview.getWebviewById("m_account_index.html");
-        					mui.fire(view, 'refresh_userinfo');
-							mui.back();
+							if(ret.code == 0) {
+								view = plus.webview.getWebviewById("m_account_index.html");
+        						mui.fire(view, 'refresh_userinfo');
+								window.history.back();
+							}
 						});
 					},
 					error: function(xhr, type, errorThrown) {
