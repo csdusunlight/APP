@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+
+	<head lang="en">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../css/m_common.css" />
+		<link rel="stylesheet" type="text/css" href="../css/m_finance.css" />
+	</head>
+
+	<body>
+		<header id="header" class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">高收益</h1>
+		</header>
+		<div id="pullrefresh" class="mui-scroll-wrapper">
+			<div class="finance-img" style="margin-top: 44px;">
+				<a class="to-finance">
+					<img src="../images/to-finance.jpg">
+				</a>
+			</div>
+			<ul class="mui-table-view">
+			</ul>
+		</div>
+		<script type="text/javascript" charset="UTF-8" src="../js/mui.min.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="../js/mui.pullToRefresh.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="../js/mui.pullToRefresh.material.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="../js/template.js"></script>
+		<script>
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					up: {
+						auto: true,
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+			
+			mui.plusReady(function() {
+				template = getTemplate('finance', 'template.html', "html/m_detail_finance.html");
+				tempview = mui.preload({url:"", id:"temp",styles: {popGesture:'hide',hardwareAccelerated: true}});
+	      		tempview.addEventListener('hide',function(){
+	      			tempview.clear();
+	      		});
+			});
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			var count = 0;
+			var get_finance_url = "http://m.wafuli.cn/finance_json";
+			var host = "http://m.wafuli.cn";
+
+			function pullupRefresh() {
+				if(count == 0) {
+							mui('#pullrefresh').pullRefresh().scrollTo(0,0);
+				}
+				get_finance_list(count++);
+			}
+
+			function get_finance_list(n) {
+				mui.ajax(get_finance_url, {
+					data: {
+						count: n,
+						type: 3,
+					},
+					dataType: 'json', //服务器返回json格式数据
+					type: 'get', //HTTP请求类型
+					timeout: 10000, //超时时间设置为10秒；
+					success: function(data) {
+						if(!data.length) {
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
+						} else {
+							mui('#pullrefresh').pullRefresh().endPullupToRefresh(false); //参数为true代表没有更多数据了。
+							var table = document.body.querySelector('.mui-table-view');
+							for(var i in data) {
+								var wel = data[i];
+								var li = document.createElement('li');
+								li.className = 'mui-table-view-cell';
+								var str_block = '<a class="clearfix" data_id="' + wel.id + '" href="' + wel.url + '"><div class="title"><strong>' + wel.title + '</strong>';
+								var marks = wel.marks;
+								for(var j in marks) {
+									str_block += '<span>' + marks[j] + '</span>';
+								}
+								str_block += '</div><div class="container clearfix">' +
+									'<div><img src="' + host + wel.picurl + '" />' +
+									'</div><div class="inc2">' +
+									'<p>官网利息：<number>' + wel.interest + '</number></p>' +
+									'<p>补贴收益：<number>+' + wel.benefit +
+									'</number></p><p>起投金额：' + wel.amount +
+									'</p><p>标期长度：' + wel.time + '</p></div></div></a>';
+								li.innerHTML = str_block;
+								table.appendChild(li);
+							}
+						}
+
+					},
+					error: function(xhr, type, errorThrown) {
+						alert(type);
+					}
+				});
+			}
+
+			
+			var detailMainWebview = null; //详情页面父webview
+			var detailWebview = null; //详情页面子webview
+			function open_welfare_detail(id, title, img) {
+				if(!template) {
+					mui.alert("页面还在加载，稍等~");
+				}
+				detailMainWebview = template.header;
+				detailWebview = template.content;
+				mui.fire(detailMainWebview, 'updateHeader', {
+					title: title
+				});
+				mui.fire(detailWebview, 'display', {
+					id: id,
+					img: img,
+				});
+			};
+			mui('.mui-table-view').on('tap', 'a', function() {
+				var title = this.querySelector('strong').innerText;
+				var img = this.querySelector('img').src;
+				open_welfare_detail(this.getAttribute('data_id'), title, img);
+			});
+			
+			mui('.finance-img').on('tap', '.to-finance', function(e) {
+				mui.back()
+			});
+		</script>
+	</body>
+
+</html>

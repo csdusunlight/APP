@@ -7,7 +7,7 @@
 	"id": "H5139D07C",/*应用的标识，创建应用时自动生成，勿手动修改*/
 	"name": "挖福利",/*应用名称，程序桌面图标名称*/
 	"version": {
-		"name": "1.9",/*应用版本名称*/
+		"name": "1.82",/*应用版本名称*/
 		"code": "83"
 	},
 	"description": "",/*应用描述信息*/
@@ -182,7 +182,7 @@
 				"android": {
 					"mdpi": "", /*普通屏启动图片，分辨率：240x282*/
 					"ldpi": "unpackage/res/splash/320x442.png", /*大屏启动图片，分辨率：320x442*/
-					"hdpi": "unpackage/res/splash/480x762.png","xhdpi":"unpackage/res/splash/720x1242.png","xxhdpi":"C:/Users/lch/Desktop/profiles/1080x1882.png"
+					"hdpi": "unpackage/res/splash/480x762.png","xhdpi":"unpackage/res/splash/720x1242.png","xxhdpi":"unpackage/res/splash/1080x1882.png"
 				}
 			},
 			"debug": false
@@ -258,13 +258,21 @@
 					"images/share-guide-top.png",
 					"images/share-guide-bottom.png",
 					"js/mui.pullToRefresh.js",
-					"js/mui.pullToRefresh.material.js"
+					"js/mui.pullToRefresh.material.js",
+					"images/to-add-finance.jpg",
+					"html/m_add_finance.html"
 				],
 				"refer": [
 					"m_finance_sub3.html",
 					"m_finance_sub2.html",
 					"html/m_detail_finance.html",
-					"template.html"
+					"template.html",
+					"account/m_account_withdraw.html",
+					"m_index.html",
+					"html/m_hongbao.html",
+					"account/m_account_settings.html",
+					"account/m_account_change_bankcard.html",
+					"account/m_account_charge.html"
 				],
 				"priority": 0
 			},
@@ -340,7 +348,8 @@
 					"account/m_joinQQGroup.html",
 					"account/m_custom_service.html",
 					"account/m_account_bind_bankcard.html",
-					"account/m_account_change_bankcard.html"
+					"account/m_account_change_bankcard.html",
+					"html/m_add_finance.html"
 				],
 				"priority": 0
 			},
@@ -1655,7 +1664,8 @@
 				"refer": [
 					"m_account_index.html",
 					"m_task.html",
-					"m_finance.html"
+					"m_finance.html",
+					"html/m_add_finance.html"
 				],
 				"priority": 0
 			},
@@ -1695,6 +1705,24 @@
 					"css/mui.min.css",
 					"css/m_common.css",
 					"account/m_account_settings.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"html/m_add_finance.html": {
+				"resources": [
+					"images/to-finance.jpg",
+					"css/m_finance.css",
+					"css/m_common.css",
+					"fonts/mui.ttf",
+					"css/mui.min.css",
+					"js/mui.pullToRefresh.js",
+					"js/mui.min.js",
+					"js/mui.pullToRefresh.material.js",
+					"js/template.js",
+					"html/%7B%%20url%20\u0027finance_json\u0027%20%%7D",
+					"m_finance.html",
+					"m_index.html"
 				],
 				"refer": [],
 				"priority": 0

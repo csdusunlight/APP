@@ -16,27 +16,21 @@
 				<div class="mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
 					<a class="mui-control-item" href="#item1">新手投资</a>
 					<a class="mui-control-item" href="#item2">稳健投资</a>
-					<a class="mui-control-item" href="#item3">高收益区</a>
 				</div>
-				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-4"></div>
+				<div id="sliderProgressBar" class="mui-slider-progress-bar mui-col-xs-6"></div>
 				<div class="mui-slider-group">
 					<div id="item1" class="mui-slider-item mui-control-content mui-active" value="1">
 						<div id="scroll1" class="mui-scroll-wrapper">
 							<div class="mui-scroll">
 								<ul class="mui-table-view">
+									<div class="finance-img">
+										<img class="to-finance" src="images/to-add-finance.jpg">
+									</div>
 								</ul>
 							</div>
 						</div>
 					</div>
 					<div id="item2" class="mui-slider-item mui-control-content" value="2">
-						<div id="scroll1" class="mui-scroll-wrapper">
-							<div class="mui-scroll">
-								<ul class="mui-table-view">
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div id="item3" class="mui-slider-item mui-control-content" value="3">
 						<div id="scroll1" class="mui-scroll-wrapper">
 							<div class="mui-scroll">
 								<ul class="mui-table-view">
@@ -58,10 +52,15 @@
 			var get_finance_url = "http://m.wafuli.cn/finance_json";
 			var host = "http://m.wafuli.cn";
 			var count = 0;
-			var template = null;
+			
+			var tempview = null;
 			mui.init();
 			mui.plusReady(function() {
 				template = getTemplate('finance', 'template.html', "html/m_detail_finance.html");
+				tempview = mui.preload({url:"", id:"temp",styles: {popGesture:'hide',hardwareAccelerated: true}});
+	      		tempview.addEventListener('hide',function(){
+	      			tempview.clear();
+	      		});
 			});
 			//阻尼系数
 			var deceleration = mui.os.ios ? 0.003 : 0.0009;
@@ -111,7 +110,7 @@
 									var wel = data[i];
 									var li = document.createElement('li');
 									li.className = 'mui-table-view-cell';
-									var str_block = '<a class="clearfix" data_id="' + wel.id + '" href="' + wel.url + '"><div class="title"><strong>' + wel.title + '</strong>';
+									var str_block = '<a class="clearfix item" data_id="' + wel.id + '" href="' + wel.url + '"><div class="title"><strong>' + wel.title + '</strong>';
 									var marks = wel.marks;
 									for (var j in marks){
 										str_block += '<span>' + marks[j] + '</span>';
@@ -158,6 +157,13 @@
 				var title = this.querySelector('strong').innerText;
 				var img = this.querySelector('img').src;
 				open_welfare_detail(this.getAttribute('data_id'), title, img);
+			});
+			mui('.finance-img').on('tap', '.to-finance', function(e) {
+				var targetTab = "html/m_add_finance.html";
+				tempview.loadURL(targetTab);
+				setTimeout(function() {
+					tempview.show('pop-in');
+				}, 10);
 			});
 		</script>
 	</body>

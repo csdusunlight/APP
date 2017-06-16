@@ -49,7 +49,9 @@
 			"account/m_account_coupon.html",
 			"account/m_account_score.html",
 			"account/m_account_charge.html",
-			"account/m_account_invite.html"
+			"account/m_account_invite.html",
+			"html/m_activity_recommend.html",
+			"html/m_add_finance.html"
 		]
 	},
 	"html/m_detail_finance.html": {
@@ -76,7 +78,8 @@
 			"images/user-03.png",
 			"js/mui.js",
 			"account/m_account_welfare.html",
-			"images/user-01.png"
+			"images/user-01.png",
+			"fonts/wafuli-iconfont.woff"
 		],
 		"refer": []
 	},
@@ -108,7 +111,8 @@
 			"m_welfare.html",
 			"m_account_index.html",
 			"m_task.html",
-			"m_finance.html"
+			"m_finance.html",
+			"html/m_add_finance.html"
 		]
 	},
 	"template.html": {
@@ -119,7 +123,8 @@
 			"html/m_detail_welfare.html",
 			"js/mui.js",
 			"html/m_detail_finance.html",
-			"html/m_detail_task.html"
+			"html/m_detail_task.html",
+			"fonts/wafuli-iconfont.woff"
 		],
 		"refer": [
 			"html/m_detail_task.html",
@@ -132,7 +137,11 @@
 			"js/mui.pullToRefresh.js",
 			"js/mui.pullToRefresh.material.js",
 			"css/m_task.css",
-			"images/task-right-bg.png"
+			"images/task-right-bg.png",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"js/template.js",
+			"css/m_common.css"
 		],
 		"refer": [
 			"html/m_detail_task.html",
@@ -144,11 +153,23 @@
 			"css/m_finance.css",
 			"js/mui.pullToRefresh.js",
 			"js/mui.pullToRefresh.material.js",
-			"js/template.js"
+			"js/template.js",
+			"images/to-add-finance.jpg",
+			"css/mui.min.css",
+			"css/m_common.css",
+			"js/mui.min.js",
+			"html/m_add_finance.html"
 		],
 		"refer": [
 			"html/m_detail_finance.html",
-			"template.html"
+			"template.html",
+			"html/m_add_finance.html",
+			"account/m_account_withdraw.html",
+			"m_index.html",
+			"html/m_hongbao.html",
+			"account/m_account_settings.html",
+			"account/m_account_change_bankcard.html",
+			"account/m_account_charge.html"
 		]
 	},
 	"a_login.html": {
@@ -159,7 +180,8 @@
 			"js/mui.js",
 			"js/mui.enterfocus.js",
 			"css/m_common.css",
-			"fonts/wafuli-iconfont.woff"
+			"fonts/wafuli-iconfont.woff",
+			"fonts/mui.ttf"
 		],
 		"refer": []
 	},
@@ -234,7 +256,8 @@
 			"js/rotate-app.js",
 			"js/UserInfo.js",
 			"css/mui.min.css",
-			"css/m_common.css"
+			"css/m_common.css",
+			"fonts/mui.ttf"
 		],
 		"refer": [
 			"a_login.html"
@@ -432,6 +455,39 @@
 			"css/m_account_invite.css",
 			"js/mui.js",
 			"css/m_common.css"
+		]
+	},
+	"html/m_activity_recommend.html": {
+		"resources": [
+			"js/UserInfo.js",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"images/action.png",
+			"css/m_activity_recommend.css",
+			"js/share.js",
+			"css/mui.min.css",
+			"fonts/wafuli-iconfont.woff",
+			"css/m_common.css"
+		]
+	},
+	"html/m_add_finance.html": {
+		"resources": [
+			"images/to-finance.jpg",
+			"css/m_finance.css",
+			"css/m_common.css",
+			"fonts/mui.ttf",
+			"css/mui.min.css",
+			"js/mui.pullToRefresh.js",
+			"js/mui.min.js",
+			"js/mui.pullToRefresh.material.js",
+			"js/template.js",
+			"html/%7B%%20url%20\u0027finance_json\u0027%20%%7D",
+			"m_finance.html",
+			"m_index.html"
+		],
+		"refer": [
+			"m_finance.html",
+			"m_index.html"
 		]
 	}
 }
