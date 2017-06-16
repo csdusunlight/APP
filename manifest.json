@@ -870,7 +870,8 @@
 					"images/payh.png",
 					"images/zxyh.png",
 					"images/xyyh.png",
-					"images/zgyh.png"
+					"images/zgyh.png",
+					"images/ycyh.png"
 				],
 				"refer": [],
 				"priority": 0
@@ -1692,7 +1693,8 @@
 					"account/m_account_withdraw.html",
 					"js/UserInfo.js",
 					"css/mui.min.css",
-					"css/m_common.css"
+					"css/m_common.css",
+					"account/m_account_settings.html"
 				],
 				"refer": [],
 				"priority": 0

@@ -73,19 +73,6 @@
 			mui.plusReady(function(){
 				user = UserInfo.userinfo();
 				document.getElementById("balance").innerText = user.balance;
-//				document.getElementById('userimg').src = "../images/user-0" + user.userimg + ".png";
-//				document.getElementById('mobile').innerText = user.mobile;
-				
-//				if (user.zhifubao){
-//					document.getElementById("zhifubao").innerHTML = "支付宝帐号：<number>" + user.zhifubao + "</number>";
-//					document.getElementById("change_zhifubao").href = "m_account_change_zhifubao.html";
-//					document.getElementById("change_zhifubao").innerText = "更换支付宝账号";
-//				}
-//				else{
-//					document.getElementById("zhifubao").innerHTML = "支付宝帐号：未绑定";
-//					document.getElementById("change_zhifubao").href = "m_account_bind_zhifubao.html";
-//					document.getElementById("change_zhifubao").innerText = "绑定支付宝账号";
-//				}
 				var bank = user.bank;
 				var card_number = user.card_number;
 				var bank_name = user.bank_name;

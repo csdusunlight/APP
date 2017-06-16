@@ -5,12 +5,10 @@
 	box-shadow: 0 1px 3px #e4e4e4;
 }
 .msg img {
+    width: 6rem;
 	float: left;
-	margin-left: 2rem;
-	margin-right: 1rem;
-	width: 20%;
 	border-radius: 50%;
-	/*height: 4rem;*/
+    margin: -1rem 1rem 0 2rem;
 }
 .msg .text {
 	float: left;

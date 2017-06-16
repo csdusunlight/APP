@@ -4,7 +4,7 @@
 	<head lang="en">
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
-		<title>支付宝绑定</title>
+		<title>银行卡绑定</title>
 		<link href="../css/mui.min.css" rel="stylesheet" />
 		<link rel="stylesheet" type="text/css" href="../css/m_common.css" />
 		<link rel="stylesheet" type="text/css" href="../css/m_account_bankcard.css" />
@@ -15,19 +15,8 @@
 		<header id="header" class="mui-bar mui-bar-nav">
 			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
 			<h1 class="mui-title">银行卡绑定</h1>
-			<!--<a class="mui-icon mui-icon-paperplane mui-pull-right"></a>-->
 		</header>
 		<div class="mui-content">
-			<!--<form class="mui-input-group">
-				<div class="mui-input-row">
-					<label>支付宝姓名</label>
-					<input id="zhifubao_name" type="text" placeholder="请输入支付宝绑定的真实姓名">
-				</div>
-				<div class="mui-input-row">
-					<label>支付宝帐号</label>
-					<input id="zhifubao" type="text" placeholder="请输入真实的支付宝账户">
-				</div>
-			</form>-->
 			<form class="mui-input-group">
 				<div class="mui-input-row">
 					<label>请选择银行</label>
@@ -70,8 +59,6 @@
 							var option_item = document.createElement('option');
 							option_item.value = bank_name[i][0];
 							option_item.innerText = bank_name[i][1];
-//							option_item.innerHTML = '<option value="' + bank_name[i][0] + '">'+ bank_name[i][1] +'</option>';
-//							alert(option_item);
 							select_box.appendChild(option_item);
 						}
 					},
@@ -80,37 +67,6 @@
 					}
 				});
 			})
-//			document.getElementById("Btn").addEventListener('tap', function() {
-//				var zhifubao = document.getElementById('zhifubao').value;
-//				var zhifubao_name = document.getElementById('zhifubao_name').value;
-//				var re_account = /^[\u2E80-\u9FFF]+$/;
-//				if(!re_account.test(zhifubao_name)) {
-//					mui.alert("请输入正确的支付宝绑定的真实姓名");
-//					return;
-//				}
-//				if(!zhifubao || !zhifubao_name) {
-//					mui.alert("支付宝账号或姓名不能为空！");
-//					return;
-//				}
-//				mui.ajax({
-//					url: 'http://m.wafuli.cn/app/bind_bankcard/',
-//					dataType: "json",
-//					type: 'POST',
-//					data: {
-//						account: zhifubao,
-//						name: zhifubao_name,
-//						token: UserInfo.token()
-//					},
-//					success: function(ret) {
-//						mui.alert(ret.msg, callback = function() {
-//							mui.back();
-//						});
-//					},
-//					error: function(xhr, type, errorThrown) {
-//						alert(type);
-//					}
-//				});
-//			});
 			document.getElementById("Btn").addEventListener('tap', function() {
 				var subbranch = document.getElementById('subbranch').value;
 				var real_name = document.getElementById('real_name').value;
