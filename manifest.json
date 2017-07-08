@@ -349,7 +349,9 @@
 					"account/m_custom_service.html",
 					"account/m_account_bind_bankcard.html",
 					"account/m_account_change_bankcard.html",
-					"html/m_add_finance.html"
+					"html/m_add_finance.html",
+					"account/m_account_vip.html",
+					"account/m_vip_intro.html"
 				],
 				"priority": 0
 			},
@@ -433,7 +435,8 @@
 					"images/person-bg.png",
 					"account/m_account_charge.html",
 					"account/m_account_invite.html",
-					"account/m_account_welfare.html"
+					"account/m_account_welfare.html",
+					"images/vip-account.png"
 				],
 				"refer": [
 					"a_login.html",
@@ -1723,6 +1726,56 @@
 					"html/%7B%%20url%20\u0027finance_json\u0027%20%%7D",
 					"m_finance.html",
 					"m_index.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/m_account_vip.html": {
+				"resources": [
+					"account/%7B%%20static%20\u0027css/mui.min.css\u0027%20%%7D",
+					"account/%7B%%20static%20\u0027js/mui.min.js\u0027%20%%7D",
+					"account/%7B%%20static%20\u0027css/m_common.css\u0027%20%%7D",
+					"account/%7B%%20static%20\u0027images/vip1.png\u0027%20%%7D",
+					"account/%7B%%20static%20\u0027images/user-03.png\u0027%20%%7D",
+					"account/%7B%%20static%20\u0027css/m_account_vip.css\u0027%20%%7D",
+					"images/user.png",
+					"js/UserInfo.js",
+					"account/%7B%%20url%20\u0027vip_intro\u0027%20%%7D",
+					"images/user-03.png",
+					"js/mui.js",
+					"images/bg-user.png",
+					"css/mui.min.css",
+					"css/m_account_vip.css",
+					"css/m_common.css",
+					"images/vip-finance-bg.png",
+					"images/vip-next-bg.png",
+					"images/vip-task-bg.png",
+					"fonts/mui.ttf"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/m_vip_intro.html": {
+				"resources": [
+					"account/%7B%%20static%20\u0027css/mui.min.css\u0027%20%%7D",
+					"account/%7B%%20static%20\u0027js/mui.min.js\u0027%20%%7D",
+					"account/%7B%%20static%20\u0027css/m_common.css\u0027%20%%7D",
+					"account/%7B%%20static%20\u0027css/m_vip_intro.css\u0027%20%%7D",
+					"account/%7B%%20static%20\u0027images/vip1.png\u0027%20%%7D",
+					"js/UserInfo.js",
+					"js/mui.js",
+					"account/m_account_vip.html",
+					"images/vip-next-icon.png",
+					"fonts/mui.ttf",
+					"images/bg-user.png",
+					"css/mui.min.css",
+					"css/m_vip_intro.css",
+					"css/m_common.css",
+					"images/vip1.png",
+					"images/user-03.png",
+					"images/vip2.png",
+					"images/vip3.png",
+					"images/vip-pre-icon.png"
 				],
 				"refer": [],
 				"priority": 0
