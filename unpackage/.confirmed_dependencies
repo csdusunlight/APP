@@ -1,493 +1,493 @@
 {
-	"html/m_detail_task.html": {
-		"resources": [
-			"css/m_detail_taskandfinance.css",
-			"images/blank.jpg",
-			"js/UserInfo.js",
-			"css/mui.min.css",
-			"js/mui.js",
-			"css/m_common.css"
-		],
-		"refer": []
-	},
-	"m_welfare.html": {
-		"resources": [
-			"js/news.js",
-			"js/html5sql.js",
-			"css/m_index.css",
-			"images/slider1.jpg",
-			"css/mui.min.css",
-			"images/slider3.jpg",
-			"js/template.js",
-			"js/feed.js",
-			"images/gongzhong.jpg",
-			"images/slider2.jpg",
-			"css/m_common.css",
-			"js/mui.js",
-			"js/mui.min.js",
-			"images/blank.jpg",
-			"fonts/wafuli-iconfont.woff"
-		],
-		"refer": [
-			"browser.html",
-			"html/m_detail_welfare.html",
-			"template.html",
-			"a_login.html",
-			"account/m_account_channel.html",
-			"account/m_account_welfare.html",
-			"account/m_joinQQGroup.html",
-			"account/m_account_settings.html",
-			"html/m_activity_lottery.html",
-			"account/m_signin.html",
-			"account/m_exchange_morescore.html",
-			"html/m_hongbao.html",
-			"html/m_youhuiquan.html",
-			"account/m_account_withdraw.html",
-			"html/m_baoyou.html",
-			"account/m_account_bind_bankcard.html",
-			"account/m_account_change_bankcard.html",
-			"account/m_account_coupon.html",
-			"account/m_account_score.html",
-			"account/m_account_charge.html",
-			"account/m_account_invite.html",
-			"html/m_activity_recommend.html",
-			"html/m_add_finance.html"
-		]
-	},
-	"html/m_detail_finance.html": {
-		"resources": [
-			"css/m_detail_finance.css",
-			"images/blank.jpg",
-			"js/UserInfo.js",
-			"css/m_common.css",
-			"css/mui.min.css",
-			"js/mui.js"
-		],
-		"refer": [
-			"html/m_expsubmit_finance.html"
-		]
-	},
-	"m_account_index.html": {
-		"resources": [
-			"images/user.png",
-			"css/m_account_index.css",
-			"js/UserInfo.js",
-			"images/person-bg.png",
-			"css/mui.min.css",
-			"css/m_common.css",
-			"images/user-03.png",
-			"js/mui.js",
-			"account/m_account_welfare.html",
-			"images/user-01.png",
-			"fonts/wafuli-iconfont.woff"
-		],
-		"refer": []
-	},
-	"html/m_detail_welfare.html": {
-		"resources": [
-			"images/blank.jpg",
-			"js/UserInfo.js",
-			"css/m_detail_hongbao.css",
-			"css/m_common.css",
-			"css/mui.min.css",
-			"js/mui.js",
-			"fonts/wafuli-iconfont.woff"
-		],
-		"refer": [
-			"html/m_get_coupon_success.html"
-		]
-	},
-	"m_index.html": {
-		"resources": [
-			"m_welfare.html",
-			"js/mui.min.js",
-			"css/mui.min.css",
-			"js/mui.js",
-			"fonts/wafuli-iconfont.woff",
-			"css/m_common.css",
-			"fonts/mui.ttf"
-		],
-		"refer": [
-			"m_welfare.html",
-			"m_account_index.html",
-			"m_task.html",
-			"m_finance.html",
-			"html/m_add_finance.html"
-		]
-	},
-	"template.html": {
-		"resources": [
-			"fonts/mui.ttf",
-			"js/share.js",
-			"css/mui.min.css",
-			"html/m_detail_welfare.html",
-			"js/mui.js",
-			"html/m_detail_finance.html",
-			"html/m_detail_task.html",
-			"fonts/wafuli-iconfont.woff"
-		],
-		"refer": [
-			"html/m_detail_task.html",
-			"html/m_detail_finance.html",
-			"html/m_detail_welfare.html"
-		]
-	},
-	"m_task.html": {
-		"resources": [
-			"js/mui.pullToRefresh.js",
-			"js/mui.pullToRefresh.material.js",
-			"css/m_task.css",
-			"images/task-right-bg.png",
-			"js/mui.min.js",
-			"css/mui.min.css",
-			"js/template.js",
-			"css/m_common.css"
-		],
-		"refer": [
-			"html/m_detail_task.html",
-			"template.html"
-		]
-	},
-	"m_finance.html": {
-		"resources": [
-			"css/m_finance.css",
-			"js/mui.pullToRefresh.js",
-			"js/mui.pullToRefresh.material.js",
-			"js/template.js",
-			"images/to-add-finance.jpg",
-			"css/mui.min.css",
-			"css/m_common.css",
-			"js/mui.min.js",
-			"html/m_add_finance.html"
-		],
-		"refer": [
-			"html/m_detail_finance.html",
-			"template.html",
-			"html/m_add_finance.html",
-			"account/m_account_withdraw.html",
-			"m_index.html",
-			"html/m_hongbao.html",
-			"account/m_account_settings.html",
-			"account/m_account_change_bankcard.html",
-			"account/m_account_charge.html"
-		]
-	},
-	"a_login.html": {
-		"resources": [
-			"js/UserInfo.js",
-			"css/mui.min.css",
-			"css/style.css",
-			"js/mui.js",
-			"js/mui.enterfocus.js",
-			"css/m_common.css",
-			"fonts/wafuli-iconfont.woff",
-			"fonts/mui.ttf"
-		],
-		"refer": []
-	},
-	"account/m_account_channel.html": {
-		"resources": [
-			"css/m_expsubmit_finance.css",
-			"js/mui.min.js",
-			"css/mui.min.css",
-			"css/m_common.css",
-			"js/UserInfo.js"
-		],
-		"refer": []
-	},
-	"html/m_expsubmit_finance.html": {
-		"resources": [
-			"css/m_expsubmit_finance.css",
-			"js/UserInfo.js",
-			"css/mui.min.css",
-			"js/mui.js",
-			"css/m_common.css"
-		],
-		"refer": []
-	},
-	"account/m_account_welfare.html": {
-		"resources": [
-			"js/mui.pullToRefresh.js",
-			"images/bg-manage-01.png",
-			"js/UserInfo.js",
-			"js/mui.pullToRefresh.material.js",
-			"css/m_account_welfare.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/mui.js",
-			"images/bg-manage-02.png",
-			"css/m_common.css"
-		],
-		"refer": []
-	},
-	"account/m_joinQQGroup.html": {
-		"resources": [
-			"css/m_detail_press.css",
-			"css/mui.min.css",
-			"js/mui.js",
-			"css/m_common.css",
-			"fonts/wafuli-iconfont.woff"
-		],
-		"refer": []
-	},
-	"account/m_account_settings.html": {
-		"resources": [
-			"images/user.png",
-			"js/UserInfo.js",
-			"fonts/mui.ttf",
-			"images/bg-user.png",
-			"css/m_account_settings.css",
-			"css/mui.min.css",
-			"js/mui.js",
-			"css/m_common.css"
-		],
-		"refer": []
-	},
-	"html/m_activity_lottery.html": {
-		"resources": [
-			"images/choujiang-zhuanpan.png",
-			"css/m_activity_lottery.css",
-			"images/choujiang-top.jpg",
-			"images/choujiang-bottom-02.jpg",
-			"js/mui.min.js",
-			"images/choujiang-zhizhen.png",
-			"images/share-friend.png",
-			"js/share.js",
-			"js/rotate-app.js",
-			"js/UserInfo.js",
-			"css/mui.min.css",
-			"css/m_common.css",
-			"fonts/mui.ttf"
-		],
-		"refer": [
-			"a_login.html"
-		]
-	},
-	"account/m_signin.html": {
-		"resources": [
-			"css/m_signin.css",
-			"images/bg-every.png",
-			"images/juchi.png",
-			"fonts/wafuli-iconfont.woff",
-			"js/calendar.js",
-			"images/user-03.png",
-			"images/bg-yes.png",
-			"css/mui.min.css",
-			"css/m_common.css",
-			"js/UserInfo.js",
-			"js/mui.js"
-		],
-		"refer": []
-	},
-	"account/m_exchange_morescore.html": {
-		"resources": [
-			"js/mui.min.js",
-			"css/mui.min.css",
-			"css/m_common.css"
-		],
-		"refer": []
-	},
-	"html/m_hongbao.html": {
-		"resources": [
-			"js/mui.pullToRefresh.js",
-			"js/UserInfo.js",
-			"js/mui.min.js",
-			"js/mui.pullToRefresh.material.js",
-			"css/mui.min.css",
-			"css/m_hongbao.css",
-			"js/template.js",
-			"css/m_common.css"
-		],
-		"refer": []
-	},
-	"html/m_youhuiquan.html": {
-		"resources": [
-			"js/mui.min.js",
-			"css/m_youhuiquan.css",
-			"css/mui.min.css",
-			"js/template.js",
-			"css/m_common.css"
-		],
-		"refer": []
-	},
-	"html/m_get_coupon_success.html": {
-		"resources": [
-			"images/bg-youhuiquan.png",
-			"images/yes.png",
-			"css/m_get_coupon_success.css",
-			"css/mui.min.css",
-			"js/mui.js",
-			"css/m_common.css"
-		],
-		"refer": [
-			"account/m_account_coupon.html"
-		]
-	},
-	"account/m_account_coupon.html": {
-		"resources": [
-			"js/mui.pullToRefresh.js",
-			"js/UserInfo.js",
-			"js/mui.pullToRefresh.material.js",
-			"css/m_account_coupon.css",
-			"images/youhuiquan-bg.png",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/mui.js",
-			"css/m_common.css"
-		],
-		"refer": []
-	},
-	"account/m_account_withdraw.html": {
-		"resources": [
-			"images/user.png",
-			"js/UserInfo.js",
-			"fonts/mui.ttf",
-			"css/m_account_withdraw.css",
-			"css/mui.min.css",
-			"images/fubi.png",
-			"js/mui.js",
-			"css/m_common.css",
-			"account/m_account_bind_zhifubao.html",
-			"images/jsyh.png",
-			"images/nyyh.png",
-			"images/payh.png",
-			"images/zxyh.png",
-			"images/xyyh.png",
-			"images/zgyh.png",
-			"images/ycyh.png"
-		],
-		"refer": [
-			"account/m_account_bind_zhifubao.html"
-		]
-	},
-	"account/m_account_bind_zhifubao.html": {
-		"resources": [
-			"css/mui.min.css",
-			"css/m_account_zhifubao.css",
-			"images/zhifubao.png",
-			"css/m_common.css",
-			"account/m_account_withdraw.html"
-		],
-		"refer": [
-			"account/m_account_withdraw.html"
-		]
-	},
-	"browser.html": {
-		"resources": [
-			"css/mui.min.css",
-			"js/mui.js"
-		],
-		"refer": []
-	},
-	"html/m_baoyou.html": {
-		"resources": [
-			"js/UserInfo.js",
-			"js/mui.min.js",
-			"css/mui.min.css",
-			"css/m_baoyou.css",
-			"css/m_common.css"
-		],
-		"refer": []
-	},
-	"account/m_account_bind_bankcard.html": {
-		"resources": [
-			"css/m_account_bankcard.css",
-			"js/UserInfo.js",
-			"css/mui.min.css",
-			"js/mui.js",
-			"css/m_common.css",
-			"account/m_account_withdraw.html",
-			"account/m_account_settings.html",
-			"fonts/mui.ttf"
-		],
-		"refer": [
-			"account/m_account_withdraw.html",
-			"account/m_account_settings.html"
-		]
-	},
-	"account/m_account_change_bankcard.html": {
-		"resources": [
-			"css/m_account_bankcard.css",
-			"js/mui.js",
-			"account/m_account_withdraw.html",
-			"js/UserInfo.js",
-			"css/mui.min.css",
-			"css/m_common.css",
-			"account/m_account_settings.html"
-		],
-		"refer": [
-			"account/m_account_withdraw.html",
-			"account/m_account_settings.html"
-		]
-	},
-	"account/m_account_score.html": {
-		"resources": [
-			"js/mui.pullToRefresh.js",
-			"images/user.png",
-			"css/m_account_score.css",
-			"js/UserInfo.js",
-			"js/mui.pullToRefresh.material.js",
-			"css/mui.min.css",
-			"js/mui.js",
-			"css/m_common.css"
-		]
-	},
-	"account/m_account_charge.html": {
-		"resources": [
-			"js/mui.pullToRefresh.js",
-			"images/user.png",
-			"css/m_account_charge.css",
-			"js/UserInfo.js",
-			"js/mui.pullToRefresh.material.js",
-			"css/mui.min.css",
-			"js/mui.js",
-			"css/m_common.css",
-			"fonts/wafuli-iconfont.woff"
-		]
-	},
-	"account/m_account_invite.html": {
-		"resources": [
-			"js/UserInfo.js",
-			"images/share-friend-bottom.png",
-			"images/share-friend.png",
-			"js/share.js",
-			"css/mui.min.css",
-			"css/m_account_invite.css",
-			"js/mui.js",
-			"css/m_common.css"
-		]
-	},
-	"html/m_activity_recommend.html": {
-		"resources": [
-			"js/UserInfo.js",
-			"js/mui.min.js",
-			"fonts/mui.ttf",
-			"images/action.png",
-			"css/m_activity_recommend.css",
-			"js/share.js",
-			"css/mui.min.css",
-			"fonts/wafuli-iconfont.woff",
-			"css/m_common.css"
-		]
-	},
-	"html/m_add_finance.html": {
-		"resources": [
-			"images/to-finance.jpg",
-			"css/m_finance.css",
-			"css/m_common.css",
-			"fonts/mui.ttf",
-			"css/mui.min.css",
-			"js/mui.pullToRefresh.js",
-			"js/mui.min.js",
-			"js/mui.pullToRefresh.material.js",
-			"js/template.js",
-			"html/%7B%%20url%20\u0027finance_json\u0027%20%%7D",
-			"m_finance.html",
-			"m_index.html"
-		],
-		"refer": [
-			"m_finance.html",
-			"m_index.html"
-		]
-	}
+  "html/m_detail_task.html": {
+    "resources": [
+      "css/m_detail_taskandfinance.css",
+      "images/blank.jpg",
+      "js/UserInfo.js",
+      "css/mui.min.css",
+      "js/mui.js",
+      "css/m_common.css"
+    ],
+    "refer": []
+  },
+  "m_welfare.html": {
+    "resources": [
+      "js/news.js",
+      "js/html5sql.js",
+      "css/m_index.css",
+      "images/slider1.jpg",
+      "css/mui.min.css",
+      "images/slider3.jpg",
+      "js/template.js",
+      "js/feed.js",
+      "images/gongzhong.jpg",
+      "images/slider2.jpg",
+      "css/m_common.css",
+      "js/mui.js",
+      "js/mui.min.js",
+      "images/blank.jpg",
+      "fonts/wafuli-iconfont.woff"
+    ],
+    "refer": [
+      "browser.html",
+      "html/m_detail_welfare.html",
+      "template.html",
+      "a_login.html",
+      "account/m_account_channel.html",
+      "account/m_account_welfare.html",
+      "account/m_joinQQGroup.html",
+      "account/m_account_settings.html",
+      "html/m_activity_lottery.html",
+      "account/m_signin.html",
+      "account/m_exchange_morescore.html",
+      "html/m_hongbao.html",
+      "html/m_youhuiquan.html",
+      "account/m_account_withdraw.html",
+      "html/m_baoyou.html",
+      "account/m_account_bind_bankcard.html",
+      "account/m_account_change_bankcard.html",
+      "account/m_account_coupon.html",
+      "account/m_account_score.html",
+      "account/m_account_charge.html",
+      "account/m_account_invite.html",
+      "html/m_activity_recommend.html",
+      "html/m_add_finance.html"
+    ]
+  },
+  "html/m_detail_finance.html": {
+    "resources": [
+      "css/m_detail_finance.css",
+      "images/blank.jpg",
+      "js/UserInfo.js",
+      "css/m_common.css",
+      "css/mui.min.css",
+      "js/mui.js"
+    ],
+    "refer": [
+      "html/m_expsubmit_finance.html"
+    ]
+  },
+  "m_account_index.html": {
+    "resources": [
+      "images/user.png",
+      "css/m_account_index.css",
+      "js/UserInfo.js",
+      "images/person-bg.png",
+      "css/mui.min.css",
+      "css/m_common.css",
+      "images/user-03.png",
+      "js/mui.js",
+      "account/m_account_welfare.html",
+      "images/user-01.png",
+      "fonts/wafuli-iconfont.woff"
+    ],
+    "refer": []
+  },
+  "html/m_detail_welfare.html": {
+    "resources": [
+      "images/blank.jpg",
+      "js/UserInfo.js",
+      "css/m_detail_hongbao.css",
+      "css/m_common.css",
+      "css/mui.min.css",
+      "js/mui.js",
+      "fonts/wafuli-iconfont.woff"
+    ],
+    "refer": [
+      "html/m_get_coupon_success.html"
+    ]
+  },
+  "m_index.html": {
+    "resources": [
+      "m_welfare.html",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "js/mui.js",
+      "fonts/wafuli-iconfont.woff",
+      "css/m_common.css",
+      "fonts/mui.ttf"
+    ],
+    "refer": [
+      "m_welfare.html",
+      "m_account_index.html",
+      "m_task.html",
+      "m_finance.html",
+      "html/m_add_finance.html"
+    ]
+  },
+  "template.html": {
+    "resources": [
+      "fonts/mui.ttf",
+      "js/share.js",
+      "css/mui.min.css",
+      "html/m_detail_welfare.html",
+      "js/mui.js",
+      "html/m_detail_finance.html",
+      "html/m_detail_task.html",
+      "fonts/wafuli-iconfont.woff"
+    ],
+    "refer": [
+      "html/m_detail_task.html",
+      "html/m_detail_finance.html",
+      "html/m_detail_welfare.html"
+    ]
+  },
+  "m_task.html": {
+    "resources": [
+      "js/mui.pullToRefresh.js",
+      "js/mui.pullToRefresh.material.js",
+      "css/m_task.css",
+      "images/task-right-bg.png",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "js/template.js",
+      "css/m_common.css"
+    ],
+    "refer": [
+      "html/m_detail_task.html",
+      "template.html"
+    ]
+  },
+  "m_finance.html": {
+    "resources": [
+      "css/m_finance.css",
+      "js/mui.pullToRefresh.js",
+      "js/mui.pullToRefresh.material.js",
+      "js/template.js",
+      "images/to-add-finance.jpg",
+      "css/mui.min.css",
+      "css/m_common.css",
+      "js/mui.min.js",
+      "html/m_add_finance.html"
+    ],
+    "refer": [
+      "html/m_detail_finance.html",
+      "template.html",
+      "html/m_add_finance.html",
+      "account/m_account_withdraw.html",
+      "m_index.html",
+      "html/m_hongbao.html",
+      "account/m_account_settings.html",
+      "account/m_account_change_bankcard.html",
+      "account/m_account_charge.html"
+    ]
+  },
+  "a_login.html": {
+    "resources": [
+      "js/UserInfo.js",
+      "css/mui.min.css",
+      "css/style.css",
+      "js/mui.js",
+      "js/mui.enterfocus.js",
+      "css/m_common.css",
+      "fonts/wafuli-iconfont.woff",
+      "fonts/mui.ttf"
+    ],
+    "refer": []
+  },
+  "account/m_account_channel.html": {
+    "resources": [
+      "css/m_expsubmit_finance.css",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/m_common.css",
+      "js/UserInfo.js"
+    ],
+    "refer": []
+  },
+  "html/m_expsubmit_finance.html": {
+    "resources": [
+      "css/m_expsubmit_finance.css",
+      "js/UserInfo.js",
+      "css/mui.min.css",
+      "js/mui.js",
+      "css/m_common.css"
+    ],
+    "refer": []
+  },
+  "account/m_account_welfare.html": {
+    "resources": [
+      "js/mui.pullToRefresh.js",
+      "images/bg-manage-01.png",
+      "js/UserInfo.js",
+      "js/mui.pullToRefresh.material.js",
+      "css/m_account_welfare.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/mui.js",
+      "images/bg-manage-02.png",
+      "css/m_common.css"
+    ],
+    "refer": []
+  },
+  "account/m_joinQQGroup.html": {
+    "resources": [
+      "css/m_detail_press.css",
+      "css/mui.min.css",
+      "js/mui.js",
+      "css/m_common.css",
+      "fonts/wafuli-iconfont.woff"
+    ],
+    "refer": []
+  },
+  "account/m_account_settings.html": {
+    "resources": [
+      "images/user.png",
+      "js/UserInfo.js",
+      "fonts/mui.ttf",
+      "images/bg-user.png",
+      "css/m_account_settings.css",
+      "css/mui.min.css",
+      "js/mui.js",
+      "css/m_common.css"
+    ],
+    "refer": []
+  },
+  "html/m_activity_lottery.html": {
+    "resources": [
+      "images/choujiang-zhuanpan.png",
+      "css/m_activity_lottery.css",
+      "images/choujiang-top.jpg",
+      "images/choujiang-bottom-02.jpg",
+      "js/mui.min.js",
+      "images/choujiang-zhizhen.png",
+      "images/share-friend.png",
+      "js/share.js",
+      "js/rotate-app.js",
+      "js/UserInfo.js",
+      "css/mui.min.css",
+      "css/m_common.css",
+      "fonts/mui.ttf"
+    ],
+    "refer": [
+      "a_login.html"
+    ]
+  },
+  "account/m_signin.html": {
+    "resources": [
+      "css/m_signin.css",
+      "images/bg-every.png",
+      "images/juchi.png",
+      "fonts/wafuli-iconfont.woff",
+      "js/calendar.js",
+      "images/user-03.png",
+      "images/bg-yes.png",
+      "css/mui.min.css",
+      "css/m_common.css",
+      "js/UserInfo.js",
+      "js/mui.js"
+    ],
+    "refer": []
+  },
+  "account/m_exchange_morescore.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/m_common.css"
+    ],
+    "refer": []
+  },
+  "html/m_hongbao.html": {
+    "resources": [
+      "js/mui.pullToRefresh.js",
+      "js/UserInfo.js",
+      "js/mui.min.js",
+      "js/mui.pullToRefresh.material.js",
+      "css/mui.min.css",
+      "css/m_hongbao.css",
+      "js/template.js",
+      "css/m_common.css"
+    ],
+    "refer": []
+  },
+  "html/m_youhuiquan.html": {
+    "resources": [
+      "js/mui.min.js",
+      "css/m_youhuiquan.css",
+      "css/mui.min.css",
+      "js/template.js",
+      "css/m_common.css"
+    ],
+    "refer": []
+  },
+  "html/m_get_coupon_success.html": {
+    "resources": [
+      "images/bg-youhuiquan.png",
+      "images/yes.png",
+      "css/m_get_coupon_success.css",
+      "css/mui.min.css",
+      "js/mui.js",
+      "css/m_common.css"
+    ],
+    "refer": [
+      "account/m_account_coupon.html"
+    ]
+  },
+  "account/m_account_coupon.html": {
+    "resources": [
+      "js/mui.pullToRefresh.js",
+      "js/UserInfo.js",
+      "js/mui.pullToRefresh.material.js",
+      "css/m_account_coupon.css",
+      "images/youhuiquan-bg.png",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/mui.js",
+      "css/m_common.css"
+    ],
+    "refer": []
+  },
+  "account/m_account_withdraw.html": {
+    "resources": [
+      "images/user.png",
+      "js/UserInfo.js",
+      "fonts/mui.ttf",
+      "css/m_account_withdraw.css",
+      "css/mui.min.css",
+      "images/fubi.png",
+      "js/mui.js",
+      "css/m_common.css",
+      "account/m_account_bind_zhifubao.html",
+      "images/jsyh.png",
+      "images/nyyh.png",
+      "images/payh.png",
+      "images/zxyh.png",
+      "images/xyyh.png",
+      "images/zgyh.png",
+      "images/ycyh.png"
+    ],
+    "refer": [
+      "account/m_account_bind_zhifubao.html"
+    ]
+  },
+  "account/m_account_bind_zhifubao.html": {
+    "resources": [
+      "css/mui.min.css",
+      "css/m_account_zhifubao.css",
+      "images/zhifubao.png",
+      "css/m_common.css",
+      "account/m_account_withdraw.html"
+    ],
+    "refer": [
+      "account/m_account_withdraw.html"
+    ]
+  },
+  "browser.html": {
+    "resources": [
+      "css/mui.min.css",
+      "js/mui.js"
+    ],
+    "refer": []
+  },
+  "html/m_baoyou.html": {
+    "resources": [
+      "js/UserInfo.js",
+      "js/mui.min.js",
+      "css/mui.min.css",
+      "css/m_baoyou.css",
+      "css/m_common.css"
+    ],
+    "refer": []
+  },
+  "account/m_account_bind_bankcard.html": {
+    "resources": [
+      "css/m_account_bankcard.css",
+      "js/UserInfo.js",
+      "css/mui.min.css",
+      "js/mui.js",
+      "css/m_common.css",
+      "account/m_account_withdraw.html",
+      "account/m_account_settings.html",
+      "fonts/mui.ttf"
+    ],
+    "refer": [
+      "account/m_account_withdraw.html",
+      "account/m_account_settings.html"
+    ]
+  },
+  "account/m_account_change_bankcard.html": {
+    "resources": [
+      "css/m_account_bankcard.css",
+      "js/mui.js",
+      "account/m_account_withdraw.html",
+      "js/UserInfo.js",
+      "css/mui.min.css",
+      "css/m_common.css",
+      "account/m_account_settings.html"
+    ],
+    "refer": [
+      "account/m_account_withdraw.html",
+      "account/m_account_settings.html"
+    ]
+  },
+  "account/m_account_score.html": {
+    "resources": [
+      "js/mui.pullToRefresh.js",
+      "images/user.png",
+      "css/m_account_score.css",
+      "js/UserInfo.js",
+      "js/mui.pullToRefresh.material.js",
+      "css/mui.min.css",
+      "js/mui.js",
+      "css/m_common.css"
+    ]
+  },
+  "account/m_account_charge.html": {
+    "resources": [
+      "js/mui.pullToRefresh.js",
+      "images/user.png",
+      "css/m_account_charge.css",
+      "js/UserInfo.js",
+      "js/mui.pullToRefresh.material.js",
+      "css/mui.min.css",
+      "js/mui.js",
+      "css/m_common.css",
+      "fonts/wafuli-iconfont.woff"
+    ]
+  },
+  "account/m_account_invite.html": {
+    "resources": [
+      "js/UserInfo.js",
+      "images/share-friend-bottom.png",
+      "images/share-friend.png",
+      "js/share.js",
+      "css/mui.min.css",
+      "css/m_account_invite.css",
+      "js/mui.js",
+      "css/m_common.css"
+    ]
+  },
+  "html/m_activity_recommend.html": {
+    "resources": [
+      "js/UserInfo.js",
+      "js/mui.min.js",
+      "fonts/mui.ttf",
+      "images/action.png",
+      "css/m_activity_recommend.css",
+      "js/share.js",
+      "css/mui.min.css",
+      "fonts/wafuli-iconfont.woff",
+      "css/m_common.css"
+    ]
+  },
+  "html/m_add_finance.html": {
+    "resources": [
+      "images/to-finance.jpg",
+      "css/m_finance.css",
+      "css/m_common.css",
+      "fonts/mui.ttf",
+      "css/mui.min.css",
+      "js/mui.pullToRefresh.js",
+      "js/mui.min.js",
+      "js/mui.pullToRefresh.material.js",
+      "js/template.js",
+      "html/%7B%%20url%20\u0027finance_json\u0027%20%%7D",
+      "m_finance.html",
+      "m_index.html"
+    ],
+    "refer": [
+      "m_finance.html",
+      "m_index.html"
+    ]
+  }
 }
