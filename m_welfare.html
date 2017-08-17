@@ -506,14 +506,14 @@
 //									wel.view +'</span></p></div></a>';
                     li.className = 'mui-table-view-cell hongbao';
                     str_block = '<a class="clearfix" data_id="' + wel.id + '" data_type="' + wel.type + '"><img id="news_img_' + wel.id + '" class="hongbao__img" src="'+ 
-                                    image + '" /><div class="hongbao__title"><h6>' + wel.title;
+                                    image + '" /><h6 class="hongbao__title">' + wel.title;
                     if (wel.view>1000){
                         str_block += '<i class="icon iconfont"></i>';
                     }
                     else if ( wel.pubDate > Date.parse(new Date()) -24*60*60*1000 ){
                         str_block += '<i class="icon iconfont"></i>';
                     }
-                    str_block += '</h6><h6 class="hongbao__subtitle">' + wel.subtitle + '</h6>';
+                    str_block += '</h6><h5 class="hongbao__subtitle">' + wel.subtitle + '</h5>';
                     str_block += '<p class="hongbao__detail">'+
                                             '<span class="hongbao__source">'+wel.provider+'</span><span class="hongbao__time">'+wel.time_limit+'</span><span class="hongbao__look">阅读量:'+wel.view_count+'</span>'+
                                             '</p></a>';

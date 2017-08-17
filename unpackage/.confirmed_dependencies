@@ -95,7 +95,9 @@
 			"css/m_common.css",
 			"css/mui.min.css",
 			"js/mui.js",
-			"fonts/wafuli-iconfont.woff"
+			"fonts/wafuli-iconfont.woff",
+			"images/support-up.png",
+			"images/support-down.png"
 		],
 		"refer": [
 			"html/m_get_coupon_success.html"
@@ -300,7 +302,8 @@
 			"css/mui.min.css",
 			"css/m_hongbao.css",
 			"js/template.js",
-			"css/m_common.css"
+			"css/m_common.css",
+			"fonts/mui.ttf"
 		],
 		"refer": []
 	},
