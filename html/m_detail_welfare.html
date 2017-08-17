@@ -19,6 +19,9 @@
 				<h3><i class="icon iconfont">&#xe61c;</i>体验步骤</h3>
 				<div id="strategy" class="detail-html"></div>
 			</div>
+			<div id="support" class="support" data-support = "">
+                <span id="support_up" class="support__up"><number id="support_up_num"></number></span><span id="support_down" class="support__down"><number id="support_down_num"></number></span>
+            </div>
 			<!--温馨提示部分-->
 			<div class="prompt">
 				<h3><i class="icon iconfont">&#xe60b;</i>温馨提示</h3>
@@ -93,6 +96,10 @@
 								document.getElementById('strategy').innerHTML = ret.strategy;
 								document.getElementById('number_display').innerText = ret.num;
 								document.getElementById('time_display').innerText = ret.time;
+								
+								document.getElementById('support').setAttribute('data-support', wel.id);
+								document.getElementById('support_up_num').innerText = ret.up;
+								document.getElementById('support_down_num').innerText = ret.down;
 								exp_url = ret.url;
 								title = ret.title;
 							}
@@ -104,6 +111,7 @@
 					});
 			  	}
 			  	else if (type==="youhuiquan"){
+			  	    document.getElementById('support').style.display = "none";
 			  		exp_btn_ele.innerText="立即领取";
 			  		num_desc_ele.innerText="剩余数量：";
 			  		var url_get_content= "http://m.wafuli.cn/app/detail/youhuiquan/";
@@ -217,6 +225,59 @@
 		    		});
 				}
 			});
+			
+			//点赞部分
+            var supportFlag = 0;
+            var supportId = document.getElementById('support').getAttribute('data-support');
+            console.log(supportId);
+            document.getElementById('support_up').addEventListener('tap', function() {
+                if(supportFlag > 0) {
+                    return false;
+                } else {
+                    var newurl = '/updown_welfare/' + supportId + '/?click=up';
+                    mui.ajax(newurl, {
+                        // data:{
+                        //  count:n,
+                        //  type:type,
+                        // },
+                        dataType: 'json',
+                        type: 'get',
+                        timeout: 10000, //超时时间设置为10秒；
+                        success: function(ret) {
+                            this.innerText = parseInt(this.innerText) + 1;
+                            this.className = 'support__up on'
+                            supportFlag++;
+                        },
+                        error: function(xhr, type, errorThrown) {
+                            alert(type);
+                        }
+                    });
+                }
+            })
+            document.getElementById('support_down').addEventListener('tap', function() {
+                if(supportFlag > 0) {
+                    return false;
+                } else {
+                    var newurl = '/updown_welfare/' + supportId + '/?click=down';
+                    mui.ajax(newurl, {
+                        // data:{
+                        //  count:n,
+                        //  type:type,
+                        // },
+                        dataType: 'json',
+                        type: 'get',
+                        timeout: 10000, //超时时间设置为10秒；
+                        success: function(ret) {
+                            this.innerText = parseInt(this.innerText) + 1;
+                            this.className = 'support__down on'
+                            supportFlag++;
+                        },
+                        error: function(xhr, type, errorThrown) {
+                            alert(type);
+                        }
+                    });
+                }
+            })//点赞部分---end
 		</script>
 	</body>
 </html>
