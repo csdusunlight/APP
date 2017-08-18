@@ -228,13 +228,13 @@
 			
 			//点赞部分
             var supportFlag = 0;
-            var supportId = document.getElementById('support').getAttribute('data-support');
-            console.log(supportId);
             document.getElementById('support_up').addEventListener('tap', function() {
+                var supportId = document.getElementById('support').getAttribute('data-support');
+                console.log(supportId);
                 if(supportFlag > 0) {
                     return false;
                 } else {
-                    var newurl = '/updown_welfare/' + supportId + '/?click=up';
+                    var newurl = 'http://m.wafuli.cn/updown_welfare/' + supportId + '/?click=up';
                     mui.ajax(newurl, {
                         // data:{
                         //  count:n,
@@ -255,10 +255,12 @@
                 }
             })
             document.getElementById('support_down').addEventListener('tap', function() {
+                var supportId = document.getElementById('support').getAttribute('data-support');
+                console.log(supportId);
                 if(supportFlag > 0) {
                     return false;
                 } else {
-                    var newurl = '/updown_welfare/' + supportId + '/?click=down';
+                    var newurl = 'http://m.wafuli.cn/updown_welfare/' + supportId + '/?click=down';
                     mui.ajax(newurl, {
                         // data:{
                         //  count:n,
