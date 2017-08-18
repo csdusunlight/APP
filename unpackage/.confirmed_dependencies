@@ -97,7 +97,9 @@
 			"js/mui.js",
 			"fonts/wafuli-iconfont.woff",
 			"images/support-up.png",
-			"images/support-down.png"
+			"images/support-down.png",
+			"images/support-up-on.png",
+			"images/support-down-on.png"
 		],
 		"refer": [
 			"html/m_get_coupon_success.html"

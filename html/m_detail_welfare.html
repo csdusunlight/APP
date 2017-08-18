@@ -57,6 +57,7 @@
 		  	var share_msg = {};
 		  	var img = null;
 		  	var tempview = null;
+		  	var supportFlag;       //点赞开关
 		  	mui.plusReady(function(){
 		  		self = plus.webview.currentWebview();
 		  		tempview = plus.webview.getWebviewById("temp2");
@@ -99,8 +100,11 @@
 								
 								document.getElementById('support_up_num').innerText = ret.up;
 								document.getElementById('support_down_num').innerText = ret.down;
+								document.getElementById('support_up').className = 'support__up';
+								document.getElementById('support_down').className = 'support__down';
 								exp_url = ret.url;
 								title = ret.title;
+								supportFlag = 0;
 							}
 							
 						},
@@ -226,8 +230,11 @@
 			});
 			
 			//点赞部分
-            var supportFlag = 0;
-            document.getElementById('support_up').addEventListener('tap', function() {
+			
+			mui('#support').on('tap', '.support__up', function() {  
+			    var self = this;
+			    console.log(supportFlag);
+			    console.log('up');
                 if(supportFlag > 0) {
                     return false;
                 } else {
@@ -242,8 +249,9 @@
                         type: 'get',
                         timeout: 10000, //超时时间设置为10秒；
                         success: function(ret) {
-                            this.innerText = parseInt(this.innerText) + 1;
-                            this.className = 'support__up on'
+                            console.log('chenggong');
+                            document.getElementById('support_up_num').innerText = parseInt(self.innerText) + 1;
+                            self.className = 'support__up on';
                             supportFlag++;
                         },
                         error: function(xhr, type, errorThrown) {
@@ -251,8 +259,11 @@
                         }
                     });
                 }
-            })
-            document.getElementById('support_down').addEventListener('tap', function() {
+            });
+            
+            mui('#support').on('tap', '.support__down', function() {  
+                var self = this;
+                console.log('down');
                 if(supportFlag > 0) {
                     return false;
                 } else {
@@ -266,8 +277,8 @@
                         type: 'get',
                         timeout: 10000, //超时时间设置为10秒；
                         success: function(ret) {
-                            this.innerText = parseInt(this.innerText) + 1;
-                            this.className = 'support__down on'
+                            document.getElementById('support_down_num').innerText = parseInt(self.innerText) + 1;
+                            self.className = 'support__down on';
                             supportFlag++;
                         },
                         error: function(xhr, type, errorThrown) {

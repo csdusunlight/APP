@@ -1163,7 +1163,9 @@
 					"images/share-guide-top.png",
 					"images/share-guide-bottom.png",
 					"images/support-up.png",
-					"images/support-down.png"
+					"images/support-down.png",
+					"images/support-up-on.png",
+					"images/support-down-on.png"
 				],
 				"refer": [
 					"a_login.html",
