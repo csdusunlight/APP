@@ -86,15 +86,15 @@
 		                    </a>
 		                </li>
 		            	<li>
-		                	<a id="html/m_youhuiquan.html">
+		                	<a id="http://fuligou.wafuli.cn">
 		                    	<i class="icon iconfont ic-06">&#xe655;</i>
 		                        <span>福利购</span>
 		                    </a>
 		                </li>
 		            	<li>
-		                	<a id="html/m_baoyou.html">
+		                	<a id="">
 		                    	<i class="icon iconfont ic-07">&#xe6fe;</i>
-		                        <span>信用卡</span>
+		                        <span>敬请期待</span>
 		                    </a>
 		                </li>
 		            	<li id="weixin_btn">
@@ -223,12 +223,20 @@
 			});
 			mui('#nav').on('tap', 'a', function() {
 				var id = this.id;
-				tempview.loadURL(id);
-				plus.nativeUI.showWaiting();
-				tempview.addEventListener('loaded',function(){
-					plus.nativeUI.closeWaiting();
-					tempview.show("pop-in",350);
-				});
+				if(!id){
+					mui.alert("开发中，敬请期待...");
+				}
+				else if (id.indexOf('http')==0){
+					plus.runtime.openURL(id);
+				}
+				else{
+					tempview.loadURL(id);
+					plus.nativeUI.showWaiting();
+					tempview.addEventListener('loaded',function(){
+						plus.nativeUI.closeWaiting();
+						tempview.show("pop-in",350);
+					});
+				}
 				
 //				mui.openWindow({
 //		            url: id,
@@ -478,10 +486,8 @@
 				}
 				latestPubDate = news[news.length-1].pubDate;
 				var length = news.length;
-				console.log(news);
 				for (var i = 0; i < length; i++){
 					wel = news[i];
-					console.log(wel);
 					var image = wel.image;
 					if(delay){
 						image = 'images/blank.jpg';
