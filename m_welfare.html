@@ -209,7 +209,7 @@
 			};
 			 //点击新闻列表，打开新闻详情
 			mui('#hot').on('tap', 'a', function() {
-				var title = this.querySelector('h6').innerText;
+				var title = this.querySelector('.hongbao__innertitle').innerText;
 				var img = this.querySelector('img').src;
 				open_welfare_detail(this.getAttribute('data_id'),this.getAttribute('data_type'),title,img);
 			});
@@ -508,7 +508,7 @@
 //									wel.view +'</span></p></div></a>';
                     li.className = 'mui-table-view-cell hongbao';
                     str_block = '<a class="clearfix" data_id="' + wel.id + '" data_type="' + wel.type + '"><img id="news_img_' + wel.id + '" class="hongbao__img" src="'+ 
-                                    image + '" /><h6 class="hongbao__title">' + wel.title;
+                                    image + '" /><h6 class="hongbao__title"><span class = "hongbao__innertitle">' + wel.title + '</span>';
                     if (wel.view>1000){
                         str_block += '<i class="hongbao__tag icon iconfont"></i>';
                     }
