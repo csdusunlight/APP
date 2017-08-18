@@ -13,7 +13,8 @@
 				time: srcItem.time,
 				source: srcItem.source,
 				view: srcItem.view,
-				type: srcItem.type
+				type: srcItem.type,
+				subtitle: srcItem.subtitle,
 			});
 		});
 		return items;
