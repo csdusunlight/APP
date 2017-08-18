@@ -19,7 +19,7 @@
 				<h3><i class="icon iconfont">&#xe61c;</i>体验步骤</h3>
 				<div id="strategy" class="detail-html"></div>
 			</div>
-			<div id="support" class="support" data-support = "">
+			<div id="support" class="support">
                 <span id="support_up" class="support__up"><number id="support_up_num"></number></span><span id="support_down" class="support__down"><number id="support_down_num"></number></span>
             </div>
 			<!--温馨提示部分-->
@@ -97,7 +97,6 @@
 								document.getElementById('number_display').innerText = ret.num;
 								document.getElementById('time_display').innerText = ret.time;
 								
-								document.getElementById('support').setAttribute('data-support', ret.id);
 								document.getElementById('support_up_num').innerText = ret.up;
 								document.getElementById('support_down_num').innerText = ret.down;
 								exp_url = ret.url;
@@ -229,12 +228,11 @@
 			//点赞部分
             var supportFlag = 0;
             document.getElementById('support_up').addEventListener('tap', function() {
-                var supportId = document.getElementById('support').getAttribute('data-support');
-                console.log(supportId);
                 if(supportFlag > 0) {
                     return false;
                 } else {
-                    var newurl = 'http://m.wafuli.cn/updown_welfare/' + supportId + '/?click=up';
+                    var newurl = 'http://m.wafuli.cn/updown_welfare/' + id + '/?click=up';
+                    console.log(newurl);
                     mui.ajax(newurl, {
                         // data:{
                         //  count:n,
@@ -255,12 +253,10 @@
                 }
             })
             document.getElementById('support_down').addEventListener('tap', function() {
-                var supportId = document.getElementById('support').getAttribute('data-support');
-                console.log(supportId);
                 if(supportFlag > 0) {
                     return false;
                 } else {
-                    var newurl = 'http://m.wafuli.cn/updown_welfare/' + supportId + '/?click=down';
+                    var newurl = 'http://m.wafuli.cn/updown_welfare/' + id + '/?click=down';
                     mui.ajax(newurl, {
                         // data:{
                         //  count:n,
