@@ -54,7 +54,8 @@
 			"html/m_add_finance.html",
 			"account/m_account_vip.html",
 			"account/m_vip_intro.html",
-			"account/m_custom_service.html"
+			"account/m_custom_service.html",
+			"html/m_information.html"
 		]
 	},
 	"html/m_detail_finance.html": {
@@ -549,6 +550,13 @@
 		],
 		"refer": [
 			"account/m_account_vip.html"
+		]
+	},
+	"html/m_information.html": {
+		"resources": [
+			"css/m_information.css",
+			"js/mui.pullToRefresh.js",
+			"js/mui.pullToRefresh.material.js"
 		]
 	}
 }
