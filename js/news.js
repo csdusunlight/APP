@@ -33,7 +33,7 @@ var TODAY_NUM_URL = 'http://m.wafuli.cn/app/get_today_num/';
 		'CREATE TABLE wa_recom (id INTEGER PRIMARY KEY, image TEXT, type TEXT, wel_id INTEGER, location INTEGER UNIQUE, title TEXT);' + 
 		'CREATE TABLE wa_task (id INTEGER PRIMARY KEY, title TEXT, image TEXT,pubDate INTEGER,source TEXT, time TEXT, view INTEGER, type TEXT);';
 	var SQL_SELECT_NEWS= 'SELECT id,title,mark1,mark2,mark3,pubDate,image,source,time,view,type,subtitle FROM wa_news WHERE pubDate < ? ORDER BY pubDate DESC LIMIT ?;';
-	var SQL_INSERT_NEWS = 'INSERT INTO wa_news(id,title,mark1,mark2,mark3,pubDate,image,source,time,view,type,subtitle) VALUES(?,?,?,?,?,?,?,?,?,?,?);';
+	var SQL_INSERT_NEWS = 'INSERT INTO wa_news(id,title,mark1,mark2,mark3,pubDate,image,source,time,view,type,subtitle) VALUES(?,?,?,?,?,?,?,?,?,?,?,?);';
 	var SQL_SELECT_NEWS_DETAIL = 'SELECT * FROM wa_news WHERE id = ? LIMIT 1;';
 	var SQL_UPDATE_NEWS = 'UPDATE wa_news SET image = ? WHERE id = ?';
 	var SQL_DELETE_NEWS = 'DELETE FROM wa_news';
