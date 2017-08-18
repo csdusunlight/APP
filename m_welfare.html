@@ -478,8 +478,10 @@
 				}
 				latestPubDate = news[news.length-1].pubDate;
 				var length = news.length;
+				console.log(news);
 				for (var i = 0; i < length; i++){
 					wel = news[i];
+					console.log(wel);
 					var image = wel.image;
 					if(delay){
 						image = 'images/blank.jpg';
@@ -508,14 +510,14 @@
                     str_block = '<a class="clearfix" data_id="' + wel.id + '" data_type="' + wel.type + '"><img id="news_img_' + wel.id + '" class="hongbao__img" src="'+ 
                                     image + '" /><h6 class="hongbao__title">' + wel.title;
                     if (wel.view>1000){
-                        str_block += '<i class="icon iconfont"></i>';
+                        str_block += '<i class="hongbao__tag icon iconfont"></i>';
                     }
                     else if ( wel.pubDate > Date.parse(new Date()) -24*60*60*1000 ){
-                        str_block += '<i class="icon iconfont"></i>';
+                        str_block += '<i class="hongbao__tag icon iconfont"></i>';
                     }
                     str_block += '</h6><h5 class="hongbao__subtitle">' + wel.subtitle + '</h5>';
                     str_block += '<p class="hongbao__detail">'+
-                                            '<span class="hongbao__source">'+wel.provider+'</span><span class="hongbao__time">'+wel.time_limit+'</span><span class="hongbao__look">阅读量:'+wel.view_count+'</span>'+
+                                            '<span class="hongbao__source">'+wel.source+'</span><span class="hongbao__time">'+wel.time+'</span><span class="hongbao__look">阅读量:'+wel.view+'</span>'+
                                             '</p></a>';
 					li.innerHTML = str_block;
 					news_group.appendChild(li);
