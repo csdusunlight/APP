@@ -323,5 +323,47 @@ footer li.on span {
 
 /*.mui-scroll-wrapper{
 	bottom:20px;
-	/*margin-top:40px;*/
 }*/
+/*红包活动部分*/
+.wfl-act {
+  position: fixed;
+  right: 4px;
+  bottom: 60px;
+  width: 30px;
+  -webkit-animation: rock 4s ease;
+  animation: rock 4s ease;
+  z-index: 10;
+}
+.wfl-act__img {
+  width: 100%;
+}
+@-webkit-keyframes rock{
+  0% {
+  }
+  40% {
+      transform: translateX(0px) rotate(0);
+  }
+  60% {
+              transform: translateX(-100px) rotate(-360deg);
+          }
+          80% {
+              transform: translateX(-100px) rotate(-360deg);
+          }
+  100% {
+  }
+}
+@keyframes rock{
+  0% {
+  }
+  40% {
+      transform: translateX(0px) rotate(0);
+  }
+  60% {
+              transform: translateX(-100px) rotate(-360deg);
+          }
+          80% {
+              transform: translateX(-100px) rotate(-360deg);
+          }
+  100% {
+  }
+}

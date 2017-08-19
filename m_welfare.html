@@ -10,6 +10,8 @@
 	</head>
 
 	<body>
+	    <a id="wfl_act" class="wfl-act" href="/activity/Christmas/open_envelope/"><img class="wfl-act__img" src="images/klb-04.png" alt=""></a>
+
 		<!--下拉刷新容器-->
 		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
 			<div class="mui-scroll">
@@ -74,7 +76,7 @@
 		                    </a>
 		                </li>
 		            	<li>
-		                	<a id="html/m_information.html">
+		                	<a id="html/m_freshman_award.html">
 		                    	<i class="icon iconfont ic-04">&#xe641;</i>
 		                        <span>推荐有礼</span>
 		                    </a>
@@ -134,6 +136,7 @@
 		<script type="text/javascript" charset="UTF-8" src="js/html5sql.js"></script>
 		<script type="text/javascript" charset="UTF-8" src="js/news.js"></script>
 		<script type="text/javascript" charset="UTF-8" src="js/template.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="js/UserInfo.js"></script>
 		<script>
 			var slide_group = document.body.querySelector('.mui-slider-group');
 			var news_group = document.body.querySelector('.mui-table-view');
@@ -275,6 +278,34 @@
 					tempview.show("pop-in",350);
 				});
 			});
+			
+//			红包活动部分
+			function tologin() {
+                plus.nativeUI.showWaiting();
+                localStorage.setItem('login-backid', self.id);
+                if(!tempview) {
+                    return;
+                }
+                tempview.loadURL("a_login.html");
+                tempview.addEventListener('loaded', function() {
+                    plus.nativeUI.closeWaiting();
+                    tempview.show("pop-in", 350);
+                });
+                UserInfo.clear();
+            }
+            mui('body').on('tap', '#wfl_act', function() {
+                if(!UserInfo.has_login()) {
+                    tologin();
+                } else {
+                    tempview.loadURL("html/m_open_envelope.html");
+                    plus.nativeUI.showWaiting();
+                    tempview.addEventListener('loaded',function(){
+                        plus.nativeUI.closeWaiting();
+                        tempview.show("pop-in",350);
+                    });
+                }
+            })
+            //          红包活动部分---end
 			var weixin_btn = document.getElementById("weixin_btn");
             var close_01 = document.getElementById("close_01");
             //监听点击事件
