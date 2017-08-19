@@ -312,7 +312,8 @@
 					"images/share-guide-bottom.png",
 					"images/slider1.jpg",
 					"images/slider3.jpg",
-					"images/slider2.jpg"
+					"images/slider2.jpg",
+					"js/UserInfo.js"
 				],
 				"refer": [
 					"m_detail_hongbao.html",
