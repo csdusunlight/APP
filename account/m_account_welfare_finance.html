@@ -1,4 +1,3 @@
-{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 
@@ -9,9 +8,9 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-		<link rel="stylesheet" href="css/mui.min.css">
-		<link rel="stylesheet" href="css/m_audit.css">
-		<script type="text/javascript" src="js/rem.js"></script>
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/m_audit.css">
+		<script type="text/javascript" src="../js/rem.js"></script>
 	</head>
 
 	<body>
@@ -51,9 +50,11 @@
 				</div>
 		</div>
        
-		<script src="js/mui.min.js"></script>
-		<script type="text/javascript" charset="UTF-8" src="js/UserInfo.js"></script>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" charset="UTF-8" src="../js/UserInfo.js"></script>
 		<script>
+		    var info = UserInfo.userinfo();
+		    console.log(info);
 		    var count = 1;
 		    var num = 1;
 			mui.init({
@@ -75,6 +76,10 @@
                     }
                 }
 			}); //是否显示滚动条,默认是true
+			var tempview = null;
+			mui.plusReady(function() {
+			    tempview = plus.webview.getWebviewById("temp");
+			})
 			mui('.mui-scroll-wrapper2').scroll({
 			    scrollX: true,
 			    scrollY: false,
@@ -87,9 +92,10 @@
 
 					function getList(obj, ul_left, ul_right, n) {
 						console.log(obj);
-						var url = '/usereventlist/?content_type={{ftype}}&user={{user.id}}';
+						var url = 'http://test.wafuli.cn/usereventlist/?content_type=16';
 						mui.ajax(url, {
 							data: {
+							    token:UserInfo.token(),  
 								page: n,
 								pageSize: 30,
 							},
@@ -200,24 +206,42 @@
 //                  }
 //              });
 //          });
-//			mui('.mui-table-view-right').on('tap', '.pro_editor', function() {
-//
-//				var project_id = this.getAttribute('data-id'); //获取自定义data-id属性
-//				mui.openWindow({
-//					url: "/account/detail_finance/" + project_id,
-//					styles: {
-//						top: 0,
-//						bottom: 0
-//					},
-//					show: {
-//						aniShow: 'slide-in-right',
-//					},
-//					waiting: {
-//						autoShow: false, //自动显示等待框
-//						title: '正在加载...', //等待对话框上显示的提示内容
-//					}
-//				});
-//			});
+            mui('.mui-table-view-right').on('tap', '.pro_editor', function() {
+                var project_id = this.getAttribute('data-id'); //获取自定义data-id属性
+//              mui.openWindow({
+//                  url: "/account/detail_finance/" + project_id,
+//                  styles: {
+//                      top: 0,
+//                      bottom: 0
+//                  },
+//                  show: {
+//                      aniShow: 'slide-in-right',
+//                  },
+//                  waiting: {
+//                      autoShow: false, //自动显示等待框
+//                      title: '正在加载...', //等待对话框上显示的提示内容
+//                  }
+//              });
+                mui.openWindow({
+                    url: "m_account_detail_finance.html",
+                    id: "m_account_detail_finance.html",
+                    styles: {
+                        top: 0,
+                        bottom: 0,
+                        hardwareAccelerated:true
+                    },
+//                      show:{
+//                        autoShow:false,//页面loaded事件发生后自动显示，默认为true
+//                        aniShow: 'slide-in-right'
+//                      },
+//                      waiting: {
+//                          autoShow: true,
+//                      },
+                    extras:{
+                        project_id:project_id
+                    }
+                });
+            });
 			mui('.nav__head').on('tap', '.nav__link', function(e) {
                 if(!UserInfo.has_login()) {
                     tologin();
@@ -252,15 +276,12 @@
                 }
             });
             mui('.mui-bar-nav').on('tap', 'a', function(e) {
-                if(!UserInfo.has_login()) {
-                    tologin();
-                } else {
-                    var targetTab = this.getAttribute('href');
-                    tempview.loadURL(targetTab);
-                    setTimeout(function() {
-                        tempview.show('pop-in');
-                    }, 10);
-                }
+//                  var targetTab = this.getAttribute('href');
+//                  tempview.loadURL(targetTab);
+//                  setTimeout(function() {
+//                      tempview.show('pop-in');
+//                  }, 10);
+               tempview.hide();     
             });
             
 		</script>

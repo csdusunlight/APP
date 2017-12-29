@@ -250,8 +250,14 @@ ul,li {
     transform: translateY(0);
 }
 /*弹窗部分---end*/
-.mui-scroll-wrapper {
+.mui-plus-pullrefresh .mui-scroll-wrapper {
+    position: absolute;
     top: 84px;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    overflow: hidden;
 }
 .nav__head {
     position: fixed;

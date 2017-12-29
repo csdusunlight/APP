@@ -358,7 +358,11 @@
 					"account/m_vip_intro.html",
 					"html/m_open_envelope.html",
 					"m_index.html",
-					"html/m_kenglaoban.html"
+					"html/m_kenglaoban.html",
+					"account/m_account_welfare_finance.html",
+					"account/m_account_welfare_task.html",
+					"m_account_index.html",
+					"account/m_account_welfare_media.html"
 				],
 				"priority": 0
 			},
@@ -443,7 +447,10 @@
 					"account/m_account_charge.html",
 					"account/m_account_invite.html",
 					"account/m_account_welfare.html",
-					"images/vip-account.png"
+					"images/vip-account.png",
+					"account/m_account_welfare_finance.html",
+					"account/m_account_welfare_task.html",
+					"account/m_account_welfare_media.html"
 				],
 				"refer": [
 					"a_login.html",
@@ -1769,7 +1776,8 @@
 					"images/vip-finance-bg.png",
 					"images/vip-next-bg.png",
 					"images/vip-task-bg.png",
-					"fonts/mui.ttf"
+					"fonts/mui.ttf",
+					"m_account_index.html"
 				],
 				"refer": [],
 				"priority": 0
@@ -1854,6 +1862,40 @@
 					"fonts/mui.ttf",
 					"images/klb-04.png",
 					"html/m_activity_Christmas.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/m_account_welfare_task.html": {
+				"resources": [
+					"account/m_account_welfare_media.html",
+					"account/m_account_welfare_finance.html",
+					"css/mui.min.css",
+					"js/UserInfo.js",
+					"js/mui.min.js"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/m_account_welfare_finance.html": {
+				"resources": [
+					"account/m_account_welfare_task.html",
+					"js/mui.min.js",
+					"css/mui.min.css",
+					"css/m_audit.css",
+					"account/m_account_welfare_media.html",
+					"js/UserInfo.js",
+					"m_account_index.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/m_account_welfare_media.html": {
+				"resources": [
+					"account/m_account_welfare_finance.html",
+					"css/mui.min.css",
+					"css/m_audit.css",
+					"account/m_account_welfare_task.html"
 				],
 				"refer": [],
 				"priority": 0

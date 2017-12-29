@@ -1,4 +1,3 @@
-{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 
@@ -9,9 +8,9 @@
 		<meta name="apple-mobile-web-app-capable" content="yes">
 		<meta name="apple-mobile-web-app-status-bar-style" content="black">
 
-		<link rel="stylesheet" href="css/mui.min.css">
-        <link rel="stylesheet" href="css/m_audit.css">
-        <script type="text/javascript" src="js/rem.js"></script>
+		<link rel="stylesheet" href="../css/mui.min.css">
+        <link rel="stylesheet" href="../css/m_audit.css">
+        <script type="text/javascript" src="../js/rem.js"></script>
 	</head>
 
 	<body>
@@ -51,9 +50,10 @@
 				</div>
 		</div>
        
-		<script src="js/mui.min.js"></script>
-        <script type="text/javascript" charset="UTF-8" src="js/UserInfo.js"></script>
+		<script src="../js/mui.min.js"></script>
+        <script type="text/javascript" charset="UTF-8" src="../js/UserInfo.js"></script>
 		<script>
+		    var info = UserInfo.userinfo();
 		    var count = 1;
 		    var num = 1;
 			mui.init({
@@ -75,6 +75,10 @@
                     }
                 }
 			}); //是否显示滚动条,默认是true
+			var tempview = null;
+			mui.plusReady(function() {
+                tempview = plus.webview.getWebviewById("temp");
+            })
 			mui('.mui-scroll-wrapper2').scroll({
 			    scrollX: true,
 			    scrollY: false,
@@ -87,9 +91,10 @@
 
 					function getList(obj, ul_left, ul_right, n) {
 						console.log(obj);
-						var url = '/usereventlist/?event_type=9&user={{user.id}}';
+						var url = '/usereventlist/?event_type=9&user=' + info.id;
 						mui.ajax(url, {
 							data: {
+							    token:UserInfo.token(),
 								page: n,
 								pageSize: 30,
 							},
@@ -242,15 +247,7 @@
                 }
             });
             mui('.mui-bar-nav').on('tap', 'a', function(e) {
-                if(!UserInfo.has_login()) {
-                    tologin();
-                } else {
-                    var targetTab = this.getAttribute('href');
-                    tempview.loadURL(targetTab);
-                    setTimeout(function() {
-                        tempview.show('pop-in');
-                    }, 10);
-                }
+               tempview.hide();     
             });
 		</script>
 

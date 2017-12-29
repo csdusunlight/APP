@@ -64,7 +64,11 @@
 			"html/m_activity_recom_rank.html",
 			"m_index.html",
 			"html/m_kenglaoban.html",
-			"html/m_freshman_award.html"
+			"html/m_freshman_award.html",
+			"account/m_account_welfare_finance.html",
+			"account/m_account_welfare_task.html",
+			"m_account_index.html",
+			"account/m_account_welfare_media.html"
 		]
 	},
 	"html/m_detail_finance.html": {
@@ -94,9 +98,16 @@
 			"account/m_account_welfare.html",
 			"images/user-01.png",
 			"fonts/wafuli-iconfont.woff",
-			"images/vip-account.png"
+			"images/vip-account.png",
+			"account/m_account_welfare_finance.html",
+			"account/m_account_welfare_task.html",
+			"account/m_account_welfare_media.html"
 		],
-		"refer": []
+		"refer": [
+			"account/m_account_welfare_finance.html",
+			"account/m_account_welfare_task.html",
+			"account/m_account_welfare_media.html"
+		]
 	},
 	"html/m_detail_welfare.html": {
 		"resources": [
@@ -548,10 +559,12 @@
 			"images/vip-finance-bg.png",
 			"images/vip-next-bg.png",
 			"images/vip-task-bg.png",
-			"fonts/mui.ttf"
+			"fonts/mui.ttf",
+			"m_account_index.html"
 		],
 		"refer": [
-			"account/%7B%%20url%20\u0027vip_intro\u0027%20%%7D"
+			"account/%7B%%20url%20\u0027vip_intro\u0027%20%%7D",
+			"m_account_index.html"
 		]
 	},
 	"account/m_vip_intro.html": {
@@ -685,5 +698,46 @@
 			"images/activity_invite_text02.png"
 		],
 		"refer": []
+	},
+	"account/m_account_welfare_task.html": {
+		"resources": [
+			"account/m_account_welfare_media.html",
+			"account/m_account_welfare_finance.html",
+			"css/mui.min.css",
+			"js/UserInfo.js",
+			"js/mui.min.js"
+		],
+		"refer": [
+			"account/m_account_welfare_media.html",
+			"account/m_account_welfare_finance.html"
+		]
+	},
+	"account/m_account_welfare_finance.html": {
+		"resources": [
+			"account/m_account_welfare_task.html",
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"css/m_audit.css",
+			"account/m_account_welfare_media.html",
+			"js/UserInfo.js",
+			"m_account_index.html"
+		],
+		"refer": [
+			"account/m_account_welfare_task.html",
+			"account/m_account_welfare_media.html",
+			"m_account_index.html"
+		]
+	},
+	"account/m_account_welfare_media.html": {
+		"resources": [
+			"account/m_account_welfare_finance.html",
+			"css/mui.min.css",
+			"css/m_audit.css",
+			"account/m_account_welfare_task.html"
+		],
+		"refer": [
+			"account/m_account_welfare_finance.html",
+			"account/m_account_welfare_task.html"
+		]
 	}
 }

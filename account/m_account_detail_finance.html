@@ -6,8 +6,8 @@
 		<meta charset="UTF-8">
 		<title>查看详情</title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
-		<link rel="stylesheet" href="css/mui.min.css">
-        <script type="text/javascript" src="js/rem.js"></script>
+		<link rel="stylesheet" href="../css/mui.min.css">
+        <script type="text/javascript" src="../js/rem.js"></script>
 		<style type="text/css">
 			body {
 				background: white;
@@ -141,11 +141,30 @@
 				</table>
 			</form>
 		</div>
-		<script src="js/mui.min.js"></script>
-        <script type="text/javascript" charset="UTF-8" src="js/UserInfo.js"></script>
+		<script src="../js/mui.min.js"></script>
+        <script type="text/javascript" charset="UTF-8" src="../js/UserInfo.js"></script>
 		<script type="text/javascript">
 			mui.init()
-			
+			var self = null;
+            var project_id = null;
+            mui.plusReady(function(){
+                self = plus.webview.currentWebview();
+                project_id = self.project_id;
+                var url_get_content = "http://test.wafuli.cn/userevent/" + project_id;
+                mui.ajax({
+                    url:url_get_content,
+                    dataType:"get",
+                    data: {
+                        token:UserInfo.token()  
+                    },
+                    success:function(ret){
+                        console.log(ret);
+                    },
+                    error:function(xhr,type,errorThrown){
+                        mui.toast("请检查网络状况！");
+                    }
+                });
+            });
 			document.getElementById('submit').addEventListener('tap',function (){
                 var project = document.getElementById('project'),
                     date = document.getElementById('date'),
@@ -159,6 +178,7 @@
                 }
                 mui.ajax('/userevent/{{id}}/',{
                     data: {
+                        token:UserInfo.token(),
                         'invest_date': date.value,
                         'invest_mobile': invest_mobile.value,
                         'invest_term': invest_term.value,
