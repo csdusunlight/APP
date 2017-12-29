@@ -273,7 +273,10 @@
 					"account/m_account_settings.html",
 					"account/m_account_change_bankcard.html",
 					"account/m_account_charge.html",
-					"html/m_open_envelope.html"
+					"html/m_open_envelope.html",
+					"a_login.html",
+					"account/m_account_welfare_finance.html",
+					"account/m_strategy.html"
 				],
 				"priority": 0
 			},
@@ -362,7 +365,9 @@
 					"account/m_account_welfare_finance.html",
 					"account/m_account_welfare_task.html",
 					"m_account_index.html",
-					"account/m_account_welfare_media.html"
+					"account/m_account_welfare_media.html",
+					"account/m_account_detail_finance.html",
+					"account/m_account_detail_media.html"
 				],
 				"priority": 0
 			},
@@ -1073,10 +1078,7 @@
 					"account/m_aboutus_cooperation.html"
 				],
 				"refer": [
-					"account/m_detail_press.html",
-					"account/m_aboutus_contactus.html",
-					"account/m_aboutus_statement.html",
-					"account/m_aboutus_cooperation.html"
+					"account/m_detail_press.html"
 				],
 				"priority": 0
 			},
@@ -1872,7 +1874,8 @@
 					"account/m_account_welfare_finance.html",
 					"css/mui.min.css",
 					"js/UserInfo.js",
-					"js/mui.min.js"
+					"js/mui.min.js",
+					"css/m_audit.css"
 				],
 				"refer": [],
 				"priority": 0
@@ -1885,9 +1888,12 @@
 					"css/m_audit.css",
 					"account/m_account_welfare_media.html",
 					"js/UserInfo.js",
-					"m_account_index.html"
+					"m_account_index.html",
+					"js/rem.js"
 				],
-				"refer": [],
+				"refer": [
+					"account/m_account_detail_finance.html"
+				],
 				"priority": 0
 			},
 			"account/m_account_welfare_media.html": {
@@ -1896,6 +1902,24 @@
 					"css/mui.min.css",
 					"css/m_audit.css",
 					"account/m_account_welfare_task.html"
+				],
+				"refer": [
+					"account/m_account_detail_finance.html"
+				],
+				"priority": 0
+			},
+			"account/m_account_detail_finance.html": {
+				"resources": [
+					"css/mui.min.css",
+					"account/m_account_welfare_finance.html"
+				],
+				"refer": [],
+				"priority": 0
+			},
+			"account/m_account_detail_media.html": {
+				"resources": [
+					"css/mui.min.css",
+					"account/m_account_welfare_media.html"
 				],
 				"refer": [],
 				"priority": 0

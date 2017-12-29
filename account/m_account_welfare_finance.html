@@ -37,7 +37,7 @@
             			<div class="mui-scroll" style="width: 56rem;position: static;">
         					<ul class="mui-table-view-right">
         						<li class="item_line m-head m-right" >
-        							<div class="column_2 column m-head">提交日期</div>
+        							<div class="column_2 column m-head">投资时间</div>
         							<div class="column_3 column m-head">投资金额/<br />投资标期</div>
         							<div class="column_6 column m-head">审核状态/<br />返现福币</div>
         							<div class="column_4 column m-head">审核信息</div>
@@ -54,7 +54,6 @@
 		<script type="text/javascript" charset="UTF-8" src="../js/UserInfo.js"></script>
 		<script>
 		    var info = UserInfo.userinfo();
-		    console.log(info);
 		    var count = 1;
 		    var num = 1;
 			mui.init({
@@ -91,8 +90,7 @@
 
 
 					function getList(obj, ul_left, ul_right, n) {
-						console.log(obj);
-						var url = 'http://test.wafuli.cn/usereventlist/?content_type=16';
+						var url = 'http://m.wafuli.cn/usereventlist/?content_type=16&user='+info.userid;
 						mui.ajax(url, {
 							data: {
 							    token:UserInfo.token(),  
@@ -103,7 +101,7 @@
 							type: 'get', //HTTP请求类型
 							timeout: 3000, //超时时间设置为10秒；
 							success: function(data) {
-								console.log("ajax数据：", data.results);
+//								console.log("ajax数据：", data.results);
 								if(!data.results.length) {
 									mui('#pullrefresh').pullRefresh().endPullupToRefresh(true);
 								} else {
@@ -169,9 +167,12 @@
 				mui.confirm("是否要删除该条数据", "提示", btnArry, function(e) {
 					if(e.index == 1) {
 
-						mui.ajax("/userevent/" + dataId + "/", {
+						mui.ajax("http://m.wafuli.cn/userevent/" + dataId + "/", {
 							dataType: 'json', //服务器返回json格式数据
 							type: 'delete', //HTTP请求类型
+							data: {
+							    token:UserInfo.token(),
+							},
 							timeout: 10000, //超时时间设置为10秒；
 							success: function(data) {
 								mui(".item" + dataId).each(function() {
@@ -189,54 +190,19 @@
 					}
 				});
 			});
-//          mui('.mui-bar').on('tap', '.mui-action-back2', function() {
-//              var href = this.getAttribute("href");
-//              mui.openWindow({
-//                  url: href,
-//                  styles: {
-//                      top: 0,
-//                      bottom: 0
-//                  },
-//                  show: {
-//                      aniShow: 'slide-in-right',
-//                  },
-//                  waiting: {
-//                      autoShow: false, //自动显示等待框
-//                      title: '正在加载...', //等待对话框上显示的提示内容
-//                  }
-//              });
-//          });
+
             mui('.mui-table-view-right').on('tap', '.pro_editor', function() {
                 var project_id = this.getAttribute('data-id'); //获取自定义data-id属性
-//              mui.openWindow({
-//                  url: "/account/detail_finance/" + project_id,
-//                  styles: {
-//                      top: 0,
-//                      bottom: 0
-//                  },
-//                  show: {
-//                      aniShow: 'slide-in-right',
-//                  },
-//                  waiting: {
-//                      autoShow: false, //自动显示等待框
-//                      title: '正在加载...', //等待对话框上显示的提示内容
-//                  }
-//              });
+
+                console.log(project_id);
                 mui.openWindow({
                     url: "m_account_detail_finance.html",
-                    id: "m_account_detail_finance.html",
+                    id: "m_account_detail_finance2.html",
                     styles: {
                         top: 0,
                         bottom: 0,
                         hardwareAccelerated:true
                     },
-//                      show:{
-//                        autoShow:false,//页面loaded事件发生后自动显示，默认为true
-//                        aniShow: 'slide-in-right'
-//                      },
-//                      waiting: {
-//                          autoShow: true,
-//                      },
                     extras:{
                         project_id:project_id
                     }
@@ -263,18 +229,6 @@
                     id: id,
                 });
             };
-			mui('.mui-table-view-right').on('tap', '.pro_editor', function(e) {
-                if(!UserInfo.has_login()) {
-                    tologin();
-                } else {
-                    var project_id = this.getAttribute('data-id'); //获取自定义data-id属性
-                    var targetTab = 'm_account_detail_finance.html';
-                    tempview.loadURL(targetTab);
-                    setTimeout(function() {
-                        tempview.show('pop-in');
-                    }, 10);
-                }
-            });
             mui('.mui-bar-nav').on('tap', 'a', function(e) {
 //                  var targetTab = this.getAttribute('href');
 //                  tempview.loadURL(targetTab);

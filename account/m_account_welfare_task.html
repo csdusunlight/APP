@@ -42,7 +42,7 @@
             			<div class="mui-scroll" style="width: 40rem;position: static;">
         					<ul class="mui-table-view-right">
         						<li class="item_line m-head m-right" >
-        							<div class="column_2 column m-head">提交日期</div>
+        							<div class="column_2 column m-head">投资时间</div>
         							<div class="column_3 column m-head">手机号</div>
         							<div class="column_4 column m-head">审核状态/<br />返现福币</div>
         							<div class="column_5 column m-head">审核信息</div>
@@ -95,7 +95,7 @@
 
 					function getList(obj, ul_left, ul_right, n) {
 						console.log(obj);
-						var url = 'http://test.wafuli.cn/usereventlist/?content_type=15&user=' + info.id;
+						var url = 'http://m.wafuli.cn/usereventlist/?content_type=15&user='+info.userid;
 						mui.ajax(url, {
 							data: {
 							    token:UserInfo.token(),
@@ -164,7 +164,7 @@
 				mui.confirm("是否要删除该条数据", "提示", btnArry, function(e) {
 					if(e.index == 1) {
 
-						mui.ajax("/usereventlist/" + dataId + "/", {
+						mui.ajax("http://m.wafuli.cn/userevent/" + dataId + "/", {
 							dataType: 'json', //服务器返回json格式数据
 							type: 'delete', //HTTP请求类型
 							timeout: 10000, //超时时间设置为10秒；

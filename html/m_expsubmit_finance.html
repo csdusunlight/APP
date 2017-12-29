@@ -32,6 +32,10 @@
                             <input name="is_futou" type="radio" value="2">
                         </div>
                     </div>
+                    <div class="mui-input-row">
+                      <label>投资日期</label>
+                      <input type="date" placeholder="请输入投资日期" id="invest_date">
+                    </div>
 					<div class="mui-input-row">
 						<label>投资金额（元）</label>
 						<input type="text" placeholder="请输入投资金额（仅限数字）" id="amount">
@@ -60,6 +64,7 @@
 				});
 				document.getElementById("submit_btn").addEventListener('tap', function() {
 					var telnum = document.getElementById('telnum').value;
+					var invest_date = document.getElementById('invest_date').value;
 					var remark = document.getElementById('remark').value;
 					var amount = document.getElementById('amount').value;
 					var is_futou = mui('input[name="is_futou"]:checked')[0].value;
@@ -79,11 +84,16 @@
 						alert("投资标期不能为空且必须为纯数字格式！")
 						return;
 					}
+					if(!invest_date){
+                        mui.alert("投资日期不能为空")
+                        return;
+                      }
 					mui.ajax({
 						url: "http://m.wafuli.cn/app/submit_finance/",
 						type: 'post',
 						data: {
 						    'submit_type':is_futou,
+						    'invest_date': invest_date,
 							'id': id,
 							'amount': amount,
 							'term': term,

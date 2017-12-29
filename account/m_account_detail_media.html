@@ -98,31 +98,31 @@
 					<tr>
 						<td><span>项目名称</span></td>
 						<td> 
-							<input id="project" type="text" class="ipt" value="{{obj.content_object}}" disabled="disabled" />
+							<input id="project" type="text" class="ipt" value="" disabled="disabled" />
 						</td>
 					</tr>
 					<tr>
 						<td><span>投资日期</span></td>
 						<td>
-							<input id="date" type="date" class="ipt" value='{{obj.invest_time|date:"Y-m-d"}}' />
+							<input id="date" type="date" class="ipt" value='' />
 						</td>
 					</tr>
 					<tr>
 						<td><span>提交手机号</span></td>
 						<td>
-							<input id="invest_mobile" type="text" maxlength="11" class="ipt" value="{{obj.invest_account}}" />
+							<input id="invest_mobile" disabled="disabled" type="text" maxlength="11" class="ipt" value="" />
 						</td>
 					</tr>
 					<tr>
 						<td><span>投资标期（天）</span></td>
 						<td>
-							<input id="invest_term" type="number" class="ipt" value="{{obj.invest_term}}" />
+							<input id="invest_term" type="number" class="ipt" value="" />
 						</td>
 					</tr>
 					<tr>
 						<td><span>投资金额（元）</span></td>
 						<td>
-							<input id="invest_amount" type="number" class="ipt" value="{{obj.invest_amount}}" />
+							<input id="invest_amount" type="number" class="ipt" value="" />
 						</td>
 					</tr>
 					<tr>
@@ -130,7 +130,7 @@
 							<span>备注</span>
 						</td>
 						<td>
-							<input id="remark" type="text" class="ipt" value="{{obj.remark}}" />
+							<input id="remark" type="text" class="ipt" value="" />
 						</td>
 					</tr>
 					<tr>
@@ -147,10 +147,16 @@
 			mui.init()
 			var self = null;
             var project_id = null;
+            var project = document.getElementById('project'),
+                date = document.getElementById('date'),
+                invest_mobile = document.getElementById('invest_mobile'),
+                invest_term = document.getElementById('invest_term'),
+                invest_amount = document.getElementById('invest_amount'),
+                remark = document.getElementById('remark');
             mui.plusReady(function(){
                 self = plus.webview.currentWebview();
                 project_id = self.project_id;
-                var url_get_content = "http://test.wafuli.cn/userevent/" + project_id;
+                var url_get_content = "http://m.wafuli.cn/userevent/" + project_id;
                 mui.ajax({
                     url:url_get_content,
                     dataType:"get",
@@ -158,7 +164,13 @@
                         token:UserInfo.token()  
                     },
                     success:function(ret){
-                        console.log(ret);
+                        var data = JSON.parse(ret);
+                        project.value = data.project;
+                        date.value = data.invest_time.split('T')[0];
+                        invest_mobile.value = data.invest_account;
+                        invest_term.value = data.invest_term;
+                        invest_amount.value = data.invest_amount;
+                        remark.value = data.remark;
                     },
                     error:function(xhr,type,errorThrown){
                         mui.toast("请检查网络状况！");
@@ -166,21 +178,15 @@
                 });
             });
 			document.getElementById('submit').addEventListener('tap',function (){
-                var project = document.getElementById('project'),
-                    date = document.getElementById('date'),
-                    invest_mobile = document.getElementById('invest_mobile'),
-                    invest_term = document.getElementById('invest_term'),
-                    invest_amount = document.getElementById('invest_amount'),
-                    remark = document.getElementById('remark');
                 if (!date.value || !invest_mobile.value || !invest_term.value || !invest_amount.value ) {
-                    mui.alert('投资手机号不能为空');
+                    mui.alert('必填项不能为空');
                     return;
                 }
-                mui.ajax('/userevent/{{id}}/',{
+                mui.ajax("http://m.wafuli.cn/userevent/" + project_id,{
                     data: {
                         token:UserInfo.token(),
-                        'invest_date': date.value,
-                        'invest_mobile': invest_mobile.value,
+                        'invest_time': date.value + "T00:00",
+                        'invest_account': invest_mobile.value,
                         'invest_term': invest_term.value,
                         'invest_amount': invest_amount.value,
                         'remark': remark.value,
