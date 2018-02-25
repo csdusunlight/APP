@@ -742,7 +742,8 @@
 			"account/m_account_welfare_finance.html",
 			"css/mui.min.css",
 			"css/m_audit.css",
-			"account/m_account_welfare_task.html"
+			"account/m_account_welfare_task.html",
+			"js/mui.min.js"
 		],
 		"refer": [
 			"account/m_account_welfare_finance.html",
